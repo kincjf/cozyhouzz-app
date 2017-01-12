@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { NavController, Content } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Loader } from '../../../providers/loader';

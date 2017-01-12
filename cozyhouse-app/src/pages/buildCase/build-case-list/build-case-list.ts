@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, App, MenuController, NavParams, LoadingController   } from 'ionic-angular';
+import { NavController, Platform, MenuController, NavParams, LoadingController   } from 'ionic-angular';
 import { PostService } from '../../../services/post-service';
 import { RoomService } from '../../../services/room-service';
 
@@ -7,7 +7,6 @@ import { BuildCaseDetailPage } from '../build-case-detail/build-case-detail';
 import { config } from '../../../app/common/config';
 import { STATIC_VALUE } from "../../../app/common/config/staticValue";
 import * as _ from "lodash";
-import { HomePage } from '../../home/home';
 import { Events } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';

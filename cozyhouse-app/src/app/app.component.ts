@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, AlertController, App } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
@@ -17,19 +17,24 @@ export class MyApp {
     platform: Platform;
     jwt: string;
     logined: boolean;
+    alertController:AlertController;
+    app:App;
 
     constructor(
     platform: Platform,
     private events: Events,
+    private App:App,
     private storage: Storage,
-    private userService:UserService
+    private userService:UserService,
+    private AlertController:AlertController
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       this.platform = platform;
-
+      this.alertController = AlertController;
+      this.app = App;
 
       let user = this.storage.get("id_token").then(jwt => {
         if(jwt) {
@@ -38,7 +43,7 @@ export class MyApp {
         }
       });
       this.rootPage = Menu; //로그인 할꺼면 LoginPage, 안할꺼면 Menu 로 바로...
-
+      this.registerBackButtonListener();
       /*
       storage.get('roomSettingInformation').then((val) => {
         if(val) {
@@ -96,7 +101,34 @@ export class MyApp {
     });
 
   }
+    registerBackButtonListener() {
+        document.addEventListener('backbutton', () => {
+            /*var nav = this.app.getRootNav();
+            if (nav.canGoBack()) {
+                nav.pop();
+            }
+            else {
+                let confirm = this.alertController.create({
+                    title: 'Confirm Exit',
+                    message: 'Really exit app?',
+                    buttons: [
+                        {
+                            text: 'Cancel',
+                            handler: () => {
+                                console.log('Disagree clicked');
+                            }
+                        },
+                        {
+                            text: 'Exit',
+                            handler: () => {
 
+                            }
+                        }
+                    ]
+                });
+            }*/
+        });
+    }
     setHeaderUserMenu() {
         this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
         if (this.jwt) {
@@ -104,6 +136,34 @@ export class MyApp {
         } else {
             this.logined = false;
         }
+    }
+    confirmExitApp(nav) {
+        /*
+        let confirm = this.alertController.create({
+            title: 'Confirm Exit',
+            message: 'Really exit app?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    handler: () => {
+                        console.log('Disagree clicked');
+                    }
+                },
+                {
+                    text: 'Exit',
+                    handler: () => {
+                        navigator.app.exitApp();
+                    }
+                }
+            ]
+        });
+        nav.present(confirm);
+        */
+    }
+    getNav() {
+        /*
+        return this.app.getComponent('nav');
+        */
     }
 
 }
