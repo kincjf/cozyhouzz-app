@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-navbar color="gray-df">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>개인정보수정</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<!-- 일반 유저 부분 -->
+<ion-content padding *ngIf="userDetails.delimiter == 0">
+  <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()">
+    <!--
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>이름</ion-label>
+        <ion-input type="text" [(ngModel)]='userDetails.fullName' formControlName="fullName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!userFormBuilder.controls.fullName.pristine && !userFormBuilder.controls.fullName.valid">
+        <p class="form-error" item-right *ngIf="!userFormBuilder.controls.fullName.pristine && userFormBuilder.controls.fullName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>핸드폰 번호</ion-label>
+        <ion-input type="text" [(ngModel)]='userDetails.cellPhone' formControlName="cellPhone"></ion-input>
+      </ion-item>
+
+    </ion-list>
+    -->
+    <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
+  </form>
+</ion-content>
+<!-- 사업주 부분 -->
+<ion-content padding *ngIf="userDetails.delimiter == 1">
+  <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()">
+    <!--
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>사업장 이름</ion-label>
+        <ion-input type="text" [(ngModel)]='userDetails.businessName' formControlName="businessName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!userFormBuilder.controls.businessName.pristine && !userFormBuilder.controls.businessName.valid">
+        <p class="form-error" item-right *ngIf="!userFormBuilder.controls.businessName.pristine && userFormBuilder.controls.businessName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>이름</ion-label>
+        <ion-input type="text" [(ngModel)]='userDetails.fullName' formControlName="fullName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!userFormBuilder.controls.fullName.pristine && !userFormBuilder.controls.fullName.valid">
+        <p class="form-error" item-right *ngIf="!userFormBuilder.controls.fullName.pristine && userFormBuilder.controls.fullName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>핸드폰 번호</ion-label>
+        <ion-input type="text" [(ngModel)]='userDetails.cellPhone' formControlName="cellPhone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>사업장 주소</ion-label>
+        <ion-input type="text" [(ngModel)]='userDetails.businessAddress' formControlName="businessAddress"></ion-input>
+      </ion-item>
+    </ion-list>
+    -->
+    <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
+  </form>
+</ion-content>

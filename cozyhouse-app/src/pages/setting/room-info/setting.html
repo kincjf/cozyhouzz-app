@@ -1,0 +1,63 @@
+<!--
+  Generated template for the Setting page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="gray-df">
+    <ion-title>검색 조건</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>보증금</ion-label>
+
+    <ion-range (ionChange)="change_deposit()" dualKnobs="true" [(ngModel)]="deposit" min="0" max="{{room.deposit_max}}" step="100">
+      <ion-label range-left>{{room.deposit_lower}}</ion-label>
+      <ion-label range-right>{{room.deposit_upper}}</ion-label>
+
+    </ion-range>
+  </ion-item>
+  <ion-item>
+    <ion-label>월세</ion-label>
+    <ion-range (ionChange)="change_monthly()" dualKnobs="true" [(ngModel)]="monthly" min="0" max="{{room.monthly_max}}" step="50">
+
+      <ion-label range-left>{{room.monthly_lower}}</ion-label>
+      <ion-label range-right>{{room.monthly_upper}}</ion-label>
+    </ion-range>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>전세만</ion-label>
+      <ion-checkbox [(ngModel)]="room.isCharter"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>원룸(오픈형)</ion-label>
+      <ion-checkbox [(ngModel)]="room.isOneRoomOpen"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>원룸(분리형)</ion-label>
+      <ion-checkbox [(ngModel)]="room.isOneRoomDuplex"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>원룸(복층형)</ion-label>
+      <ion-checkbox [(ngModel)]="room.isOneRoomSeperation"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>투룸</ion-label>
+      <ion-checkbox [(ngModel)]="room.isTwoRoom"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>쓰리룸+</ion-label>
+      <ion-checkbox [(ngModel)]="room.isThreeRoom"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<!-- snaps="true"-->

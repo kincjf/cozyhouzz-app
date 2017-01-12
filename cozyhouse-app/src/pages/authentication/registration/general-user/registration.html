@@ -1,0 +1,83 @@
+<!--
+Generated template for the Registration page.
+
+See http://ionicframework.com/docs/v2/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>일반 사용자 회원가입</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="user" (ngSubmit)="createUser()">
+    <ion-list>
+
+      <ion-item>
+        <ion-label stacked>이름</ion-label>
+        <ion-input type="text" formControlName="fullName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.fullName.pristine && !user.controls.fullName.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.fullName.pristine && user.controls.fullName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>이메일</ion-label>
+        <ion-input #email type="email" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.email.pristine && !user.controls.email.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.email.pristine && user.controls.email.hasError('required')">
+          This is a required field.
+        </p>
+        <p class="form-error" item-right *ngIf="!user.controls.email.pristine && !user.controls.email.valid">
+          Invalid email address.
+        </p>
+      </ion-item>
+      <!-- businessName businessAddress-->
+      <ion-item>
+        <ion-label stacked>핸드폰 번호</ion-label>
+        <ion-input #cellphone type="text" formControlName="cellphone"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.cellphone.pristine && !user.controls.cellphone.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.cellphone.pristine && user.controls.cellphone.hasError('required')">
+          This is a required field.
+        </p>
+        <p class="form-error" item-right *ngIf="!user.controls.cellphone.pristine && !user.controls.cellphone.valid">
+          Invalid cell phone address.
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>비밀번호</ion-label>
+        <ion-input #password type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.password.pristine && !user.controls.password.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.password.pristine && user.controls.password.hasError('required')">
+          This is a required field.
+        </p>
+        <p class="form-error" item-right *ngIf="!user.controls.password.pristine && user.controls.password?.errors?.minlength">
+          Password must have more than 5 characters
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>비밀번호 확인</ion-label>
+        <ion-input type="password" formControlName="passwordConfirmation"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.passwordConfirmation.pristine && !user.controls.passwordConfirmation.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.passwordConfirmation.pristine && user.controls.passwordConfirmation.hasError('required')">
+          This is a required field.
+        </p>
+        <p class="form-error" item-right *ngIf="!user.controls.passwordConfirmation.pristine && user.controls.passwordConfirmation?.errors?.minlength">
+          Password must have more than 5 characters
+        </p>
+      </ion-item>
+    </ion-list>
+    <button type="submit" full ion-button block color="secondary" [disabled]="!user.valid">Sign up</button>
+  </form>
+</ion-content>

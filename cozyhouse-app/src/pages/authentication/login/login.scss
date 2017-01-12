@@ -1,0 +1,46 @@
+page-login {
+  .logo {
+    max-width: 70%;
+    display: block;
+    margin: auto;
+  }
+  #login-form {
+    color: black;
+  }
+}
+
+.item-inner {
+  box-shadow: 0;
+  border-width: 0;
+}
+
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+  box-shadow: inset 0 0 0 0 #32db64;
+  border-width: 0;
+}
+
+.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+  box-shadow: inset 0 0 0 0 #f53d3d;
+  border-width: 0;
+}
+.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+  border-width: 0;
+  box-shadow: inset 0 0 0 0 #f53d3d;
+}
+.item-md.item-input.input-has-focus .item-inner {
+
+  border-width: 0;
+  box-shadow: inset 0 0 0 0 #f53d3d;
+}
+
+.list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
+  border-bottom-color: #33363c;
+  box-shadow: inset 0 -1px 0 0 #33363c;
+
+}
+
+.list-md .item-input.input-has-focus:last-child {
+  border-bottom-color: #bbb;
+  box-shadow: inset 0 -1px 0 0 #bbb;
+
+}

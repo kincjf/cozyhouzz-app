@@ -1,0 +1,42 @@
+page-menu {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  opacity: 0.7;
+  #user-email {
+    color: white; font-size: 1.2em; position: relative;
+    top: 18px;
+    left: 10px;
+  }
+  .user-button-line {
+    position: relative;
+  }
+  #authentication_area {
+     position: relative;
+     top: -5px;
+     background-color: rgba(51, 54, 60, 1);
+    .icon {
+      color: white;
+      font-size: 2em;
+      position: relative;
+      padding-top: 0;
+      top: 10px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+  .menu_line_area {
+      position: relative;
+      top: -5px;
+      background-color: #ddd;
+      padding: 6px 0 7px 10px;
+      span {
+          color: black;
+        font-size: 0.9em
+      }
+  }
+  ion-list {
+    position: relative;
+    top: -5px;
+    margin-bottom: 0;
+  }
+}
