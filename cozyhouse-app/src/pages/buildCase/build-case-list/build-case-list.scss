@@ -82,7 +82,9 @@ page-build-case-list {
     font-size: 1.4em;
   }
   #post_detail {
-      padding: 17px 8px 15px 8px;
+      width: 50%;
+      float: right;
+      padding: 20px 8px 12px 8px;
       #post_title {
         font-size:1.40rem;
         display:block;
@@ -97,10 +99,9 @@ page-build-case-list {
   }
 
   .outer {
-    display: table;
-    position: absolute;
-    height: 100%;
-    width: 100%;
+      float: left;
+      width: 50%;
+
   }
 
   .middle {
