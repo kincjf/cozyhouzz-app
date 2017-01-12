@@ -1,0 +1,34 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+*.sw[mnpcod]
+*.log
+*.tmp
+*.tmp.*
+log.txt
+*.sublime-project
+*.sublime-workspace
+.vscode/
+cozyhouse-app/npm-debug.log*
+
+.idea/
+.sass-cache/
+.tmp/
+cozyhouse-app/.versions/
+cozyhouse-app/coverage/
+cozyhouse-app/dist/
+cozyhouse-app/node_modules/
+cozyhouse-app/tmp/
+cozyhouse-app/temp/
+cozyhouse-app/hooks/
+cozyhouse-app/platforms/
+cozyhouse-app/plugins/
+#cozyhousplugins/android.json
+#plugins/ios.json
+#www/
+cozyhouse-app/$RECYCLE.BIN/
+
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
