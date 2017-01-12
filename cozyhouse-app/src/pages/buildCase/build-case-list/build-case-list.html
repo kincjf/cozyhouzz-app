@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="gray-df">
+  <ion-navbar color="cozy">
     <button  ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -15,7 +15,7 @@
 
   <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
     <ion-row>
-      <ion-col text-center width-25>
+      <ion-col text-center width-50>
         <ion-item text-center>
         <ion-select [(ngModel)]="region" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
           <ion-option value="전체" selected="true">전체</ion-option>
@@ -25,13 +25,14 @@
         </ion-select>
         </ion-item>
       </ion-col>
-      <ion-col text-center width-25>
+      <ion-col text-center width-50>
         <ion-item text-center>
         <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately"  (ionChange)="changeLately()">
           <ion-option value="최신순" selected="true">최신순</ion-option>
         </ion-select>
         </ion-item>
       </ion-col>
+      <!--
       <ion-col text-center width-50>
         <ion-item text-center>
           <ion-select [(ngModel)]="filter" multiple="true" [selectOptions]="selectOptions" (ionChange)="changeDetailFilter()">
@@ -44,6 +45,7 @@
           </ion-select>
         </ion-item>
       </ion-col>
+      -->
     </ion-row>
     <!--
       <span style="font-size: 1.10em; position: relative; top: 11px; left: 20px;">
@@ -55,22 +57,34 @@
 
 <ion-content>
   <ion-card *ngFor="let buildCase of returnedDatas" >
-    <ion-item>
-      <!--<ion-avatar item-left (click)="viewUser(post.user_id)">
-        <img src="{{ post.face }}">
-      </ion-avatar>-->
-      <h2 style="font-size:1.85rem">{{buildCase.title}}</h2> <!--(click)="viewUser(post.user_id)"-->
-      <h3>{{buildCase.buildPlace}}</h3>
-      <!--<p>{{ post.time }}</p>-->
-    </ion-item>
+
+
     <ion-item text-wrap class="post-body">
       <div (click)="viewPost(buildCase.selectedBuildCaseIdx)">
         <!--<img class="full-image" *ngIf="post.image" src="{{ post.image }}">
         <p padding-top padding-bottom>{{ post.content }}</p>-->
-        <a routerLink="#">
-          <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-               alt="Inventore voluptates velit totam ipsa tenetur">
-        </a>
+
+        <div class="outer">
+
+          <div class="middle">
+            <div class="inner">
+              <div id="post_image"  style="width: 50%; float: left;" >
+                <a>
+                  <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
+                       alt="Inventore voluptates velit totam ipsa tenetur">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="post_detail" style="width: 50%; float: right;">
+          <h2 style="font-size:1.40rem">{{buildCase.title}}</h2> <!--(click)="viewUser(post.user_id)"-->
+          <h3 style="font-size:1.20rem">{{buildCase.buildPlace}}</h3>
+          <span style="font-size: 0.85em">{{buildCase.buildTotalArea}}평</span>
+          <span style="font-size: 0.85em">{{buildCase.buildType}}</span>
+          <span style="font-size: 0.85em">{{buildCase.buildTotalPrice}}만원</span>
+        </div>
       </div>
       <!--
             <div>
@@ -79,6 +93,7 @@
             </div>
           -->
     </ion-item>
+    <!--
     <ion-grid class="post-actions">
       <ion-row >
         <ion-col width-33 text-center>
@@ -96,6 +111,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    -->
 
   </ion-card>
   <!--
