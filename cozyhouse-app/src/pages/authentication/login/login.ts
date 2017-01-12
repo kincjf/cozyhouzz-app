@@ -1,15 +1,10 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, MenuController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
-import { AuthenticatorService } from "../../../providers/authenticator";
 import { GeneralRegistrationPage } from '../registration/general-user/registration';
 import { AlertController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserService } from '../../../services/user-service';
-import { PostService } from '../../../services/post-service';
-import { config } from '../../../app/common/config';
-import { STATIC_VALUE } from "../../../app/common/config/staticValue";
-import {User} from "../../../providers/user";
 /*
   Generated class for the Login page.
 */
@@ -27,7 +22,6 @@ export class LoginPage {
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private alertCtrl: AlertController,
-    private authenticator: AuthenticatorService,
     public menu: MenuController,
     public s : Storage,
     public u : UserService
@@ -53,18 +47,7 @@ export class LoginPage {
 
   // Anonymous user login
   anonymousUser() {
-    this.authenticator.anonymousUser()
-    .then((user) => {
-      this.doSomethingAfterUserLogin(user);
-    })
-    .catch((e) => {
-      let prompt = this.alertCtrl.create({
-        title: 'Error',
-        message: `Failed to login ${e.message}`,
-        buttons: [{ text: 'Ok' }]
-      });
-      prompt.present();
-    });
+
   }
   // 페이지 닫힐때 이벤트. 위에서 사이드 메뉴 사용 금지시킨거 다시 풀어야함.
   ionViewWillLeave() {
@@ -72,21 +55,7 @@ export class LoginPage {
     this.menu.enable(true);
   }
   signInWithOAuth(provider: string) {
-    //INFO: Change this method to enable/disable browser mode
-    // this.authenticator.signInWithOAuth(provider)
-    /*this.authenticator.signInWithOAuthBrowserMode(provider)
-    .then((user) => {
-      this.doSomethingAfterUserLogin(user);
-    })
-    .catch((e) => {
-      let prompt = this.alertCtrl.create({
-        title: 'Error',
-        message: `Failed to login ${e}`,
-        buttons: [{ text: 'Ok' }]
-      });
-      prompt.present();
-    });
-    */
+
   }
 
   // Perform login using user and password
@@ -100,9 +69,10 @@ export class LoginPage {
     }).toPromise()
       .then(
         response => {
-          this.storage.set("user", response);
-          this.userService.setUserInfo(new User(response));
-          this.navCtrl.pop()
+            console.log(response);
+            this.storage.set("id_token", response.id_token);
+            this.userService.setUserInfo(response.id_token);
+            this.navCtrl.pop()
         },
         err => {
           this.alertCtrl.create({
@@ -120,34 +90,6 @@ export class LoginPage {
 
   // Reset password
   resetPassword() {
-    this.alertCtrl.create({
-      title: 'Reset your password',
-      message: "Enter your email so we can send you a link to reset your password",
-      inputs: [ { type: 'email', name: 'email', placeholder: 'Email' } ],
-      buttons: [
-        { text: 'Cancel', handler: data => {} },
-        {
-          text: 'Done',
-          handler: data => {
-            this.authenticator.resetPassword(data.email)
-            .then(() => {
-              this.alertCtrl.create({
-                title: 'Success',
-                message: 'Your password has been reset - Please check your email for further instructions.',
-                buttons: [{ text: 'Ok' }]
-              }).present();
-            })
-            .catch((e) => {
-              this.alertCtrl.create({
-                title: 'Error',
-                message: `Failed to login ${e.message}`,
-                buttons: [{ text: 'Ok' }]
-              }).present();
-            });
-          }
-        }
-      ]
-    }).present();
   }
 
 }

@@ -2,9 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { NavController, Content } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { AuthenticatorService } from "../../../providers/authenticator";
 import { Loader } from '../../../providers/loader';
-import { User } from "../../../providers/user";
 
 @Component({
   selector: 'page-about',
@@ -13,7 +11,7 @@ import { User } from "../../../providers/user";
 export class AboutPage {
   @ViewChild(Content) content: Content;
 
-  userDetails: User;
+  userDetails: any;
   chatControl: any;
 
   messages: FirebaseListObservable<any[]>;
@@ -23,8 +21,7 @@ export class AboutPage {
     public navCtrl: NavController,
     public af: AngularFire,
     private loader: Loader,
-    private formBuilder: FormBuilder,
-    private authenticatorService: AuthenticatorService
+    private formBuilder: FormBuilder
   ) {
     // Get messages and join with user details
     /*this.messages = <FirebaseListObservable<any>> af.database.list('messages', {

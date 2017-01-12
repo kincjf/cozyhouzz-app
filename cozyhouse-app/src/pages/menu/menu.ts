@@ -6,27 +6,21 @@ import { UserPage } from '../user/user';
 import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
 import { GeneralRegistrationPage } from '../authentication/registration/general-user/registration';
 import { BussinessManRegistrationPage } from '../authentication/registration/buisnessman-user/registration';
-import { CallNumberPage } from '../call-number/call-number';
-import { ImagePickerPage } from '../image-picker/image-picker';
 import { LoginPage } from '../authentication/login/login'
-import { ModalController, NavController } from 'ionic-angular';
-import { AuthenticatorService } from '../../providers/authenticator';
+import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import { User } from "../../providers/user";
 import { RoomSettingPage } from '../setting/room-info/setting';
-import { QuestionDetailPage } from '../mypage/question/question-detail/question-detail';
 import { QuestionListPage } from '../mypage/question/question-list/question-list';
 import { UserService } from '../../services/user-service';
 @Component({
   selector: 'page-menu',
-  templateUrl: 'menu.html',
-  providers: [AuthenticatorService]
+  templateUrl: 'menu.html'
 })
 export class Menu {
   @ViewChild(Nav) nav: Nav;
   isLogined:boolean = false;
-  userDetails: User = null;
-  user:User;
+  userDetails: any = null;
+  user:any;
   rootPage: any = HomePage;
   build_pages: Array<{title: string, component: any}>;
   build_push_pages: Array<{title: string, component: any}>;
@@ -36,14 +30,12 @@ export class Menu {
   userService:UserService;
   constructor(
     public navCtrl: NavController,
-    private authenticatorService: AuthenticatorService,
     public events: Events,
     public v: ViewController,
     public UserService: UserService
   ) {
     this.userService = UserService;
     this.viewController = v;
-    this.authenticatorService = authenticatorService;
     this.navCtrl = navCtrl;
     this.events = events;
 

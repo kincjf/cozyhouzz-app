@@ -3,9 +3,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import {Inject} from '@angular/core';
 import { NavController, Content } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable, FirebaseRef } from 'angularfire2';
-import { AuthenticatorService } from "../../../../providers/authenticator";
 import { Loader } from '../../../../providers/loader';
-import { User } from "../../../../providers/user";
 
 @Component({
   selector: 'page-question-detail',
@@ -14,7 +12,7 @@ import { User } from "../../../../providers/user";
 export class QuestionDetailPage {
   @ViewChild(Content) content: Content;
 
-  userDetails: User;
+  userDetails: any;
   chatControl: any;
 
   messages: FirebaseListObservable<any[]>;
@@ -24,8 +22,7 @@ export class QuestionDetailPage {
     public navCtrl: NavController,
     public af: AngularFire,
     private loader: Loader,
-    private formBuilder: FormBuilder,
-    private authenticatorService: AuthenticatorService
+    private formBuilder: FormBuilder
   ) {
 
 

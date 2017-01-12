@@ -3,7 +3,6 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { Loader } from '../../../providers/loader';
-import { User } from "../../../providers/user";
 import { Storage } from '@ionic/storage';
 import { UserService } from '../../../services/user-service';
 /*
@@ -18,7 +17,7 @@ import { UserService } from '../../../services/user-service';
 })
 export class SettingsPage {
   userFormBuilder: any;
-  userDetails: User;
+  userDetails: any;
   storage: Storage;
   userService:UserService;
   constructor(

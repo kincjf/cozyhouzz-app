@@ -1,35 +1,28 @@
 import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 // Authenticator
-import { AuthenticatorService } from '../providers/authenticator';
 import { Storage } from '@ionic/storage';
 
 // Root pages to be used based on authentication
 import { Menu } from '../pages/menu/menu';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/authentication/login/login';
-import { STATIC_VALUE } from "./common/config/staticValue";
 import { UserService } from "../services/user-service";
-import { User } from '../providers/user';
-import { RoomService } from "../services/room-service";
-import { Room } from '../providers/room';
 @Component({
-  template: `<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>`,
-  providers: [AuthenticatorService]
+  template: `<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>`
 })
 export class MyApp {
-  rootPage: any;
-  platform: Platform;
-  roomSettingRange = STATIC_VALUE.ROOM_SETTING_RANGE;
-  constructor(
+    rootPage: any;
+    platform: Platform;
+    jwt: string;
+    logined: boolean;
+
+    constructor(
     platform: Platform,
     private events: Events,
     private storage: Storage,
-    private userService:UserService,
-    private roomService:RoomService
+    private userService:UserService
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -38,10 +31,10 @@ export class MyApp {
       this.platform = platform;
 
 
-      let user = this.storage.get("user").then(val => {
-        if(val) {
+      let user = this.storage.get("id_token").then(jwt => {
+        if(jwt) {
           console.log("스토리지에 저장된 데이터 있음");
-          this.userService.setUserInfo(new User(val));
+          this.userService.setUserInfo(jwt);
         }
       });
       this.rootPage = Menu; //로그인 할꺼면 LoginPage, 안할꺼면 Menu 로 바로...
@@ -103,4 +96,14 @@ export class MyApp {
     });
 
   }
+
+    setHeaderUserMenu() {
+        this.jwt = localStorage.getItem('id_token'); //login시 저장된 jwt값 가져오기
+        if (this.jwt) {
+            this.logined = true;
+        } else {
+            this.logined = false;
+        }
+    }
+
 }

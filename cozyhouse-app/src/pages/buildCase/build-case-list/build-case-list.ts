@@ -12,6 +12,7 @@ import { Events } from 'ionic-angular';
 
 import { Storage } from '@ionic/storage';
 import { Room } from '../../../providers/room';
+import { RoomSettingPage } from '../../setting/room-info/setting';
 //import {UserPage} from '../user/user';
 /*
  Generated class for the LoginPage page.
@@ -92,6 +93,24 @@ export class BuildCaseListPage {
             });
 
           }
+          for (let buildCaseData of response.buildCaseInfo) {
+              //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+              let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
+              let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
+
+              this.returnedDatas.push({
+                  selectedBuildCaseIdx: buildCaseData.idx,
+                  title: buildCaseData.title,
+                  mainPreviewImage: buildCaseData.mainPreviewImage,
+                  HTMLText: buildCaseData.HTMLText,
+                  buildTotalArea: buildCaseData.buildTotalArea,
+                  buildType: STATIC_VALUE.PLACE_TYPE[key].name,
+                  buildTotalPrice: buildCaseData.buildTotalPrice,
+                  buildPlace: buildPlaceArr[1],
+                  buildPlaceDetail: buildPlaceArr[2]
+              });
+
+          }
           console.log(this.returnedDatas);
           loader.dismiss();
         }
@@ -120,6 +139,9 @@ export class BuildCaseListPage {
   }
   ionViewLoaded() {
 
+  }
+  settingButtonClick() {
+      this.nav.push(RoomSettingPage);
   }
   toggleLike(post) {
     // if user liked

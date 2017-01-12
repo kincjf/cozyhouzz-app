@@ -4,13 +4,17 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header no-border>
   <ion-navbar color="cozy">
-    <button  ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>원룸 · 투룸 · 오피스텔 · 도시형생활주택</ion-title>
-
+      <button  ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>원룸·투룸·오피스텔</ion-title>
+      <ion-buttons end>
+          <button ion-button right (click)="settingButtonClick()">
+              방 설정
+          </button>
+      </ion-buttons>
   </ion-navbar>
 
   <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
@@ -28,7 +32,10 @@
       <ion-col text-center width-50>
         <ion-item text-center>
         <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately"  (ionChange)="changeLately()">
-          <ion-option value="최신순" selected="true">최신순</ion-option>
+            <ion-option value="최신순" selected="true">최신순</ion-option>
+            <ion-option value="이름순">이름순</ion-option>
+            <ion-option value="보증금순">보증금순</ion-option>
+            <ion-option value="월세순">월세순</ion-option>
         </ion-select>
         </ion-item>
       </ion-col>
@@ -55,104 +62,28 @@
   </div>
 </ion-header>
 
+
 <ion-content>
   <ion-card *ngFor="let buildCase of returnedDatas" >
-
-
-    <ion-item text-wrap class="post-body">
-      <div (click)="viewPost(buildCase.selectedBuildCaseIdx)">
-        <!--<img class="full-image" *ngIf="post.image" src="{{ post.image }}">
-        <p padding-top padding-bottom>{{ post.content }}</p>-->
-
+    <button ion-item text-wrap class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
+      <div>
         <div class="outer">
-
           <div class="middle">
             <div class="inner">
               <div id="post_image"  style="width: 50%; float: left;" >
-                <a>
-                  <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-                       alt="Inventore voluptates velit totam ipsa tenetur">
-                </a>
+                  <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}" alt="Inventore voluptates velit totam ipsa tenetur">
               </div>
             </div>
           </div>
         </div>
-
         <div id="post_detail" style="width: 50%; float: right;">
-          <h2 style="font-size:1.40rem">{{buildCase.title}}</h2> <!--(click)="viewUser(post.user_id)"-->
-          <h3 style="font-size:1.20rem">{{buildCase.buildPlace}}</h3>
+          <span id="post_title">{{buildCase.title}}</span> <!--(click)="viewUser(post.user_id)"-->
+          <span style="font-size:1.20rem">{{buildCase.buildPlace}}</span><br>
           <span style="font-size: 0.85em">{{buildCase.buildTotalArea}}평</span>
           <span style="font-size: 0.85em">{{buildCase.buildType}}</span>
           <span style="font-size: 0.85em">{{buildCase.buildTotalPrice}}만원</span>
         </div>
       </div>
-      <!--
-            <div>
-              <a (click)="viewPost(post.id)" class="subdued">{{ post.likeCount}} Likes</a>
-              <a (click)="viewPost(post.id)" class="subdued" margin-left>{{ post.commentCount}} Comments</a>
-            </div>
-          -->
-    </ion-item>
-    <!--
-    <ion-grid class="post-actions">
-      <ion-row >
-        <ion-col width-33 text-center>
-          <span  style="font-size: 0.85em"class="label label-warning">공사면적</span><br>
-          <span style="font-size: 0.75em">{{buildCase.buildTotalArea}}평</span>
-        </ion-col>
-        <ion-col width-33 text-center>
-          <span  style="font-size: 0.85em"class="label label-info">공사구분</span><br>
-          <span style="font-size: 0.75em">{{buildCase.buildType}}</span>
-        </ion-col>
-        <ion-col width-33 text-center>
-          <span  style="font-size: 0.85em"class="label label-primary">시공가격</span><br>
-          <span style="font-size: 0.75em">{{buildCase.buildTotalPrice}}만원</span>
-
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    -->
-
+    </button>
   </ion-card>
-  <!--
-    <ion-card *ngFor="let post of posts">
-      <ion-item>
-        <ion-avatar item-left (click)="viewUser(post.user_id)">
-          <img src="{{ post.face }}">
-        </ion-avatar>
-        <h2 (click)="viewUser(post.user_id)">{{ post.name }}</h2>
-        <p>{{ post.time }}</p>
-      </ion-item>
-
-      <ion-item text-wrap class="post-body">
-        <div (click)="viewPost(post.id)">
-          <img class="full-image" *ngIf="post.image" src="{{ post.image }}">
-          <p padding-top padding-bottom>{{ post.content }}</p>
-        </div>
-
-        <div>
-          <a (click)="viewPost(post.id)" class="subdued">{{ post.likeCount}} Likes</a>
-          <a (click)="viewPost(post.id)" class="subdued" margin-left>{{ post.commentCount}} Comments</a>
-        </div>
-      </ion-item>
-
-      <ion-grid class="post-actions">
-        <ion-row>
-          <ion-col width-33 text-center (click)="toggleLike(post)">
-            <ion-icon name="thumbs-up" color="primary"  *ngIf="post.liked"></ion-icon>
-            <ion-icon name="thumbs-up" *ngIf="!post.liked"></ion-icon>
-          </ion-col>
-          <ion-col width-33 text-center (click)="viewPost(post.id)">
-            <ion-icon name="chatboxes"></ion-icon>
-          </ion-col>
-          <ion-col width-33 text-center>
-            <ion-icon name="share-alt"></ion-icon>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </ion-card>
-      -->
-
 </ion-content>

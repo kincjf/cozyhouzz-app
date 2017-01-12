@@ -1,51 +1,34 @@
 import { Injectable } from "@angular/core";
-import { USERS } from "./mock-users";
 import { Http } from '@angular/http';
-import { User } from "../providers/user";
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
-
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class UserService {
-  private users;
   private isLogind;
-  private user:User;
-  private userInfo;
+  private user:any;
   private storage:Storage;
+  public decodedJwt: any;
+  public jwtHelper: JwtHelper;
+  jwt:string;
   http : Http;
-  constructor(public h:Http, public s:Storage, public events:Events) {
-    this.users = USERS;
-    this.http = h;
-    this.storage = s;
-    this.isLogind = false;
-
-  }
-  getAll() {
-    return this.users;
+  constructor(public Http:Http, public Storage:Storage, public events:Events) {
+      this.http = Http;
+      this.storage = Storage;
+      this.isLogind = false;
+      this.jwtHelper = new JwtHelper();
   }
 
-  getItem(id) {
-    for (var i = 0; i < this.users.length; i++) {
-      if (this.users[i].id === parseInt(id)) {
-        return this.users[i];
-      }
-    }
-    return null;
-  }
-
-  remove(item) {
-    this.users.splice(this.users.indexOf(item), 1);
-  }
   login(url, user) {
     return this.http.post(url, user)
       .map(x => {
         return x.json();
       });
   }
-  setUserInfo(user) {
-    this.user = user;
-    this.isLogind = true;
-    this.events.publish('user:logined', '');//user:logined
+  setUserInfo(jwt) {
+      this.isLogind = true;
+      this.user = this.jwtHelper.decodeToken(jwt);
+      this.events.publish('user:logined', '');//user:logined
   }
   getUserInfo() {
     return this.user;
@@ -53,7 +36,7 @@ export class UserService {
   removeUserInfo() {
     this.user = null;
     this.isLogind = false;
-    this.storage.remove("user");
+    this.storage.remove("id_token");
   }
   setIsLogind(flag) {
     this.isLogind = flag;

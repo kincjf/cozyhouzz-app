@@ -1,10 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { NavController, Content, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { AuthenticatorService } from "../../../../providers/authenticator";
 import { Loader } from '../../../../providers/loader';
-import { User } from "../../../../providers/user";
 
 @Component({
   selector: 'page-question-list',
@@ -13,7 +11,7 @@ import { User } from "../../../../providers/user";
 export class QuestionListPage {
   @ViewChild(Content) content: Content;
 
-  userDetails: User;
+  userDetails: any;
   chatControl: any;
 
   channels: FirebaseListObservable<any[]>;
@@ -24,7 +22,6 @@ export class QuestionListPage {
     public af: AngularFire,
     private loader: Loader,
     private formBuilder: FormBuilder,
-    private authenticatorService: AuthenticatorService,
     public params:NavParams,
   ) {
     // Get messages and join with user details

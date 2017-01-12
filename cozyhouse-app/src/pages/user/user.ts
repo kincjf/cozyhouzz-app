@@ -20,7 +20,6 @@ export class UserPage {
   constructor(public nav: NavController, public navParams: NavParams, public userService: UserService, public postService: PostService) {
     // get sample data only
     //this.user = userService.getItem(navParams.get('id'));
-    this.user = userService.getItem(0);
 
     Object.assign(this.user, {
       'followers': 199,
