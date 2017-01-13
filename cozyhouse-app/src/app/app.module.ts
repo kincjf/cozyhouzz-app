@@ -19,6 +19,7 @@ import { QuestionListPage } from '../pages/mypage/question/question-list/questio
 import { CallNumberPage } from '../pages/call-number/call-number';
 import { ImagePickerPage } from '../pages/image-picker/image-picker';
 import { BuildCaseInputPage } from '../pages/buildCase/build-case-input/build-case-input';
+import { ZipCodePage } from '../pages/zip-code/zip-code';
 // Authentication
 import { LoginPage } from '../pages/authentication/login/login';
 import { RegistrationPage } from '../pages/authentication/registration/registration';
@@ -32,6 +33,7 @@ import {PostService} from "../services/post-service";
 import {UserService} from "../services/user-service";
 import { Storage } from '@ionic/storage';
 import {RoomService} from "../services/room-service";
+import { ZipCodeService } from '../services/zip-code-service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import {RoomService} from "../services/room-service";
     RoomSettingPage,
     QuestionDetailPage, // 사실상 채팅!
     QuestionListPage,
-      BuildCaseInputPage
+      BuildCaseInputPage,
+      ZipCodePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -76,14 +79,16 @@ import {RoomService} from "../services/room-service";
     RoomSettingPage,
     QuestionDetailPage,
     QuestionListPage,
-      BuildCaseInputPage
+      BuildCaseInputPage,
+      ZipCodePage
   ],
   providers: [
     Loader,
     Storage,
     PostService,
     RoomService,
-    UserService
+    UserService,
+      ZipCodeService
   ]
 })
 export class AppModule {}

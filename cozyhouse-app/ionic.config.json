@@ -2,5 +2,17 @@
   "name": "cozyhouse-app",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+    "proxies" : [
+        {
+            "path":"/api",
+            "proxyUrl": "http://121.186.7.102:3000"
+
+        },
+      {
+        "path":"http://121.186.7.102:3000",
+        "proxyUrl": "http://121.186.7.102:3000"
+
+      }
+    ]
 }

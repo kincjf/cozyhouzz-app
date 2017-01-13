@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
+import { Validators, FormBuilder } from '@angular/forms';
+import {NavController, MenuController, NavParams, Events} from 'ionic-angular';
+import { ZipCodePage } from '../../zip-code/zip-code';
 /*
   Generated class for the BuildCaseInput page.
 
@@ -12,11 +13,36 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'build-case-input.html'
 })
 export class BuildCaseInputPage {
-
-  constructor(public navCtrl: NavController) {}
-
+  post: any;
+  constructor(public navCtrl: NavController, private menu: MenuController, private events:Events,
+    private formBuilder: FormBuilder, private params: NavParams) {
+    events.subscribe('address:choiced', (address) => {
+      this.post.patchValue(
+        {
+          address: address.zipNo + ' - ' + address.jibunAddr
+        }
+      );
+    });
+  }
   ionViewDidLoad() {
-    console.log('Hello BuildCaseInputPage Page');
+    console.log('ionViewDidLoad ZipCodePage');
+
+  }
+  ionViewWillLoad() {
+      // Validate user registration form
+      this.post = this.formBuilder.group({
+          title : ['', Validators.required],
+          content : ['', Validators.required],
+          address : ['', Validators.required],
+        zip_code : ['', Validators.required]
+      });
+  }
+
+  addressInputClick() {
+    console.log("로그인 이벤트 발생");
+    console.log("sdfsdf");
+    this.navCtrl.push(ZipCodePage);
+
   }
 
 }

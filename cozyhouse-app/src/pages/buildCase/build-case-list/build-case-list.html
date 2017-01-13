@@ -60,30 +60,64 @@
         -->
     </div>
 </ion-header>
+<ion-content>
+  <ion-card *ngFor="let buildCase of returnedDatas" >
+    <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
+      <div>
+        <div class="img" style="width: 100%;">
 
+          <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+        </div>
+        <div class="outer">
+          <div class="middle">
+            <div class="inner">
+              <span id="post_title">{{buildCase.title}}</span>
+              <span id="post_place" >{{buildCase.buildPlace}}</span><br>
+              <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
+              <span id="post_type">{{buildCase.buildType}}</span>
+              <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </ion-card>
+</ion-content>
+<!--
 
 <ion-content>
     <ion-card *ngFor="let buildCase of returnedDatas" >
         <button ion-item text-wrap class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
             <div>
-                <div class="outer">
-                    <div class="middle">
-                        <div class="inner">
-                            <div id="post_image"  style="width: 100%; float: left;" >
-                                <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}" alt="Inventore voluptates velit totam ipsa tenetur">
-                            </div>
-                        </div>
-                    </div>
-                    <div id="post_detail">
-                        <span id="post_title">{{buildCase.title}}</span> <!--(click)="viewUser(post.user_id)"-->
-                        <span id="post_place" >{{buildCase.buildPlace}}</span><br>
-                        <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
-                        <span id="post_type">{{buildCase.buildType}}</span>
-                        <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
-                    </div>
-                </div>
+              <div class="outer">
+
+                 <div class="middle">
+                   <div class="inner">
+                     <div id="post_image"  style="width: 50%; float: left;" >
+                       <a>
+                         <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
+                                                      alt="Inventore voluptates velit totam ipsa tenetur">
+                       </a>
+                     </div>
+                   </div>
+                 </div>
+
+               </div>
+
+              <div id="post_detail" style="width: 50%; float: right;">
+                <span id="post_title">{{buildCase.title}}</span>
+                <span id="post_place" >{{buildCase.buildPlace}}</span><br>
+                <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
+                <span id="post_type">{{buildCase.buildType}}</span>
+                <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
+              </div>
 
             </div>
         </button>
     </ion-card>
 </ion-content>
+
+-->

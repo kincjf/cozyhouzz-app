@@ -12,5 +12,36 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content  style="background-color: #F5F5F5">
+    <form [formGroup]="post">
+        <ion-list>
+            <ion-item>
+                <ion-label stacked>방 제목</ion-label>
+                <ion-input type="text" formControlName="title" placeholder="글 제목을 입력해 주세요."></ion-input>
+            </ion-item>
+            <ion-item class="form-error-list" *ngIf="!post.controls.title.pristine && !post.controls.title.valid">
+                <p class="form-error" item-right *ngIf="!post.controls.title.pristine && post.controls.title.hasError('required')">
+                    This is a required field.
+                </p>
+            </ion-item>
+
+            <ion-item style="height: 200px;">
+                <ion-label stacked>내용</ion-label>
+                <ion-textarea  formControlName="content" placeholder="내용을 입력해 주세요."></ion-textarea>
+            </ion-item>
+            <ion-item class="form-error-list" *ngIf="!post.controls.content.pristine && !post.controls.content.valid">
+                <p class="form-error" item-right *ngIf="!post.controls.content.pristine && post.controls.content.hasError('required')">
+                    This is a required field.
+                </p>
+            </ion-item>
+            <ion-item (click)="addressInputClick()" >
+                <span stacked class="label-md" style="color:#999">우편번호 검색하기</span>
+            </ion-item>
+          <ion-item *ngIf="post.controls.address.value">
+            <ion-label stacked>우편번호 및 주소</ion-label>
+            <ion-input type="text" formControlName="address" readonly></ion-input>
+          </ion-item>
+        </ion-list>
+        <button type="submit" full ion-button block color="secondary" [disabled]="!post.valid">Sign up</button>
+    </form>
 </ion-content>

@@ -85,6 +85,7 @@ export class Menu {
 
     events.subscribe('menu:opened', () => {
       console.log("menu:opened");
+
     });
 
     events.subscribe('menu:closed', () => {

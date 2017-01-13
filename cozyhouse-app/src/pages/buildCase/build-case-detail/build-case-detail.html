@@ -12,6 +12,7 @@
 
 <ion-content>
 
+
   <ion-item class="item-no-border">
     <ion-avatar item-left (click)="viewUser(post.user_id)">
       <img src="{{ post.face }}">
@@ -66,15 +67,15 @@
     </div>
     <div padding>
 
-        <a (click)="toggleLike(post)" class="subdued">
-          <ion-icon name="thumbs-up" color="primary"  *ngIf="post.liked"></ion-icon>
-          <ion-icon name="thumbs-up" color="gray"  *ngIf="!post.liked"></ion-icon>
-          {{ post.likeCount}}
-        </a>
-        <a class="subdued">
-          <ion-icon name="chatboxes" color="primary" ></ion-icon>
-          {{ post.commentCount}}
-        </a>
+      <a (click)="toggleLike(post)" class="subdued">
+        <ion-icon name="thumbs-up" color="primary"  *ngIf="post.liked"></ion-icon>
+        <ion-icon name="thumbs-up" color="gray"  *ngIf="!post.liked"></ion-icon>
+        {{ post.likeCount}}
+      </a>
+      <a class="subdued">
+        <ion-icon name="chatboxes" color="primary" ></ion-icon>
+        {{ post.commentCount}}
+      </a>
 
       <ion-item class="post-comment" *ngFor="let comment of post.comments">
         <ion-avatar item-left (click)="viewUser(comment.user_id)">

@@ -59,12 +59,8 @@ export class BuildCaseDetailPage {
               public loading: LoadingController) {
     // get sample data only
     //this.post = postService.getItem(navParams.get('id'));
-    this.http = http;
-    let loader = loading.create({
-      content: '정보를 불러오고 있습니다.'
-    });
     this.post = postService.getItem(0);
-    loader.present().then(() => {
+    //loader.present().then(() => {
       this.test = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/6");
       this.test.toPromise()
         .then(
@@ -87,14 +83,15 @@ export class BuildCaseDetailPage {
 
             let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
             this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
-            loader.dismiss();
-          }
-        );
+           // loader.dismiss();
+        //  }
+       // );
     });
 
   }
-
-
+  test2() {
+    this.nav.pop();
+  }
   toggleLike(post) {
     // if user liked
     if(post.liked) {
