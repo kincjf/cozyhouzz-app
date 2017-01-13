@@ -23,20 +23,12 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
-
-  <preference name="SplashScreen" value="screen" />
-  <preference name="ShowSplashScreen" value="true" />
-  <!--
-  <preference name="AutoHideSplashScreen" value="true" />
-  <preference name="SplashScreenDelay" value="8000" />
-  -->
-  <preference name="SplashMaintainAspectRatio" value="true" />
-  <preference name="FadeSplashScreen" value="false" />
-  <preference name="SplashShowOnlyFirstTime" value="false" />
-  <!-- <preference name="BackgroundColor" value="0xFFFFFFF" />
-   <preference name="SplashScreenBackgroundColor" value="0xFFFFFF" />
-   -->
-  <preference name="FadeSplashScreenDuration" value="0" />
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="ShowSplashScreen" value="true"/>
+  <preference name="SplashMaintainAspectRatio" value="true"/>
+  <preference name="FadeSplashScreen" value="false"/>
+  <preference name="SplashShowOnlyFirstTime" value="false"/>
+  <preference name="FadeSplashScreenDuration" value="0"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
@@ -46,4 +38,5 @@
   <plugin name="cordova-plugin-statusbar" spec="2.2.1"/>
   <plugin name="cordova-plugin-device" spec="1.1.4"/>
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
+  <allow-navigation href="http://192.168.1.35:8100"/>
 </widget>

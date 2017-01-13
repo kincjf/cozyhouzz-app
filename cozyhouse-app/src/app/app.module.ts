@@ -18,6 +18,7 @@ import { QuestionDetailPage } from '../pages/mypage/question/question-detail/que
 import { QuestionListPage } from '../pages/mypage/question/question-list/question-list';
 import { CallNumberPage } from '../pages/call-number/call-number';
 import { ImagePickerPage } from '../pages/image-picker/image-picker';
+import { BuildCaseInputPage } from '../pages/buildCase/build-case-input/build-case-input';
 // Authentication
 import { LoginPage } from '../pages/authentication/login/login';
 import { RegistrationPage } from '../pages/authentication/registration/registration';
@@ -50,7 +51,8 @@ import {RoomService} from "../services/room-service";
     BussinessManRegistrationPage,
     RoomSettingPage,
     QuestionDetailPage, // 사실상 채팅!
-    QuestionListPage
+    QuestionListPage,
+      BuildCaseInputPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -73,7 +75,8 @@ import {RoomService} from "../services/room-service";
     BussinessManRegistrationPage,
     RoomSettingPage,
     QuestionDetailPage,
-    QuestionListPage
+    QuestionListPage,
+      BuildCaseInputPage
   ],
   providers: [
     Loader,

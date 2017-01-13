@@ -33,12 +33,16 @@
     </span>
   </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
-    <button menuClose ion-item *ngFor="let p of build_pages" (click)="openPage(p)">
-      {{p.title}}
-    </button>
-    <button menuClose ion-item *ngFor="let p of build_push_pages" (click)="pushPage(p)">
-      {{p.title}}
-    </button>
+      <div *ngFor="let p of build_pages">
+          <button menuClose ion-item  (click)="openPage(p)" *ngIf="p.flag || isLogined">
+              {{p.title}}
+          </button>
+      </div>
+      <div *ngFor="let p of build_push_pages">
+          <button menuClose ion-item  (click)="pushPage(p)" *ngIf="p.flag || isLogined">
+              {{p.title}}
+          </button>
+      </div>
   </ion-list>
   <div class="menu_line_area" *ngIf="isLogined">
     <span>
@@ -46,9 +50,12 @@
     </span>
   </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;" *ngIf="isLogined"> <!-- css  우선순위로 인해서 inline 삽입  -->
-    <button menuClose ion-item *ngFor="let p of etc_pages" (click)="pushPage(p)">
-      {{p.title}}
-    </button>
+
+      <div *ngFor="let p of etc_pages">
+          <button menuClose ion-item  (click)="pushPage(p)" *ngIf="p.flag || isLogined" >
+              {{p.title}}
+          </button>
+      </div>
   </ion-list>
 
   <!--

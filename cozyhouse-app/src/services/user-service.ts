@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+
 @Injectable()
 export class UserService {
   private isLogind;

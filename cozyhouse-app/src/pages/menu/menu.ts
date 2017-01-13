@@ -7,6 +7,8 @@ import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list'
 import { GeneralRegistrationPage } from '../authentication/registration/general-user/registration';
 import { BussinessManRegistrationPage } from '../authentication/registration/buisnessman-user/registration';
 import { LoginPage } from '../authentication/login/login'
+import { BuildCaseInputPage } from '../buildCase/build-case-input/build-case-input';
+
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { RoomSettingPage } from '../setting/room-info/setting';
@@ -22,10 +24,10 @@ export class Menu {
   userDetails: any = null;
   user:any;
   rootPage: any = HomePage;
-  build_pages: Array<{title: string, component: any}>;
-  build_push_pages: Array<{title: string, component: any}>;
-  main_pages: Array<{title: string, component: any}>;
-  etc_pages: Array<{title: string, component: any}>;
+  build_pages: Array<{title: string, component: any, flag:boolean}>;
+  build_push_pages: Array<{title: string, component: any, flag:boolean}>;
+  main_pages: Array<{title: string, component: any, flag:boolean}>;
+  etc_pages: Array<{title: string, component: any, flag:boolean}>;
   viewController: ViewController;
   userService:UserService;
   constructor(
@@ -48,19 +50,20 @@ export class Menu {
 
     // Add your pages to be displayed in the menu
     this.main_pages = [
-      { title: '아늑한집', component: HomePage}
+      { title: '아늑한집', component: HomePage, flag: true }
     ];
     this.build_pages = [
-      { title: '방 리스트 보기', component: BuildCaseListPage }
+      { title: '방 리스트 보기', component: BuildCaseListPage, flag: true }
     ];
     this.build_push_pages = [
    //   { title: '찜한 방', component: BuildCaseListPage },
    //   { title: '최근 본 방', component: BuildCaseListPage },
-      { title: '방정보 입력', component: RoomSettingPage }
+        { title: '방 등록하기', component: BuildCaseInputPage, flag: true  },
+      { title: '방 검색 설정', component: RoomSettingPage, flag: true  }
     ];
     this.etc_pages = [
-      { title: '1:1 문의', component: QuestionListPage },
-      { title: '개인정보수정', component: SettingsPage }
+      { title: '1:1 문의', component: QuestionListPage, flag: false },
+      { title: '개인정보수정', component: SettingsPage, flag: false }
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];
