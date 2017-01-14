@@ -35,6 +35,9 @@ import { Storage } from '@ionic/storage';
 import {RoomService} from "../services/room-service";
 import { ZipCodeService } from '../services/zip-code-service';
 
+
+//directive
+import { Focuser } from '../components/focuser/focuser';
 @NgModule({
   declarations: [
     MyApp,
@@ -55,7 +58,8 @@ import { ZipCodeService } from '../services/zip-code-service';
     QuestionDetailPage, // 사실상 채팅!
     QuestionListPage,
       BuildCaseInputPage,
-      ZipCodePage
+      ZipCodePage,
+    Focuser
   ],
   imports: [
     IonicModule.forRoot(MyApp),

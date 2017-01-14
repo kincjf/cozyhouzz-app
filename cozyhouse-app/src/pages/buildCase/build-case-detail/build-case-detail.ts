@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { NavController, LoadingController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController, LoadingController} from 'ionic-angular';
 
 import 'rxjs/add/operator/toPromise';
-import { contentHeaders } from '../../../app/common/headers';
-import { Http } from '@angular/http';
-import { config } from '../../../app/common/config';
-import { STATIC_VALUE } from "../../../app/common/config/staticValue";
+import {contentHeaders} from '../../../app/common/headers';
+import {Http} from '@angular/http';
+import {config} from '../../../app/common/config';
+import {STATIC_VALUE} from "../../../app/common/config/staticValue";
 import * as _ from "lodash";
 import * as moment from 'moment';
-import { PostService } from '../../../services/post-service';
+import {PostService} from '../../../services/post-service';
 //import { UserPage } from '../../user/user';
 
 /*
@@ -60,7 +60,10 @@ export class BuildCaseDetailPage {
     // get sample data only
     //this.post = postService.getItem(navParams.get('id'));
     this.post = postService.getItem(0);
-    //loader.present().then(() => {
+    let loader = this.loading.create({
+      content: '정보를 불러오고 있습니다.'
+    });
+    loader.present().then(() => {
       this.test = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/6");
       this.test.toPromise()
         .then(
@@ -83,18 +86,20 @@ export class BuildCaseDetailPage {
 
             let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
             this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
-           // loader.dismiss();
-        //  }
-       // );
+            loader.dismiss();
+          }
+        );
     });
 
-  }
+  };
+
   test2() {
     this.nav.pop();
   }
+
   toggleLike(post) {
     // if user liked
-    if(post.liked) {
+    if (post.liked) {
       post.likeCount--;
     } else {
       post.likeCount++;

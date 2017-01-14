@@ -5,19 +5,19 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar color="cozy">
+  <ion-navbar color="cozy">
     <ion-title>주소 찾기</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content style="background-color: #F5F5F5">
+<ion-content style="background-color: #F5F5F5;overflow-y: auto">
   <form [formGroup]="zip_code">
     <ion-list no-border>
-      <ion-item no-border  padding >
+      <ion-item no-border padding>
         <ion-label stacked>주소 입력</ion-label>
-        <ion-input type="text" formControlName="juso" autofocus></ion-input>
+        <ion-input type="text" formControlName="juso"></ion-input>
       </ion-item>
     </ion-list>
     <button (click)="getAddressList()" class="addressBtn">주소 입력</button>
@@ -25,7 +25,7 @@
   </form>
   <ion-list id="addressList">
 
-    <button ion-item *ngFor="let p of juso_list" (click)="selectAddress(p)" >
+    <button ion-item *ngFor="let p of juso_list" (click)="selectAddress(p)">
       <span id="zipNo">[ {{p.zipNo}} ]</span><br>
       <span id="jibunAddr">{{p.jibunAddr}}</span><br>
       <span id="roadAddr">{{p.roadAddr}}</span>
@@ -33,6 +33,14 @@
     </button>
 
   </ion-list>
-  <button (click)="addAddressList()"  class="addressBtn" *ngIf="addButton">더 보기</button>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" style="margin-top: 30px;">
+    <ion-infinite-scroll-content
+
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
 

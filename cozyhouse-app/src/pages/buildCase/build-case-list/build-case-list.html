@@ -4,64 +4,64 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar color="cozy">
-        <button  ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>원룸·투룸·오피스텔</ion-title>
-        <ion-buttons end>
-            <button ion-button right (click)="settingButtonClick()">
-                방 설정
-            </button>
-        </ion-buttons>
-    </ion-navbar>
+  <ion-navbar color="cozy">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>원룸·투룸·오피스텔</ion-title>
+    <ion-buttons end>
+      <button ion-button right (click)="settingButtonClick()">
+        방 설정
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 
-    <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
-        <ion-row>
-            <ion-col text-center width-50>
-                <ion-item text-center>
-                    <ion-select [(ngModel)]="region" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
-                        <ion-option value="전체" selected="true">전체</ion-option>
-                        <ion-option value="전주">전주</ion-option>
-                        <ion-option value="익산">익산</ion-option>
-                        <ion-option value="군산">군산</ion-option>
-                    </ion-select>
-                </ion-item>
-            </ion-col>
-            <ion-col text-center width-50>
-                <ion-item text-center>
-                    <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately"  (ionChange)="changeLately()">
-                        <ion-option value="최신순" selected="true">최신순</ion-option>
-                        <ion-option value="이름순">이름순</ion-option>
-                        <ion-option value="보증금순">보증금순</ion-option>
-                        <ion-option value="월세순">월세순</ion-option>
-                    </ion-select>
-                </ion-item>
-            </ion-col>
-            <!--
-            <ion-col text-center width-50>
-              <ion-item text-center>
-                <ion-select [(ngModel)]="filter" multiple="true" [selectOptions]="selectOptions" (ionChange)="changeDetailFilter()">
-                  <ion-option value="1" selected="true">전세</ion-option>
-                  <ion-option value="2">원룸(오픈형)</ion-option>
-                  <ion-option value="3">원룸(분리형)</ion-option>
-                  <ion-option value="4">원룸(복층형)</ion-option>
-                  <ion-option value="5">투룸</ion-option>
-                  <ion-option value="6">쓰리룸</ion-option>
-                </ion-select>
-              </ion-item>
-            </ion-col>
-            -->
-        </ion-row>
-        <!--
-          <span style="font-size: 1.10em; position: relative; top: 11px; left: 20px;">
-            {{region}} - 오피스텔 ( 보증금:500~1000, 월세:20~50 )
-          </span>
-        -->
-    </div>
+  <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
+    <ion-row>
+      <ion-col text-center width-50>
+        <ion-item text-center>
+          <ion-select [(ngModel)]="region" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
+            <ion-option value="전체" selected="true">전체</ion-option>
+            <ion-option value="전주">전주</ion-option>
+            <ion-option value="익산">익산</ion-option>
+            <ion-option value="군산">군산</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col text-center width-50>
+        <ion-item text-center>
+          <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
+            <ion-option value="최신순" selected="true">최신순</ion-option>
+            <ion-option value="이름순">이름순</ion-option>
+            <ion-option value="보증금순">보증금순</ion-option>
+            <ion-option value="월세순">월세순</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <!--
+      <ion-col text-center width-50>
+        <ion-item text-center>
+          <ion-select [(ngModel)]="filter" multiple="true" [selectOptions]="selectOptions" (ionChange)="changeDetailFilter()">
+            <ion-option value="1" selected="true">전세</ion-option>
+            <ion-option value="2">원룸(오픈형)</ion-option>
+            <ion-option value="3">원룸(분리형)</ion-option>
+            <ion-option value="4">원룸(복층형)</ion-option>
+            <ion-option value="5">투룸</ion-option>
+            <ion-option value="6">쓰리룸</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      -->
+    </ion-row>
+    <!--
+      <span style="font-size: 1.10em; position: relative; top: 11px; left: 20px;">
+        {{region}} - 오피스텔 ( 보증금:500~1000, 월세:20~50 )
+      </span>
+    -->
+  </div>
 </ion-header>
 <ion-content>
-  <ion-card *ngFor="let buildCase of returnedDatas" >
+  <ion-card *ngFor="let buildCase of returnedDatas">
     <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
       <div>
         <div class="img" style="width: 100%;">
@@ -73,7 +73,7 @@
           <div class="middle">
             <div class="inner">
               <span id="post_title">{{buildCase.title}}</span>
-              <span id="post_place" >{{buildCase.buildPlace}}</span><br>
+              <span id="post_place">{{buildCase.buildPlace}}</span><br>
               <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
               <span id="post_type">{{buildCase.buildType}}</span>
               <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
