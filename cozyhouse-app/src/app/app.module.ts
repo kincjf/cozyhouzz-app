@@ -12,14 +12,13 @@ import { Menu } from '../pages/menu/menu';
 import { RoomSettingPage } from '../pages/setting/room-info/setting';
 import { SettingsPage } from '../pages/menu/settings/settings';
 import { HomePage } from '../pages/home/home';
-import { PostPage } from '../pages/post/post';
 import { UserPage } from '../pages/user/user';
 import { QuestionDetailPage } from '../pages/mypage/question/question-detail/question-detail';
 import { QuestionListPage } from '../pages/mypage/question/question-list/question-list';
-import { CallNumberPage } from '../pages/call-number/call-number';
-import { ImagePickerPage } from '../pages/image-picker/image-picker';
+import { CallNumberPage } from '../pages/function/call-number/call-number';
+import { ImagePickerPage } from '../pages/function/image-picker/image-picker';
 import { BuildCaseInputPage } from '../pages/buildCase/build-case-input/build-case-input';
-import { ZipCodePage } from '../pages/zip-code/zip-code';
+import { ZipCodePage } from '../pages/function/zip-code/zip-code';
 // Authentication
 import { LoginPage } from '../pages/authentication/login/login';
 import { RegistrationPage } from '../pages/authentication/registration/registration';
@@ -36,6 +35,7 @@ import {RoomService} from "../services/room-service";
 import { ZipCodeService } from '../services/zip-code-service';
 
 
+
 //directive
 import { Focuser } from '../components/focuser/focuser';
 @NgModule({
@@ -46,7 +46,6 @@ import { Focuser } from '../components/focuser/focuser';
     LoginPage,
     Nl2br,
     HomePage,
-    PostPage,
     UserPage,
     CallNumberPage,
     ImagePickerPage,
@@ -72,7 +71,6 @@ import { Focuser } from '../components/focuser/focuser';
     LoginPage,
     SettingsPage,
     HomePage,
-    PostPage,
     UserPage,
     CallNumberPage,
     ImagePickerPage,

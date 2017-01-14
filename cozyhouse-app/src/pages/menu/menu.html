@@ -1,4 +1,4 @@
-<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()">
+<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()"  persistent="true">
   <!-- User profile -->
   <!--<p>{{isLogined}}</p>-->
   <div id="authentication_area" padding>
@@ -33,11 +33,6 @@
     </span>
   </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
-      <div *ngFor="let p of build_pages">
-          <button menuClose ion-item  (click)="openPage(p)" *ngIf="p.flag || isLogined">
-              {{p.title}}
-          </button>
-      </div>
       <div *ngFor="let p of build_push_pages">
           <button menuClose ion-item  (click)="pushPage(p)" *ngIf="p.flag || isLogined">
               {{p.title}}

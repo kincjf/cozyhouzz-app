@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import {NavController, MenuController, NavParams, Events} from 'ionic-angular';
-import { ZipCodePage } from '../../zip-code/zip-code';
+import { ZipCodePage } from '../../function/zip-code/zip-code';
+import { ImagePicker } from 'ionic-native';
+import { isCordovaAvailable } from '../../../services/is-cordova-available';
+
 /*
   Generated class for the BuildCaseInput page.
 
@@ -14,8 +17,12 @@ import { ZipCodePage } from '../../zip-code/zip-code';
 })
 export class BuildCaseInputPage {
   post: any;
+  options = {};
   constructor(public navCtrl: NavController, private menu: MenuController, private events:Events,
     private formBuilder: FormBuilder, private params: NavParams) {
+    this.options = {
+
+    };
     events.subscribe('address:choiced', (address) => {
       this.post.patchValue(
         {
@@ -43,6 +50,17 @@ export class BuildCaseInputPage {
     console.log("sdfsdf");
     this.navCtrl.push(ZipCodePage);
 
+  }
+
+  test() {
+    if (!isCordovaAvailable()) {
+      return false;
+    }
+    ImagePicker.getPictures(this.options).then((results) => {
+      for (var i = 0; i < results.length; i++) {
+        console.log('Image URI: ' + results[i]);
+      }
+    }, (err) => { });
   }
 
 }

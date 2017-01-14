@@ -5,12 +5,26 @@
   Ionic pages and navigation.
 -->
 
+<ion-header no-border>
+  <ion-navbar color="cozy">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-title>아늑한 집</ion-title>-->
+    <ion-buttons end>
+      <button ion-button menuToggle>
+        <ion-icon name="search"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 <ion-content>
   <!--
     * 이부분이 위의 이미지, 전주, 익산, 군산 버튼 부분임.
   -->
   <div class="main_page_banner">
-    <img style="margin:0px auto 40px auto; display:block" class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}">
+   <!-- <img style="margin:0px auto 80px auto; display:block" class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}">-->
       <ion-grid class="post-actions">
         <ion-row>
           <ion-col width-33 text-center (click)="region_button_click(0)">

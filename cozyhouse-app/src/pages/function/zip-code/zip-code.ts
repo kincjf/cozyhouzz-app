@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AlertController, NavController, NavParams, MenuController, Events} from 'ionic-angular';
-import {ZipCodeService} from '../../services/zip-code-service';
+import {ZipCodeService} from '../../../services/zip-code-service';
 import {Validators, FormBuilder} from '@angular/forms';
 
 /*
@@ -59,6 +59,7 @@ export class ZipCodePage {
             if (this.juso_list.length >= 10) {
               this.addButton = true;
             }
+            console.log(response.results.juso);
           },
           err => {
             this.alertCtrl.create({

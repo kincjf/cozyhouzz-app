@@ -1,3 +1,4 @@
 1. npm install
 2. ionic state reset
 3. ionic platform add android
+4. ionic plugin add https://github.com/Telerik-Verified-Plugins/ImagePicker

@@ -53,11 +53,11 @@ export class Menu {
       { title: '아늑한집', component: HomePage, flag: true }
     ];
     this.build_pages = [
-      { title: '방 리스트 보기', component: BuildCaseListPage, flag: true }
     ];
     this.build_push_pages = [
    //   { title: '찜한 방', component: BuildCaseListPage },
    //   { title: '최근 본 방', component: BuildCaseListPage },
+      { title: '방 리스트 보기', component: BuildCaseListPage, flag: true },
         { title: '방 등록하기', component: BuildCaseInputPage, flag: true  },
       { title: '방 검색 설정', component: RoomSettingPage, flag: true  }
     ];

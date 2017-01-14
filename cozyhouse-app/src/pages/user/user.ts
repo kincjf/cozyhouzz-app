@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {UserService} from '../../services/user-service';
 import {PostService} from '../../services/post-service';
-import {PostPage} from '../post/post';
 
 /*
  Generated class for the LoginPage page.
@@ -47,6 +46,6 @@ export class UserPage {
 
   // on click, go to post detail
   viewPost(postId) {
-    this.nav.push(PostPage, {id: postId})
+
   }
 }

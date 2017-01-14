@@ -1,3 +1,65 @@
 page-setting {
+    .list-md, .item-block, .item-inner,
+    .list-md .item-block .item-inner{
+      border-bottom: 0 solid #ddd;
+
+    }
+  form .list-md {
+    margin-bottom: 0;
+  }
+  ion-label#deposit_label,
+  ion-label#monthly_label,
+  ion-label#setting_label {
+    width: 100%;
+    text-align: center;
+    background-color: #F5F5F5;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 41px;
+
+    span {
+      font-weight: bold;
+      font-size: 1.4rem;
+      position: relative;
+      top: -1px;
+    }
+  }
+  #setting_list ion-col,
+  #setting_list ion-grid {
+    padding: 0;
+  }
+  ion-range.range-md {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .item-block {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #setting_list .item-block {
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .item-md.item-block .item-inner {
+      border-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .list-md,
+  .list-md .item-input:last-child,
+  .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child,
+  .list-md .item-input.ng-valid.input-has-value:last-child,
+  .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child,
+  .list-md .item-input.ng-invalid.ng-touched:last-child,
+  .list-md .item-input.input-has-focus:last-child
+  {
+    border: 0px solid #ddd;
+    box-shadow: inset 0 0 0 0 #32db64;
+  }
 
 }
+

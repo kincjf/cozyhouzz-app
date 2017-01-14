@@ -36,7 +36,7 @@ $colors: (
   gray-df:    #33363c,
   gray-bbb:   #bbbbbb,
   green-df:   #ff7473,
-  cozy:       #ff7473
+  cozy:       #efefef
 );
 
 // App Theme
@@ -56,3 +56,14 @@ $colors: (
 
 $ionicons-font-path: "../assets/fonts";
 @import "ionicons";
+
+
+$range-md-knob-width: 23px;
+$range-md-bar-height	: 2px;
+$range-md-bar-background-color	:#efefef;
+$range-md-bar-active-background-color	: #5D5D5D;
+$checkbox-md-icon-border-radius:50px;
+$checkbox-md-icon-background-color-off: #efefef;
+$checkbox-md-icon-background-color-on:#5D5D5D;
+$checkbox-md-icon-border-color-off: #efefef;
+$checkbox-md-icon-border-color-on :#5D5D5D;

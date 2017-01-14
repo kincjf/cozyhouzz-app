@@ -1,91 +1,89 @@
 page-build-case-list {
-  .item-inner {
-    border-bottom: 0 !important;
-  }
-  ion-header {
-    .item-block {
-      background-color: #ff7473;
-      color: white;
+    .item-inner {
+        border-bottom:0 !important;
     }
-    .sub-title-bar {
-      width: 100%;
-      height: 34px; //ccc
-      position: absolute;
-      z-index: 99;
-      background-color: #ff7473;
-      /*opacity: 0.9;*/
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
-      * {
-        height: 36px;
-        min-height: 36px;
-      }
+    ion-header {
+        .item-block {
+            background-color: #efefef;
+            color: black;
+        }
+        .sub-title-bar {
+            width: 100%; height: 34px; //ccc
+            position: absolute; z-index :99;
+            background-color: #efefef;
+            /*opacity: 0.9;*/
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
+            * {
+                height: 36px;
+                min-height: 36px;
+            }
+        }
+
+        .sub-title-bar::after {
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
+        }
     }
-
-    .sub-title-bar::after {
-      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
+    ion-content.content-md {
+        background-color: #F5F5F5;
     }
-  }
-  ion-content.content-md {
-    background-color: #F5F5F5;
-  }
-  ion-col {
-    padding: 0;
-    border: 0 solid #ddd;
+    ion-col {
+        padding: 0;
+        border: 0 solid #ddd;
 
-  }
-  .select-md {
-
-    padding: 9px 0 11px 0;
-  }
-  ion-select {
-    width: 100%;
-    min-width: 95%;
-    margin: 0 auto;
-    .item-cover {
-      color: black;
     }
-  }
-  .card-md > .item:last-child {
-    border-bottom: 1px;
-  }
-  .card-md {
-    width: 100%;
-    height: 25vw;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 5px;
-    box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.05);
+    .select-md {
 
-    h2 {
-      margin-top: 0;
+        padding: 9px 0 11px 0;
     }
-  }
-  .card-md:after {
+    ion-select {
+        width: 100%;
+        min-width: 95%;
+        margin: 0 auto;
+        .item-cover {
+            color: black;
+        }
+    }
+    .card-md > .item:last-child {
+        border-bottom: 1px;
+    }
+    .card-md {
+        width: 100%;
+      height: 25vw;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom:5px;
+        box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.05);
 
-    box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.05);
-  }
+        h2 {
+            margin-top: 0;
+        }
+    }
+    .card-md:after {
 
-  .card-md:first-child {
-    margin-top: 40px;
-  }
-  .post-body {
-    p {
-      font-size: 0.8em;
+        box-shadow: 0 1px 0px 0 rgba(0, 0, 0, 0.05);
     }
 
-    a.subdued {
-      color: $textColor;
-      font-size: 0.8em;
+    .card-md:first-child {
+        margin-top: 40px;
     }
-  }
+    .post-body {
+        p {
+            font-size: 0.8em;
+        }
 
-  .post-actions {
-    color: #7C7C7C;
-    font-size: 1.4em;
-  }
-  .inner {
+        a.subdued {
+            color: $textColor;
+            font-size: 0.8em;
+        }
+    }
 
-  }
+    .post-actions {
+        color: #7C7C7C;
+        font-size: 1.4em;
+    }
+    .inner {
+
+    }
 
   /*
      .outer {
@@ -130,17 +128,17 @@ page-build-case-list {
     top: -3px;
 
     #post_title {
-      font-size: 1.40rem;
-      display: block;
-      -webkit-line-clamp: 1;
-      overflow: hidden;
-      word-wrap: normal;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis
+      font-size:1.40rem;
+      display:block;
+      -webkit-line-clamp:1;
+      overflow:hidden;
+      word-wrap:normal;
+      display:-webkit-box;
+      -webkit-box-orient:vertical;
+      text-overflow:ellipsis
     }
     #post_place {
-      font-size: 1.20rem;
+      font-size:1.20rem;
       min-height: 20px;
     }
 
@@ -151,20 +149,20 @@ page-build-case-list {
       bottom: -3px;
 
       margin-top: 5px;
-      border: 1px solid #ddd;
+      border:1px solid #ddd;
       padding: 5px 6px 3px 6px;
       border-radius: 3px;
-      font-size: 1rem;
+      font-size:1rem;
     }
   }
-  .post-body {
-    padding: 0 !important;
-    .item-inner {
-      padding: 0 !important;
-      .label {
-        margin: 0 !important;
-      }
-    }
+    .post-body {
+        padding: 0 !important;
+        .item-inner {
+            padding: 0 !important;
+            .label {
+                margin: 0 !important;
+            }
+        }
 
-  }
+    }
 }

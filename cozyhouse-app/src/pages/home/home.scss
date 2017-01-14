@@ -1,6 +1,22 @@
 page-home,
 .home {
+  .toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
+  }
+  .toolbar-md-cozy .bar-button-default-md {
 
+    color: white;
+  }
+  .toolbar-md-cozy .toolbar-title-md {
+    color: white;
+      text-align: center;
+  }
+  .scroll-content {
+    position: relative;
+    display: inline;
+  }
   .post-body {
 
     border-top: 1px solid $borderColor;
@@ -22,12 +38,15 @@ page-home,
   }
 
   .main_page_banner {
-    padding-top: 50px;
-    //background: url("../assets/img/banner/home-banner3.jpg");
-    background-color: #ff7473;
+    //padding-top: 100px;
+    padding-top: 240px;
+    background: url("../assets/img/banner/home-banner.jpg");
+    //background-color: #efefef;
     background-size: cover;
     .post-actions {
-        background-color: rgba(0, 0, 0, 0.7);
+        position: relative;
+      bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
         color: white;
         opacity: 0.8;
         font-size: 1.2em;

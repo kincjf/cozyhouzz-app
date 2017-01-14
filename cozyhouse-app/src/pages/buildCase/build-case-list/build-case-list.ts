@@ -53,6 +53,9 @@ export class BuildCaseListPage {
     this.roomService = RoomService;
     this.region = params.get("region");
 
+    if(!this.region) {
+       this.region = '전체';
+    }
     let loader = this.loading.create({
       content: '정보를 불러오고 있습니다.'
     });
@@ -116,6 +119,35 @@ export class BuildCaseListPage {
       this.filter = this.room.filter;
     });
 
+  }
+
+  doInfinite(infiniteScroll: any) {
+    let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    this.test = this.postService.getBuildList(URL);
+    this.test.subscribe(response => {
+        for (let buildCaseData of response.buildCaseInfo) {
+          //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
+          let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
+          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
+
+          this.returnedDatas.push({
+            selectedBuildCaseIdx: buildCaseData.idx,
+            title: buildCaseData.title,
+            mainPreviewImage: buildCaseData.mainPreviewImage,
+            HTMLText: buildCaseData.HTMLText,
+            buildTotalArea: buildCaseData.buildTotalArea,
+            buildType: STATIC_VALUE.PLACE_TYPE[key].name,
+            buildTotalPrice: buildCaseData.buildTotalPrice,
+            buildPlace: buildPlaceArr[1],
+            buildPlaceDetail: buildPlaceArr[2]
+          });
+
+        }
+
+        //infiniteScroll.enable(false);
+        infiniteScroll.complete();
+      }
+    );
   }
 
   changeRegion() {

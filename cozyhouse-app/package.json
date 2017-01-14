@@ -56,7 +56,8 @@
     "cordova-plugin-http",
     "cordova-sqlite-storage",
     "com.synconset.imagepicker",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-image-picker"
   ],
   "cordovaPlatforms": [],
   "description": "cozyhouse-app: An Ionic project"

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PostService } from '../../services/post-service';
-import { PostPage } from '../post/post';
 import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
 
 //import {UserPage} from '../user/user';
@@ -25,13 +24,13 @@ export class HomePage {
   region_button_click(index) {
     switch(index) {
       case 0:
-        this.nav.setRoot(BuildCaseListPage, {region:"전주"});
+        this.nav.push(BuildCaseListPage, {region:"전주"});
         break;
       case 1:
-        this.nav.setRoot(BuildCaseListPage, {region:"익산"});
+        this.nav.push(BuildCaseListPage, {region:"익산"});
         break;
       default:
-        this.nav.setRoot(BuildCaseListPage, {region:"군산"});
+        this.nav.push(BuildCaseListPage, {region:"군산"});
 
     }
   }
@@ -52,7 +51,7 @@ export class HomePage {
 
   // on click, go to post detail
   viewPost(postId) {
-    this.nav.push(PostPage, {id: postId})
+
   }
 /*
   // on click, go to user timeline

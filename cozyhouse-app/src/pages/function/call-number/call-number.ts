@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CallNumber } from 'ionic-native';
-import { isCordovaAvailable } from '../../services/is-cordova-available';
+import { isCordovaAvailable } from '../../../services/is-cordova-available';
 
 @Component({
   selector: 'page-call-number',

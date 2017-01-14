@@ -10,51 +10,82 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-item>
-    <ion-label>보증금</ion-label>
+<ion-content style="background-color: #F5F5F5">
 
-    <ion-range (ionChange)="change_deposit()" dualKnobs="true" [(ngModel)]="deposit" min="0" max="{{room.deposit_max}}" step="100">
-      <ion-label range-left>{{room.deposit_lower}}</ion-label>
-      <ion-label range-right>{{room.deposit_upper}}</ion-label>
+  <ion-list style="margin-top: 5px; margin-bottom: 0;">
+    <ion-item>
+      <ion-label id="deposit_label">보증금 <span>{{room.deposit_lower}} ~ {{room.deposit_upper}}만원</span></ion-label>
 
-    </ion-range>
-  </ion-item>
-  <ion-item>
-    <ion-label>월세</ion-label>
-    <ion-range (ionChange)="change_monthly()" dualKnobs="true" [(ngModel)]="monthly" min="0" max="{{room.monthly_max}}" step="50">
+      <ion-range (ionChange)="change_deposit()" dualKnobs="true" [(ngModel)]="deposit" min="0"
+                 max="{{room.deposit_max}}" step="100">
+        <!--  <ion-label range-left>{{room.deposit_lower}}</ion-label>
+          <ion-label range-right>{{room.deposit_upper}}</ion-label> -->
 
-      <ion-label range-left>{{room.monthly_lower}}</ion-label>
-      <ion-label range-right>{{room.monthly_upper}}</ion-label>
-    </ion-range>
-  </ion-item>
-  <ion-list>
-    <ion-item>
-      <ion-label>전세만</ion-label>
-      <ion-checkbox [(ngModel)]="room.isCharter"></ion-checkbox>
+      </ion-range>
     </ion-item>
+    <ion-item>
+      <ion-label id="monthly_label">월세 <span>{{room.monthly_lower}} ~ {{room.monthly_upper}}만원</span></ion-label>
+      <ion-range (ionChange)="change_monthly()" dualKnobs="true" [(ngModel)]="monthly" min="0"
+                 max="{{room.monthly_max}}" step="50">
+        <!--
+                <ion-label range-left>{{room.monthly_lower}}</ion-label>
+                <ion-label range-right>{{room.monthly_upper}}</ion-label> -->
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <ion-list id="setting_list">
+    <ion-label id="setting_label" style="font-size: 1.5rem">설정</ion-label>
+    <ion-grid>
 
-    <ion-item>
-      <ion-label>원룸(오픈형)</ion-label>
-      <ion-checkbox [(ngModel)]="room.isOneRoomOpen"></ion-checkbox>
-    </ion-item>
+      <ion-row>
+        <ion-col width-50 text-center>
+          <ion-item>
+            <ion-label>전세만</ion-label>
+            <ion-checkbox [(ngModel)]="room.isCharter"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col width-50 text-center>
+          <ion-item>
+            <ion-label>원룸(복층형)</ion-label>
+            <ion-checkbox [(ngModel)]="room.isOneRoomSeperation"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50 text-center>
+          <ion-item>
+            <ion-label>원룸(분리형)</ion-label>
+            <ion-checkbox [(ngModel)]="room.isOneRoomDuplex"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col width-50 text-center>
+          <ion-item>
+            <ion-label>원룸(오픈형)</ion-label>
+            <ion-checkbox [(ngModel)]="room.isOneRoomOpen"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col width-50 text-center>
+          <ion-item>
+            <ion-label>투룸</ion-label>
+            <ion-checkbox [(ngModel)]="room.isTwoRoom"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col width-50 text-center>
+          <ion-item>
+            <ion-label>쓰리룸+</ion-label>
+            <ion-checkbox [(ngModel)]="room.isThreeRoom"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-    <ion-item>
-      <ion-label>원룸(분리형)</ion-label>
-      <ion-checkbox [(ngModel)]="room.isOneRoomDuplex"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>원룸(복층형)</ion-label>
-      <ion-checkbox [(ngModel)]="room.isOneRoomSeperation"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>투룸</ion-label>
-      <ion-checkbox [(ngModel)]="room.isTwoRoom"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>쓰리룸+</ion-label>
-      <ion-checkbox [(ngModel)]="room.isThreeRoom"></ion-checkbox>
-    </ion-item>
+
+
+
+
+
   </ion-list>
 </ion-content>
 <!-- snaps="true"-->
