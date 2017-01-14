@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, Platform, MenuController, NavParams, LoadingController} from 'ionic-angular';
 import {PostService} from '../../../services/post-service';
 import {RoomService} from '../../../services/room-service';
+import {BuildCaseInputPage} from '../build-case-input/build-case-input';
 
 import {BuildCaseDetailPage} from '../build-case-detail/build-case-detail';
 import {config} from '../../../app/common/config';
@@ -176,6 +177,9 @@ export class BuildCaseListPage {
 
   settingButtonClick() {
     this.nav.push(RoomSettingPage);
+  }
+  inputButtonClick() {
+    this.nav.push(BuildCaseInputPage);
   }
 
   toggleLike(post) {

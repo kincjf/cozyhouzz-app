@@ -1,7 +1,9 @@
-<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()"  persistent="true">
+<ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()" persistent="true">
   <!-- User profile -->
   <!--<p>{{isLogined}}</p>-->
-  <div id="authentication_area" padding>
+  <div id="authentication_area" padding style="text-align: center"> <!-- (click)="openHomePage()"-->
+    <img class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}" style="margin-top: 7px;">
+    <!--
     <div *ngIf="!isLogined">
       <button ion-button color="light" (click)="openloginPage()">로그인</button>
       <ion-icon large ios="ios-alert" md="md-alert"></ion-icon>
@@ -21,6 +23,7 @@
         <ion-icon large ios="ios-settings" md="md-settings"></ion-icon>
       </div>
     </div>
+    -->
   </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
     <button menuClose ion-item *ngFor="let p of main_pages" (click)="openPage(p)">
@@ -33,24 +36,38 @@
     </span>
   </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
-      <div *ngFor="let p of build_push_pages">
-          <button menuClose ion-item  (click)="pushPage(p)" *ngIf="p.flag || isLogined">
-              {{p.title}}
-          </button>
-      </div>
+    <div *ngFor="let p of build_push_pages">
+      <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
+        {{p.title}}
+      </button>
+    </div>
   </ion-list>
-  <div class="menu_line_area" *ngIf="isLogined">
+  <div class="menu_line_area">
     <span>
-      개인정보
+      계정 정보
     </span>
   </div>
-  <ion-list class="list-full-border" style="margin-bottom: 0;" *ngIf="isLogined"> <!-- css  우선순위로 인해서 inline 삽입  -->
+  <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
 
-      <div *ngFor="let p of etc_pages">
-          <button menuClose ion-item  (click)="pushPage(p)" *ngIf="p.flag || isLogined" >
-              {{p.title}}
-          </button>
-      </div>
+    <div *ngFor="let p of etc_pages">
+      <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
+        {{p.title}}
+      </button>
+    </div>
+    <div><!--openResistrationPage-->
+      <button menuClose ion-item (click)="openloginPage(p)" *ngIf="!isLogined">
+        로그인
+      </button>
+      <button menuClose ion-item (click)="openResistrationPage(0)" *ngIf="!isLogined">
+        일반 회원가입
+      </button>
+      <button menuClose ion-item (click)="openResistrationPage(1)" *ngIf="!isLogined">
+        사업자 회원가입
+      </button>
+      <button menuClose ion-item (click)="logout()" *ngIf="isLogined">
+        로그아웃
+      </button>
+    </div>
   </ion-list>
 
   <!--

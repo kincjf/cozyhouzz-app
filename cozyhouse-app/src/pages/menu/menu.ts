@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, ViewController } from 'ionic-angular';
+import {Nav, ViewController, MenuController} from 'ionic-angular';
 import { UserInfoModifyPage } from '../mypage/userInfo/user-info-modify/user-info-modify';
 import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
@@ -36,7 +36,8 @@ export class Menu {
     public navCtrl: NavController,
     public events: Events,
     public v: ViewController,
-    public UserService: UserService
+    public UserService: UserService,
+    public menu:MenuController
   ) {
     this.userService = UserService;
     this.viewController = v;
@@ -60,13 +61,14 @@ export class Menu {
    //   { title: '찜한 방', component: BuildCaseListPage },
    //   { title: '최근 본 방', component: BuildCaseListPage },
       { title: '방 리스트 보기', component: BuildCaseListPage, flag: true },
-        { title: '방 등록하기', component: BuildCaseInputPage, flag: true  },
-      { title: '방 검색 설정', component: RoomSettingPage, flag: true  },
-      { title: '구글 맵', component: GoogleMapsPage, flag:true }
+      { title: '방 정보 등록', component: BuildCaseInputPage, flag: false  },
+      { title: '방 검색 설정', component: RoomSettingPage, flag: true  }//,
+      //{ title: '구글 맵', component: GoogleMapsPage, flag:true }
     ];
     this.etc_pages = [
-      { title: '1:1 문의', component: QuestionListPage, flag: false },
-      { title: '개인정보수정', component: UserInfoModifyPage, flag: false }
+      { title: '1:1 문의 내역', component: QuestionListPage, flag: false },
+      { title: '계정 보기', component: UserInfoDetailPage, flag: false },
+      { title: '계정 정보 수정', component: UserInfoModifyPage, flag: false }
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];
@@ -112,6 +114,18 @@ export class Menu {
 
   }
 
+  openHomePage() {
+    this.menu.close();
+    this.nav.setRoot(HomePage);
+  }
+  openResistrationPage(delimiter) {
+    if(delimiter==0) {
+
+      this.nav.push(GeneralRegistrationPage);
+    } else {
+      this.nav.push(BussinessManRegistrationPage);
+    }
+  }
   openloginPage() {
     this.nav.push(LoginPage);
   }
