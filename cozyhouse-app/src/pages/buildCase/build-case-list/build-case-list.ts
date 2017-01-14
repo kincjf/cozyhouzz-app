@@ -12,7 +12,7 @@ import {SpinnerDialog} from 'ionic-native';
 
 import {Storage} from '@ionic/storage';
 import {Room} from '../../../providers/room';
-import {RoomSettingPage} from '../../setting/room-info/setting';
+import {RoomSettingPage} from '../../mypage/room/room-info/setting';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 //import {UserPage} from '../user/user';
 /*

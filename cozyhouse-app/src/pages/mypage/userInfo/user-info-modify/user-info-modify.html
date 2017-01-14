@@ -1,16 +1,14 @@
 
 <ion-header no-border>
-    <ion-navbar color="cozy">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-navbar color="cozy">
+
     <ion-title>개인정보수정</ion-title>
   </ion-navbar>
 </ion-header>
 
 <!-- 일반 유저 부분 -->
-<ion-content padding *ngIf="userDetails.delimiter == 0">
-  <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()">
+<ion-content padding >
+  <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="userDetails.delimiter == 0">
     <!--
     <ion-list>
       <ion-item>
@@ -31,10 +29,7 @@
     -->
     <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
   </form>
-</ion-content>
-<!-- 사업주 부분 -->
-<ion-content padding *ngIf="userDetails.delimiter == 1">
-  <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()">
+  <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()"  *ngIf="userDetails.delimiter == 1">
     <!--
     <ion-list>
       <ion-item>
@@ -67,4 +62,5 @@
     -->
     <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
   </form>
+
 </ion-content>

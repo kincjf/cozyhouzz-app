@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { RoomService } from '../../../services/room-service';
-import { Room } from '../../../providers/room';
+import { RoomService } from '../../../../services/room-service';
+import { Room } from '../../../../providers/room';
 import { Events } from 'ionic-angular';
 
 /*

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, ViewController } from 'ionic-angular';
-import { SettingsPage } from './settings/settings';
+import { UserInfoModifyPage } from '../mypage/userInfo/user-info-modify/user-info-modify';
 import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
 import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
@@ -8,10 +8,12 @@ import { GeneralRegistrationPage } from '../authentication/registration/general-
 import { BussinessManRegistrationPage } from '../authentication/registration/buisnessman-user/registration';
 import { LoginPage } from '../authentication/login/login'
 import { BuildCaseInputPage } from '../buildCase/build-case-input/build-case-input';
+import { GoogleMapsPage } from '../function/google-maps/google-maps';
+import { UserInfoDetailPage } from '../mypage/userInfo/user-info-detail/user-info-detail';
 
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import { RoomSettingPage } from '../setting/room-info/setting';
+import { RoomSettingPage } from '../mypage/room/room-info/setting';
 import { QuestionListPage } from '../mypage/question/question-list/question-list';
 import { UserService } from '../../services/user-service';
 @Component({
@@ -59,11 +61,12 @@ export class Menu {
    //   { title: '최근 본 방', component: BuildCaseListPage },
       { title: '방 리스트 보기', component: BuildCaseListPage, flag: true },
         { title: '방 등록하기', component: BuildCaseInputPage, flag: true  },
-      { title: '방 검색 설정', component: RoomSettingPage, flag: true  }
+      { title: '방 검색 설정', component: RoomSettingPage, flag: true  },
+      { title: '구글 맵', component: GoogleMapsPage, flag:true }
     ];
     this.etc_pages = [
       { title: '1:1 문의', component: QuestionListPage, flag: false },
-      { title: '개인정보수정', component: SettingsPage, flag: false }
+      { title: '개인정보수정', component: UserInfoModifyPage, flag: false }
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];
@@ -101,7 +104,9 @@ export class Menu {
   menuClosed() {
     this.events.publish('menu:closed', '');//user:logined
   }
-
+  userInfoDetailBtnClick() {
+    this.nav.push(UserInfoDetailPage);
+  }
   menuOpened() {
     this.events.publish('menu:opened', '');
 

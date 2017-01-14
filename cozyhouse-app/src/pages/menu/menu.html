@@ -15,7 +15,7 @@
         <span id="user-email">{{user.email}}</span>
       </div>
       <div class="user-button-line" style="width: 100%;">
-        <button ion-button color="dark">내 정보</button>
+        <button ion-button color="dark" (click)="userInfoDetailBtnClick()">내 정보</button>
         <button ion-button color="light" (click)="logout()">로그아웃</button>
         <ion-icon large ios="ios-alert" md="md-alert"></ion-icon>
         <ion-icon large ios="ios-settings" md="md-settings"></ion-icon>
