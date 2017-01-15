@@ -9,7 +9,6 @@ page-build-case-list {
         }
         .sub-title-bar {
             width: 100%; height: 34px; //ccc
-            position: absolute; z-index :99;
             background-color: #efefef;
             /*opacity: 0.9;*/
             box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.25);
@@ -64,7 +63,7 @@ page-build-case-list {
     }
 
     .card-md:first-child {
-        margin-top: 40px;
+        margin-top: 5px;
     }
     .post-body {
         p {

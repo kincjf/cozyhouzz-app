@@ -141,6 +141,15 @@ export class BuildCaseListPage {
 
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   doInfinite(infiniteScroll: any) {
     let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
     this.test = this.postService.getBuildList(URL);

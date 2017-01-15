@@ -19,7 +19,6 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-
   <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
     <ion-row>
       <ion-col text-center width-50>
@@ -64,8 +63,18 @@
       </span>
     -->
   </div>
+
 </ion-header>
 <ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150">
+    <ion-refresher-content style="padding: 20px 0;"
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let buildCase of returnedDatas">
     <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
       <div>
