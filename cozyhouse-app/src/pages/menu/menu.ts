@@ -62,8 +62,9 @@ export class Menu {
    //   { title: '최근 본 방', component: BuildCaseListPage },
       { title: '방 리스트 보기', component: BuildCaseListPage, flag: true },
       { title: '방 정보 등록', component: BuildCaseInputPage, flag: false  },
-      { title: '방 검색 설정', component: RoomSettingPage, flag: true  }//,
-      //{ title: '구글 맵', component: GoogleMapsPage, flag:true }
+      { title: '방 검색 설정', component: RoomSettingPage, flag: true  },
+
+      { title: '구글 맵', component: GoogleMapsPage, flag:true }
     ];
     this.etc_pages = [
       { title: '1:1 문의 내역', component: QuestionListPage, flag: false },
