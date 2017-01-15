@@ -20,6 +20,7 @@ export class HomePage {
   }
   ionViewDidEnter() {
     this.menu.enable(true);
+    this.menu.close();
   }
   ionViewWillLeave() {
     this.menu.enable(false);

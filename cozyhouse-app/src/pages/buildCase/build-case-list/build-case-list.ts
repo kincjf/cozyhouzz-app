@@ -174,5 +174,11 @@ export class BuildCaseListPage {
   viewPost(postId) {
     this.nav.push(BuildCaseDetailPage, {id: postId})
   }
+  ionViewDidEnter() {
+    this.menu.enable(true);
+  }
+  ionViewWillLeave() {
+    this.menu.enable(false);
+  }
 
 }
