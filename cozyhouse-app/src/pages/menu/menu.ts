@@ -60,8 +60,8 @@ export class Menu {
     ];
     this.etc_pages = [
       { title: '1:1 문의 내역', component: QuestionListPage, flag: false },
-      { title: '계정 보기', component: UserInfoDetailPage, flag: false },
-      { title: '계정 정보 수정', component: UserInfoModifyPage, flag: false }
+      { title: '내 정보 보기', component: UserInfoDetailPage, flag: false }//,
+      //{ title: '계정 정보 수정', component: UserInfoModifyPage, flag: false }
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];
@@ -78,7 +78,6 @@ export class Menu {
     events.subscribe('user:logout', () => {
       this.isLogined = false;
       this.user = null;
-      this.userService.removeUserInfo();
     });
 
     events.subscribe('menu:opened', () => { });
@@ -123,7 +122,10 @@ export class Menu {
   }
 
   logout() {
-    this.events.publish('user:logout', '');//user:logined
+
+    if(this.isLogined) {
+      this.userService.logout();
+    }
   }
 }
 

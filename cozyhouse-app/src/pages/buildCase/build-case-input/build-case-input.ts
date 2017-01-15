@@ -30,6 +30,7 @@ export class BuildCaseInputPage {
         }
       );
     });
+
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ZipCodePage');

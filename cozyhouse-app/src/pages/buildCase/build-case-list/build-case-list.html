@@ -11,7 +11,7 @@
     <ion-title>원룸·투룸·오피스텔</ion-title>
     <ion-buttons end>
 
-      <button ion-button right (click)="inputButtonClick()">
+      <button ion-button right (click)="inputButtonClick()" *ngIf="isLogined">
         방 등록
       </button>
       <button ion-button right (click)="settingButtonClick()">

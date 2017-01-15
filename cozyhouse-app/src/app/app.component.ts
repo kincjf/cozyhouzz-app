@@ -17,24 +17,19 @@ export class AppComponent {
     platform: Platform;
     jwt: string;
     logined: boolean;
-    alertController:AlertController;
-    app:App;
 
     constructor(
     platform: Platform,
     private events: Events,
-    private App:App,
+    private app:App,
     private storage: Storage,
     private userService:UserService,
-    private AlertController:AlertController
+    private alertController:AlertController
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
-      this.platform = platform;
-      this.alertController = AlertController;
-      this.app = App;
 
       let user = this.storage.get("id_token").then(jwt => {
         if(jwt) {

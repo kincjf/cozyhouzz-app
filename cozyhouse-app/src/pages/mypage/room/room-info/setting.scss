@@ -29,9 +29,15 @@ page-setting {
   #setting_list ion-grid {
     padding: 0;
   }
+  #setting_list {
+
+    .item.item-md .checkbox-md {
+      margin: 9px 23px 9px 17px
+    }
+  }
   ion-range.range-md {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
   }
   .item-block {
     padding-left: 0;

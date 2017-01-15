@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, MenuController} from 'ionic-angular';
-
+import {NavController, NavParams, MenuController, Events} from 'ionic-angular';
+import {HomePage} from '../../../home/home';
+import {UserService} from '../../../../services/user-service';
 /*
   Generated class for the UserInfoDetail page.
 
@@ -13,7 +14,8 @@ import {NavController, NavParams, MenuController} from 'ionic-angular';
 })
 export class UserInfoDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public events:Events,
+  public userService:UserService) {
 
     this.menu.close();
   }
@@ -22,4 +24,11 @@ export class UserInfoDetailPage {
     console.log('ionViewDidLoad UserInfoDetailPage');
   }
 
+  logout() {
+
+    if(this.userService.getIsLogind()) {
+      this.userService.logout();
+    }
+    this.navCtrl.pop();
+  }
 }
