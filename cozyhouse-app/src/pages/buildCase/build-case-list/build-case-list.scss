@@ -123,18 +123,15 @@ page-build-case-list {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    position: relative;
-    top: -3px;
-
     #post_title {
       font-size:1.40rem;
-      display:block;
-      -webkit-line-clamp:1;
-      overflow:hidden;
-      word-wrap:normal;
-      display:-webkit-box;
-      -webkit-box-orient:vertical;
-      text-overflow:ellipsis
+      //display:block;
+      //-webkit-line-clamp:1;
+     // overflow:hidden;
+      //word-wrap:normal;
+      //display:-webkit-box;
+      //-webkit-box-orient:vertical;
+      //text-overflow:ellipsis
     }
     #post_place {
       font-size:1.20rem;
@@ -144,7 +141,7 @@ page-build-case-list {
     #post_pyeong,
     #post_deposit,
     #post_type {
-      position: inherit;
+      position: relative;
       bottom: -3px;
 
       margin-top: 5px;

@@ -97,6 +97,7 @@ export class BuildCaseListPage {
             });
 
           }
+
           for (let buildCaseData of response.buildCaseInfo) {
             //returnDatas에 bizUser의 정보를 data의 수만큼 받아온다.
             let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
