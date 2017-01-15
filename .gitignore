@@ -25,6 +25,7 @@ cozyhouse-app/hooks/
 cozyhouse-app/platforms/
 cozyhouse-app/plugins/
 cozyhouse-app/www/
+cozyhouse-app/res/
 #cozyhousplugins/android.json
 #plugins/ios.json
 #www/
