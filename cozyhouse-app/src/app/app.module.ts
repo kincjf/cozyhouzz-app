@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {IonicApp, IonicModule} from 'ionic-angular';
-import {MyApp} from './app.component';
+import {AppComponent} from './app.component';
 import {AngularFireModule} from 'angularfire2';
 
 // diretives and providers
@@ -23,9 +23,9 @@ import {UserInfoModifyPage} from '../pages/mypage/userInfo/user-info-modify/user
 import { UserInfoDetailPage } from '../pages/mypage/userInfo/user-info-detail/user-info-detail';
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
-import {RegistrationPage} from '../pages/authentication/registration/registration';
 import {BuildCaseListPage} from '../pages/buildCase/build-case-list/build-case-list';
 import {BuildCaseDetailPage} from '../pages/buildCase/build-case-detail/build-case-detail';
+import {RegistrationPage} from '../pages/authentication/registration/registration';
 import {GeneralRegistrationPage} from '../pages/authentication/registration/general-user/registration';
 import {BussinessManRegistrationPage} from '../pages/authentication/registration/buisnessman-user/registration';
 //BussinessManRegistrationPage
@@ -42,7 +42,7 @@ import {MapsService} from '../services/maps.service';
 import {Focuser} from '../components/focuser/focuser';
 @NgModule({
   declarations: [
-    MyApp,
+    AppComponent,
     Menu,
     LoginPage,
     Nl2br,
@@ -62,15 +62,16 @@ import {Focuser} from '../components/focuser/focuser';
     Focuser,
     GoogleMapsPage,
     UserInfoModifyPage,
-    UserInfoDetailPage
+    UserInfoDetailPage,
+    RegistrationPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(AppComponent),
     AngularFireModule.initializeApp(Config.FIREBASE_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    AppComponent,
     Menu,
     LoginPage,
     HomePage,
@@ -88,7 +89,8 @@ import {Focuser} from '../components/focuser/focuser';
     ZipCodePage,
     GoogleMapsPage,
     UserInfoModifyPage,
-    UserInfoDetailPage
+    UserInfoDetailPage,
+    RegistrationPage
   ],
   providers: [
     Loader,

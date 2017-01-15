@@ -4,6 +4,7 @@ import { UserInfoModifyPage } from '../mypage/userInfo/user-info-modify/user-inf
 import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
 import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
+import {RegistrationPage} from '../authentication/registration/registration';
 import { GeneralRegistrationPage } from '../authentication/registration/general-user/registration';
 import { BussinessManRegistrationPage } from '../authentication/registration/buisnessman-user/registration';
 import { LoginPage } from '../authentication/login/login'
@@ -23,28 +24,19 @@ import { UserService } from '../../services/user-service';
 export class Menu {
   @ViewChild(Nav) nav: Nav;
   isLogined:boolean = false;
-  userDetails: any = null;
   user:any;
   rootPage: any = HomePage;
   build_pages: Array<{title: string, component: any, flag:boolean}>;
   build_push_pages: Array<{title: string, component: any, flag:boolean}>;
   main_pages: Array<{title: string, component: any, flag:boolean}>;
   etc_pages: Array<{title: string, component: any, flag:boolean}>;
-  viewController: ViewController;
-  userService:UserService;
   constructor(
     public navCtrl: NavController,
     public events: Events,
-    public v: ViewController,
-    public UserService: UserService,
+    public viewController: ViewController,
+    public userService: UserService,
     public menu:MenuController
   ) {
-    this.userService = UserService;
-    this.viewController = v;
-    this.navCtrl = navCtrl;
-    this.events = events;
-
-    console.log("메뉴 생성자");
     this.isLogined =  this.userService.getIsLogind();
     if(this.isLogined) {
       this.user = this.userService.getUserInfo();
@@ -85,18 +77,13 @@ export class Menu {
     });
     events.subscribe('user:logout', () => {
       this.isLogined = false;
-      this.userDetails = null;
-      this.UserService.removeUserInfo();
+      this.user = null;
+      this.userService.removeUserInfo();
     });
 
-    events.subscribe('menu:opened', () => {
-      console.log("menu:opened");
+    events.subscribe('menu:opened', () => { });
 
-    });
-
-    events.subscribe('menu:closed', () => {
-
-    });
+    events.subscribe('menu:closed', () => { });
   }
   ionViewWillLoad() {
     console.log("ionViewWillLoad");
@@ -119,35 +106,22 @@ export class Menu {
     this.menu.close();
     this.nav.setRoot(HomePage);
   }
-  openResistrationPage(delimiter) {
-    if(delimiter==0) {
+  openResistrationPage() {
+    this.nav.push(RegistrationPage);
 
-      this.nav.push(GeneralRegistrationPage);
-    } else {
-      this.nav.push(BussinessManRegistrationPage);
-    }
   }
   openloginPage() {
     this.nav.push(LoginPage);
   }
   pushPage(page) {
-    this.nav.push(page.component, { user: this.userDetails });
+    this.nav.push(page.component, { user: this.user });
   }
   openPage(page) {
     // 메뉴에서 다른 페이지 불러올대 파라미터 보내는 부분임!!!!!!!!!!!!!!!!!!!!!!!!1
     // 반드시 수정해야 함.
     this.nav.setRoot(page.component, {region: "전체"});
   }
-// on click, go to user timeline
-  viewUser(userId) {
-    this.nav.push(UserPage, {id: userId})
-  }
-  genaral_signup() {
-     this.nav.push(GeneralRegistrationPage);
-  }
-  bussinessman_signup() {
-      this.nav.push(BussinessManRegistrationPage);
-  }
+
   logout() {
     this.events.publish('user:logout', '');//user:logined
   }

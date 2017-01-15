@@ -12,7 +12,7 @@ import { UserService } from "../services/user-service";
 @Component({
   template: `<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>`
 })
-export class MyApp {
+export class AppComponent {
     rootPage: any;
     platform: Platform;
     jwt: string;

@@ -20,14 +20,12 @@ export class BussinessManRegistrationPage {
   constructor(
     private events: Events,
     public navCtrl: NavController,
-    public af: AngularFire,
     private formBuilder: FormBuilder,
     private loader: Loader,
     private alertCtrl: AlertController,
     public menu: MenuController
   ) {
 
-    this.menu = menu;
     this.menu.close();
 
   }
@@ -55,7 +53,7 @@ export class BussinessManRegistrationPage {
     let businessAddress = this.user.controls.businessAddress.value;
     let passwordConfirmation = this.user.controls.passwordConfirmation.value;
     this.loader.show("Creating user...");
-    new Promise((resolve, reject) => {
+    /*new Promise((resolve, reject) => {
       if (passwordConfirmation != password) {
         reject(new Error('Password does not match'));
       } else {
@@ -92,7 +90,7 @@ export class BussinessManRegistrationPage {
         message: `Failed to login. ${e.message}`,
         buttons: [{ text: 'Ok' }]
       }).present();
-    });
+    });*/
     this.navCtrl.pop();
   }
 }

@@ -46,8 +46,6 @@ export class BuildCaseInputPage {
   }
 
   addressInputClick() {
-    console.log("로그인 이벤트 발생");
-    console.log("sdfsdf");
     this.navCtrl.push(ZipCodePage);
 
   }

@@ -58,11 +58,8 @@
       <button menuClose ion-item (click)="openloginPage(p)" *ngIf="!isLogined">
         로그인
       </button>
-      <button menuClose ion-item (click)="openResistrationPage(0)" *ngIf="!isLogined">
-        일반 회원가입
-      </button>
-      <button menuClose ion-item (click)="openResistrationPage(1)" *ngIf="!isLogined">
-        사업자 회원가입
+      <button menuClose ion-item (click)="openResistrationPage()" *ngIf="!isLogined">
+        회원가입
       </button>
       <button menuClose ion-item (click)="logout()" *ngIf="isLogined">
         로그아웃

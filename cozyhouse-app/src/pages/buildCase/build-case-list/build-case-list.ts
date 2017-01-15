@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, Platform, MenuController, NavParams, LoadingController} from 'ionic-angular';
 import {PostService} from '../../../services/post-service';
 import {RoomService} from '../../../services/room-service';
+import {UserService} from '../../../services/user-service';
 import {BuildCaseInputPage} from '../build-case-input/build-case-input';
 
 import {BuildCaseDetailPage} from '../build-case-detail/build-case-detail';
@@ -36,6 +37,8 @@ export class BuildCaseListPage {
   public filter: Array<string>;
   public lately: string = "최신순";
   public pageStartIndex = 0;
+  public user:any;
+  public isLogined:boolean = false;
   roomSettingInformation;
   selectOptions_region = {
     title: '검색 지역 선택'
@@ -49,13 +52,17 @@ export class BuildCaseListPage {
   constructor(public nav: NavController, public postService: PostService,
               public platform: Platform, public menu: MenuController, public params: NavParams,
               public loading: LoadingController, private storage: Storage, private RoomService: RoomService,
-              private events: Events) {
+              private events: Events, private userService:UserService) {
 
     this.roomService = RoomService;
     this.region = params.get("region");
 
     if(!this.region) {
        this.region = '전체';
+    }
+    this.isLogined = userService.getIsLogind();
+    if( this.isLogined ) {
+      this.user = this.userService.getUserInfo();
     }
     let loader = this.loading.create({
       content: '정보를 불러오고 있습니다.'
@@ -158,54 +165,14 @@ export class BuildCaseListPage {
   changeLately() {
     console.log(this.lately);
   }
-
-  changeDetailFilter() {
-    this.room.filter = this.filter;
-    this.storage.set('roomSettingInformation', this.room);
-  }
-
-  ionViewWillLoad() {
-
-
-  }
-
-  ionViewLoaded() {
-    setTimeout(function () {
-      console.log("sfsdf");
-    }, 150);
-  }
-
   settingButtonClick() {
     this.nav.push(RoomSettingPage);
   }
   inputButtonClick() {
     this.nav.push(BuildCaseInputPage);
   }
-
-  toggleLike(post) {
-    // if user liked
-    if (post.liked) {
-      post.likeCount--;
-    } else {
-      post.likeCount++;
-    }
-
-    post.liked = !post.liked
-  }
-
-  showSpinner() {
-
-  }
-
-  // on click, go to post detail
   viewPost(postId) {
     this.nav.push(BuildCaseDetailPage, {id: postId})
   }
 
-  /*
-   // on click, go to user timeline
-   viewUser(userId) {
-   this.nav.push(UserPage, {id: userId})
-   }
-   */
 }

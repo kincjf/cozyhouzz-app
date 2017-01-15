@@ -5,6 +5,7 @@ import { GeneralRegistrationPage } from '../registration/general-user/registrati
 import { AlertController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserService } from '../../../services/user-service';
+import { HomePage } from '../../home/home';
 /*
   Generated class for the Login page.
 */
@@ -15,23 +16,17 @@ import { UserService } from '../../../services/user-service';
 export class LoginPage {
 
   userFormBuilder: any;
-  storage: Storage;
-  userService:UserService;
   constructor(
     private events: Events,
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private alertCtrl: AlertController,
     public menu: MenuController,
-    public s : Storage,
-    public u : UserService
+    public storage : Storage,
+    public userService : UserService
   ) {
-    this.storage = s;
-    this.userService = u;
-    this.menu = menu;
     this.menu.close();
-    //this.menu.enable(false); // 현재 login 페이지에서 side menu 사용하도록 해놓음..
-
+    this.menu.enable(false);
   }
 
   ionViewWillLoad() {
@@ -41,22 +36,6 @@ export class LoginPage {
     });
   }
 
-  doSomethingAfterUserLogin(user) {
-    console.info(`You can do something with the user details: ${JSON.stringify(user)}`);
-  }
-
-  // Anonymous user login
-  anonymousUser() {
-
-  }
-  // 페이지 닫힐때 이벤트. 위에서 사이드 메뉴 사용 금지시킨거 다시 풀어야함.
-  ionViewWillLeave() {
-
-    this.menu.enable(true);
-  }
-  signInWithOAuth(provider: string) {
-
-  }
 
   // Perform login using user and password
   login() {
@@ -72,7 +51,7 @@ export class LoginPage {
             console.log(response);
             this.storage.set("id_token", response.id_token);
             this.userService.setUserInfo(response.id_token);
-            this.navCtrl.pop()
+            this.navCtrl.pop();
         },
         err => {
           this.alertCtrl.create({
@@ -90,6 +69,7 @@ export class LoginPage {
 
   // Reset password
   resetPassword() {
+
   }
 
 }
