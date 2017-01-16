@@ -89,16 +89,21 @@ page-build-case-list {
               }
               #post_title {
 
+                position: relative;
                 font-size: 1.40rem;
-                margin-top: 3px;
+                bottom:-4px;
               }
               #post_place {
+                position: relative;
                 font-size: 1.20rem;
+                bottom:-2px;
               }
 
               #post_pyeong,
               #post_deposit,
               #post_type {
+                position: relative;
+                bottom:-1px;
                 //position: relative;
                 //bottom: -3px;
                 display: inline-block;
