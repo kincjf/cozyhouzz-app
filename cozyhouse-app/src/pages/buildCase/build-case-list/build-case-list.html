@@ -20,63 +20,67 @@
     </ion-buttons>
   </ion-navbar>
   <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
-    <ion-row>
-      <ion-col text-center width-50>
-        <ion-item text-center>
-          <ion-select [(ngModel)]="region" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
-            <ion-option value="전체" selected="true">전체</ion-option>
-            <ion-option value="전주">전주</ion-option>
-            <ion-option value="익산">익산</ion-option>
-            <ion-option value="군산">군산</ion-option>
-          </ion-select>
+    <ion-grid>
+      <ion-row>
+        <ion-col text-center width-50>
+          <ion-item text-center>
+            <ion-select [(ngModel)]="region" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
+              <ion-option value="전체" selected="true">전체</ion-option>
+              <ion-option value="전주">전주</ion-option>
+              <ion-option value="익산">익산</ion-option>
+              <ion-option value="군산">군산</ion-option>
+            </ion-select>
 
-        </ion-item>
-      </ion-col>
-      <ion-col text-center width-50>
-        <ion-item text-center>
-          <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
-            <ion-option value="최신순" selected="true">최신순</ion-option>
-            <ion-option value="이름순">이름순</ion-option>
-            <ion-option value="보증금순">보증금순</ion-option>
-            <ion-option value="월세순">월세순</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
+          </ion-item>
+        </ion-col>
+        <ion-col text-center width-50>
+          <ion-item text-center>
+            <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
+              <ion-option value="최신순" selected="true">최신순</ion-option>
+              <ion-option value="이름순">이름순</ion-option>
+              <ion-option value="보증금순">보증금순</ion-option>
+              <ion-option value="월세순">월세순</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <!--
+        <ion-col text-center width-50>
+          <ion-item text-center>
+            <ion-select [(ngModel)]="filter" multiple="true" [selectOptions]="selectOptions" (ionChange)="changeDetailFilter()">
+              <ion-option value="1" selected="true">전세</ion-option>
+              <ion-option value="2">원룸(오픈형)</ion-option>
+              <ion-option value="3">원룸(분리형)</ion-option>
+              <ion-option value="4">원룸(복층형)</ion-option>
+              <ion-option value="5">투룸</ion-option>
+              <ion-option value="6">쓰리룸</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        -->
+      </ion-row>
       <!--
-      <ion-col text-center width-50>
-        <ion-item text-center>
-          <ion-select [(ngModel)]="filter" multiple="true" [selectOptions]="selectOptions" (ionChange)="changeDetailFilter()">
-            <ion-option value="1" selected="true">전세</ion-option>
-            <ion-option value="2">원룸(오픈형)</ion-option>
-            <ion-option value="3">원룸(분리형)</ion-option>
-            <ion-option value="4">원룸(복층형)</ion-option>
-            <ion-option value="5">투룸</ion-option>
-            <ion-option value="6">쓰리룸</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
+        <span style="font-size: 1.10em; position: relative; top: 11px; left: 20px;">
+          {{region}} - 오피스텔 ( 보증금:500~1000, 월세:20~50 )
+        </span>
       -->
-    </ion-row>
-    <!--
-      <span style="font-size: 1.10em; position: relative; top: 11px; left: 20px;">
-        {{region}} - 오피스텔 ( 보증금:500~1000, 월세:20~50 )
-      </span>
-    -->
+    </ion-grid>
   </div>
 
 </ion-header>
-<ion-content>
+<ion-content id="buildCaseListContent">
+  <!--
   <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150">
-    <ion-refresher-content style="padding: 20px 0;"
-                           pullingIcon="arrow-dropdown"
-                           pullingText="Pull to refresh"
-                           refreshingSpinner="circles"
-                           refreshingText="Refreshing...">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
-
-  <ion-card *ngFor="let buildCase of returnedDatas;  let i = index">
-    <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
+-->
+  <ion-list>
+    <ion-item *ngFor="let buildCase of returnedDatas;  let i = index">
+      <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
         <div class="img" style="width: 100%;">
 
           <!--
@@ -93,67 +97,63 @@
           <img src="{{'assets/img/SAM_100_0081.jpg'}}" *ngIf="i%4==3"
                alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
 
-            <div class="outer">
-              <div class="middle">
-                <div class="inner">
-                  <span id="post_title" style="margin-top: 4px; display: inline-block;">{{buildCase.title}}</span><br>
-                  <span id="post_place">{{buildCase.buildPlace}}</span><br>
-                  <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
-                  <span id="post_type">{{buildCase.buildType}}</span>
-                  <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span><br>
-                  <span style="font-size: 1.1rem; padding-left: 2px; display: inline-block; margin-top: 3px;">
+          <div class="outer">
+            <div class="middle">
+              <div class="inner">
+                <span id="post_title">{{buildCase.title}}</span><br>
+                <span id="post_place">{{buildCase.buildPlace}}</span><br>
+                <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
+                <span id="post_type">{{buildCase.buildType}}</span>
+                <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span><br>
+                <span style="font-size: 1.1rem; padding-left: 2px; display: inline-block; margin-top: 3px;">
                       <ion-icon ios="ios-heart" md="md-heart" style="color: #ff7473;"></ion-icon> {{i}}
-                      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles" style="color:#159DEB; margin-left: 8px;"></ion-icon> {{i * 3}}
+                      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"
+                                style="color:#159DEB; margin-left: 8px;"></ion-icon> {{i * 3}}
                   </span>
-                </div>
               </div>
             </div>
-
           </div>
+
+        </div>
       </div>
-    </ion-card>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" style="margin-top: 30px;">
-      <ion-infinite-scroll-content
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" style="margin-top: 30px;">
+    <ion-infinite-scroll-content
 
-        loadingSpinner="bubbles"
-        loadingText="Loading more data...">
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
 
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
-  </ion-content>
-  <!--
-
-  <ion-content>
-      <ion-card *ngFor="let buildCase of returnedDatas" >
-          <button ion-item text-wrap class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
-              <div>
-                <div class="outer">
-
-                   <div class="middle">
-                     <div class="inner">
-                       <div id="post_image"  style="width: 50%; float: left;" >
-                         <a>
-                           <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-                                                        alt="Inventore voluptates velit totam ipsa tenetur">
-                         </a>
-                       </div>
+</ion-content>
+<!--
+<ion-content>
+    <ion-card *ngFor="let buildCase of returnedDatas" >
+        <button ion-item text-wrap class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
+            <div>
+              <div class="outer">
+                 <div class="middle">
+                   <div class="inner">
+                     <div id="post_image"  style="width: 50%; float: left;" >
+                       <a>
+                         <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
+                                                      alt="Inventore voluptates velit totam ipsa tenetur">
+                       </a>
                      </div>
                    </div>
-
                  </div>
-
-                <div id="post_detail" style="width: 50%; float: right;">
-                  <span id="post_title">{{buildCase.title}}</span>
-                  <span id="post_place" >{{buildCase.buildPlace}}</span><br>
-                  <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
-                  <span id="post_type">{{buildCase.buildType}}</span>
-                  <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
-                </div>
-
+               </div>
+              <div id="post_detail" style="width: 50%; float: right;">
+                <span id="post_title">{{buildCase.title}}</span>
+                <span id="post_place" >{{buildCase.buildPlace}}</span><br>
+                <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
+                <span id="post_type">{{buildCase.buildType}}</span>
+                <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
               </div>
-          </button>
-      </ion-card>
-  </ion-content>
-
-  -->
+            </div>
+        </button>
+    </ion-card>
+</ion-content>
+-->
