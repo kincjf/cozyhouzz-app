@@ -3,3 +3,4 @@
 3. ionic platform add android
 4. ionic plugin add https://github.com/Telerik-Verified-Plugins/ImagePicker
 5. ionic plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyCjr4vfqafxsO1kq853HHZzy5kpLV_XB44" --variable API_KEY_FOR_IOS="AIzaSyBA7HfLTwOxkwsK4ex9dEI9Zh0eD_A2fIs"
+6. ionic plugin add call-number    (?)

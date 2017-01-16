@@ -1,0 +1,72 @@
+page-build-case-detail {
+  #map222 {
+    width: 100vw;
+    margin-bottom: 0;
+  }
+  .scroll-content {
+    margin-bottom: 46px;
+  }
+  .item-md ion-avatar[item-left] {
+    margin: 0 15px 0 0 ;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: inherit;
+    #buildCaseDetailUserImage {
+      border-radius: 0;
+      width: 80px;
+      height: 80px;
+
+    }
+  }
+  #userInfo {margin-top:2px;
+    padding-left: 0; margin-bottom:5px; background-color: inherit;
+  }
+  #buildCaseDetailInfoList {
+    background-color: white;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
+  #companyIntro {
+    padding: 20px 16px 17px 16px;
+    word-break: break-all;
+    background-color: white;
+    margin-bottom : 5px;
+    p {
+      margin: 0;
+    }
+  }
+
+
+  #etc_buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: white;
+    button {
+      padding: 0;
+      font-size: 1.6rem;
+      .item-inner {
+        .label-md {
+          margin-right: 0;
+        }
+        padding-right: 0;
+      }
+    }
+    button#pin {
+      width: 25%;
+      background-color: #efefef;
+    }
+    button#call {
+      width: 25%;
+      background-color: #cfcfcf;
+
+    }
+    button#chatbubbles {
+      width: 50%;
+
+      background-color: #bfbfbf;
+    }
+  }
+}
+
+

@@ -75,74 +75,85 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let buildCase of returnedDatas">
+  <ion-card *ngFor="let buildCase of returnedDatas;  let i = index">
     <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
         <div class="img" style="width: 100%;">
-          <!--
 
-                   <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-                        alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-                   -->
-          <img src="{{'assets/img/testMainPreviewImage2.jpg'}}"
+          <!--
+                             <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
+                                  alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+                    -->
+
+          <img src="{{'assets/img/testMainPreviewImage2.jpg'}}" *ngIf="i%4==0"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+          <img src="{{'assets/img/testMainPreviewImage3.jpg'}}" *ngIf="i%4==1"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+          <img src="{{'assets/img/testMainPreviewImage4.jpg'}}" *ngIf="i%4==2"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+          <img src="{{'assets/img/SAM_100_0081.jpg'}}" *ngIf="i%4==3"
                alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
 
-          <div class="outer">
-            <div class="middle">
-              <div class="inner">
-                <span id="post_title">{{buildCase.title}}</span><br>
-                <span id="post_place">{{buildCase.buildPlace}}</span><br>
-                <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
-                <span id="post_type">{{buildCase.buildType}}</span>
-                <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
+            <div class="outer">
+              <div class="middle">
+                <div class="inner">
+                  <span id="post_title" style="margin-top: 4px; display: inline-block;">{{buildCase.title}}</span><br>
+                  <span id="post_place">{{buildCase.buildPlace}}</span><br>
+                  <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
+                  <span id="post_type">{{buildCase.buildType}}</span>
+                  <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span><br>
+                  <span style="font-size: 1.1rem; padding-left: 2px; display: inline-block; margin-top: 3px;">
+                      <ion-icon ios="ios-heart" md="md-heart" style="color: #ff7473;"></ion-icon> {{i}}
+                      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles" style="color:#159DEB; margin-left: 8px;"></ion-icon> {{i * 3}}
+                  </span>
+                </div>
               </div>
             </div>
+
           </div>
+      </div>
+    </ion-card>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" style="margin-top: 30px;">
+      <ion-infinite-scroll-content
 
-        </div>
-    </div>
-  </ion-card>
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" style="margin-top: 30px;">
-    <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
 
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  </ion-content>
+  <!--
 
-</ion-content>
-<!--
+  <ion-content>
+      <ion-card *ngFor="let buildCase of returnedDatas" >
+          <button ion-item text-wrap class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
+              <div>
+                <div class="outer">
 
-<ion-content>
-    <ion-card *ngFor="let buildCase of returnedDatas" >
-        <button ion-item text-wrap class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
-            <div>
-              <div class="outer">
-
-                 <div class="middle">
-                   <div class="inner">
-                     <div id="post_image"  style="width: 50%; float: left;" >
-                       <a>
-                         <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-                                                      alt="Inventore voluptates velit totam ipsa tenetur">
-                       </a>
+                   <div class="middle">
+                     <div class="inner">
+                       <div id="post_image"  style="width: 50%; float: left;" >
+                         <a>
+                           <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
+                                                        alt="Inventore voluptates velit totam ipsa tenetur">
+                         </a>
+                       </div>
                      </div>
                    </div>
+
                  </div>
 
-               </div>
+                <div id="post_detail" style="width: 50%; float: right;">
+                  <span id="post_title">{{buildCase.title}}</span>
+                  <span id="post_place" >{{buildCase.buildPlace}}</span><br>
+                  <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
+                  <span id="post_type">{{buildCase.buildType}}</span>
+                  <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
+                </div>
 
-              <div id="post_detail" style="width: 50%; float: right;">
-                <span id="post_title">{{buildCase.title}}</span>
-                <span id="post_place" >{{buildCase.buildPlace}}</span><br>
-                <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
-                <span id="post_type">{{buildCase.buildType}}</span>
-                <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span>
               </div>
+          </button>
+      </ion-card>
+  </ion-content>
 
-            </div>
-        </button>
-    </ion-card>
-</ion-content>
-
--->
+  -->

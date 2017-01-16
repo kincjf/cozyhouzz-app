@@ -1,34 +1,34 @@
 import {Component} from '@angular/core';
-import {NavController, LoadingController} from 'ionic-angular';
+import {NavController, LoadingController, AlertController} from 'ionic-angular';
 
 import 'rxjs/add/operator/toPromise';
-import {contentHeaders} from '../../../app/common/headers';
 import {Http} from '@angular/http';
 import {config} from '../../../app/common/config';
 import {STATIC_VALUE} from "../../../app/common/config/staticValue";
 import * as _ from "lodash";
 import * as moment from 'moment';
 import {PostService} from '../../../services/post-service';
-//import { UserPage } from '../../user/user';
-
+import {IMarker, IPoint} from './interfaces';
+import { CallNumber } from 'ionic-native';
+import {BuildCaseMapPage} from '../build-case-map/build-case-map';
+import {isCordovaAvailable} from '../../../services/is-cordova-available';
 /*
  Generated class for the BuildCaseDetail page.
 
  See http://ionicframework.com/docs/v2/components/#navigation for more info on
  Ionic pages and navigation.
  */
+
 @Component({
   selector: 'page-build-case-detail',
   templateUrl: 'build-case-detail.html'
 })
 export class BuildCaseDetailPage {
 
-  private decodedJwt: any;
-  private loginMemberIdx: number;
-  public selectedId: number;
 
   public post: any;
   public data: any;
+
   title: string;
   buildType: string;
   buildPlace: any;
@@ -56,7 +56,7 @@ export class BuildCaseDetailPage {
   public test: any;
 
   constructor(public nav: NavController, public postService: PostService, public http: Http,
-              public loading: LoadingController) {
+              public loading: LoadingController, private alertCtrl: AlertController) {
     // get sample data only
     //this.post = postService.getItem(navParams.get('id'));
     this.post = postService.getItem(0);
@@ -89,14 +89,44 @@ export class BuildCaseDetailPage {
             loader.dismiss();
           }
         );
+
+
+
     });
+
 
   };
 
-  test2() {
-    this.nav.pop();
+
+  callNumber() {
+    if (!isCordovaAvailable()) {
+      return false;
+    }
+    let alert = this.alertCtrl.create({
+      title: '010-3326-7822',
+      message: '정말 전화를 거시겠습니까? 요금제에 따라 요금이 부과될 수 있습니다.',
+      buttons: [
+        {
+          text: '취소',
+          role: '취소',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: '전화걸기',
+          handler: () => {
+            CallNumber.callNumber('010-3326-7822', true).then(() => console.log('Launched dialer!'));
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
+  mapBtnClick() {
+     this.nav.push(BuildCaseMapPage);
+  }
   toggleLike(post) {
     // if user liked
     if (post.liked) {

@@ -21,6 +21,7 @@ import {ZipCodePage} from '../pages/function/zip-code/zip-code';
 import {GoogleMapsPage} from '../pages/function/google-maps/google-maps';
 import {UserInfoModifyPage} from '../pages/mypage/userInfo/user-info-modify/user-info-modify';
 import { UserInfoDetailPage } from '../pages/mypage/userInfo/user-info-detail/user-info-detail';
+import {BuildCaseMapPage} from '../pages/buildCase/build-case-map/build-case-map';
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
 import {BuildCaseListPage} from '../pages/buildCase/build-case-list/build-case-list';
@@ -63,7 +64,8 @@ import {Focuser} from '../components/focuser/focuser';
     GoogleMapsPage,
     UserInfoModifyPage,
     UserInfoDetailPage,
-    RegistrationPage
+    RegistrationPage,
+    BuildCaseMapPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -90,7 +92,8 @@ import {Focuser} from '../components/focuser/focuser';
     GoogleMapsPage,
     UserInfoModifyPage,
     UserInfoDetailPage,
-    RegistrationPage
+    RegistrationPage,
+    BuildCaseMapPage
   ],
   providers: [
     Loader,

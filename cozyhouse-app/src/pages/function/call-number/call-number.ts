@@ -13,10 +13,10 @@ export class CallNumberPage {
 	}
 
 	callNumber() {
-		if (!isCordovaAvailable()) {
-			return false;
-		}
-		CallNumber.callNumber(this.number, true)
-			.then(() => console.log('Launched dialer!'));
-	}
+  if (!isCordovaAvailable()) {
+    return false;
+  }
+  CallNumber.callNumber(this.number, true)
+    .then(() => console.log('Launched dialer!'));
+}
 }

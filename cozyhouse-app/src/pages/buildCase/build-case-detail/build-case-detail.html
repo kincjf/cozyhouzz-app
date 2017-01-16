@@ -10,24 +10,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content  style="background-color: #F5F5F5;">
 
 
-  <ion-item class="item-no-border">
+  <img class="full-image"*ngIf="post.image" src="{{ post.image }}" style="width: 100%; margin-top: 5px;">
+  <ion-item class="item-no-border" id="userInfo">
     <ion-avatar item-left (click)="viewUser(post.user_id)">
-      <img src="{{ post.face }}">
+      <img src="{{ post.face }}"  id="buildCaseDetailUserImage" >
     </ion-avatar>
     <h2 color="primary" class="post-author" (click)="viewUser(post.user_id)">{{ post.name }}</h2>
     <span class="post-time">
       {{ initWriteDate }}
     </span>
   </ion-item>
+    <ion-list id="buildCaseDetailInfoList">
 
-  <div>
-    <img class="full-image" *ngIf="post.image" src="{{ post.image }}" style="width: 100%">
-    <ion-list>
-
-      <ion-grid class="post-actions buildCaseInformationGrid" style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);">
+      <ion-grid class="post-actions buildCaseInformationGrid"> <!--  style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);" -->
         <ion-row class="buildCaseInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
             <span class="label label-warning">공사면적</span>
@@ -62,9 +60,12 @@
         </ion-row>
       </ion-grid>
     </ion-list>
-    <div style="word-break: break-all; padding: 0 16px" [innerHTML]="htmlText" class="innerHtmlDiv">
+
+
+    <div id="companyIntro"  [innerHTML]="htmlText" class="innerHtmlDiv">
 
     </div>
+    <!--
     <div padding>
 
       <a (click)="toggleLike(post)" class="subdued">
@@ -97,5 +98,25 @@
         </span>
       </ion-item>
     </div>
+    -->
+  <div id="map222">
+    <img src="{{'assets/img/map_example.PNG'}}" style="width:100%; margin-bottom: 0;">
+
   </div>
+  <ion-grid style="padding: 0;" id="etc_buttons">
+    <ion-row>
+      <button ion-item text-center id="pin" (click)="mapBtnClick()">
+        <ion-icon large ios="ios-pin" md="md-pin"></ion-icon> <!-- ion-chatbox-->
+
+      </button>
+      <button ion-item text-center id="call" (click)="callNumber()">
+        <ion-icon large ios="ios-call" md="md-call"></ion-icon>
+      </button>
+      <button ion-item text-center id="chatbubbles" >
+        <ion-icon large ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
+        1:1 문의하기
+      </button>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
