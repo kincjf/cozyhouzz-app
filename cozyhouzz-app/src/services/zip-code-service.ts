@@ -14,7 +14,7 @@ export class ZipCodeService {
       console.log("getAddressList()");
       let url = '/api';
       if (this.platform.is('cordova')) {
-        url = 'http://npus.kr:3000';
+        url = 'http://npus.kr:4000';
       }
       console.log(url);
       ///api and ip

@@ -79,7 +79,7 @@
   </ion-refresher>
 -->
   <ion-list>
-    <ion-item *ngFor="let buildCase of returnedDatas;  let i = index">
+    <ion-item *ngFor="let buildCase of returnedDatas;  let i = index" class="buildCase">
       <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
         <div class="img" style="width: 100%;">
 
@@ -105,11 +105,15 @@
                 <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>
                 <span id="post_type">{{buildCase.buildType}}</span>
                 <span id="post_deposit">{{buildCase.buildTotalPrice}} / 20</span><br>
-                <span style="font-size: 1.1rem; padding-left: 2px; display: inline-block; margin-top: 3px;">
+                <span id="post_etc">
+                  <span>
                       <ion-icon ios="ios-heart" md="md-heart" style="color: #ff7473;"></ion-icon> {{i}}
-                      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"
-                                style="color:#159DEB; margin-left: 8px;"></ion-icon> {{i * 3}}
                   </span>
+                  <span>
+                      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"
+                                style="color:#159DEB;"></ion-icon> {{i * 3}}
+                  </span>
+                </span>
               </div>
             </div>
           </div>

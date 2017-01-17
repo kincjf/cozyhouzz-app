@@ -1,5 +1,5 @@
 * ionic 설치하기 => npm install -g   typings  typescript  cordova ionic
-* 1번 해주고 ionic serve 한번 해줘야 2번 할 수 있음.
+* 1번 해주고 ionic serve 한번 해줘야 2번 할 수 있음. 반드시 sdk 도 깔려있어야 함.
 * 안해주면 undefined exception 에러 발생.
 
 1. npm install

@@ -6,12 +6,12 @@
     "proxies" : [
         {
             "path":"/api",
-            "proxyUrl": "http://npus.kr:3000"
+            "proxyUrl": "http://npus.kr:4000"
 
         },
       {
-        "path":"http://npus.kr:3000",
-        "proxyUrl": "http://npus.kr:3000"
+        "path":"http://npus.kr:4000",
+        "proxyUrl": "http://npus.kr:4000"
 
       }
     ]
