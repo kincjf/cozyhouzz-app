@@ -21,6 +21,7 @@ import {isCordovaAvailable} from '../../../services/is-cordova-available';
  Ionic pages and navigation.
  */
 
+declare var VRView;
 @Component({
   selector: 'page-build-case-detail',
   templateUrl: 'build-case-detail.html'
@@ -66,7 +67,7 @@ export class BuildCaseDetailPage {
               public loading: LoadingController, private alertCtrl: AlertController, private sanitizer: DomSanitizer) {
     // get sample data only
     //this.post = postService.getItem(navParams.get('id'));
-    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://chonbuk.ac.kr/main/main.php');
+    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://www.chonbuk.ac.kr');
 
     this.selectedBuildCaseIdx = params.get("selectedBuildCaseIdx");
   console.log(this.selectedBuildCaseIdx);

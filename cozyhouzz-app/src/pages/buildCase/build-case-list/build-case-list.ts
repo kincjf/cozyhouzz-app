@@ -154,7 +154,7 @@ export class BuildCaseListPage {
   }
 
   doInfinite(infiniteScroll: any) {
-    let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=10&pageStartIndex=0'].join('/');
     this.test = this.postService.getBuildList(URL);
     this.test.subscribe(response => {
         for (let buildCaseData of response.buildCaseInfo) {
