@@ -13,6 +13,10 @@
         "path":"http://npus.kr:4000",
         "proxyUrl": "http://npus.kr:4000"
 
+      },
+      {
+        "path":"https://krpano.com/panos/tokyo45gp/",
+        "proxyUrl":"https://krpano.com/panos/tokyo45gp/"
       }
     ]
 }

@@ -18,42 +18,42 @@ import { UserService } from '../../../../services/user-service';
 export class UserInfoModifyPage {
 
   userFormBuilder: any;
-  userDetails: any;
-  storage: Storage;
-  userService:UserService;
+  user: any;
   constructor(
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private loader: Loader,
     private alertCtrl: AlertController,
-    private UserService:UserService
+    private userService:UserService
   ) {
-    this.userService = UserService;
+    /*
+      로그인 상태에서만 이루어져야 하기 때문에
+      if문 내에서만 실행되도록 함.
+    */
     if(this.userService.getIsLogind()) {
-      this.userDetails = this.userService.getUserInfo();
+      this.user = this.userService.getUserInfo();
+      console.log(this.user.memberType);
+
+      if(this.user.memberType == 1) {
+        this.userFormBuilder = this.formBuilder.group({
+          email : ['', Validators.required],
+          fullName: ['', Validators.required],
+          businessName: ['', Validators.required],
+          businessAddress: ['', Validators.required],
+          cellPhone: ['', Validators.required]
+        });
+      } else if(this.user.memberType == 0) {
+        this.userFormBuilder = this.formBuilder.group({
+
+          fullName: ['', Validators.required],
+          cellPhone: ['', Validators.required]
+        });
+      }
     }
   }
 
-  ionViewWillLoad() {
+  ionViewWillEnter() {
 
-    if(this.userDetails.delimiter == 1) {
-      this.userFormBuilder = this.formBuilder.group({
-        /*
-         fullName: ['', Validators.required],
-         businessName: ['', Validators.required],
-         businessAddress: ['', Validators.required],
-         cellPhone: ['', Validators.required]
-         */
-      });
-    } else if(this.userDetails.delimiter == 0) {
-      this.userFormBuilder = this.formBuilder.group({
-        /*
-         fullName: ['', Validators.required],
-         cellPhone: ['', Validators.required]
-         */
-      });
-
-    }
 
   }
 

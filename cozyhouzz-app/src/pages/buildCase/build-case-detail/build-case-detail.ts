@@ -11,17 +11,10 @@ import * as _ from "lodash";
 import * as moment from 'moment';
 import {PostService} from '../../../services/post-service';
 import {IMarker, IPoint} from './interfaces';
-import { CallNumber } from 'ionic-native';
+import {CallNumber} from 'ionic-native';
 import {BuildCaseMapPage} from '../build-case-map/build-case-map';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
-/*
- Generated class for the BuildCaseDetail page.
 
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
-
-declare var VRView;
 @Component({
   selector: 'page-build-case-detail',
   templateUrl: 'build-case-detail.html'
@@ -60,21 +53,23 @@ export class BuildCaseDetailPage {
   companyIntroImageUrl;
 
   buildTypes = STATIC_VALUE.PLACE_TYPE;
-  selectedBuildCaseIdx:any;
+  selectedBuildCaseIdx: any;
   public test: any;
 
-  constructor(public nav: NavController, public postService: PostService, public http: Http, public params:NavParams,
+  constructor(public nav: NavController, public postService: PostService, public http: Http, public params: NavParams,
               public loading: LoadingController, private alertCtrl: AlertController, private sanitizer: DomSanitizer) {
-    // get sample data only
-    //this.post = postService.getItem(navParams.get('id'));
-    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://www.chonbuk.ac.kr');
-
+    /* 선택된 방 정보를 가져온다.
+    * 이는 buildCaseListPage에서 navCtroller가 page를 push할 때 같이 넘겨준 값.
+    * */
     this.selectedBuildCaseIdx = params.get("selectedBuildCaseIdx");
-  console.log(this.selectedBuildCaseIdx);
-    this.post = postService.getItem(0);
+    this.post = postService.getItem(0); //해당 문장은 추후 지워야 됨.
     let loader = this.loading.create({
       content: '정보를 불러오고 있습니다.'
     });
+    /*
+    * 로딩화면을 띄우고 서버로부터 데이터를 가져오는 부분.
+    * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
+    * */
     loader.present().then(() => {
       this.test = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedBuildCaseIdx);
       this.test.toPromise()
@@ -101,10 +96,10 @@ export class BuildCaseDetailPage {
 
             let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
             this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
+            this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://cozyhouzz.co.kr/#/detail/room/9');
             loader.dismiss();
           }
         );
-
 
 
     });
@@ -112,7 +107,11 @@ export class BuildCaseDetailPage {
 
   };
 
-
+  /*
+  * 전화하기 버튼을 클릭했을 때 호출되는 함수.
+  * native 기능이기 때문에 핸드폰에서 실행되고 있는가를 isCordovaAvailable함수를 통해서 확인한다.
+  * native일 경우, alertCtrl을 이용해서 요금 부과를 확인하고 전화걸기를 수행한다.
+  * ionic plugin add call-number 필수! */
   callNumber() {
     if (!isCordovaAvailable()) {
       return false;
@@ -139,9 +138,14 @@ export class BuildCaseDetailPage {
     alert.present();
   }
 
+  /*
+  * 지도보기 버튼을 클릭했을 때 호출되는 함수
+  * 현재는 주소만 보내주고 있지만 주소, 위도, 경도, 타이틀도 같이 보내줘야 할 듯.
+  * ionic plugin add cordova-plugin-googlemaps 설치 필수! development-resources 페이지의 install.txt 참조하기 바람. */
   mapBtnClick() {
-     this.nav.push(BuildCaseMapPage, {address: this.buildAddress});
+    this.nav.push(BuildCaseMapPage, {address: this.buildAddress});
   }
+
   toggleLike(post) {
     // if user liked
     if (post.liked) {

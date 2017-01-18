@@ -4,6 +4,9 @@ import { Storage } from '@ionic/storage';
 import { Events, Platform } from 'ionic-angular';
 import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 
+/*
+* 우편번호 관련 API를 호출하는 부분.
+* */
 @Injectable()
 export class ZipCodeService {
 

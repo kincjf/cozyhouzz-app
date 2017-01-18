@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, NavParams, MenuController, Events} from 'ionic-angular';
 import {HomePage} from '../../../home/home';
 import {UserService} from '../../../../services/user-service';
+import {UserInfoModifyPage} from '../user-info-modify/user-info-modify';
 /*
   Generated class for the UserInfoDetail page.
 
@@ -23,7 +24,9 @@ export class UserInfoDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserInfoDetailPage');
   }
-
+  userInfoModify() {
+      this.navCtrl.push(UserInfoModifyPage); //아마도 여기서 정보다 보내줘야 할 듯. 두번 리퀘스트 할 수는 없으니까..
+  }
   logout() {
     this.userService.logout();
     this.navCtrl.pop();

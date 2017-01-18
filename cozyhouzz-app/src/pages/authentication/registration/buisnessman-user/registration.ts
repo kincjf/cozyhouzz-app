@@ -25,9 +25,7 @@ export class BussinessManRegistrationPage {
     private alertCtrl: AlertController,
     public menu: MenuController
   ) {
-
     this.menu.close();
-
   }
 
   ionViewWillLoad() {

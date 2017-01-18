@@ -1,19 +1,22 @@
 import { Injectable } from "@angular/core";
-import { Http } from '@angular/http';
 import { Room } from "../providers/room";
 import { Storage } from '@ionic/storage';
 import { Events } from 'ionic-angular';
 
+/*
+* 이부분은 다시 짜는게 좋을 수도....
+* 일부로 private로 했는데, 그리고 getter setter도 만들었었는데
+* storage만 넣었다 하면 해당 getter, setter가 유지가 안됨.. ㅡㅡ
+* provider/room.ts도 마찬가지.
+* 코드 거지같음.
+* */
 @Injectable()
 export class RoomService {
 
   private _room:Room;
-  private storage:Storage;
-  constructor(public h:Http, public s:Storage, public events:Events) {
-      this.storage = s;
+  constructor(public storage:Storage, public events:Events) {
 
       this._room = new Room();
-    console.log("test");
       this.storage.get('roomSettingInformation').then((val) => {
         if(val) {
           // this._room = val as Room 이 안됨;

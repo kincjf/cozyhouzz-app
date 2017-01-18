@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavController, Content } from 'ionic-angular';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Loader } from '../../../providers/loader';
 
 @Component({
@@ -13,7 +12,6 @@ export class AboutPage {
 
   constructor(
     public navCtrl: NavController,
-    public af: AngularFire,
     private loader: Loader,
     private formBuilder: FormBuilder
   ) { }

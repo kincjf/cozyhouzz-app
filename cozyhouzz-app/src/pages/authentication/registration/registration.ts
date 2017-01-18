@@ -27,6 +27,14 @@ export class RegistrationPage {
   ) {
     this.menu.close();
   }
+  /*
+  * 일반사용자 회원가입을 할 것인가,
+  * 사업주 사용자 회원가입을 할 것인가는 delimiter을 가지고 구분함.
+  *
+  * selectRegistrationType(0) -> 일반 사용자
+  * selectRegistrationType(1) -> 사업주 사용자
+  * 아래 if문에서 서로 다른 페이지를 push해주면 됨.
+  * */
   selectRegistrationType(delimiter) {
     if(delimiter==0) {
       this.navCtrl.push(GeneralRegistrationPage);
