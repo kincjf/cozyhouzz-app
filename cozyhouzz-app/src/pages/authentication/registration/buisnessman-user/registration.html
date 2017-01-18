@@ -1,20 +1,8 @@
-
-
-<!--
-Generated template for the Registration page.
-
-See http://ionicframework.com/docs/v2/components/#navigation for more info on
-Ionic pages and navigation.
--->
 <ion-header no-border>
-
   <ion-navbar color="cozy">
     <ion-title>사업주 회원가입</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
   <form [formGroup]="user" (ngSubmit)="createUser()">
     <ion-list>
@@ -67,39 +55,6 @@ Ionic pages and navigation.
           Password must have more than 5 characters
         </p>
       </ion-item>
-
-      <!--
-      <ion-item>
-        <ion-label stacked>사업장 이름</ion-label>
-        <ion-input type="text" formControlName="businessName"></ion-input>
-      </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.businessName.pristine && !user.controls.businessName.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.businessName.pristine && user.controls.businessName.hasError('required')">
-          This is a required field.
-        </p>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked>이름</ion-label>
-        <ion-input type="text" formControlName="fullName"></ion-input>
-      </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.fullName.pristine && !user.controls.fullName.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.fullName.pristine && user.controls.fullName.hasError('required')">
-          This is a required field.
-        </p>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label stacked>사업장 주소</ion-label>
-        <ion-input type="text" formControlName="businessAddress"></ion-input>
-      </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.businessAddress.pristine && !user.controls.businessAddress.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.businessAddress.pristine && user.controls.businessAddress.hasError('required')">
-          This is a required field.
-        </p>
-      </ion-item>
-      -->
     </ion-list>
     <button type="submit" full ion-button block color="secondary" [disabled]="!user.valid">Sign up</button>
   </form>

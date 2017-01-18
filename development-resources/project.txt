@@ -46,3 +46,20 @@ ctrl + alt + l 자동정렬
 alt + shift + f10 run
 ctrl + f4 탭 삭제
 ctrl + f2 run 종료
+
+ctrl + / 주석 //
+ctrl + shift + / 범위 주석
+/** + enter jsdoc comment
+
+ctrl + q 주석 보기
+ctrl + shift + i 해당 구현부 보기
+
+ctrl + b 함수 선언부로 이동
+
+ctrl +alt + <- 화살표 이전으로 이동
+
+ctrl + [ 블럭의 처음으로
+ctrl + ] 블럭의 마지막으로
+
+ctrl + - 블럭 접기
+ctrl + = 블럭 펴기

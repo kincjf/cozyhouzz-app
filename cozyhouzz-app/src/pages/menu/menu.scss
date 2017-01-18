@@ -2,17 +2,19 @@
   padding-top: 10px;
   padding-bottom: 10px;
   #user-email {
-    color: black; font-size: 1.2em; position: relative;
+    color: black;
+    font-size: 1.2em;
+    position: relative;
     top: 18px;
     left: 10px;
   }
   .user-button-line {
     position: relative;
   }
-    #authentication_area {
-     position: relative;
-     top: -5px;
-     background-color: #efefef;
+  #authentication_area {
+    position: relative;
+    top: -5px;
+    background-color: #efefef;
     .icon {
       color: black;
       font-size: 2em;
@@ -24,14 +26,14 @@
     }
   }
   .menu_line_area {
-      position: relative;
-      top: -5px;
-      background-color: #ddd;
-      padding: 6px 0 7px 10px;
-      span {
-          color: black;
-        font-size: 0.9em
-      }
+    position: relative;
+    top: -5px;
+    background-color: #ddd;
+    padding: 6px 0 7px 10px;
+    span {
+      color: black;
+      font-size: 0.9em
+    }
   }
   ion-list {
     position: relative;

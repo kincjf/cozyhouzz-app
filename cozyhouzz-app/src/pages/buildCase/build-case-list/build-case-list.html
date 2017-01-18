@@ -68,8 +68,8 @@
 
 </ion-header>
 <ion-content id="buildCaseListContent">
-  <!--
-  <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150" no-border>
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
       pullingText="Pull to refresh"
@@ -77,7 +77,7 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
--->
+
   <ion-list>
     <ion-item *ngFor="let buildCase of returnedDatas;  let i = index" class="buildCase">
       <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">

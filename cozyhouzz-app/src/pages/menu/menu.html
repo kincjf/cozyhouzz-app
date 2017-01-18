@@ -1,43 +1,15 @@
 <ion-menu [content]="content" (ionOpen)="menuOpened()" (ionClose)="menuClosed()" persistent="true" class="page_menu">
-  <!-- User profile -->
-  <!--<p>{{isLogined}}</p>-->
   <div id="authentication_area" padding style="text-align: center"> <!-- (click)="openHomePage()"-->
     <img class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}" style="margin-top: 7px;">
-    <!--
-    <div *ngIf="!isLogined">
-      <button ion-button color="light" (click)="openloginPage()">로그인</button>
-      <ion-icon large ios="ios-alert" md="md-alert"></ion-icon>
-      <ion-icon large ios="ios-settings" md="md-settings"></ion-icon><br>
-      <button ion-button color="dark" (click)="genaral_signup()">일반 회원가입</button>
-      <button ion-button color="dark" (click)="bussinessman_signup()">사업주 회원가입</button>
-    </div>
-    <div *ngIf="isLogined" style="text-align: center;">
-      <div style="display: flex; height: 60px; margin-left: 10px; margin-top: 8px;">
-        <img class="profile-picture" src="{{ 'assets/img/thumb/adam.jpg' }}" style="width: 25%;  display: block; float: left;">
-        <span id="user-email">{{user.email}}</span>
-      </div>
-      <div class="user-button-line" style="width: 100%;">
-        <button ion-button color="dark" (click)="userInfoDetailBtnClick()">내 정보</button>
-        <button ion-button color="light" (click)="logout()">로그아웃</button>
-        <ion-icon large ios="ios-alert" md="md-alert"></ion-icon>
-        <ion-icon large ios="ios-settings" md="md-settings"></ion-icon>
-      </div>
-    </div>
-    -->
   </div>
-  <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
-    <div><!--openResistrationPage-->
+  <ion-list class="list-full-border" style="margin-bottom: 0;">
+    <div>
       <button menuClose ion-item (click)="openloginPage(p)" *ngIf="!isLogined">
         로그인
       </button>
       <button menuClose ion-item (click)="openResistrationPage()" *ngIf="!isLogined">
         회원가입
       </button>
-      <!--
-      <button menuClose ion-item (click)="logout()" *ngIf="isLogined">
-        로그아웃
-      </button>
-      -->
       <button ion-item *ngIf="isLogined">{{user.email}}</button>
     </div>
   </ion-list>
@@ -46,44 +18,25 @@
       원룸·투룸·오피스텔·도시형생활주택
     </span>
   </div>
-  <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
+  <ion-list class="list-full-border" style="margin-bottom: 0;">
     <div *ngFor="let p of build_push_pages">
       <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
         {{p.title}}
       </button>
     </div>
   </ion-list>
-  <div class="menu_line_area">
+  <div class="menu_line_area"  *ngIf="isLogined">
     <span>
       계정 정보
     </span>
   </div>
-  <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
-
+  <ion-list class="list-full-border" style="margin-bottom: 0;">
     <div *ngFor="let p of etc_pages">
       <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
         {{p.title}}
       </button>
     </div>
-
   </ion-list>
-
-  <!--
-  <div text-center  style="margin-top: 10px;">
-    <a menuClose (click)="viewUser(0)">
-      <img class="profile-picture" src="{{ 'assets/img/thumb/adam.jpg' }}">
-      <h4>Adam Lambert</h4>
-    </a>
-
-    <div class="search-form">
-      <ion-icon name="ios-search"></ion-icon>
-      <ion-input type="text" placeholder="Search"></ion-input>
-    </div>
-  </div>
-  -->
 </ion-menu>
-
-
-<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
 

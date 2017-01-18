@@ -5,7 +5,6 @@ import {GeneralRegistrationPage} from '../registration/general-user/registration
 import {AlertController, Events} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {UserService} from '../../../services/user-service';
-import {HomePage} from '../../home/home';
 import {config} from '../../../app/common/config';
 
 @Component({
@@ -30,7 +29,7 @@ export class LoginPage {
     this.menu.enable(false);
   }
 
-  /*
+  /**
    * formBuilder 따로 설명 필요 없음. login.html 부분 보면 됨.
    * */
   ionViewWillLoad() {
@@ -40,7 +39,7 @@ export class LoginPage {
     });
   }
 
-  /*
+  /**
    * 사용자가 로그인 버튼을 클릭했을 때 호출되는 함수.
    * eamil과 password를 가져오고 이를 통해 서버와 통신한다.
    * */
@@ -67,6 +66,19 @@ export class LoginPage {
           * 2) userService에 해당 유저 정보를 저장한다. userService에서 해당 토큰을 decode하고 해당 정보를 가지고 있는다.
           * 3) 로그인이 완료되었으므로 원래 페이지로 돌아가야 함. pop()
           * */
+          /*
+          {
+             id_token: "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+             eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.
+             TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ",
+             user: { "idx":1,
+                "email":"pastelbook89@gmail.com",
+                "password":"$2a$05$Ak0Z3z7ntwuAAGwr75XoiO2aYO.d1CRbkT37tOYamWXtflgk4TPO6",
+                "memberType":1,"iat":1471445433
+             },
+             statusCode: 1
+           }
+           */
           this.storage.set("id_token", response.id_token);
           this.userService.setUserInfo(response.id_token);
           this.navCtrl.pop();
@@ -77,6 +89,24 @@ export class LoginPage {
           * 400대 status code가 오므로 err부분에서 처리해줘야함..
           * 서버에서 그리 구현하였음.
           * */
+
+          /*
+          * - HTTP Response Code : 201(로그인 성공)
+          * { id_token: JWT 인증 토큰(String), statusCode: 1 }
+          * - HTTP Response Code : 400(로그인 실패 - 입력정보 누락)
+          * { errorMsg: 에러 메시지(String), statusCode: -1 }
+          * - HTTP Response Code : 401(로그인 실패 - 회원정보 없음)
+          * { errorMsg: 에러 메시지(String), statusCode: 0 }
+          *  - HTTP Response Code : 401(로그인 실패 - 패스워드 틀림)
+          * { errorMsg: 에러 메시지(String), statusCode: 2 }
+          * - HTTP Response Code : 500(DB 에러)
+          * { errorMsg: 에러 메시지(String), statusCode: 9 }
+          * */
+
+          /*
+          * 2017.01.19 로그인 실패 이유와 관련되서
+          * 사용자들에게 정보 뿌려줘야 함.
+          * */
           this.alertCtrl.create({
             title: 'Error',
             message: 'Failed to login ' + err,
@@ -86,6 +116,11 @@ export class LoginPage {
       );
   }
 
+
+  /**
+   * 회원가입 버튼을 누르면 해당 페이지로 이동해주는 함수.
+   * 현재 로그인 페이지에서 회원가입 버튼 없애버림.
+   */
   signUp() {
     this.navCtrl.push(GeneralRegistrationPage);
   }

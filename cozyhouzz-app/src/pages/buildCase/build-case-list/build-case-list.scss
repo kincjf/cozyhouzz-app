@@ -1,6 +1,9 @@
 page-build-case-list {
   ion-header {
 
+    ion-navbar {
+      border-bottom: 0px solid #ddd;
+    }
     .sub-title-bar {
       ion-grid {
         padding: 0;
@@ -40,7 +43,12 @@ page-build-case-list {
 
   }
   #buildCaseListContent {
+
     background-color: #f5f5f5;
+    /*
+    .has-refresher>.scroll-content {
+        border: 0px solid #ddd;
+    }*/
     .buildCase:active {
       background-color: #efefef;
     }

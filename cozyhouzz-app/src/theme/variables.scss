@@ -58,13 +58,13 @@ $ionicons-font-path: "../assets/fonts";
 @import "ionicons";
 
 
-$range-md-knob-width: 23px;
-$range-md-bar-height	: 2px;
-$range-md-bar-background-color	:#efefef;
-$range-md-bar-active-background-color	: #5D5D5D;
-$checkbox-md-icon-border-radius:50px;
-$checkbox-md-icon-background-color-off: #efefef;
-$checkbox-md-icon-background-color-on:#5D5D5D;
-$checkbox-md-icon-border-color-off: #efefef;
-$checkbox-md-icon-border-color-on :#5D5D5D;
-$refresher-icon-font-size	:0.7rem;
+$range-md-knob-width: 23px; //range의 동그라미 크기
+$range-md-bar-height	: 2px;  //range의 bar 높이
+$range-md-bar-background-color	:#efefef; //range의 배경 색
+$range-md-bar-active-background-color	: #5D5D5D; //range의 active 부분 배경 색
+$checkbox-md-icon-border-radius:50px; //체크박스의 radius
+$checkbox-md-icon-background-color-off: #efefef; //체크박스 해제되었을 경우 배경 색
+$checkbox-md-icon-background-color-on:#5D5D5D; //체크박스 설정되었을 경우 배경 색
+$checkbox-md-icon-border-color-off: #efefef; //체크박스 해제되었을 경우 border 색
+$checkbox-md-icon-border-color-on :#5D5D5D; //체크박스 설정되었을 경우 border 색
+$refresher-icon-font-size	:0.7rem; //refresher 의 icon 크기

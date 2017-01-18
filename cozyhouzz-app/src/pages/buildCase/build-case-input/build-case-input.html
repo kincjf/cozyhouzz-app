@@ -1,9 +1,3 @@
-<!--
-  Generated template for the BuildCaseInput page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header no-border>
   <ion-navbar color="cozy">
     <ion-title>방 등록하기</ion-title>
@@ -30,13 +24,6 @@
         <ion-label stacked>내용</ion-label>
         <ion-textarea formControlName="content" placeholder="내용을 입력해 주세요."></ion-textarea>
       </ion-item>
-      <!--
-        <ion-item class="form-error-list" *ngIf="!post.controls.content.pristine && !post.controls.content.valid">
-            <p class="form-error" item-right *ngIf="!post.controls.content.pristine && post.controls.content.hasError('required')">
-                This is a required field.
-            </p>
-        </ion-item>
-        -->
       <ion-item (click)="addressInputClick()">
         <span stacked class="label-md" style="color:#999">우편번호 검색하기</span>
       </ion-item>

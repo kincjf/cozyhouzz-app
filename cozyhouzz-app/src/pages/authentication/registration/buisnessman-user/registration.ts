@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
-import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
-import { AlertController } from 'ionic-angular';
-import { Events } from "ionic-angular";
 import { Loader } from '../../../../providers/loader';
 
 /*
@@ -18,18 +15,18 @@ export class BussinessManRegistrationPage {
   user: any;
   delimiter: number = 1; // delimiter 1이면 사업자, 0이면 기본 유저
   constructor(
-    private events: Events,
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private loader: Loader,
-    private alertCtrl: AlertController,
     public menu: MenuController
   ) {
     this.menu.close();
   }
 
+  /**
+   * Validate user registration form
+   */
   ionViewWillLoad() {
-    // Validate user registration form
     this.user = this.formBuilder.group({
       businessName : ['', Validators.required],
       businessAddress : ['', Validators.required],
@@ -40,8 +37,9 @@ export class BussinessManRegistrationPage {
       passwordConfirmation: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
-
-  // Create user using form builder controls
+  /**
+   * Create user using form builder controls
+   */
   createUser() {
     let fullName = this.user.controls.fullName.value;
     let email = this.user.controls.email.value;

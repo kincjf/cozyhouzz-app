@@ -1,21 +1,12 @@
-<!--
-  Generated template for the HomePage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-
 <ion-header no-border>
   <ion-navbar color="cozy">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <!--<ion-title>아늑한 집</ion-title>-->
     <ion-buttons end>
       <button ion-button menuToggle>
         <ion-icon name="search"></ion-icon>
       </button>
-
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -24,7 +15,6 @@
     * 이부분이 위의 이미지, 전주, 익산, 군산 버튼 부분임.
   -->
   <div class="main_page_banner">
-   <!-- <img style="margin:0px auto 80px auto; display:block" class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}">-->
       <ion-grid class="post-actions">
         <ion-row>
           <ion-col width-33 text-center (click)="region_button_click(0)">
@@ -58,47 +48,5 @@
           </ion-row>
         </ion-grid>
       </button>
-
   </ion-list>
-  <!--
-    <ion-card *ngFor="let post of posts">
-      <ion-item>
-        <ion-avatar item-left (click)="viewUser(post.user_id)">
-          <img src="{{ post.face }}">
-        </ion-avatar>
-        <h2 (click)="viewUser(post.user_id)">{{ post.name }}</h2>
-        <p>{{ post.time }}</p>
-      </ion-item>
-
-      <ion-item text-wrap class="post-body">
-        <div (click)="viewPost(post.id)">
-          <img class="full-image" *ngIf="post.image" src="{{ post.image }}">
-          <p padding-top padding-bottom>{{ post.content }}</p>
-        </div>
-
-        <div>
-          <a (click)="viewPost(post.id)" class="subdued">{{ post.likeCount}} Likes</a>
-          <a (click)="viewPost(post.id)" class="subdued" margin-left>{{ post.commentCount}} Comments</a>
-        </div>
-      </ion-item>
-
-      <ion-grid class="post-actions">
-        <ion-row>
-          <ion-col width-33 text-center (click)="toggleLike(post)">
-            <ion-icon name="thumbs-up" color="primary"  *ngIf="post.liked"></ion-icon>
-            <ion-icon name="thumbs-up" *ngIf="!post.liked"></ion-icon>
-          </ion-col>
-          <ion-col width-33 text-center (click)="viewPost(post.id)">
-            <ion-icon name="chatboxes"></ion-icon>
-          </ion-col>
-          <ion-col width-33 text-center>
-            <ion-icon name="share-alt"></ion-icon>
-
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </ion-card>
-      -->
-
 </ion-content>

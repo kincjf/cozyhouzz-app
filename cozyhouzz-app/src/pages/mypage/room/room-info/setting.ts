@@ -38,6 +38,13 @@ export class RoomSettingPage {
     this.loadRoomInformation();
   }
 
+  /**
+   * 저장하는 방식과 range 에서 사용하는 방식이 달라서
+   * 해당 형식에 맞게 값을 넣어주는 함수.
+   *
+   * range는 특정 변수의 멤버변수인 lower, upper을 사용한다.
+   * 그렇기 때문에 해당 형식에 맞게 넣어줘야 함.
+   */
   loadRoomInformation() {
     this.room = this.roomService.room;
     this.deposit = {
@@ -65,7 +72,7 @@ export class RoomSettingPage {
     this.events.publish('room:change', '');
   }
 
-  /*
+  /**
   * change_monthly() 함수와  change_deposit() 함수는
   * range 의 값이 바뀌었을 때 호출되는 함수.
   * */
@@ -73,7 +80,10 @@ export class RoomSettingPage {
     this.room.monthly_lower = this.monthly.lower;
     this.room.monthly_upper = this.monthly.upper;
   }
-
+  /**
+   * change_monthly() 함수와  change_deposit() 함수는
+   * range 의 값이 바뀌었을 때 호출되는 함수.
+   * */
   change_deposit() {
     this.room.deposit_lower = this.deposit.lower;
     this.room.deposit_upper = this.deposit.upper;

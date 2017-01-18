@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController, NavParams, Platform} from 'ionic-angular';
 
 import {
@@ -11,11 +11,11 @@ import {
 } from 'ionic-native';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 /*
-  Generated class for the BuildCaseMap page.
+ Generated class for the BuildCaseMap page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
+ */
 declare var google;
 @Component({
   selector: 'page-build-case-map',
@@ -24,11 +24,12 @@ declare var google;
 export class BuildCaseMapPage {
 
   map: any;
-  test:string;
-  result:string;
-  Map:any;
-  address:string;
-  constructor(public navCtrl: NavController, public platform: Platform, public params:NavParams) {
+  test: string;
+  result: string;
+  Map: any;
+  address: string;
+
+  constructor(public navCtrl: NavController, public platform: Platform, public params: NavParams) {
     platform.ready().then(() => {
       this.address = params.get("address");
 
@@ -38,6 +39,14 @@ export class BuildCaseMapPage {
     });
   }
 
+  /**
+   *
+   * @param address marker를 추가하기 위한 주소를 입력 받음.
+   * 17.01.19 몇개의 파라미터 추가하고 업데이트 할 예정.
+   * 위도, 경도, title까지 전부다 받아와야 함.
+   *
+   * 실제 지도를 띄우는 부분.
+   */
   loadMap(address) {
     // make sure to create following structure in your view.html file
     // <ion-content>

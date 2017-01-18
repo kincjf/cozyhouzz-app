@@ -1,5 +1,8 @@
 page-home,
 .home {
+  ion-navbar {
+    border-bottom: 0px solid #ddd;
+  }
   .toolbar {
     .toolbar-background {
       background: transparent;

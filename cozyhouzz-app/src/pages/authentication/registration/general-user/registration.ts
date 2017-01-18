@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
-import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
 import { AlertController } from 'ionic-angular';
 import { Events } from "ionic-angular";
 import { Loader } from '../../../../providers/loader';

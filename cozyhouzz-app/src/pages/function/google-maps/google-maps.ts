@@ -1,6 +1,5 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NavController, NavParams, Platform} from 'ionic-angular';
-import {IMarker, IPoint} from './interfaces';
+import {Component} from '@angular/core';
+import {NavController, Platform} from 'ionic-angular';
 import {
   GoogleMap,
   GoogleMapsEvent,
@@ -18,7 +17,6 @@ import {isCordovaAvailable} from '../../../services/is-cordova-available';
  Ionic pages and navigation.
  */
 declare var google;
-
 @Component({
   selector: 'page-google-maps',
   templateUrl: 'google-maps.html'
@@ -30,7 +28,6 @@ export class GoogleMapsPage {
   Map:any;
   constructor(public navCtrl: NavController, public platform: Platform) {
     platform.ready().then(() => {
-
 
     });
   }
