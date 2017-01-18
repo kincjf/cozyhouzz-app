@@ -26,9 +26,20 @@
     -->
   </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;"> <!-- css  우선순위로 인해서 inline 삽입  -->
-    <button menuClose ion-item *ngFor="let p of main_pages" (click)="openPage(p)">
-      {{p.title}}
-    </button>
+    <div><!--openResistrationPage-->
+      <button menuClose ion-item (click)="openloginPage(p)" *ngIf="!isLogined">
+        로그인
+      </button>
+      <button menuClose ion-item (click)="openResistrationPage()" *ngIf="!isLogined">
+        회원가입
+      </button>
+      <!--
+      <button menuClose ion-item (click)="logout()" *ngIf="isLogined">
+        로그아웃
+      </button>
+      -->
+      <button ion-item *ngIf="isLogined">{{user.email}}</button>
+    </div>
   </ion-list>
   <div class="menu_line_area">
     <span>
@@ -54,19 +65,7 @@
         {{p.title}}
       </button>
     </div>
-    <div><!--openResistrationPage-->
-      <button menuClose ion-item (click)="openloginPage(p)" *ngIf="!isLogined">
-        로그인
-      </button>
-      <button menuClose ion-item (click)="openResistrationPage()" *ngIf="!isLogined">
-        회원가입
-      </button>
-      <!--
-      <button menuClose ion-item (click)="logout()" *ngIf="isLogined">
-        로그아웃
-      </button>
-      -->
-    </div>
+
   </ion-list>
 
   <!--
@@ -83,6 +82,7 @@
   </div>
   -->
 </ion-menu>
+
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -6,14 +6,18 @@
 -->
 <ion-header no-border>
   <ion-navbar color="cozy">
-    <ion-title>방 정보 상세보기</ion-title>
+    <ion-title>{{buildName}} <!--방 정보 상세보기--></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content  style="background-color: #F5F5F5;">
 
+  <div class="video-container">
+    <iframe [src]="vrImageURL" style="width: 100vw; height: 40vh" frameborder="0" allowfullscreen></iframe>
+  </div>
 
-  <img class="full-image"*ngIf="post.image" src="{{ post.image }}" style="width: 100%; margin-top: 5px;">
+
+  <!--<img class="full-image"*ngIf="post.image" src="{{ post.image }}" style="width: 100%; margin-top: 5px;">-->
   <ion-item class="item-no-border" id="userInfo">
     <ion-avatar item-left (click)="viewUser(post.user_id)">
       <img src="{{ post.face }}"  id="buildCaseDetailUserImage" >

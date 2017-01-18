@@ -19,26 +19,6 @@ Ionic pages and navigation.
   <form [formGroup]="user" (ngSubmit)="createUser()">
     <ion-list>
       <ion-item>
-        <ion-label stacked>사업장 이름</ion-label>
-        <ion-input type="text" formControlName="businessName"></ion-input>
-      </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.businessName.pristine && !user.controls.businessName.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.businessName.pristine && user.controls.businessName.hasError('required')">
-          This is a required field.
-        </p>
-      </ion-item>
-
-      <ion-item>
-        <ion-label stacked>이름</ion-label>
-        <ion-input type="text" formControlName="fullName"></ion-input>
-      </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.fullName.pristine && !user.controls.fullName.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.fullName.pristine && user.controls.fullName.hasError('required')">
-          This is a required field.
-        </p>
-      </ion-item>
-
-      <ion-item>
         <ion-label stacked>이메일</ion-label>
         <ion-input #email type="email" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
       </ion-item>
@@ -50,7 +30,6 @@ Ionic pages and navigation.
           Invalid email address.
         </p>
       </ion-item>
-      <!-- businessName businessAddress-->
       <ion-item>
         <ion-label stacked>핸드폰 번호</ion-label>
         <ion-input #cellphone type="text" formControlName="cellphone"></ion-input>
@@ -88,6 +67,29 @@ Ionic pages and navigation.
           Password must have more than 5 characters
         </p>
       </ion-item>
+
+      <!--
+      <ion-item>
+        <ion-label stacked>사업장 이름</ion-label>
+        <ion-input type="text" formControlName="businessName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.businessName.pristine && !user.controls.businessName.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.businessName.pristine && user.controls.businessName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label stacked>이름</ion-label>
+        <ion-input type="text" formControlName="fullName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.fullName.pristine && !user.controls.fullName.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.fullName.pristine && user.controls.fullName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+
+
       <ion-item>
         <ion-label stacked>사업장 주소</ion-label>
         <ion-input type="text" formControlName="businessAddress"></ion-input>
@@ -97,6 +99,7 @@ Ionic pages and navigation.
           This is a required field.
         </p>
       </ion-item>
+      -->
     </ion-list>
     <button type="submit" full ion-button block color="secondary" [disabled]="!user.valid">Sign up</button>
   </form>

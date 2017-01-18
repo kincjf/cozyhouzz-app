@@ -75,7 +75,9 @@ export class BuildCaseListPage {
 
       // 방 불러오는 부분
       this.posts = postService.getAll();
-      let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+      let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=10&pageStartIndex=0'].join('/');
+
+     // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
       this.test = postService.getBuildList(URL);
       this.test.subscribe(response => {
           this.returnedDatas = []; //데이터를 초기화
@@ -196,8 +198,8 @@ export class BuildCaseListPage {
     this.nav.push(BuildCaseInputPage);
   }
 
-  viewPost(postId) {
-    this.nav.push(BuildCaseDetailPage, {id: postId})
+  viewPost(selectedBuildCaseIdx) {
+    this.nav.push(BuildCaseDetailPage, {selectedBuildCaseIdx: selectedBuildCaseIdx})
   }
 
   ionViewDidEnter() {

@@ -25,10 +25,7 @@ export class UserInfoDetailPage {
   }
 
   logout() {
-
-    if(this.userService.getIsLogind()) {
-      this.userService.logout();
-    }
+    this.userService.logout();
     this.navCtrl.pop();
   }
 }

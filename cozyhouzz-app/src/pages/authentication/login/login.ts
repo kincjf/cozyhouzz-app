@@ -6,9 +6,11 @@ import { AlertController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { UserService } from '../../../services/user-service';
 import { HomePage } from '../../home/home';
+import {config} from '../../../app/common/config';
 /*
   Generated class for the Login page.
 */
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -27,6 +29,8 @@ export class LoginPage {
   ) {
     this.menu.close();
     this.menu.enable(false);
+
+
   }
 
   ionViewWillLoad() {
@@ -42,6 +46,7 @@ export class LoginPage {
     let email = this.userFormBuilder.controls.email.value;
     let password = this.userFormBuilder.controls.password.value;
 
+    // let URL = [config.serverHost, config.path.login].join('/');
     let user = this.userService.login("http://api.cozyhouzz.co.kr/api/auth/login", {
       email: email,
       password: password

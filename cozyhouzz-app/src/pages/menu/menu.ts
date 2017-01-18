@@ -122,10 +122,7 @@ export class Menu {
   }
 
   logout() {
-
-    if(this.isLogined) {
       this.userService.logout();
-    }
   }
 }
 

@@ -27,15 +27,18 @@ export class BuildCaseMapPage {
   test:string;
   result:string;
   Map:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
+  address:string;
+  constructor(public navCtrl: NavController, public platform: Platform, public params:NavParams) {
     platform.ready().then(() => {
+      this.address = params.get("address");
+
       if (isCordovaAvailable()) {
-        this.loadMap();
+        this.loadMap(this.address);
       }
     });
   }
 
-  loadMap() {
+  loadMap(address) {
     // make sure to create following structure in your view.html file
     // <ion-content>
     //  <div #map id="map"></div>
@@ -66,7 +69,7 @@ export class BuildCaseMapPage {
       // create new marker
       let markerOptions: GoogleMapsMarkerOptions = {
         position: ionic,
-        title: '방 위치'
+        title: address
       };
 
       this.map.addMarker(markerOptions)

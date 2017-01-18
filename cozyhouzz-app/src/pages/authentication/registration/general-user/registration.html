@@ -17,15 +17,7 @@ Ionic pages and navigation.
   <form [formGroup]="user" (ngSubmit)="createUser()">
     <ion-list>
 
-      <ion-item>
-        <ion-label stacked>이름</ion-label>
-        <ion-input type="text" formControlName="fullName"></ion-input>
-      </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.fullName.pristine && !user.controls.fullName.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.fullName.pristine && user.controls.fullName.hasError('required')">
-          This is a required field.
-        </p>
-      </ion-item>
+
 
       <ion-item>
         <ion-label stacked>이메일</ion-label>
@@ -39,7 +31,16 @@ Ionic pages and navigation.
           Invalid email address.
         </p>
       </ion-item>
-      <!-- businessName businessAddress-->
+      <!--
+      <ion-item>
+        <ion-label stacked>이름</ion-label>
+        <ion-input type="text" formControlName="fullName"></ion-input>
+      </ion-item>
+      <ion-item class="form-error-list" *ngIf="!user.controls.fullName.pristine && !user.controls.fullName.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.fullName.pristine && user.controls.fullName.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
       <ion-item>
         <ion-label stacked>핸드폰 번호</ion-label>
         <ion-input #cellphone type="text" formControlName="cellphone"></ion-input>
@@ -52,6 +53,7 @@ Ionic pages and navigation.
           Invalid cell phone address.
         </p>
       </ion-item>
+      -->
       <ion-item>
         <ion-label stacked>비밀번호</ion-label>
         <ion-input #password type="password" formControlName="password"></ion-input>

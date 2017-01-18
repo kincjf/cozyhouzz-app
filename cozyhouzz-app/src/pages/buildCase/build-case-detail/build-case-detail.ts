@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, LoadingController, AlertController} from 'ionic-angular';
+import {NavController, LoadingController, AlertController, NavParams} from 'ionic-angular';
+import {DomSanitizer, SafeUrl, SafeResourceUrl} from '@angular/platform-browser';
+
 
 import 'rxjs/add/operator/toPromise';
 import {Http} from '@angular/http';
@@ -32,6 +34,8 @@ export class BuildCaseDetailPage {
   title: string;
   buildType: string;
   buildPlace: any;
+  buildName: any;
+  buildAddress: any;
   buildTotalArea: number;
   mainPreviewImage: string;
   buildTotalPrice: number;
@@ -40,6 +44,8 @@ export class BuildCaseDetailPage {
   coordinate: any;
   regionCategory: any;
   initWriteDate: string;
+
+  vrImageURL: SafeResourceUrl;
 
   memberIdx: number;
   companyName: string;
@@ -53,27 +59,35 @@ export class BuildCaseDetailPage {
   companyIntroImageUrl;
 
   buildTypes = STATIC_VALUE.PLACE_TYPE;
+  selectedBuildCaseIdx:any;
   public test: any;
 
-  constructor(public nav: NavController, public postService: PostService, public http: Http,
-              public loading: LoadingController, private alertCtrl: AlertController) {
+  constructor(public nav: NavController, public postService: PostService, public http: Http, public params:NavParams,
+              public loading: LoadingController, private alertCtrl: AlertController, private sanitizer: DomSanitizer) {
     // get sample data only
     //this.post = postService.getItem(navParams.get('id'));
+    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://chonbuk.ac.kr/main/main.php');
+
+    this.selectedBuildCaseIdx = params.get("selectedBuildCaseIdx");
+  console.log(this.selectedBuildCaseIdx);
     this.post = postService.getItem(0);
     let loader = this.loading.create({
       content: '정보를 불러오고 있습니다.'
     });
     loader.present().then(() => {
-      this.test = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/6");
+      this.test = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedBuildCaseIdx);
       this.test.toPromise()
         .then(
           response => {
+            console.log(response);
             this.memberIdx = response.buildCaseInfo.memberIdx;
             this.title = response.buildCaseInfo.title;
             this.buildType = response.buildCaseInfo.buildType;
             // this.buildTypeFuntion(this.buildType);
             this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
-            this.buildPlace = this.buildPlace[1] + '' + this.buildPlace[2];
+            this.buildName = this.buildPlace[2];
+            this.buildAddress = this.buildPlace[1];
+            this.buildPlace = this.buildPlace[1] + ' ' + this.buildPlace[2];
             this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
             this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
             this.buildTotalPrice = response.buildCaseInfo.buildTotalPrice;
@@ -125,7 +139,7 @@ export class BuildCaseDetailPage {
   }
 
   mapBtnClick() {
-     this.nav.push(BuildCaseMapPage);
+     this.nav.push(BuildCaseMapPage, {address: this.buildAddress});
   }
   toggleLike(post) {
     // if user liked
