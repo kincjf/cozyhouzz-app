@@ -36,9 +36,10 @@
         <ion-col text-center width-50>
           <ion-item text-center>
             <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
-              <ion-option value="0" selected="true">최신순</ion-option>
-              <ion-option value="1">이름순</ion-option>
-              <ion-option value="2">보증금순</ion-option>
+              <ion-option value="0" selected="true">정렬 방법</ion-option>
+              <ion-option value="1">최신순</ion-option>
+              <ion-option value="2">이름순</ion-option>
+              <ion-option value="3">보증금순</ion-option>
 <!--
               <ion-option value="3">월세순</ion-option>
 -->

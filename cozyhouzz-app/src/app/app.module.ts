@@ -38,6 +38,7 @@ import {Storage} from '@ionic/storage';
 import {RoomService} from "../services/room-service";
 import {ZipCodeService} from '../services/zip-code-service';
 import {MapsService} from '../services/maps.service';
+import {AuthenticatorService} from '../providers/authenticator';
 
 
 //directive
@@ -104,7 +105,8 @@ import {Focuser} from '../components/focuser/focuser';
     RoomService,
     UserService,
     ZipCodeService,
-    MapsService
+    MapsService,
+    AuthenticatorService
   ]
 })
 export class AppModule {
