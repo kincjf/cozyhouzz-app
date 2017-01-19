@@ -80,7 +80,7 @@ export class BuildCaseDetailPage {
     * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
     * */
     loader.present().then(() => {
-      this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://cozyhouzz.co.kr/#/detail/room/9');
+      this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/RoomInfoVR/6');
       this.buildCaseResult = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedBuildCaseIdx);
       this.buildCaseResult.toPromise()
         .then(

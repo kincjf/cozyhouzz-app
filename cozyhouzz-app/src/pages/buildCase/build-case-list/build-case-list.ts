@@ -14,6 +14,8 @@ import {Events} from 'ionic-angular';
 import {Room} from '../../../providers/room';
 import {RoomSettingPage} from '../../mypage/room/room-info/setting';
 
+import {SortPipe} from '../../../pipes/SortByJsonObjects';
+
 @Component({
   selector: 'page-build-case-list',
   templateUrl: 'build-case-list.html'
@@ -25,10 +27,11 @@ export class BuildCaseListPage {
   public pageSize: number = 10;
   public region: string;
   public filter: Array<string>;
-  public lately: string = "최신순";
+  public lately: number = 0;
   public pageStartIndex = 0;
   public user: any;
   public isLogined: boolean = false;
+  public orderBy:string = 'selectedBuildCaseIdx';
   roomSettingInformation;
   selectOptions_region = {
     title: '검색 지역 선택'
@@ -44,6 +47,11 @@ export class BuildCaseListPage {
               public loading: LoadingController, private roomService: RoomService,
               private events: Events, private userService: UserService) {
 
+    /*
+     *  returnedDatas 배열 초기화. 방 정보 리스트를 가지고 있음
+     *  생성자와 refresh 부분에서 초기화 시켜주어야 함.
+     *  */
+    this.returnedDatas = [];
     this.region = params.get("region"); //메인페이지에서 어떤 지역을 선택했는지 가져옴.
     if (!this.region) this.region = '전체'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
 
@@ -68,14 +76,8 @@ export class BuildCaseListPage {
       this.room = this.roomService.room;
       this.filter = this.room.filter;
       /*
-       *  returnedDatas 배열 초기화. 방 정보 리스트를 가지고 있음
-       *  생성자와 refresh 부분에서 초기화 시켜주어야 함.
-       *  */
-      this.returnedDatas = [];
-
-      /*
        * 방 정보 불러오는 부분 */
-      let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=10&pageStartIndex=0'].join('/');
+      let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize='   + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
       // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
       this.getDatas(URL, loader, null, null);
@@ -181,7 +183,7 @@ export class BuildCaseListPage {
   doRefresh(refresher) {
     /*
      * 방 정보 불러오는 부분 */
-    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=10&pageStartIndex=0'].join('/');
+    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize='   + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
     // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     setTimeout(() => {
@@ -212,9 +214,19 @@ export class BuildCaseListPage {
 
   /**
    * select 정렬 순서가 바뀌었을 경우 호출되는 함수.
+   * this.orderBy 변수에 정렬하고자 하는 대상을 텍스트로 입력해주면 됨.
    * */
   changeLately() {
-    console.log(this.lately);
+    /*
+     <ion-option value="0" selected="true">최신순</ion-option>
+     <ion-option value="1">이름순</ion-option>
+     <ion-option value="2">보증금순</ion-option>
+     <ion-option value="3">월세순</ion-option>
+     * */
+    let lately = this.lately;
+    if(lately == 0) this.orderBy='selectedBuildCaseIdx';
+    else if(lately == 1) this.orderBy='title';
+    else if(lately == 2) this.orderBy='buildTotalPrice';
   }
 
   /**

@@ -36,10 +36,12 @@
         <ion-col text-center width-50>
           <ion-item text-center>
             <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
-              <ion-option value="최신순" selected="true">최신순</ion-option>
-              <ion-option value="이름순">이름순</ion-option>
-              <ion-option value="보증금순">보증금순</ion-option>
-              <ion-option value="월세순">월세순</ion-option>
+              <ion-option value="0" selected="true">최신순</ion-option>
+              <ion-option value="1">이름순</ion-option>
+              <ion-option value="2">보증금순</ion-option>
+<!--
+              <ion-option value="3">월세순</ion-option>
+-->
             </ion-select>
           </ion-item>
         </ion-col>
@@ -79,7 +81,11 @@
   </ion-refresher>
 
   <ion-list>
-    <ion-item *ngFor="let buildCase of returnedDatas;  let i = index" class="buildCase">
+    <!--
+      | sortBy : 'title' 이면 title로 오름차순 한다는 의미
+      해당 부분에 변수를 두고 변수의 값을 바꾸는 것으로 해야 할듯.
+      -->
+    <ion-item *ngFor="let buildCase of returnedDatas | sortBy : orderBy;  let i = index" class="buildCase">
       <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
         <div class="img" style="width: 100%;">
 

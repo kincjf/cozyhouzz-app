@@ -2,11 +2,14 @@ import {Component} from '@angular/core';
 import {NavController, MenuController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
 import {GeneralRegistrationPage} from '../registration/general-user/registration';
-import {AlertController, Events} from 'ionic-angular';
+import {AlertController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
 import {UserService} from '../../../services/user-service';
 import {config} from '../../../app/common/config';
-
+/*
+* 1) 새로 만드는 서버에서 로그인 시 토근을 보내주지 않아 설정하지 못함. common/comfing/index.ts 부분에 가서 url 수정해줘야 함.
+* 2) 로그인 실패 이유와 관련되서 사용자들에게 정보 뿌려줘야 함.
+* */
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
@@ -44,17 +47,17 @@ export class LoginPage {
    * eamil과 password를 가져오고 이를 통해 서버와 통신한다.
    * */
   login() {
-    let email = this.userFormBuilder.controls.email.value;
-    let password = this.userFormBuilder.controls.password.value;
-
+    let email = this.userFormBuilder.controls.email.value,
+      password = this.userFormBuilder.controls.password.value;
+    var title = '';
     /*
      * service/user-service.ts 부분에 함수가 작성되어 있음.
      * url를 보내면 userService는 해당 url에 같이 보낸 파라미터를 가지고 request를 하고
      * 해당 request의 response 를 반환한다.
      * 이후 .toPromise()를 통해 해당 데이터를 조회.
      * */
-    // let URL = [config.serverHost, config.path.login].join('/');
-    let user = this.userService.login("http://api.cozyhouzz.co.kr/api/auth/login", {
+    let URL = [config.serverHost, config.path.login].join('/'); //"http://api.cozyhouzz.co.kr/api/auth/login"
+    let user = this.userService.login(URL, {
       email: email,
       password: password
     }).toPromise()
@@ -79,6 +82,7 @@ export class LoginPage {
              statusCode: 1
            }
            */
+          console.log(response);
           this.storage.set("id_token", response.id_token);
           this.userService.setUserInfo(response.id_token);
           this.navCtrl.pop();
@@ -102,14 +106,16 @@ export class LoginPage {
           * - HTTP Response Code : 500(DB 에러)
           * { errorMsg: 에러 메시지(String), statusCode: 9 }
           * */
-
-          /*
-          * 2017.01.19 로그인 실패 이유와 관련되서
-          * 사용자들에게 정보 뿌려줘야 함.
-          * */
+          console.log(err);
+          switch(err.status) {
+            case 400: title = '입력 정보 누락'; break;
+            case 401: title = '회원 정보 없음'; break;
+            case 500: title = '패스워드 틀림'; break;
+            default: title = '기타';
+          }
           this.alertCtrl.create({
             title: 'Error',
-            message: 'Failed to login ' + err,
+            message: 'Failed to login ' + title,
             buttons: [{text: 'Ok'}]
           }).present();
         }
