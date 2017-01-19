@@ -148,11 +148,6 @@ export class BuildCaseListPage {
             buildPlace: buildPlaceArr[1],
             buildPlaceDetail: buildPlaceArr[2]
           });
-        }
-        for (let buildCaseData of response.buildCaseInfo) {
-          let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
-          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
-
           this.returnedDatas.push({
             selectedBuildCaseIdx: buildCaseData.idx,
             title: buildCaseData.title,
@@ -165,6 +160,7 @@ export class BuildCaseListPage {
             buildPlaceDetail: buildPlaceArr[2]
           });
         }
+
         if (loader != null) loader.dismiss(); //로딩화면 종료
         if (infiniteScroll != null) infiniteScroll.complete(); //infiniteScroll 완료
         if (refresher != null) refresher.complete(); //refresher 완료

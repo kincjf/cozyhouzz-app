@@ -80,6 +80,9 @@
     </ion-refresher-content>
   </ion-refresher>
 
+<!--
+  <ion-spinner></ion-spinner>
+-->
   <ion-list>
     <!--
       | sortBy : 'title' 이면 title로 오름차순 한다는 의미
@@ -91,17 +94,19 @@
 
           <!--
                              <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-                                  alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+                                  alt="Inventor e voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
                     -->
 
-          <img src="{{'assets/img/testMainPreviewImage2.jpg'}}" *ngIf="i%4==0"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="{{'assets/img/testMainPreviewImage3.jpg'}}" *ngIf="i%4==1"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="{{'assets/img/testMainPreviewImage4.jpg'}}" *ngIf="i%4==2"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="{{'assets/img/SAM_100_0081.jpg'}}" *ngIf="i%4==3"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+          <img src="assets/img/testMainPreviewImage2.jpg" *ngIf="i%4==0"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+          <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+          <img src="assets/img/testMainPreviewImage4.jpg" *ngIf="i%4==2"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+          <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+
+
 
           <div class="outer">
             <div class="middle">

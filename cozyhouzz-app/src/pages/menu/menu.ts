@@ -21,10 +21,10 @@ export class Menu {
   isLogined:boolean = false;
   user:any;
   rootPage: any = HomePage;
-  build_pages: Array<{title: string, component: any, flag:boolean}>;
-  build_push_pages: Array<{title: string, component: any, flag:boolean}>;
-  main_pages: Array<{title: string, component: any, flag:boolean}>;
-  etc_pages: Array<{title: string, component: any, flag:boolean}>;
+  build_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
+  build_push_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
+  main_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
+  etc_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
   constructor(
     public navCtrl: NavController,
     public events: Events,
@@ -42,21 +42,21 @@ export class Menu {
     * Add your pages to be displayed in the menu
     * */
     this.main_pages = [
-      { title: '아늑한집', component: HomePage, flag: true }
+      { title: '아늑한집', component: HomePage, flag: true, ios:'ios-list', md: 'md-list' }
     ];
     this.build_pages = [
     ];
     this.build_push_pages = [
    //   { title: '찜한 방', component: BuildCaseListPage },
    //   { title: '최근 본 방', component: BuildCaseListPage },
-      { title: '방 리스트 보기', component: BuildCaseListPage, flag: true },
-      { title: '방 정보 등록', component: BuildCaseInputPage, flag: false  },
-      { title: '방 검색 설정', component: RoomSettingPage, flag: true  }//,
+      { title: '방 리스트 보기', component: BuildCaseListPage, flag: true, ios:'ios-list', md: 'md-list' },
+      { title: '방 정보 등록', component: BuildCaseInputPage, flag: false , ios:'ios-add', md: 'md-add' },
+      { title: '방 검색 설정', component: RoomSettingPage, flag: true, ios:'ios-settings', md: 'md-settings'  }//,
      // { title: '구글 맵', component: GoogleMapsPage, flag:true }
     ];
     this.etc_pages = [
-      { title: '1:1 문의 내역', component: QuestionListPage, flag: false },
-      { title: '내 정보 보기', component: UserInfoDetailPage, flag: false }//,
+      { title: '1:1 문의 내역', component: QuestionListPage, flag: false , ios:'ios-chatbubbles', md: 'md-chatbubbles'},
+      { title: '내 정보 보기', component: UserInfoDetailPage, flag: false , ios:'ios-person', md: 'md-person'}//,
       //{ title: '계정 정보 수정', component: UserInfoModifyPage, flag: false }
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
