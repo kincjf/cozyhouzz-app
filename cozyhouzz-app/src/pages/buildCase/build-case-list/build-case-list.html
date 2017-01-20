@@ -3,14 +3,16 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header no-border>
+<ion-header no-border style="border-bottom: 1px solid #ddd;">
   <ion-navbar color="cozy" hideBackButton>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>원룸·투룸·오피스텔</ion-title>
+    <ion-title>방 목록</ion-title>
     <ion-buttons end>
-
+      <button ion-button right (click)="refreshButtonClick()">
+        새로고침
+      </button>
       <button ion-button right (click)="inputButtonClick()" *ngIf="isLogined">
         방 등록
       </button>
@@ -72,7 +74,9 @@
 </ion-header>
 <ion-content id="buildCaseListContent">
 
-  <ion-refresher (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150" no-border>
+<!--
+
+  <ion-refresher class="refresher" (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150" no-border>
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
       pullingText="Pull to refresh"
@@ -80,6 +84,8 @@
       refreshingText="Refreshing...">
     </ion-refresher-content>
   </ion-refresher>
+-->
+
 
 <!--
   <ion-spinner></ion-spinner>
@@ -99,13 +105,14 @@
                     -->
 
           <img src="assets/img/testMainPreviewImage2.jpg" *ngIf="i%4==0"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%;display: block; float: left;">
           <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
           <img src="assets/img/testMainPreviewImage4.jpg" *ngIf="i%4==2"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
           <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; min-height: 25vw; display: block; float: left;">
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
 
 
 

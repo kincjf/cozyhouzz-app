@@ -22,8 +22,6 @@ import {UserService} from '../../../services/user-service';
   templateUrl: 'build-case-detail.html'
 })
 export class BuildCaseDetailPage {
-
-
   public post: any;
   public data: any;
 
@@ -63,22 +61,22 @@ export class BuildCaseDetailPage {
   private user: any;
 
   constructor(public nav: NavController, public postService: PostService, public http: Http, public params: NavParams,
-                public loading: LoadingController, private alertCtrl: AlertController, private sanitizer: DomSanitizer,
-                  public userService:UserService) {
+              public loading: LoadingController, private alertCtrl: AlertController, private sanitizer: DomSanitizer,
+              public userService:UserService) {
     this.isLogined = false;
     /*
-    * 선택된 방 정보를 가져온다.
-    * 이는 buildCaseListPage에서 navCtroller가 page를 push할 때 같이 넘겨준 값.
-    * */
+     * 선택된 방 정보를 가져온다.
+     * 이는 buildCaseListPage에서 navCtroller가 page를 push할 때 같이 넘겨준 값.
+     * */
     this.selectedBuildCaseIdx = params.get("selectedBuildCaseIdx");
     this.post = postService.getItem(0); //해당 문장은 추후 지워야 됨.
     let loader = this.loading.create({
       content: '정보를 불러오고 있습니다.'
     });
     /*
-    * 로딩화면을 띄우고 서버로부터 데이터를 가져오는 부분.
-    * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
-    * */
+     * 로딩화면을 띄우고 서버로부터 데이터를 가져오는 부분.
+     * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
+     * */
     loader.present().then(() => {
       this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/RoomInfoVR/6');
       this.buildCaseResult = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedBuildCaseIdx);
@@ -120,10 +118,10 @@ export class BuildCaseDetailPage {
   };
 
   /**
-  * 전화하기 버튼을 클릭했을 때 호출되는 함수.
-  * native 기능이기 때문에 핸드폰에서 실행되고 있는가를 isCordovaAvailable함수를 통해서 확인한다.
-  * native일 경우, alertCtrl을 이용해서 요금 부과를 확인하고 전화걸기를 수행한다.
-  * ionic plugin add call-number 필수! */
+   * 전화하기 버튼을 클릭했을 때 호출되는 함수.
+   * native 기능이기 때문에 핸드폰에서 실행되고 있는가를 isCordovaAvailable함수를 통해서 확인한다.
+   * native일 경우, alertCtrl을 이용해서 요금 부과를 확인하고 전화걸기를 수행한다.
+   * ionic plugin add call-number 필수! */
   callNumber() {
     if (!isCordovaAvailable()) {
       return false;
@@ -152,9 +150,9 @@ export class BuildCaseDetailPage {
 
 
   /**
-  * 지도보기 버튼을 클릭했을 때 호출되는 함수
-  * 현재는 주소만 보내주고 있지만 주소, 위도, 경도, 타이틀도 같이 보내줘야 할 듯.
-  * ionic plugin add cordova-plugin-googlemaps 설치 필수! development-resources 페이지의 install.txt 참조하기 바람. */
+   * 지도보기 버튼을 클릭했을 때 호출되는 함수
+   * 현재는 주소만 보내주고 있지만 주소, 위도, 경도, 타이틀도 같이 보내줘야 할 듯.
+   * ionic plugin add cordova-plugin-googlemaps 설치 필수! development-resources 페이지의 install.txt 참조하기 바람. */
   mapBtnClick() {
     this.nav.push(BuildCaseMapPage, {address: this.buildAddress});
   }

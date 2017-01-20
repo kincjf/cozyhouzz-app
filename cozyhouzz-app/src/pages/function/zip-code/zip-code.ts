@@ -22,7 +22,6 @@ export class ZipCodePage {
 
   constructor(public navCtrl: NavController, private menu: MenuController, private zipcode: ZipCodeService,
               private alertCtrl: AlertController, private formBuilder: FormBuilder, private events: Events) {
-    this.menu.enable(false); // 현재 login 페이지에서 side menu 사용하도록 해놓음..
   }
 
   ionViewWillLoad() {

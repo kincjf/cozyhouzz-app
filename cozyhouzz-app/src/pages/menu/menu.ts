@@ -6,12 +6,14 @@ import {RegistrationPage} from '../authentication/registration/registration';
 import { LoginPage } from '../authentication/login/login'
 import { BuildCaseInputPage } from '../buildCase/build-case-input/build-case-input';
 import { UserInfoDetailPage } from '../mypage/userInfo/user-info-detail/user-info-detail';
+import { UserInfoModifyPage } from '../mypage/userInfo/user-info-modify/user-info-modify';
 
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
 import { RoomSettingPage } from '../mypage/room/room-info/setting';
 import { QuestionListPage } from '../mypage/question/question-list/question-list';
 import { UserService } from '../../services/user-service';
+import { TabsPage } from '../tabs/tabs';
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html'
@@ -20,7 +22,7 @@ export class Menu {
   @ViewChild(Nav) nav: Nav;
   isLogined:boolean = false;
   user:any;
-  rootPage: any = HomePage;
+  rootPage: any = TabsPage;
   build_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
   build_push_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
   main_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
@@ -46,18 +48,9 @@ export class Menu {
     ];
     this.build_pages = [
     ];
-    this.build_push_pages = [
-   //   { title: '찜한 방', component: BuildCaseListPage },
-   //   { title: '최근 본 방', component: BuildCaseListPage },
-      { title: '방 리스트 보기', component: BuildCaseListPage, flag: true, ios:'ios-list', md: 'md-list' },
-      { title: '방 정보 등록', component: BuildCaseInputPage, flag: false , ios:'ios-add', md: 'md-add' },
-      { title: '방 검색 설정', component: RoomSettingPage, flag: true, ios:'ios-settings', md: 'md-settings'  }//,
-     // { title: '구글 맵', component: GoogleMapsPage, flag:true }
-    ];
     this.etc_pages = [
       { title: '1:1 문의 내역', component: QuestionListPage, flag: false , ios:'ios-chatbubbles', md: 'md-chatbubbles'},
       { title: '내 정보 보기', component: UserInfoDetailPage, flag: false , ios:'ios-person', md: 'md-person'}//,
-      //{ title: '계정 정보 수정', component: UserInfoModifyPage, flag: false }
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];
@@ -84,7 +77,11 @@ export class Menu {
       this.user = null;
     });
 
-    events.subscribe('menu:opened', () => { });
+    events.subscribe('menu:opened', () => {/*
+      let element: HTMLElement = document.getElementById('buildCaseListContent');
+
+      element.getElementsByClassName('scroll-content')[0].setAttribute('style', "margin-top: 103px;");*/
+    });
     events.subscribe('menu:closed', () => { });
   }
 
@@ -111,7 +108,9 @@ export class Menu {
     this.events.publish('menu:opened', '');
 
   }
-
+  ionViewCanEnter() {
+    console.log("test");
+  }
   /**
    * 홈페이지 버튼을 클릭했을 경우 호출되는 함수.
    */
@@ -172,5 +171,24 @@ export class Menu {
   logout() {
       this.userService.logout();
   }
+ /* ionViewDidLoad() {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutationRecord) {
+        let element: HTMLElement = document.getElementById('buildCaseListContent');
+        console.log(element);
+        if(element!=null) {
+          var target = element.getElementsByClassName('scroll-content')[0];
+          target.setAttribute('style', 'margin-top: 103px; margin-bottom: 44px;');
+        }
+      });
+    });
+
+    let target = document.getElementsByClassName('page_menu')[0];
+
+    observer.observe(target, { attributes : true, attributeFilter : ['class'] });
+  }
+  ionViewWillEnter() {
+    console.log("menu open");
+  }*/
 }
 

@@ -68,3 +68,17 @@ $checkbox-md-icon-background-color-on:#5D5D5D; //체크박스 설정되었을 �
 $checkbox-md-icon-border-color-off: #efefef; //체크박스 해제되었을 경우 border 색
 $checkbox-md-icon-border-color-on :#5D5D5D; //체크박스 설정되었을 경우 border 색
 $refresher-icon-font-size	:0.7rem; //refresher 의 icon 크기
+
+
+$tabs-ios-tab-max-width : 4.4rem;
+.tabs-md .tab-button {
+   min-height: 4.4rem !important;
+}
+
+
+$tabs-md-tab-icon-size: 1.7rem;
+$tabs-md-tab-font-size: 1.0rem;
+$tabs-md-tab-font-size-active	:1.2rem;
+$tabs-md-tab-icon-color-active	:black;
+
+$tabs-md-tab-text-color-active	:black;

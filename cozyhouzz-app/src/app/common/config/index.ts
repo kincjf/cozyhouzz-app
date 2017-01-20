@@ -13,6 +13,7 @@ export const config = {
         path: {
             login: "api/login", //01.18 수정됨 - 김호세
             signup: "api/auth/register",
+            userInfo: "api/info",
             changeSignup: "api/user",
             changeBizSignup: "api/user/biz",
             consulting: "api/consult",
@@ -34,5 +35,19 @@ export const config = {
             roomInfo: "api/room",
             bizStore: "api/biz-store"
         }
+    },
+  "localhost": {
+    "serverHost": "localhost:3000",
+    "editorImageUploadURL": "api/public/image",
+    path: {
+      login: "api/auth/login",
+      signup: "api/auth/register",
+      changeSignup: "api/user",
+      changeBizSignup: "api/user/biz",
+      consulting: "api/consult",
+      buildCase: "api/build-case",
+      roomInfo: "api/room",
+      bizStore: "api/biz-store"
     }
+  }
 }[env];

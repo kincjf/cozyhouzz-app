@@ -15,12 +15,15 @@ export class HomePage {
    * @param index 0, 1, 2에 따라 전주, 익산, 군산으로 나뉨.
    * 해당 페이지로 이동하는 함수
    */
+  //this.navCtrl.parent.select(2);
   region_button_click(index) {
+    this.nav.parent.select(1);
+    /*
     switch(index) {
       case 0: this.nav.push(BuildCaseListPage, {region:"전주"}); break;
       case 1: this.nav.push(BuildCaseListPage, {region:"익산"}); break;
       default: this.nav.push(BuildCaseListPage, {region:"군산"});
-    }
+    }*/
   }
   /**
   * 다른 페이지에서 사이드메뉴를 허용하지 않기 위해서
@@ -28,7 +31,6 @@ export class HomePage {
   * 만약 menu를 사용하고 싶은 페이지가 있다면
   * 해당 페이지의 생성자 부분에서 enable을 true로 설정해준다. */
   ionViewWillLeave() {
-    this.menu.enable(false);
   }
 
   /**
@@ -36,8 +38,6 @@ export class HomePage {
   * enable을 true로 설정.
   * */
   ionViewDidEnter() {
-    this.menu.enable(true);
-    this.menu.close();
   }
 
 }

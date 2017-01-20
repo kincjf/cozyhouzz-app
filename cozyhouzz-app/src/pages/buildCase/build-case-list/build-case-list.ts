@@ -32,6 +32,14 @@ export class BuildCaseListPage {
   public user: any;
   public isLogined: boolean = false;
   public orderBy: string = ''; //orderBy변수가 빈문자열 또는 null일 경우, 정렬하지 않음.  //selectedBuildCaseIdx
+
+
+  /*
+  * refresher을 사용하기 위한 변수.
+  * 맨 아래 ionViewWillEnter, ionViewWillLeave 함수 볼 것.
+  * */
+  observer;
+
   roomSettingInformation;
   selectOptions_region = {
     title: '검색 지역 선택'
@@ -41,17 +49,21 @@ export class BuildCaseListPage {
     subTitle: '다수 선택 가능'
   };
   returnedDatas = [];
+  tmp_returnedDatas = [];
+
+  tmp_style:any;
 
   constructor(public nav: NavController, public postService: PostService,
               public platform: Platform, public menu: MenuController, public params: NavParams,
               public loading: LoadingController, private roomService: RoomService,
               private events: Events, private userService: UserService) {
 
+
     /*
      *  returnedDatas 배열 초기화. 방 정보 리스트를 가지고 있음
      *  생성자와 refresh 부분에서 초기화 시켜주어야 함.
      *  */
-    this.returnedDatas = [];
+    this.tmp_returnedDatas = [];
     this.region = params.get("region"); //메인페이지에서 어떤 지역을 선택했는지 가져옴.
     if (!this.region) this.region = '전체'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
 
@@ -70,7 +82,6 @@ export class BuildCaseListPage {
       content: '정보를 불러오고 있습니다.'
     });
 
-    loader.present().then(() => {
       /*
        * 방 검색 조건을 가져 옴.*/
       this.room = this.roomService.room;
@@ -80,9 +91,8 @@ export class BuildCaseListPage {
       let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
       // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-      this.getDatas(URL, loader, null, null);
+      this.getDatas(URL, null, null, null);
 
-    });
     /*
      * 아래는 이벤트 리스너를 설정하는 것. 로그인 또는 로그아웃이 되면 각 페이지마다 달라져야 할 게 있기 때문에
      * 그때 수행할 것들을 정하는 부분임. 여기서는 방 등록 버튼의 유무가 로그인에 따라 달라지므로
@@ -114,6 +124,7 @@ export class BuildCaseListPage {
       this.filter = this.room.filter;
     });
 
+
   }
 
   /**
@@ -137,7 +148,7 @@ export class BuildCaseListPage {
           let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
           let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
 
-          this.returnedDatas.push({
+          this.tmp_returnedDatas.push({
             selectedBuildCaseIdx: buildCaseData.idx,
             title: buildCaseData.title,
             mainPreviewImage: buildCaseData.mainPreviewImage,
@@ -154,7 +165,7 @@ export class BuildCaseListPage {
           let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
           let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
 
-          this.returnedDatas.push({
+          this.tmp_returnedDatas.push({
             selectedBuildCaseIdx: buildCaseData.idx,
             title: buildCaseData.title,
             mainPreviewImage: buildCaseData.mainPreviewImage,
@@ -167,13 +178,27 @@ export class BuildCaseListPage {
           });
 
         }
+        this.returnedDatas = this.tmp_returnedDatas;
         if (loader != null) loader.dismiss(); //로딩화면 종료
         if (infiniteScroll != null) infiniteScroll.complete(); //infiniteScroll 완료
-        if (refresher != null) refresher.complete(); //refresher 완료
+        if (refresher != null) {
+          refresher.complete();
+        } //refresher 완료
       }
     );
   }
 
+  /**
+   * !!!!!!!!!!!!!!!!!!!!!!!!!!필독!!!!!!!!!!!!화면이 깨지는 이유중에 한개는
+   * ion-refresher때문이기도 함. 리프레셔가 active되면 scroll-content에 trans~ 어쩌고 하는 style이 들어가는데
+   * 이게 있으면 화면이 깨짐....이것또한 많은 이유중에 하나겠지만..
+   * 여튼
+   * 그래서 이벤트를 등록해서 리프레셔가 active됬다가 다시 돌아갈때를 캐치해서
+   * 800ms 뒤에 해당 trans~ 스타일을 빼주는 식으로 함.
+   */
+  ionViewDidLoad() {
+
+  }
   /**
    *
    * @param refresher
@@ -182,6 +207,15 @@ export class BuildCaseListPage {
    * 생성자 부분에서 데이터를 가져오는 것을 여기서 다시 해주면 된다.
    * 나중에 함수로 묶어야 할 듯.
    */
+   refreshButtonClick() {
+    /*
+     * 방 정보 불러오는 부분 */
+    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+
+    this.tmp_returnedDatas = [];
+    this.getDatas(URL, null, null, null);
+  }
   doRefresh(refresher) {
     /*
      * 방 정보 불러오는 부분 */
@@ -189,8 +223,12 @@ export class BuildCaseListPage {
     // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     setTimeout(() => {
-      this.returnedDatas = [];
+      this.tmp_returnedDatas = [];
       this.getDatas(URL, null, null, refresher);
+
+     // let HTMLCollectorOf: HTMLCollectorOf<Element> = document.getElementsByClassName('scroll-content');
+      //.getElementsByClassName( 'childDiv' )[0];
+
     }, 1000);
   }
 
@@ -238,7 +276,9 @@ export class BuildCaseListPage {
    * 호출되는 함수.
    */
   settingButtonClick() {
-    this.nav.push(RoomSettingPage);
+    this.nav.parent.select(4);
+
+    //this.nav.push(RoomSettingPage);
   }
 
   /**
@@ -263,7 +303,7 @@ export class BuildCaseListPage {
    * 페이지 들어갈 때 (Enter) 메뉴 enable->true
    */
   ionViewDidEnter() {
-    this.menu.enable(true);
+
   };
 
   /**
@@ -271,7 +311,33 @@ export class BuildCaseListPage {
    * 페이지 나갈 때 (Leave) 메뉴 enable->false
    */
   ionViewWillLeave() {
-    this.menu.enable(false);
+
+    //refresher 사용하려면..아래 주석 해제해줘야 함.
+    /*
+    this.observer.disconnect();
+    console.log("refresher에 대한 observer 해제");
+    */
+  }
+  ionViewWillEnter(){
+    //refresher 사용하려면..아래 주석 해제해줘야 함.
+    /*
+    let element: HTMLElement = document.getElementById('buildCaseListContent');
+    let target = element.getElementsByClassName('refresher')[0];
+    let target_page_menu = element.getElementsByClassName('scroll-content')[0];
+
+    this.observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutationRecord) {
+        let target_class = target.getAttribute('class');
+        if(target_class=='refresher') {
+          setTimeout(() => {
+            target_page_menu.setAttribute('style', 'margin-top: 103px; margin-bottom: 44px;');
+          },800);
+        }
+      });
+    });
+    this.observer.observe(target, { attributes : true, attributeFilter : ['class'] });
+    console.log("refresher에 대한 observer 세팅");*/
+
   }
 
 }

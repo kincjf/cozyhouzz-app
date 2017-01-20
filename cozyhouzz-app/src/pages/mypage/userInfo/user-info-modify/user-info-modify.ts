@@ -44,11 +44,13 @@ export class UserInfoModifyPage {
         });
       } else if (this.user.memberType == 0) {
         this.userFormBuilder = this.formBuilder.group({
+          email: ['', Validators.required],
           fullName: ['', Validators.required],
           cellPhone: ['', Validators.required]
         });
       }
     }
+
   }
 
   updateUserSettings() {

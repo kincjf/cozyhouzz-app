@@ -4,6 +4,7 @@ import {Storage} from '@ionic/storage';
 import {Events} from 'ionic-angular';
 import {JwtHelper, tokenNotExpired} from 'angular2-jwt';
 
+import {config} from '../app/common/config';
 /*
 * 로그인과 회원가입, 비밀번호 찾기등을 도맡아할 user-service.ts
 * */
@@ -106,5 +107,17 @@ export class UserService {
    * */
   getJwtToken() {
     return this.jwt;
+  }
+
+  /**
+   *
+   * @param email
+   */
+  getUserDetailInfo(email) {
+    let URL = [config.serverHost, config.path.userInfo].join('/');
+    return this.http.post(URL, {email: email})
+      .map(x => {
+        return x.json();
+      });
   }
 }

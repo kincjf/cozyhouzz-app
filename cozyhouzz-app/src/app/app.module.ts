@@ -23,6 +23,8 @@ import {GoogleMapsPage} from '../pages/function/google-maps/google-maps';
 import {UserInfoModifyPage} from '../pages/mypage/userInfo/user-info-modify/user-info-modify';
 import { UserInfoDetailPage } from '../pages/mypage/userInfo/user-info-detail/user-info-detail';
 import {BuildCaseMapPage} from '../pages/buildCase/build-case-map/build-case-map';
+import {DibBuildCaseListPage} from '../pages/buildCase/dib-build-case-list/dib-build-case-list';
+import {LatelyBuildCaseListPage} from '../pages/buildCase/lately-build-case-list/lately-build-case-list';
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
 import {BuildCaseListPage} from '../pages/buildCase/build-case-list/build-case-list';
@@ -40,6 +42,7 @@ import {ZipCodeService} from '../services/zip-code-service';
 import {MapsService} from '../services/maps.service';
 import {AuthenticatorService} from '../providers/authenticator';
 
+import {TabsPage} from '../pages/tabs/tabs'
 
 //directive
 import {Focuser} from '../components/focuser/focuser';
@@ -68,7 +71,10 @@ import {Focuser} from '../components/focuser/focuser';
     UserInfoDetailPage,
     RegistrationPage,
     BuildCaseMapPage,
-    SortPipe
+    SortPipe,
+    TabsPage,
+    DibBuildCaseListPage,
+    LatelyBuildCaseListPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -96,7 +102,10 @@ import {Focuser} from '../components/focuser/focuser';
     UserInfoModifyPage,
     UserInfoDetailPage,
     RegistrationPage,
-    BuildCaseMapPage
+    BuildCaseMapPage,
+    TabsPage,
+    DibBuildCaseListPage,
+    LatelyBuildCaseListPage
   ],
   providers: [
     Loader,
@@ -107,6 +116,7 @@ import {Focuser} from '../components/focuser/focuser';
     ZipCodeService,
     MapsService,
     AuthenticatorService
+
   ]
 })
 export class AppModule {

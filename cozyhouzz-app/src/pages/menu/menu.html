@@ -17,11 +17,11 @@
       <button ion-item *ngIf="isLogined">{{user.email}}</button>
     </div>
   </ion-list>
-  <div class="menu_line_area">
+<!--  <div class="menu_line_area">
     <span>
       원룸·투룸·오피스텔·도시형생활주택
     </span>
-  </div>
+  </div>-->
   <ion-list class="list-full-border" style="margin-bottom: 0;">
     <div *ngFor="let p of build_push_pages">
       <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
