@@ -38,7 +38,8 @@ import {Storage} from '@ionic/storage';
 import {RoomService} from "../services/room-service";
 import {ZipCodeService} from '../services/zip-code-service';
 import {MapsService} from '../services/maps.service';
-
+import {AuthenticatorService} from '../providers/authenticator';
+import {TabsPage} from '../pages/tabs/tabs'
 
 //directive
 import {Focuser} from '../components/focuser/focuser';
@@ -67,7 +68,8 @@ import {Focuser} from '../components/focuser/focuser';
     UserInfoDetailPage,
     RegistrationPage,
     BuildCaseMapPage,
-    SortPipe
+    SortPipe,
+    TabsPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -95,7 +97,8 @@ import {Focuser} from '../components/focuser/focuser';
     UserInfoModifyPage,
     UserInfoDetailPage,
     RegistrationPage,
-    BuildCaseMapPage
+    BuildCaseMapPage,
+    TabsPage
   ],
   providers: [
     Loader,
@@ -104,7 +107,8 @@ import {Focuser} from '../components/focuser/focuser';
     RoomService,
     UserService,
     ZipCodeService,
-    MapsService
+    MapsService,
+    AuthenticatorService
   ]
 })
 export class AppModule {

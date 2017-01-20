@@ -10,7 +10,15 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
 
 </ion-content>
+<!--
+<form [formGroup]="chatControl" (ngSubmit)="sendMessage()">
+  <ion-footer class="message-footer" keyboard-attach>
+    <div class="message-form">
+      <ion-textarea [(ngModel)]='message' formControlName="message" placeholder="Write a message"></ion-textarea>
+      <button type="submit" full ion-button block color="secondary" [disabled]="!chatControl.valid">Send</button>
+    </div>
+  </ion-footer>
+</form>-->

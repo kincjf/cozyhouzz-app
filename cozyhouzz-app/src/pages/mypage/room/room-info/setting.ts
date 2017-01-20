@@ -4,7 +4,10 @@ import {Storage} from '@ionic/storage';
 import {RoomService} from '../../../../services/room-service';
 import {Room} from '../../../../providers/room';
 import {Events} from 'ionic-angular';
-
+/*
+* 1) 현재 탭으로 재구성했기 때문에 페이지가 나갈때가 아니라......
+* 2) 설정 변경 될 때마다 저장하는 걸로 변경해야 할 것 같음.
+* */
 /*
  Generated class for the Setting page.
 

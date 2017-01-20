@@ -1,6 +1,19 @@
 .page_menu {
   padding-top: 10px;
   padding-bottom: 10px;
+
+
+  ion-icon {
+    min-height:2.0rem;
+    font-size: 2.0rem;
+  }
+  .item-md ion-icon[item-left] + .item-inner {
+    margin-left: 14px;
+  }
+
+  .list-full-border .item {
+    font-size: 1.5rem;
+  }
   #user-email {
     color: black;
     font-size: 1.2em;
@@ -11,6 +24,8 @@
   .user-button-line {
     position: relative;
   }
+
+
   #authentication_area {
     position: relative;
     top: -5px;
@@ -26,6 +41,7 @@
     }
   }
   .menu_line_area {
+    display: flex;
     position: relative;
     top: -5px;
     background-color: #ddd;
@@ -36,8 +52,13 @@
     }
   }
   ion-list {
+
     position: relative;
     top: -5px;
     margin-bottom: 0;
+
+    .label-md {
+        margin: 14px 8px 12px 0;
+    }
   }
 }

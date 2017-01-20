@@ -2,30 +2,36 @@
   <div id="authentication_area" padding style="text-align: center"> <!-- (click)="openHomePage()"-->
     <img class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}" style="margin-top: 7px;">
   </div>
-  <ion-list class="list-full-border" style="margin-bottom: 0;">
-    <div>
+  <ion-list class="list-full-border" style="margin-bottom: 0;" id="authentication_buttons">
+    <div >
       <button menuClose ion-item (click)="openloginPage(p)" *ngIf="!isLogined">
+        <ion-icon ios="ios-log-in" md="md-log-in"  item-left></ion-icon>
         로그인
       </button>
+    </div>
+    <div>
       <button menuClose ion-item (click)="openResistrationPage()" *ngIf="!isLogined">
+        <ion-icon ios="ios-person-add" md="md-person-add" item-left></ion-icon>
         회원가입
       </button>
       <button ion-item *ngIf="isLogined">{{user.email}}</button>
     </div>
   </ion-list>
-  <div class="menu_line_area">
+<!--  <div class="menu_line_area">
     <span>
       원룸·투룸·오피스텔·도시형생활주택
     </span>
-  </div>
+  </div>-->
   <ion-list class="list-full-border" style="margin-bottom: 0;">
     <div *ngFor="let p of build_push_pages">
       <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
+        <ion-icon ios="{{p.ios}}" md="{{p.md}}" item-left></ion-icon>
+
         {{p.title}}
       </button>
     </div>
   </ion-list>
-  <div class="menu_line_area"  *ngIf="isLogined">
+  <div class="menu_line_area" *ngIf="isLogined">
     <span>
       계정 정보
     </span>
@@ -33,6 +39,7 @@
   <ion-list class="list-full-border" style="margin-bottom: 0;">
     <div *ngFor="let p of etc_pages">
       <button menuClose ion-item (click)="pushPage(p)" *ngIf="p.flag || isLogined">
+        <ion-icon ios="{{p.ios}}" md="{{p.md}}" item-left></ion-icon>
         {{p.title}}
       </button>
     </div>

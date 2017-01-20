@@ -36,9 +36,10 @@
         <ion-col text-center width-50>
           <ion-item text-center>
             <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
-              <ion-option value="0" selected="true">최신순</ion-option>
-              <ion-option value="1">이름순</ion-option>
-              <ion-option value="2">보증금순</ion-option>
+              <ion-option value="0" selected="true">정렬 방법</ion-option>
+              <ion-option value="1">최신순</ion-option>
+              <ion-option value="2">이름순</ion-option>
+              <ion-option value="3">보증금순</ion-option>
 <!--
               <ion-option value="3">월세순</ion-option>
 -->
@@ -80,6 +81,9 @@
     </ion-refresher-content>
   </ion-refresher>
 
+<!--
+  <ion-spinner></ion-spinner>
+-->
   <ion-list>
     <!--
       | sortBy : 'title' 이면 title로 오름차순 한다는 의미
@@ -91,17 +95,19 @@
 
           <!--
                              <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
-                                  alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+                                  alt="Inventor e voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
                     -->
 
-          <img src="{{'assets/img/testMainPreviewImage2.jpg'}}" *ngIf="i%4==0"
+          <img src="assets/img/testMainPreviewImage2.jpg" *ngIf="i%4==0"
+               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%;display: block; float: left;">
+          <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
                alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="{{'assets/img/testMainPreviewImage3.jpg'}}" *ngIf="i%4==1"
+          <img src="assets/img/testMainPreviewImage4.jpg" *ngIf="i%4==2"
                alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="{{'assets/img/testMainPreviewImage4.jpg'}}" *ngIf="i%4==2"
+          <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
                alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="{{'assets/img/SAM_100_0081.jpg'}}" *ngIf="i%4==3"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
+
+
 
           <div class="outer">
             <div class="middle">

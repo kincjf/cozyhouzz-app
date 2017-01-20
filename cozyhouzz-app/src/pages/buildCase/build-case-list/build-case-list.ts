@@ -31,7 +31,7 @@ export class BuildCaseListPage {
   public pageStartIndex = 0;
   public user: any;
   public isLogined: boolean = false;
-  public orderBy:string = 'selectedBuildCaseIdx';
+  public orderBy: string = ''; //orderBy변수가 빈문자열 또는 null일 경우, 정렬하지 않음.  //selectedBuildCaseIdx
   roomSettingInformation;
   selectOptions_region = {
     title: '검색 지역 선택'
@@ -77,7 +77,7 @@ export class BuildCaseListPage {
       this.filter = this.room.filter;
       /*
        * 방 정보 불러오는 부분 */
-      let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize='   + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+      let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
       // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
       this.getDatas(URL, loader, null, null);
@@ -148,6 +148,7 @@ export class BuildCaseListPage {
             buildPlace: buildPlaceArr[1],
             buildPlaceDetail: buildPlaceArr[2]
           });
+
         }
         for (let buildCaseData of response.buildCaseInfo) {
           let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
@@ -164,6 +165,7 @@ export class BuildCaseListPage {
             buildPlace: buildPlaceArr[1],
             buildPlaceDetail: buildPlaceArr[2]
           });
+
         }
         if (loader != null) loader.dismiss(); //로딩화면 종료
         if (infiniteScroll != null) infiniteScroll.complete(); //infiniteScroll 완료
@@ -183,7 +185,7 @@ export class BuildCaseListPage {
   doRefresh(refresher) {
     /*
      * 방 정보 불러오는 부분 */
-    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize='   + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
     // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     setTimeout(() => {
@@ -218,15 +220,17 @@ export class BuildCaseListPage {
    * */
   changeLately() {
     /*
-     <ion-option value="0" selected="true">최신순</ion-option>
-     <ion-option value="1">이름순</ion-option>
-     <ion-option value="2">보증금순</ion-option>
-     <ion-option value="3">월세순</ion-option>
+     <ion-option value="0" selected="true">정렬방법</ion-option>
+     <ion-option value="1">최신순</ion-option>
+     <ion-option value="2">이름순</ion-option>
+     <ion-option value="3">보증금순</ion-option>
+     <ion-option value="4">월세순</ion-option>
      * */
     let lately = this.lately;
-    if(lately == 0) this.orderBy='selectedBuildCaseIdx';
-    else if(lately == 1) this.orderBy='title';
-    else if(lately == 2) this.orderBy='buildTotalPrice';
+    if (lately == 0) this.orderBy = '';
+    else if (lately == 1) this.orderBy = 'selectedBuildCaseIdx';
+    else if (lately == 2) this.orderBy = 'title';
+    else if (lately == 3) this.orderBy = 'buildTotalPrice';
   }
 
   /**
@@ -234,7 +238,9 @@ export class BuildCaseListPage {
    * 호출되는 함수.
    */
   settingButtonClick() {
-    this.nav.push(RoomSettingPage);
+    this.nav.parent.select(4);
+
+    //this.nav.push(RoomSettingPage);
   }
 
   /**
@@ -261,6 +267,7 @@ export class BuildCaseListPage {
   ionViewDidEnter() {
     this.menu.enable(true);
   };
+
   /**
    * 특정 페이지에서 메뉴를 사용하려면 아래처럼 해주어야 함.
    * 페이지 나갈 때 (Leave) 메뉴 enable->false

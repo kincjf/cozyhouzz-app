@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Platform, AlertController, App} from 'ionic-angular';
 import {Events} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-
+import {TabsPage} from '../pages/tabs/tabs';
 // Authenticator
 import {Storage} from '@ionic/storage';
 

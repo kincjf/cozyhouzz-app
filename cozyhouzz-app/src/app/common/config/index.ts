@@ -13,6 +13,7 @@ export const config = {
         path: {
             login: "api/login", //01.18 수정됨 - 김호세
             signup: "api/auth/register",
+            userInfo: "api/info",
             changeSignup: "api/user",
             changeBizSignup: "api/user/biz",
             consulting: "api/consult",
