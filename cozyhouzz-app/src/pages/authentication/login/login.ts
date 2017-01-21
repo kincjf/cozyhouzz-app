@@ -3,7 +3,6 @@ import {NavController, MenuController} from 'ionic-angular';
 import {Validators, FormBuilder} from '@angular/forms';
 import {GeneralRegistrationPage} from '../registration/general-user/registration';
 import {AlertController} from 'ionic-angular';
-import {Storage} from '@ionic/storage';
 import {UserService} from '../../../services/user-service';
 import {config} from '../../../app/common/config';
 /*
@@ -22,13 +21,11 @@ export class LoginPage {
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
               public menu: MenuController,
-              public storage: Storage,
               public userService: UserService) {
     /*
      * 로그인 페이지로 이동하기 때문에 사이드 메뉴를 닫는다.
      * 또한 메인페이지와 buildCaseListPage를 제외한 나머지 페이지에서는 사이드 메뉴를 허용하지 않기 때문에
      * menu의 enable을 false로 설정해준다. */
-    this.menu.close();
   }
 
   /**
@@ -81,8 +78,6 @@ export class LoginPage {
              statusCode: 1
            }
            */
-          console.log(response);
-          this.storage.set("id_token", response.id_token);
           this.userService.setUserInfo(response.id_token);
           this.navCtrl.pop();
         },

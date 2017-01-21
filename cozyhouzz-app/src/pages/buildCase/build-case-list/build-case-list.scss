@@ -12,12 +12,12 @@ page-build-case-list {
         border-bottom: 0 !important;
       }
       .item-block {
-        background-color: #efefef;
+        background-color: #efefef; //#58A2DB
         color: black;
       }
 
       width: 100%;
-      background-color: #efefef;
+      background-color: #efefef; //#58A2DB
       /*opacity: 0.9;*/
       * {
       }
@@ -41,6 +41,14 @@ page-build-case-list {
       }
     }
 
+  }
+  #buildCaseListHeader {
+    color: black; margin-bottom: 0;
+    min-height: 4rem;
+    ion-label {
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
   }
   #buildCaseListContent {
     .img-loaded + ion-spinner {
@@ -92,6 +100,7 @@ page-build-case-list {
             }
 
             .inner {
+              line-height: 1.1;
               padding-left: 8px;
               padding-right: 8px;
               margin-left: auto;
@@ -126,7 +135,6 @@ page-build-case-list {
                 //position: relative;
                 //bottom: -3px;
                 display: inline-block;
-                margin-top: 1px;
                 border: 1px solid #ddd;
                 padding: 4px 6px 2px 6px;
                 border-radius: 3px;

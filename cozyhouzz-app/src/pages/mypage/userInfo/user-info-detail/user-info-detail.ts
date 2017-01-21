@@ -19,14 +19,32 @@ import {FormBuilder, Validators} from "@angular/forms";
  * src/page/user/user.ts 부분에서 담당할 것임.
  */
 export class UserInfoDetailPage {
-  userDetails: any;
+  userDetails: any = null;
   userFormBuilder: any;
+  bussinessUserFormBuilder: any;
   user: any;
+  isLogined:boolean = false;
 
   constructor(public navCtrl: NavController, public menu: MenuController, public userService: UserService,
               private formBuilder: FormBuilder) {
+    this.bussinessUserFormBuilder = this.formBuilder.group({
+      email: ['', Validators.required],
+      fullName: ['', Validators.required],
+      businessName: ['', Validators.required],
+      businessAddress: ['', Validators.required],
+      cellPhone: ['', Validators.required]
+    });
+    this.userFormBuilder = this.formBuilder.group({
+      email: ['', Validators.required],
+      fullName: ['', Validators.required],
+      cellPhone: ['', Validators.required]
+    });
 
-    if (this.userService.getIsLogind()) {
+
+  }
+  ionViewDidLoad() {
+    this.isLogined = this.userService.getIsLogind();
+    if (this.isLogined) {
       this.user = this.userService.getUserInfo();
 
       /*
@@ -36,23 +54,9 @@ export class UserInfoDetailPage {
        *
        * user.memberType에 따라서 나중에 request할때 파라미터도 달라져야 함.
        * */
-      if (this.user.memberType == 'PUBLIC') {
-        this.userFormBuilder = this.formBuilder.group({
-          email: ['', Validators.required],
-          fullName: ['', Validators.required],
-          businessName: ['', Validators.required],
-          businessAddress: ['', Validators.required],
-          cellPhone: ['', Validators.required]
-        });
-      } else if (this.user.memberType != 'PUBLIC') {
-        this.userFormBuilder = this.formBuilder.group({
-          email: ['', Validators.required],
-          fullName: ['', Validators.required],
-          cellPhone: ['', Validators.required]
-        });
-      }
 
-      userService.getUserDetailInfo('pastelbook89@gmail.com').toPromise()
+
+      this.userService.getUserDetailInfo('pastelbook89@gmail.com').toPromise()
         .then(
           response => {
             console.log(response);
@@ -64,7 +68,6 @@ export class UserInfoDetailPage {
     }
     console.log(this.user);
   }
-
   /**
    * 정보 수정 버튼을 클릭했을 경우 수행되는 함수.
    * 수정 페이지로 이동하도록 함.

@@ -46,7 +46,8 @@ export class UserService {
     this.storage.remove("id_token");
 
     this.events.publish('user:logout', '');
-    this.events.publish('buildCaseList:logout', '');
+    this.events.publish('buildCaseList:logout', '');//mypage:logout
+    this.events.publish('mypage:logout', '');//mypage:logout
   }
 
   /**
@@ -62,8 +63,11 @@ export class UserService {
     this.isLogind = true;
     this.jwt = jwt;
     this.user = this.jwtHelper.decodeToken(jwt);
+    this.storage.set("id_token", jwt);
+
     this.events.publish('buildCaseList:logined', '');
     this.events.publish('user:logined', '');
+    this.events.publish('mypage:logined', '');
   }
 
   /**

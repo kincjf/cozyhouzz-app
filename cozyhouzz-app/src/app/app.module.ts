@@ -25,6 +25,10 @@ import { UserInfoDetailPage } from '../pages/mypage/userInfo/user-info-detail/us
 import {BuildCaseMapPage} from '../pages/buildCase/build-case-map/build-case-map';
 import {DibBuildCaseListPage} from '../pages/buildCase/dib-build-case-list/dib-build-case-list';
 import {LatelyBuildCaseListPage} from '../pages/buildCase/lately-build-case-list/lately-build-case-list';
+import {MyPage} from '../pages/mypage/mypage';
+import {ConsultingListPage} from '../pages/mypage/consulting/consulting-list/consulting-list';
+import {ConsultingDetailPage} from '../pages/mypage/consulting/consulting-detail/consulting-detail';
+
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
 import {BuildCaseListPage} from '../pages/buildCase/build-case-list/build-case-list';
@@ -74,7 +78,10 @@ import {Focuser} from '../components/focuser/focuser';
     SortPipe,
     TabsPage,
     DibBuildCaseListPage,
-    LatelyBuildCaseListPage
+    LatelyBuildCaseListPage,
+    MyPage,
+    ConsultingDetailPage,
+    ConsultingListPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -105,7 +112,10 @@ import {Focuser} from '../components/focuser/focuser';
     BuildCaseMapPage,
     TabsPage,
     DibBuildCaseListPage,
-    LatelyBuildCaseListPage
+    LatelyBuildCaseListPage,
+    MyPage,
+    ConsultingDetailPage,
+    ConsultingListPage
   ],
   providers: [
     Loader,

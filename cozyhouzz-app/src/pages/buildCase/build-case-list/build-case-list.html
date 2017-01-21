@@ -90,14 +90,25 @@
 <!--
   <ion-spinner></ion-spinner>
 -->
+  <!--
+
+
+    <ion-item-group>
+      <ion-item-divider sticky>A</ion-item-divider>
+      <ion-item>Angola</ion-item>
+      <ion-item>Argentina</ion-item>
+    </ion-item-group>
+
+    -->
   <ion-list>
+    <ion-list-header id="buildCaseListHeader">원룸·투룸·오피스텔·도시형생활주택</ion-list-header>
     <!--
       | sortBy : 'title' 이면 title로 오름차순 한다는 의미
       해당 부분에 변수를 두고 변수의 값을 바꾸는 것으로 해야 할듯.
       -->
     <ion-item *ngFor="let buildCase of returnedDatas | sortBy : orderBy;  let i = index" class="buildCase">
       <div class="post-body" (click)="viewPost(buildCase.selectedBuildCaseIdx)">
-        <div class="img" style="width: 100%;">
+        <div class="img"  style="width: 100%;">
 
           <!--
                              <img src="http://api.cozyhouzz.co.kr/{{buildCase.mainPreviewImage}}"
@@ -118,7 +129,7 @@
 
           <div class="outer">
             <div class="middle">
-              <div class="inner">
+              <div class="inner" *ngIf="view" >
                 <span id="post_title">{{buildCase.title}}</span><br>
                 <span id="post_place">{{buildCase.buildPlace}}</span><br>
                 <span id="post_pyeong">{{buildCase.buildTotalArea}}평</span>

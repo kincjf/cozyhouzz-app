@@ -16,6 +16,7 @@ import {RoomSettingPage} from '../../mypage/room/room-info/setting';
 
 import {SortPipe} from '../../../pipes/SortByJsonObjects';
 
+import {Config} from '../../../app/config';
 @Component({
   selector: 'page-build-case-list',
   templateUrl: 'build-case-list.html'
@@ -31,6 +32,7 @@ export class BuildCaseListPage {
   public pageStartIndex = 0;
   public user: any;
   public isLogined: boolean = false;
+  public view:boolean = false;
   public orderBy: string = ''; //orderBy변수가 빈문자열 또는 null일 경우, 정렬하지 않음.  //selectedBuildCaseIdx
 
 
@@ -58,12 +60,25 @@ export class BuildCaseListPage {
               public loading: LoadingController, private roomService: RoomService,
               private events: Events, private userService: UserService) {
 
-
     /*
      *  returnedDatas 배열 초기화. 방 정보 리스트를 가지고 있음
      *  생성자와 refresh 부분에서 초기화 시켜주어야 함.
      *  */
     this.tmp_returnedDatas = [];
+    for (var i=0; i<8; i++) {
+
+      this.returnedDatas.push({
+        selectedBuildCaseIdx: 1,
+        title: '',
+        mainPreviewImage: '',
+        HTMLText: '',
+        buildTotalArea: '',
+        buildType: '',
+        buildTotalPrice: '',
+        buildPlace: '',
+        buildPlaceDetail: ''
+      });
+    }
     this.region = params.get("region"); //메인페이지에서 어떤 지역을 선택했는지 가져옴.
     if (!this.region) this.region = '전체'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
 
@@ -79,8 +94,9 @@ export class BuildCaseListPage {
      * 로딩 화면 띄우기 위해서 로더 선언.
      * */
     let loader = this.loading.create({
-      content: '정보를 불러오고 있습니다.'
+      content: '방 정보를 불러오고 있습니다.'
     });
+    loader.present().then(() => {
 
       /*
        * 방 검색 조건을 가져 옴.*/
@@ -91,8 +107,8 @@ export class BuildCaseListPage {
       let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
       // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-      this.getDatas(URL, null, null, null);
-
+      this.getDatas(URL, loader, null, null);
+    });
     /*
      * 아래는 이벤트 리스너를 설정하는 것. 로그인 또는 로그아웃이 되면 각 페이지마다 달라져야 할 게 있기 때문에
      * 그때 수행할 것들을 정하는 부분임. 여기서는 방 등록 버튼의 유무가 로그인에 따라 달라지므로
@@ -179,7 +195,10 @@ export class BuildCaseListPage {
 
         }
         this.returnedDatas = this.tmp_returnedDatas;
-        if (loader != null) loader.dismiss(); //로딩화면 종료
+        this.view = true;
+        if (loader != null) {
+            loader.dismiss();
+        } //로딩화면 종료
         if (infiniteScroll != null) infiniteScroll.complete(); //infiniteScroll 완료
         if (refresher != null) {
           refresher.complete();
@@ -276,9 +295,11 @@ export class BuildCaseListPage {
    * 호출되는 함수.
    */
   settingButtonClick() {
-    this.nav.parent.select(4);
+/*
+    this.nav.parent.select(4, {test: "test"});
+*/
 
-    //this.nav.push(RoomSettingPage);
+    this.nav.push(RoomSettingPage);
   }
 
   /**

@@ -65,7 +65,7 @@ export class RoomSettingPage {
     console.log('Hello SettingPage Page');
   }
 
-  ionViewDidLeave() {
+  ionViewWillLeave() {
     /*
     * 방 검색 조건 페이지를 벗어날 때 발생하는 이벤트.
     * 현재 데이터들을 storage에 저장해야 한다.

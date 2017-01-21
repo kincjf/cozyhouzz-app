@@ -1,0 +1,26 @@
+<ion-header no-border>
+  <ion-navbar color="cozy">
+    <ion-buttons left>
+      <button ion-button left style="width: 48px; font-size: 2.2rem; margin-top: 2px;">
+        <ion-icon ios="ios-person" md="md-person"></ion-icon>
+
+      </button>
+
+    </ion-buttons>
+    <ion-title>마이페이지</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <div *ngFor="let p of pages">
+      <button ion-item *ngIf="!((!p.flag && p.flag == isLogined) || p.flag == isLogined)" (click)="openPage(p.component)">
+         {{p.title}}
+      </button>
+    </div>
+    <div *ngIf="isLogined">
+      <button ion-item (click)="logout()">
+        로그아웃
+      </button>
+    </div>
+  </ion-list>
+</ion-content>

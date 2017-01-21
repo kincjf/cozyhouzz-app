@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Platform, AlertController, App} from 'ionic-angular';
 import {Events} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
+import {StatusBar, Keyboard} from 'ionic-native';
 import {TabsPage} from '../pages/tabs/tabs';
 // Authenticator
 import {Storage} from '@ionic/storage';
@@ -38,7 +38,7 @@ export class AppComponent {
           this.userService.setUserInfo(jwt);
         }
       });
-
+      Keyboard.disableScroll(true);
 
       this.rootPage = Menu;
       this.registerBackButtonListener();
@@ -47,36 +47,31 @@ export class AppComponent {
   }
 
   /*
-  * 솔직히 안드로이드 back Button 처리하려고 한건데..
-  * 아무것도 안적으니까 되게 잘됨.
-  * 특별히 아는 지식이 없다면 건드리지 말 것...ㅋㅋ
-  * */
+   * 솔직히 안드로이드 back Button 처리하려고 한건데..
+   * 아무것도 안적으니까 되게 잘됨.
+   * 특별히 아는 지식이 없다면 건드리지 말 것...ㅋㅋ
+   * */
   registerBackButtonListener() {
     document.addEventListener('backbutton', () => {
-      /*var nav = this.app.getRootNav();
-       if (nav.canGoBack()) {
-       nav.pop();
-       }
-       else {
-       let confirm = this.alertController.create({
-       title: 'Confirm Exit',
-       message: 'Really exit app?',
-       buttons: [
-       {
-       text: 'Cancel',
-       handler: () => {
-       console.log('Disagree clicked');
-       }
-       },
-       {
-       text: 'Exit',
-       handler: () => {
 
-       }
-       }
-       ]
-       });
-       }*/
+       /* let confirm = this.alertController.create({
+          title: 'Confirm Exit',
+          message: 'Really exit app?',
+          buttons: [
+            {
+              text: 'Cancel',
+              handler: () => {
+                console.log('Disagree clicked');
+              }
+            },
+            {
+              text: 'Exit',
+              handler: () => {
+
+              }
+            }
+          ]
+        });*/
     });
   }
 

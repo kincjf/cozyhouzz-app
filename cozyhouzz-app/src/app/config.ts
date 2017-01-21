@@ -6,4 +6,5 @@ export class Config {
     storageBucket: 'cozzhouse-app.appspot.com'
   };
   public static WEB_CLIENT_ID = '154113528818';
+  public static SELECTED_TABS_MENU = null;
 }

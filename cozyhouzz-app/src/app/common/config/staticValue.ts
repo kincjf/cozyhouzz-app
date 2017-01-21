@@ -84,20 +84,20 @@ const PARTNETS_HOUSE = [        // 주거시설
 
 const PARTNETS_ESTATE = [       // 인테리어, 장소임대업
     "아늑한집", "(주)창조건축", "컬러라인 인테리어", "청년마을", "웨딩팰리스", "추억나드리 게스트하우스", "네버랜드"
-]
+];
 
 const PARTNETS_SHOP = [         // 매장 홍보
     "한복갤러리", "원규스튜디오", "라바르카 예복/정장", "에스떼뷰 피부관리", "주리화 한복", "아름다운사람들 미용학원",
     "등용문컴퓨터학원", "비빔한복", "어디야한복", "헬셀 전주점", "행복한 어린이집"
-]
+];
 
 const PARTNETS_MARKETING = [        // 홈페이지, 마케팅 업체
     "인프라머스", "제로드소프트", "디딤스토리", "CM디자인", "스마트일렉", "RPTech"
-]
+];
 
 const PARTNETS_CONTENTS = [      // 기타 콘텐츠 활용
     "허니문리조트여행", "엔젤투어여행", "YS미디어", "OPSTech"
-]
+];
 
 const CLIENT_COMMENT = [      // What Client Says
     {
@@ -120,7 +120,7 @@ const CLIENT_COMMENT = [      // What Client Says
         name: "YS미디어",
         comment: "여행 콘텐츠부터 공사지 선정시 지상/VR 항공촬영으로 작업하고 감상을 하는데 별도의 프로그램 없이 한다니요! 본 솔루션을 이용하면 저희 회사와 고객들을 동시에 만족시킬 수 있는 최고의 솔루션입니다!!"
     }
-]
+];
 
 enum MemberType {
     ADMIN = 0,      // 관리자

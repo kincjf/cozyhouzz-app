@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Loader } from '../../../../providers/loader';
-
+import {MyPage} from '../../../mypage/mypage';
 /*
    Generated class for the Registration page.
  */
@@ -88,5 +88,9 @@ export class BussinessManRegistrationPage {
       }).present();
     });*/
     this.navCtrl.pop();
+  }
+  test() {
+
+    this.navCtrl.setRoot(MyPage);
   }
 }

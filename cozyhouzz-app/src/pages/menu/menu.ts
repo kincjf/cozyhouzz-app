@@ -14,6 +14,8 @@ import { RoomSettingPage } from '../mypage/room/room-info/setting';
 import { QuestionListPage } from '../mypage/question/question-list/question-list';
 import { UserService } from '../../services/user-service';
 import { TabsPage } from '../tabs/tabs';
+
+import {Config} from '../../app/config';
 @Component({
   selector: 'page-menu',
   templateUrl: 'menu.html'
@@ -26,7 +28,7 @@ export class Menu {
   build_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
   build_push_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
   main_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
-  etc_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string}>;
+  etc_pages: Array<{title: string, component: any, flag:boolean, ios:string, md:string, page:string}>;
   constructor(
     public navCtrl: NavController,
     public events: Events,
@@ -49,8 +51,8 @@ export class Menu {
     this.build_pages = [
     ];
     this.etc_pages = [
-      { title: '1:1 문의 내역', component: QuestionListPage, flag: false , ios:'ios-chatbubbles', md: 'md-chatbubbles'},
-      { title: '내 정보 보기', component: UserInfoDetailPage, flag: false , ios:'ios-person', md: 'md-person'}//,
+      { title: '1:1 문의 내역', component: QuestionListPage, flag: false , ios:'ios-chatbubbles', md: 'md-chatbubbles', page: 'QuestionListPage'},
+      { title: '내 정보 보기', component: UserInfoDetailPage, flag: false , ios:'ios-person', md: 'md-person', page: 'UserInfoDetailPage'}//,
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];
@@ -123,14 +125,21 @@ export class Menu {
    * 회원가입 페이지를 클릭했을 때 호출되는 함수.
    */
   openResistrationPage() {
-    this.nav.push(RegistrationPage);
+    this.menu.close();
+    Config.SELECTED_TABS_MENU = 'RegisterPage';
+    this.nav._children[0].select(4);
+    // this.nav.push(RegistrationPage);
   }
 
   /**
    * 로그인 버튼을 클릭했을 때 호출되는 함수.
    */
   openloginPage() {
-    this.nav.push(LoginPage);
+    this.menu.close();
+
+    Config.SELECTED_TABS_MENU = 'LoginPage';
+    this.nav._children[0].select(4);
+    //this.nav.push(LoginPage);
   }
 
   /**
@@ -144,7 +153,11 @@ export class Menu {
    * 여기서는 navController가 push 함.
    */
   pushPage(page) {
-    this.nav.push(page.component, { user: this.user });
+
+    this.menu.close();
+    Config.SELECTED_TABS_MENU = page.page;
+    this.nav._children[0].select(4);
+    //this.nav.push(page.component, { user: this.user });
   }
 
   /**
@@ -158,6 +171,7 @@ export class Menu {
    * 여기서는 navController가 setRoot 함.
    */
   openPage(page) {
+    this.menu.close();
     this.nav.setRoot(page.component, {region: "전체"});
   }
 
