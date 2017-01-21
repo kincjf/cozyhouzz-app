@@ -1,4 +1,4 @@
-## cozyhouzz-app
+# cozyhouzz-app
 The app version of cozyhouzz.co.kr. This app is a hybrid app created using ionic2 and has a function to show VR images. To install and build the project, please see the instructions below.
 
 ### Preparations
@@ -28,3 +28,6 @@ To run the project, you need to build an Android or iPhone development environme
   <li>ionic state reset</li>
   <li>ionic serve, ionic run android, ionic build, ionic emulate android</li>
 </ol>
+
+### License
+Copyright (c) 2016 Hose Kim
