@@ -12,8 +12,9 @@ To run the project, you need to build an Android or iPhone development environme
 * Java Install - http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 ### Ionic2 Install
-1) npm install -g ionic cordova
-(http://ionicframework.com/docs/v2/setup/installation/)
+<ol start="1">
+  <li>npm install -g ionic cordova (http://ionicframework.com/docs/v2/setup/installation/)</li>
+</ol>
 
 ### Build Configuaration
 * Windows 10
