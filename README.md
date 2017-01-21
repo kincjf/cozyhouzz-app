@@ -9,7 +9,9 @@ To run the project, you need to build an Android or iPhone development environme
 ### Ionic2 Install
 1) npm install -g ionic cordova
 
-### Basic Ionic Project Start
-1) ionic start name --v2 --ts
-
 ### Project Install & Build(Run)
+1) git clone https://github.com/ushawn/cozyhouzz-app.git
+2) cd cozyhouzz-app
+3) npm install
+4) ionic state reset
+5) ionic serve, ionic run android, ionic build, ionic emulate android
