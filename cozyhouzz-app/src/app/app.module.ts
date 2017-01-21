@@ -36,6 +36,8 @@ import {BuildCaseDetailPage} from '../pages/buildCase/build-case-detail/build-ca
 import {RegistrationPage} from '../pages/authentication/registration/registration';
 import {GeneralRegistrationPage} from '../pages/authentication/registration/general-user/registration';
 import {BussinessManRegistrationPage} from '../pages/authentication/registration/buisnessman-user/registration';
+import {DisqusModule} from "ng2-awesome-disqus";
+
 //BussinessManRegistrationPage
 import {Config} from './config'
 import {PostService} from "../services/post-service";
@@ -85,7 +87,8 @@ import {Focuser} from '../components/focuser/focuser';
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
-    AngularFireModule.initializeApp(Config.FIREBASE_CONFIG)
+    AngularFireModule.initializeApp(Config.FIREBASE_CONFIG),
+    DisqusModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

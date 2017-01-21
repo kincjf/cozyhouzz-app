@@ -115,8 +115,16 @@ export class BuildCaseDetailPage {
     }
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
 
-  };
 
+  };
+  ionViewWillEnter() {
+    //this.collectionsCommentsCtrl();
+    //this.collectionsCommentsCtrl();
+  }
+  ionViewDidLoad() {
+    //this.collectionsCommentsCtrl();
+
+  }
   /**
    * 전화하기 버튼을 클릭했을 때 호출되는 함수.
    * native 기능이기 때문에 핸드폰에서 실행되고 있는가를 isCordovaAvailable함수를 통해서 확인한다.
@@ -146,6 +154,21 @@ export class BuildCaseDetailPage {
       ]
     });
     alert.present();
+  }
+
+
+  collectionsCommentsCtrl() {
+    var disqus_config = function () {
+      this.page.url = 'npus.krgfgfg';  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = 'npus.kr333'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = '//npus-kr.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', (new Date()).toString());
+      (d.head || d.body).appendChild(s);
+    })();
   }
 
 

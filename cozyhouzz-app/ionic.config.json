@@ -17,6 +17,10 @@
       {
         "path":"https://krpano.com/panos/tokyo45gp/",
         "proxyUrl":"https://krpano.com/panos/tokyo45gp/"
+      },
+      {
+         "path" : "//npus-kr.disqus.com/embed.js",
+        "proxyUrl":"http://npus-kr.disqus.com/embed.js"
       }
     ]
 }
