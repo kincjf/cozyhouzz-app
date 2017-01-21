@@ -16,7 +16,7 @@ import {BuildCaseMapPage} from '../build-case-map/build-case-map';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 import {contentHeaders} from '../../../app/common/headers';
 import {UserService} from '../../../services/user-service';
-
+import {BuildCaseCommentPage} from '../build-case-comment/build-case-comment';
 @Component({
   selector: 'page-build-case-detail',
   templateUrl: 'build-case-detail.html'
@@ -256,5 +256,8 @@ export class BuildCaseDetailPage {
           this.companyIntroImageUrl = [this.serverHost, this.companyIntroImage].join('/');
         }
       )
+  }
+  commentButtonClick() {
+      this.nav.push(BuildCaseCommentPage);
   }
 }

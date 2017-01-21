@@ -1,6 +1,11 @@
 <ion-header no-border>
   <ion-navbar color="cozy">
     <ion-title>{{buildName}} <!--방 정보 상세보기--></ion-title>
+    <ion-buttons end>
+      <button ion-button right (click)="commentButtonClick()">
+        댓글 확인
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

@@ -28,7 +28,7 @@ import {LatelyBuildCaseListPage} from '../pages/buildCase/lately-build-case-list
 import {MyPage} from '../pages/mypage/mypage';
 import {ConsultingListPage} from '../pages/mypage/consulting/consulting-list/consulting-list';
 import {ConsultingDetailPage} from '../pages/mypage/consulting/consulting-detail/consulting-detail';
-
+import {BuildCaseCommentPage} from '../pages/buildCase/build-case-comment/build-case-comment';
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
 import {BuildCaseListPage} from '../pages/buildCase/build-case-list/build-case-list';
@@ -83,7 +83,8 @@ import {Focuser} from '../components/focuser/focuser';
     LatelyBuildCaseListPage,
     MyPage,
     ConsultingDetailPage,
-    ConsultingListPage
+    ConsultingListPage,
+    BuildCaseCommentPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -118,7 +119,8 @@ import {Focuser} from '../components/focuser/focuser';
     LatelyBuildCaseListPage,
     MyPage,
     ConsultingDetailPage,
-    ConsultingListPage
+    ConsultingListPage,
+    BuildCaseCommentPage
   ],
   providers: [
     Loader,
