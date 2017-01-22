@@ -215,5 +215,18 @@ ion-item.item-block.item-no-border {
 
 
 ion-navbar {
-  border-bottom: 1px solid #ddd;
+  background-color:  #A0D7E4;
+  border-bottom: 1px solid #A0D7E4;
+  button {
+    color: white !important;
+  }
+  ion-title {
+    div {
+
+      color: white !important;
+    }
+  }
+}
+.toolbar-background-md {
+  border-color: #A0D7E4 !important;
 }

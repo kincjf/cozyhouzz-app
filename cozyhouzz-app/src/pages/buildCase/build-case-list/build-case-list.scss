@@ -12,19 +12,21 @@ page-build-case-list {
         border-bottom: 0 !important;
       }
       .item-block {
-        background-color: #efefef; //#58A2DB
-        color: black;
+        background-color: #A0D7E4; //#58A2DB
+        color: white;
       }
 
       width: 100%;
-      background-color: #efefef; //#58A2DB
+      background-color: #A0D7E4; //#58A2DB
       /*opacity: 0.9;*/
       * {
       }
       ion-col {
         padding: 0;
         border: 0 solid #ddd;
-
+        .item-block {
+          min-height: 0;
+        }
       }
 
       ion-select {
@@ -33,10 +35,6 @@ page-build-case-list {
         margin: 0 auto;
         .item-cover {
           color: black;
-        }
-        .select-md {
-
-          padding: 9px 0 11px 0;
         }
       }
     }
@@ -66,7 +64,7 @@ page-build-case-list {
       ion-item {
         min-height: 25vw;
         padding-left: 0;
-        margin: 5px 0 0 0;
+        margin: 3px 0 0 0;
         .item-inner {
           padding-right: 0;
           ion-label {

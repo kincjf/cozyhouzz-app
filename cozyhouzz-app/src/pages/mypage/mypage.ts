@@ -113,6 +113,5 @@ export class MyPage {
       ]
     });
     alert.present();
-    console.log("sdfdsf");
   }
 }

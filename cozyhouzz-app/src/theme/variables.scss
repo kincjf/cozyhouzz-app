@@ -36,8 +36,9 @@ $colors: (
   gray-df:    #33363c,
   gray-bbb:   #bbbbbb,
   green-df:   #ff7473,
-  cozy:       #efefef
+  cozy:       #A0D7E4
 );
+//efefef
 //42A2DC
 // App Theme
 // --------------------------------------------------
@@ -79,6 +80,19 @@ $tabs-ios-tab-max-width : 4.4rem;
 $tabs-md-tab-icon-size: 1.7rem;
 $tabs-md-tab-font-size: 1.0rem;
 $tabs-md-tab-font-size-active	:1.2rem;
-$tabs-md-tab-icon-color-active	:black;
+$tabs-md-tab-icon-color-active	:#A0D7E4;
 
-$tabs-md-tab-text-color-active	:black;
+$tabs-md-tab-text-color-active	:#A0D7E4;
+
+$select-ios-padding-top: 10px;
+$select-ios-padding-left: 8px;
+$select-ios-padding-bottom : 13px;
+$select-ios-padding-right: 8px;
+
+$select-md-padding-top: 6px;
+$select-md-padding-left: 8px;
+$select-md-padding-bottom : 9px;
+$select-md-padding-right: 8px;
+
+
+$tabs-md-background: white;
