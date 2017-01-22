@@ -36,7 +36,7 @@ import {BuildCaseDetailPage} from '../pages/buildCase/build-case-detail/build-ca
 import {RegistrationPage} from '../pages/authentication/registration/registration';
 import {GeneralRegistrationPage} from '../pages/authentication/registration/general-user/registration';
 import {BussinessManRegistrationPage} from '../pages/authentication/registration/buisnessman-user/registration';
-import {DisqusModule} from "ng2-awesome-disqus";
+// import {DisqusModule} from "ng2-awesome-disqus";
 
 //BussinessManRegistrationPage
 import {Config} from './config'
@@ -51,7 +51,6 @@ import {AuthenticatorService} from '../providers/authenticator';
 import {TabsPage} from '../pages/tabs/tabs'
 
 //directive
-import {Focuser} from '../components/focuser/focuser';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,7 +70,7 @@ import {Focuser} from '../components/focuser/focuser';
     QuestionListPage,
     BuildCaseInputPage,
     ZipCodePage,
-    Focuser,
+    // Focuser,
     GoogleMapsPage,
     UserInfoModifyPage,
     UserInfoDetailPage,

@@ -9,12 +9,20 @@
     </ion-buttons>
     <ion-title>마이페이지</ion-title>
   </ion-navbar>
+
+  <div id="user_info_area">
+    <!--
+    <img id="user_image" src = "assets/img/mike.png" ><br>
+    <span id="user_info">
+        <span>ushawn@nate.com</span>
+    </span>-->
+  </div>
 </ion-header>
-<ion-content padding>
-  <ion-list>
+<ion-content>
+  <ion-list padding id="menu_list">
     <div *ngFor="let p of pages">
       <button ion-item *ngIf="!((!p.flag && p.flag == isLogined) || p.flag == isLogined)"
-              (click)="openPage(p.component)">
+              (click)="openPage(p)">
 
         <ion-icon ios="{{p.ios}}" md="{{p.md}}" style="float: left; margin-top: 9px; margin-right: 25px;"></ion-icon>
         <div  style="float: left;">

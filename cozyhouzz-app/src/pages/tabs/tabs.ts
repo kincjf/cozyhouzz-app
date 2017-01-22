@@ -4,6 +4,7 @@ import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list'
 import {LatelyBuildCaseListPage} from '../buildCase/lately-build-case-list/lately-build-case-list';
 import {DibBuildCaseListPage} from '../buildCase/dib-build-case-list/dib-build-case-list';
 import { MyPage } from '../mypage/mypage';
+import {LoginPage} from '../authentication/login/login';
 @Component({
   templateUrl: 'tabs.html'
 })

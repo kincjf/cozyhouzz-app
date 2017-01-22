@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
+import {LoginPage} from '../authentication/login/login';
 import {QuestionListPage} from '../mypage/question/question-list/question-list';
 import {UserInfoDetailPage} from '../mypage/userInfo/user-info-detail/user-info-detail';
-import {LoginPage} from '../authentication/login/login';
 import {Events, NavController, NavParams, MenuController, AlertController} from "ionic-angular";
 import {UserService} from '../../services/user-service';
 import {RoomSettingPage} from './room/room-info/setting';
@@ -92,7 +92,14 @@ export class MyPage {
   }
 
   openPage(p) {
-    this.navCtrl.push(p);
+    console.log(p.title);
+    if(p.title == '찜 목록') {
+      this.navCtrl.parent.select(2);
+    } else if(p.title == '최근 본 방') {
+      this.navCtrl.parent.select(3);
+    } else {
+      this.navCtrl.push(p.component);
+    }
     /*
      this.navCtrl.parent.parent.push(p);
      */
