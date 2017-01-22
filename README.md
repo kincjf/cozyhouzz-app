@@ -23,7 +23,7 @@ To run the project, you need to build an Android or iPhone development environme
 ### Project Install & Build(Run)
 <ol start="1">
   <li>git clone https://github.com/ushawn/cozyhouzz-app.git</li>
-  <li>cd cozyhouzz-app</li>
+  <li>cd cozyhouzz-app/cozyhouzz-app</li>
   <li>npm install</li>
   <li>ionic state reset</li>
   <li>ionic serve, ionic run android, ionic build, ionic emulate android</li>
