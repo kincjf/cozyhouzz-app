@@ -13,13 +13,26 @@
 <ion-content padding>
   <ion-list>
     <div *ngFor="let p of pages">
-      <button ion-item *ngIf="!((!p.flag && p.flag == isLogined) || p.flag == isLogined)" (click)="openPage(p.component)">
-         {{p.title}}
+      <button ion-item *ngIf="!((!p.flag && p.flag == isLogined) || p.flag == isLogined)"
+              (click)="openPage(p.component)">
+
+        <ion-icon ios="{{p.ios}}" md="{{p.md}}" style="float: left; margin-top: 9px; margin-right: 25px;"></ion-icon>
+        <div  style="float: left;">
+          <span>{{p.title}}</span><br>
+          <span style="color: #aaa; font-size: 1.3rem">{{p.detail}}</span>
+        </div>
       </button>
     </div>
     <div *ngIf="isLogined">
+
+
       <button ion-item (click)="logout()">
-        로그아웃
+
+        <ion-icon ios="ios-log-out" md="md-log-out" style="float: left; margin-top: 9px; margin-right: 25px;"></ion-icon>
+        <div  style="float: left;">
+          <span>로그아웃</span><br>
+          <span style="color: #aaa; font-size: 1.3rem">로그아웃</span>
+        </div>
       </button>
     </div>
   </ion-list>
