@@ -88,8 +88,7 @@ import {Focuser} from '../components/focuser/focuser';
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
-    AngularFireModule.initializeApp(Config.FIREBASE_CONFIG),
-    DisqusModule
+    AngularFireModule.initializeApp(Config.FIREBASE_CONFIG)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
