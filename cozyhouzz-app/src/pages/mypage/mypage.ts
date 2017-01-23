@@ -4,7 +4,7 @@ import {QuestionListPage} from '../mypage/question/question-list/question-list';
 import {UserInfoDetailPage} from '../mypage/userInfo/user-info-detail/user-info-detail';
 import {Events, NavController, NavParams, MenuController, AlertController} from "ionic-angular";
 import {UserService} from '../../services/user-service';
-import {RoomSettingPage} from './room/room-info/setting';
+import {RoomSettingPage} from '../roomInfo/room-setting/room-setting';
 import {RegistrationPage} from '../authentication/registration/registration';
 import {ConsultingListPage} from '../mypage/consulting/consulting-list/consulting-list';
 
@@ -126,7 +126,6 @@ export class MyPage {
      * 로그아웃 이벤트가 발생되었을 경우.
      * */
     events.subscribe('mypage:logout', () => {
-      console.log("dsfsdfdsf");
       this.isLogined = false;
       this.user = null;
     });

@@ -1,16 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import {Nav, ViewController, MenuController} from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
+import { RoomListPage } from '../roomInfo/room-list/room-list';
 import {RegistrationPage} from '../authentication/registration/registration';
 import { LoginPage } from '../authentication/login/login'
-import { BuildCaseInputPage } from '../buildCase/build-case-input/build-case-input';
+import { RoomInputPage } from '../roomInfo/room-input/room-input';
 import { UserInfoDetailPage } from '../mypage/userInfo/user-info-detail/user-info-detail';
-import { UserInfoModifyPage } from '../mypage/userInfo/user-info-modify/user-info-modify';
 
 import { NavController } from 'ionic-angular';
 import { Events } from 'ionic-angular';
-import { RoomSettingPage } from '../mypage/room/room-info/setting';
+import { RoomSettingPage } from '../roomInfo/room-setting/room-setting';
 import { QuestionListPage } from '../mypage/question/question-list/question-list';
 import { UserService } from '../../services/user-service';
 import { TabsPage } from '../tabs/tabs';
@@ -80,7 +79,7 @@ export class Menu {
     });
 
     events.subscribe('menu:opened', () => {/*
-      let element: HTMLElement = document.getElementById('buildCaseListContent');
+      let element: HTMLElement = document.getElementById('roomInfoListContent');
 
       element.getElementsByClassName('scroll-content')[0].setAttribute('style', "margin-top: 103px;");*/
     });
@@ -145,7 +144,7 @@ export class Menu {
   /**
    *
    * @param page 특정 페이지를 나타내는 객체
-   * 예시) { title: '방 리스트 보기', component: BuildCaseListPage, flag: true }
+   * 예시) { title: '방 리스트 보기', component: RoomListPage, flag: true }
    * title -> 메뉴 title
    * component -> 페이지 객체
    * flag -> 로그인 필요없이 보이는 메뉴인지의 여부. true면 로그인안해도 보이도록 구현되어 있음.
@@ -163,7 +162,7 @@ export class Menu {
   /**
    *
    * @param page 특정 페이지를 나타내는 객체
-   * 예시) { title: '방 리스트 보기', component: BuildCaseListPage, flag: true }
+   * 예시) { title: '방 리스트 보기', component: RoomListPage, flag: true }
    * title -> 메뉴 title
    * component -> 페이지 객체
    * flag -> 로그인 필요없이 보이는 메뉴인지의 여부. true면 로그인안해도 보이도록 구현되어 있음.
@@ -188,7 +187,7 @@ export class Menu {
  /* ionViewDidLoad() {
     var observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutationRecord) {
-        let element: HTMLElement = document.getElementById('buildCaseListContent');
+        let element: HTMLElement = document.getElementById('roomInfoListContent');
         console.log(element);
         if(element!=null) {
           var target = element.getElementsByClassName('scroll-content')[0];

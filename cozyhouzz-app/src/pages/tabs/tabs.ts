@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
-import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
-import {LatelyBuildCaseListPage} from '../buildCase/lately-build-case-list/lately-build-case-list';
-import {DibBuildCaseListPage} from '../buildCase/dib-build-case-list/dib-build-case-list';
+import { RoomListPage } from '../roomInfo/room-list/room-list';
+import {LatelyRoomListPage} from '../roomInfo/lately-room-list/lately-room-list';
+import {DibRoomListPage} from '../roomInfo/dib-room-list/dib-room-list';
 import { MyPage } from '../mypage/mypage';
 import {LoginPage} from '../authentication/login/login';
 @Component({
@@ -14,9 +14,9 @@ export class TabsPage {
 
 
   tab1Root: any = HomePage;
-  tab2Root: any = BuildCaseListPage;
-  tab3Root: any = DibBuildCaseListPage;
-  tab4Root: any = LatelyBuildCaseListPage;
+  tab2Root: any = RoomListPage;
+  tab3Root: any = DibRoomListPage;
+  tab4Root: any = LatelyRoomListPage;
   tab5Root: any = MyPage;
   constructor() {
 

@@ -24,7 +24,7 @@ export class LoginPage {
               public userService: UserService) {
     /*
      * 로그인 페이지로 이동하기 때문에 사이드 메뉴를 닫는다.
-     * 또한 메인페이지와 buildCaseListPage를 제외한 나머지 페이지에서는 사이드 메뉴를 허용하지 않기 때문에
+     * 또한 메인페이지와 RoomListPage를 제외한 나머지 페이지에서는 사이드 메뉴를 허용하지 않기 때문에
      * menu의 enable을 false로 설정해준다. */
 
     this.userFormBuilder = this.formBuilder.group({

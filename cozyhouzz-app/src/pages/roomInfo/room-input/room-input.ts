@@ -7,9 +7,9 @@ import {isCordovaAvailable} from '../../../services/is-cordova-available';
 
 @Component({
   selector: 'page-build-case-input',
-  templateUrl: 'build-case-input.html'
+  templateUrl: 'room-input.html'
 })
-export class BuildCaseInputPage {
+export class RoomInputPage {
   post: any;
   options = {};
 
@@ -23,7 +23,7 @@ export class BuildCaseInputPage {
     /*
      * 사용자가 zip-code page에서 주소를 선택했을 때 발생하는 이벤트를 처리하는 리스너
      * address에는 사용자가 입력한 주소의 우편번호와 지번 주소가 담겨있다.
-     * 이를 현재 페이지 클래스(BuildCaseInputPage)의 formBilder인 post의 address에 값을 가공하여 넣어준다.
+     * 이를 현재 페이지 클래스(RoomInputPage)의 formBilder인 post의 address에 값을 가공하여 넣어준다.
      * post:any의 address에 값을 넣어주는 부분.
      * 당연히 이벤트는 page/function/zip-code/zip-code.ts 에서 발생한다. */
     events.subscribe('address:choiced', (address) => {

@@ -23,17 +23,17 @@
   -->
   <ion-item class="item-no-border" id="userInfo">
     <ion-avatar item-left>
-      <img src="{{ post.face }}"  id="buildCaseDetailUserImage" >
+      <img src="{{ post.face }}"  id="roomInfoDetailUserImage" >
     </ion-avatar>
     <h2 color="primary" class="post-author">{{ post.name }}</h2>
     <span class="post-time">
       {{ initWriteDate }}
     </span>
   </ion-item>
-    <ion-list id="buildCaseDetailInfoList">
+    <ion-list id="roomInfoDetailInfoList">
 
-      <ion-grid class="post-actions buildCaseInformationGrid"> <!--  style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);" -->
-        <ion-row class="buildCaseInformationGridBorderClass padding-6">
+      <ion-grid class="post-actions roomInfoInformationGrid"> <!--  style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);" -->
+        <ion-row class="roomInfoInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
             <span class="label label-warning">공사면적</span>
           </ion-col>
@@ -41,7 +41,7 @@
             <span class="label label-primary">{{buildTotalArea}}</span>
           </ion-col>
         </ion-row>
-        <ion-row class="buildCaseInformationGridBorderClass padding-6">
+        <ion-row class="roomInfoInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
             <span class="label label-warning">공사구분</span>
           </ion-col>
@@ -49,7 +49,7 @@
             <span class="label label-primary">{{buildType}}</span>
           </ion-col>
         </ion-row>
-        <ion-row class="buildCaseInformationGridBorderClass padding-6">
+        <ion-row class="roomInfoInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
             <span class="label label-warning">시공가격</span>
           </ion-col>

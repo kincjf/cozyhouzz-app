@@ -12,16 +12,16 @@ import * as moment from 'moment';
 import {PostService} from '../../../services/post-service';
 import {IMarker, IPoint} from './interfaces';
 import {CallNumber} from 'ionic-native';
-import {BuildCaseMapPage} from '../build-case-map/build-case-map';
+import {RoomMapPage} from '../room-map/room-map';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 import {contentHeaders} from '../../../app/common/headers';
 import {UserService} from '../../../services/user-service';
-import {BuildCaseCommentPage} from '../build-case-comment/build-case-comment';
+import {RoomCommentPage} from '../room-comment/room-comment';
 @Component({
   selector: 'page-build-case-detail',
-  templateUrl: 'build-case-detail.html'
+  templateUrl: 'room-detail.html'
 })
-export class BuildCaseDetailPage {
+export class RoomDetailPage {
   public post: any;
   public data: any;
 
@@ -53,8 +53,8 @@ export class BuildCaseDetailPage {
   companyIntroImageUrl;
 
   buildTypes = STATIC_VALUE.PLACE_TYPE;
-  selectedBuildCaseIdx: any;
-  public buildCaseResult: any;
+  selectedroomInfoIdx: any;
+  public roomInfoResult: any;
 
   private jwt:string;
   private isLogined:boolean;
@@ -66,9 +66,9 @@ export class BuildCaseDetailPage {
     this.isLogined = false;
     /*
      * 선택된 방 정보를 가져온다.
-     * 이는 buildCaseListPage에서 navCtroller가 page를 push할 때 같이 넘겨준 값.
+     * 이는 RoomListPage에서 navCtroller가 page를 push할 때 같이 넘겨준 값.
      * */
-    this.selectedBuildCaseIdx = params.get("selectedBuildCaseIdx");
+    this.selectedroomInfoIdx = params.get("selectedroomInfoIdx");
     this.post = postService.getItem(0); //해당 문장은 추후 지워야 됨.
     let loader = this.loading.create({
       content: '정보를 불러오고 있습니다.'
@@ -78,9 +78,9 @@ export class BuildCaseDetailPage {
      * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
      * */
     loader.present().then(() => {
-      this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/RoomInfoVR/6');
-      this.buildCaseResult = postService.getBuildCaseInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedBuildCaseIdx);
-      this.buildCaseResult.toPromise()
+      this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/roomInfoVR/6');
+      this.roomInfoResult = postService.getroomInfoInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedroomInfoIdx);
+      this.roomInfoResult.toPromise()
         .then(
           response => {
             console.log(response);
@@ -98,7 +98,7 @@ export class BuildCaseDetailPage {
             this.htmlText = response.buildCaseInfo.HTMLText;
             this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
             this.coordinate = response.buildCaseInfo.coordinate;    // 나중에 좌표를 받아서 Daum Map에 뿌려준다
-            // this.coordinate = JSON.parse(response.buildCaseInfo.coordinate);
+            // this.coordinate = JSON.parse(response.roomInfoInfo.coordinate);
             this.regionCategory = response.buildCaseInfo.regionCategory;
             this.initWriteDate = moment(response.buildCaseInfo.initWriteDate).format('YYYY/MM/DD HH:mm:ss');
 
@@ -177,7 +177,7 @@ export class BuildCaseDetailPage {
    * 현재는 주소만 보내주고 있지만 주소, 위도, 경도, 타이틀도 같이 보내줘야 할 듯.
    * ionic plugin add cordova-plugin-googlemaps 설치 필수! development-resources 페이지의 install.txt 참조하기 바람. */
   mapBtnClick() {
-    this.nav.push(BuildCaseMapPage, {address: this.buildAddress});
+    this.nav.push(RoomMapPage, {address: this.buildAddress});
   }
 
   /**
@@ -258,6 +258,6 @@ export class BuildCaseDetailPage {
       )
   }
   commentButtonClick() {
-      this.nav.push(BuildCaseCommentPage);
+      this.nav.push(RoomCommentPage);
   }
 }

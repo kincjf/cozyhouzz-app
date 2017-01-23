@@ -100,7 +100,7 @@ export class ZipCodePage {
    * @param p 사용자가 선택한 주소의 정보를 담고 있다.
    * 이때 주소가 바뀌었으므로 주소가 선택되었다는 이벤트를 발생시킨다.
    *
-   * 이는 buildCaseInputPage에서 처리하도록 구현되어 있다.
+   * 이는 RoomInputPage에서 처리하도록 구현되어 있다.
    * 또한 페이지를 pop 시킨다.
    */
   selectAddress(p) {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
-import { BuildCaseListPage } from '../buildCase/build-case-list/build-case-list';
+import { RoomListPage } from '../roomInfo/room-list/room-list';
 
 @Component({
   selector: 'page-home',
@@ -20,9 +20,9 @@ export class HomePage {
     this.nav.parent.select(1);
     /*
     switch(index) {
-      case 0: this.nav.push(BuildCaseListPage, {region:"전주"}); break;
-      case 1: this.nav.push(BuildCaseListPage, {region:"익산"}); break;
-      default: this.nav.push(BuildCaseListPage, {region:"군산"});
+      case 0: this.nav.push(RoomListPage, {region:"전주"}); break;
+      case 1: this.nav.push(RoomListPage, {region:"익산"}); break;
+      default: this.nav.push(RoomListPage, {region:"군산"});
     }*/
   }
   /**

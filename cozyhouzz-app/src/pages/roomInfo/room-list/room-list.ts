@@ -3,27 +3,27 @@ import {NavController, Platform, MenuController, NavParams, LoadingController} f
 import {PostService} from '../../../services/post-service';
 import {RoomService} from '../../../services/room-service';
 import {UserService} from '../../../services/user-service';
-import {BuildCaseInputPage} from '../build-case-input/build-case-input';
+import {RoomInputPage} from '../room-input/room-input';
 
-import {BuildCaseDetailPage} from '../build-case-detail/build-case-detail';
+import {RoomDetailPage} from '../room-detail/room-detail';
 import {config} from '../../../app/common/config';
 import {STATIC_VALUE} from "../../../app/common/config/staticValue";
 import * as _ from "lodash";
 import {Events} from 'ionic-angular';
 
 import {Room} from '../../../providers/room';
-import {RoomSettingPage} from '../../mypage/room/room-info/setting';
+import {RoomSettingPage} from '../room-setting/room-setting';
 
 import {SortPipe} from '../../../pipes/SortByJsonObjects';
 
 import {Config} from '../../../app/config';
 @Component({
   selector: 'page-build-case-list',
-  templateUrl: 'build-case-list.html'
+  templateUrl: 'room-list.html'
 })
-export class BuildCaseListPage {
+export class RoomListPage {
   public posts: any;
-  public buildCaseResult: any;
+  public roomInfoResult: any;
   public room: Room;
   public pageSize: number = 10;
   public region: string;
@@ -33,7 +33,7 @@ export class BuildCaseListPage {
   public user: any;
   public isLogined: boolean = false;
   public view:boolean = false;
-  public orderBy: string = ''; //orderBy변수가 빈문자열 또는 null일 경우, 정렬하지 않음.  //selectedBuildCaseIdx
+  public orderBy: string = ''; //orderBy변수가 빈문자열 또는 null일 경우, 정렬하지 않음.  //selectedroomInfoIdx
 
 
   /*
@@ -68,7 +68,7 @@ export class BuildCaseListPage {
     for (var i=0; i<8; i++) {
 
       this.returnedDatas.push({
-        selectedBuildCaseIdx: 1,
+        selectedroomInfoIdx: 1,
         title: '',
         mainPreviewImage: '',
         HTMLText: '',
@@ -106,14 +106,14 @@ export class BuildCaseListPage {
        * 방 정보 불러오는 부분 */
       let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
-      // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+      // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
       this.getDatas(URL, loader, null, null);
     });
     /*
      * 아래는 이벤트 리스너를 설정하는 것. 로그인 또는 로그아웃이 되면 각 페이지마다 달라져야 할 게 있기 때문에
      * 그때 수행할 것들을 정하는 부분임. 여기서는 방 등록 버튼의 유무가 로그인에 따라 달라지므로
      * isLogined 정보와 user 정보를 초기화 해줘야 한다. */
-    events.subscribe('buildCaseList:logined', () => {
+    events.subscribe('roomInfoList:logined', () => {
       this.isLogined = userService.getIsLogind();
       if (this.isLogined) {
         this.user = this.userService.getUserInfo();
@@ -122,7 +122,7 @@ export class BuildCaseListPage {
     /*
      * 로그아웃 또한 로그인과 마찬가지
      * */
-    events.subscribe('buildCaseList:logout', () => {
+    events.subscribe('roomInfoList:logout', () => {
       this.isLogined = false;
       this.user = null;
       this.userService.removeUserInfo();
@@ -133,7 +133,7 @@ export class BuildCaseListPage {
      * services/room-service.ts 부분
      *
      * 아래 이벤트를 발생시키는 곳은
-     * page/room/room-info/setting.ts 이다. 가서 확인할 것.
+     * page/room/room-setting/room-setting.ts 이다. 가서 확인할 것.
      * */
     this.events.subscribe('room:change', () => {
       this.room = this.roomService.room;
@@ -155,40 +155,41 @@ export class BuildCaseListPage {
    * refresher이 null인지 체크하고 null이 아니면 complete 해줘야 함.
    */
   getDatas(url, loader, infiniteScroll, refresher) {
-    this.buildCaseResult = this.postService.getBuildList(url);
-    this.buildCaseResult.subscribe(response => {
+    this.roomInfoResult = this.postService.getBuildList(url);
+    this.roomInfoResult.subscribe(response => {
+      console.log(response);
         /*
          * 가져온 방 정보를 반복문을 수행하면서 위 returnedDatas 배열에 집어 넣는다.
          * */
-        for (let buildCaseData of response.buildCaseInfo) {
-          let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
-          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
+        for (let roomInfoData of response.buildCaseInfo) {
+          let buildPlaceArr = JSON.parse(roomInfoData.buildPlace);
+          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomInfoData.buildType]);
 
           this.tmp_returnedDatas.push({
-            selectedBuildCaseIdx: buildCaseData.idx,
-            title: buildCaseData.title,
-            mainPreviewImage: buildCaseData.mainPreviewImage,
-            HTMLText: buildCaseData.HTMLText,
-            buildTotalArea: buildCaseData.buildTotalArea,
+            selectedroomInfoIdx: roomInfoData.idx,
+            title: roomInfoData.title,
+            mainPreviewImage: roomInfoData.mainPreviewImage,
+            HTMLText: roomInfoData.HTMLText,
+            buildTotalArea: roomInfoData.buildTotalArea,
             buildType: STATIC_VALUE.PLACE_TYPE[key].name,
-            buildTotalPrice: buildCaseData.buildTotalPrice,
+            buildTotalPrice: roomInfoData.buildTotalPrice,
             buildPlace: buildPlaceArr[1],
             buildPlaceDetail: buildPlaceArr[2]
           });
 
         }
-        for (let buildCaseData of response.buildCaseInfo) {
-          let buildPlaceArr = JSON.parse(buildCaseData.buildPlace);
-          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", buildCaseData.buildType]);
+        for (let roomInfoData of response.buildCaseInfo) {
+          let buildPlaceArr = JSON.parse(roomInfoData.buildPlace);
+          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomInfoData.buildType]);
 
           this.tmp_returnedDatas.push({
-            selectedBuildCaseIdx: buildCaseData.idx,
-            title: buildCaseData.title,
-            mainPreviewImage: buildCaseData.mainPreviewImage,
-            HTMLText: buildCaseData.HTMLText,
-            buildTotalArea: buildCaseData.buildTotalArea,
+            selectedroomInfoIdx: roomInfoData.idx,
+            title: roomInfoData.title,
+            mainPreviewImage: roomInfoData.mainPreviewImage,
+            HTMLText: roomInfoData.HTMLText,
+            buildTotalArea: roomInfoData.buildTotalArea,
             buildType: STATIC_VALUE.PLACE_TYPE[key].name,
-            buildTotalPrice: buildCaseData.buildTotalPrice,
+            buildTotalPrice: roomInfoData.buildTotalPrice,
             buildPlace: buildPlaceArr[1],
             buildPlaceDetail: buildPlaceArr[2]
           });
@@ -230,7 +231,7 @@ export class BuildCaseListPage {
     /*
      * 방 정보 불러오는 부분 */
     let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-    // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     this.tmp_returnedDatas = [];
     this.getDatas(URL, null, null, null);
@@ -239,7 +240,7 @@ export class BuildCaseListPage {
     /*
      * 방 정보 불러오는 부분 */
     let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-    // let URL = [config.serverHost, config.path.buildCase + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     setTimeout(() => {
       this.tmp_returnedDatas = [];
@@ -285,7 +286,7 @@ export class BuildCaseListPage {
      * */
     let lately = this.lately;
     if (lately == 0) this.orderBy = '';
-    else if (lately == 1) this.orderBy = 'selectedBuildCaseIdx';
+    else if (lately == 1) this.orderBy = 'selectedroomInfoIdx';
     else if (lately == 2) this.orderBy = 'title';
     else if (lately == 3) this.orderBy = 'buildTotalPrice';
   }
@@ -306,17 +307,17 @@ export class BuildCaseListPage {
    * 방 입력 버튼 클릭했을 경우 호출되는 함수.
    */
   inputButtonClick() {
-    this.nav.push(BuildCaseInputPage);
+    this.nav.push(RoomInputPage);
   }
 
   /**
    *
-   * @param selectedBuildCaseIdx 선택된 시공사례(방)의 index 번호
+   * @param selectedroomInfoIdx 선택된 시공사례(방)의 index 번호
    * 시공사례(방) 상세보기 페이지로 이동
    * 이때 선택된 방의 index번호를 함께 넘겨준다.
    */
-  viewPost(selectedBuildCaseIdx) {
-    this.nav.push(BuildCaseDetailPage, {selectedBuildCaseIdx: selectedBuildCaseIdx})
+  viewPost(selectedroomInfoIdx) {
+    this.nav.push(RoomDetailPage, {selectedroomInfoIdx: selectedroomInfoIdx})
   }
 
   /**
@@ -342,7 +343,7 @@ export class BuildCaseListPage {
   ionViewWillEnter(){
     //refresher 사용하려면..아래 주석 해제해줘야 함.
     /*
-    let element: HTMLElement = document.getElementById('buildCaseListContent');
+    let element: HTMLElement = document.getElementById('roomInfoListContent');
     let target = element.getElementsByClassName('refresher')[0];
     let target_page_menu = element.getElementsByClassName('scroll-content')[0];
 

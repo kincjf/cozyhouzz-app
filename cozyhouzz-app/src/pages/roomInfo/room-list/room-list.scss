@@ -40,7 +40,7 @@ page-build-case-list {
     }
 
   }
-  #buildCaseListHeader {
+  #roomInfoListHeader {
     color: black; margin-bottom: 0;
     border-top: 0px solid #73C3CB; margin-top: 4px; background-color: #f5f5f5;
     min-height: 3rem;
@@ -49,7 +49,7 @@ page-build-case-list {
       margin-bottom: 6px;
     }
   }
-  #buildCaseListContent {
+  #roomInfoListContent {
     .img-loaded + ion-spinner {
       display:none;
     }
@@ -58,7 +58,7 @@ page-build-case-list {
     .has-refresher>.scroll-content {
         border: 0px solid #ddd;
     }*/
-    .buildCase:active {
+    .roomInfo:active {
       background-color: #efefef;
     }
     ion-list {

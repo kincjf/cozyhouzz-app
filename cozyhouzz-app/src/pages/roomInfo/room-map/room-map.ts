@@ -11,7 +11,7 @@ import {
 } from 'ionic-native';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 /*
- Generated class for the BuildCaseMap page.
+ Generated class for the roomInfoMap page.
 
  See http://ionicframework.com/docs/v2/components/#navigation for more info on
  Ionic pages and navigation.
@@ -19,9 +19,9 @@ import {isCordovaAvailable} from '../../../services/is-cordova-available';
 declare var google;
 @Component({
   selector: 'page-build-case-map',
-  templateUrl: 'build-case-map.html'
+  templateUrl: 'room-map.html'
 })
-export class BuildCaseMapPage {
+export class RoomMapPage {
 
   map: any;
   test: string;
@@ -54,7 +54,7 @@ export class BuildCaseMapPage {
     // </ion-content>
 
     // create a new map by passing HTMLElement
-    let element: HTMLElement = document.getElementById('buildCaseMap');
+    let element: HTMLElement = document.getElementById('roomInfoMap');
 
     this.map = new GoogleMap(element);
     // controls[google.maps.ControlPosition.TOP_LEFT].push(input);

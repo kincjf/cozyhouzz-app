@@ -19,11 +19,12 @@ export class PostService {
     //HTTP.get('http://api.cozyhouzz.co.kr/api/build-case?pageSize=10&pageStartIndex=0', {}, {})
     return this.http.get(url)
       .map(x => {
+        console.log(x);
         return x.json();
       });
   }
   // 상세보기
-  getBuildCaseInfo(url) {
+  getroomInfoInfo(url) {
     return this.http.get(url) //서버로부터 필요한 값 받아오기
       .map(res => {
         return res.json();

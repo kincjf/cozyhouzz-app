@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, MenuController} from 'ionic-angular';
 import {UserService} from '../../../../services/user-service';
-import {UserInfoModifyPage} from '../user-info-modify/user-info-modify';
 import {FormBuilder, Validators} from "@angular/forms";
 import {contentHeaders} from '../../../../app/common/headers';
 import {Loader} from "../../../../providers/loader";
@@ -61,17 +60,16 @@ export class UserInfoDetailPage {
        * user.memberType에 따라서 나중에 request할때 파라미터도 달라져야 함.
        * */
 
-      this.userService.getUserDetailInfo('pastelbook89@gmail.com', contentHeaders).toPromise()
+      this.userService.getUserDetailInfo(this.user.email, contentHeaders).toPromise()
         .then(
           response => {
-            console.log(response);
-
+            this.userDetails = response.user_info[0];
+            console.log(this.userDetails);
           }, error => {
             console.log(error);
           }
         );
     }
-    console.log(this.user);
   }
   /**
    * 정보 수정 버튼을 클릭했을 경우 수행되는 함수.
@@ -80,7 +78,6 @@ export class UserInfoDetailPage {
    * 아마도 여기서 정보다 보내줘야 할 듯. 두번 리퀘스트 할 수는 없으니까..
    */
   userInfoModify() {
-    this.navCtrl.push(UserInfoModifyPage);
   }
 
   /**

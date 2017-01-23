@@ -38,7 +38,7 @@ export class UserService {
    * user, isLogined를 초기화 하고 storage에 저장되어있는 토근에 대한 정보를 삭제한다.
    *
    * 1) menu 페이지에 로그아웃이 됬음을 알리는 이벤트를 발행 user:logout
-   * 2) buildCaseList 페이지에 로그아웃이 됬음을 알리는 이벤트를 발생 buildCaseList:logout
+   * 2) roomInfoList 페이지에 로그아웃이 됬음을 알리는 이벤트를 발생 roomInfoList:logout
    * */
   logout() {
     this.user = null;
@@ -47,7 +47,7 @@ export class UserService {
     this.storage.remove("id_token");
 
     this.events.publish('user:logout', '');
-    this.events.publish('buildCaseList:logout', '');//mypage:logout
+    this.events.publish('roomInfoList:logout', '');//mypage:logout
     this.events.publish('mypage:logout', '');//mypage:logout
   }
 
@@ -56,7 +56,7 @@ export class UserService {
    * 여기서는 로그인이 되었으므로 userService의 멤버변수 값을 바꾸고
    * 각기 등록해놓은 페이지들에게 이벤트를 발생시켜주는 것을 담당한다.
    *
-   * 1) buildCaseList:logined는 buildCaseListPage에
+   * 1) roomInfoList:logined는 RoomListPage에
    * 2) user:logined는 menu 페이지에 이벤트 리스너를 등록시켜 놓았다.
    * 해당 페이지에 가서 생성자를 확인해 보면 된다.
    * */
@@ -66,7 +66,7 @@ export class UserService {
     this.user = this.jwtHelper.decodeToken(jwt);
     this.storage.set("id_token", jwt);
 
-    this.events.publish('buildCaseList:logined', '');
+    this.events.publish('roomInfoList:logined', '');
     this.events.publish('user:logined', '');
     this.events.publish('mypage:logined', '');
   }

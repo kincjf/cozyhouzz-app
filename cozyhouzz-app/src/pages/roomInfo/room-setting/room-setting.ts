@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {Storage} from '@ionic/storage';
-import {RoomService} from '../../../../services/room-service';
-import {Room} from '../../../../providers/room';
+import {RoomService} from '../../../services/room-service';
+import {Room} from '../../../providers/room';
 import {Events} from 'ionic-angular';
 /*
 * 1) 현재 탭으로 재구성했기 때문에 페이지가 나갈때가 아니라......
@@ -16,7 +16,7 @@ import {Events} from 'ionic-angular';
  */
 @Component({
   selector: 'page-setting',
-  templateUrl: 'setting.html'
+  templateUrl: 'room-setting.html'
 })
 export class RoomSettingPage {
   room: Room;
@@ -29,7 +29,7 @@ export class RoomSettingPage {
     /*
     * 처음 페이지 생성될 때 방정보를 가져온다.
     * */
-    this.loadRoomInformation();
+    this.loadroomInformation();
   }
 
   ionViewWillEnter() {
@@ -38,7 +38,7 @@ export class RoomSettingPage {
     * 데이터를 가져온다.
     * 정보가 바뀌었을 수도 있으므로..
     * */
-    this.loadRoomInformation();
+    this.loadroomInformation();
   }
 
   /**
@@ -48,7 +48,7 @@ export class RoomSettingPage {
    * range는 특정 변수의 멤버변수인 lower, upper을 사용한다.
    * 그렇기 때문에 해당 형식에 맞게 넣어줘야 함.
    */
-  loadRoomInformation() {
+  loadroomInformation() {
     this.room = this.roomService.room;
     this.deposit = {
       lower: this.room.deposit_lower,
@@ -70,7 +70,7 @@ export class RoomSettingPage {
     * 방 검색 조건 페이지를 벗어날 때 발생하는 이벤트.
     * 현재 데이터들을 storage에 저장해야 한다.
     * 그리고 방 검색 조건이 바뀌었음을 알리는 이벤트를 발생시킨다.
-    * 해당 이벤트는 buildCaseList 부분에서 처리하도록 구현해놓았다. */
+    * 해당 이벤트는 roomInfoList 부분에서 처리하도록 구현해놓았다. */
     this.storage.set('roomSettingInformation', this.room);
     this.events.publish('room:change', '');
   }
