@@ -3,6 +3,9 @@ import {NavController, MenuController} from 'ionic-angular';
 import {UserService} from '../../../../services/user-service';
 import {UserInfoModifyPage} from '../user-info-modify/user-info-modify';
 import {FormBuilder, Validators} from "@angular/forms";
+import {contentHeaders} from '../../../../app/common/headers';
+import {Loader} from "../../../../providers/loader";
+
 /*
  Generated class for the UserInfoDetail page.
 
@@ -22,17 +25,19 @@ export class UserInfoDetailPage {
   userDetails: any = null;
   userFormBuilder: any;
   bussinessUserFormBuilder: any;
+
   user: any;
   isLogined:boolean = false;
 
   constructor(public navCtrl: NavController, public menu: MenuController, public userService: UserService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private loader: Loader) {
     this.bussinessUserFormBuilder = this.formBuilder.group({
       email: ['', Validators.required],
       fullName: ['', Validators.required],
-      businessName: ['', Validators.required],
+     /* businessName: ['', Validators.required],
       businessAddress: ['', Validators.required],
-      cellPhone: ['', Validators.required]
+*/      cellPhone: ['', Validators.required]
     });
     this.userFormBuilder = this.formBuilder.group({
       email: ['', Validators.required],
@@ -46,6 +51,7 @@ export class UserInfoDetailPage {
     this.isLogined = this.userService.getIsLogind();
     if (this.isLogined) {
       this.user = this.userService.getUserInfo();
+      contentHeaders.set('Authorization', this.userService.getJwtToken());//Header에 jwt값 추가하기
 
       /*
        * memberType에 따라서 입력해야 하는 것들이 달라짐.
@@ -55,8 +61,7 @@ export class UserInfoDetailPage {
        * user.memberType에 따라서 나중에 request할때 파라미터도 달라져야 함.
        * */
 
-
-      this.userService.getUserDetailInfo('pastelbook89@gmail.com').toPromise()
+      this.userService.getUserDetailInfo('pastelbook89@gmail.com', contentHeaders).toPromise()
         .then(
           response => {
             console.log(response);

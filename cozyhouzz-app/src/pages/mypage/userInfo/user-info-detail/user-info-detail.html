@@ -55,7 +55,7 @@
           <ion-label stacked>이메일</ion-label>
           <ion-input type="text" [ngModel]="user.email" formControlName="email"></ion-input>
         </ion-item>
-        <ion-item>
+      <!--  <ion-item>
           <ion-label stacked>사업장 이름</ion-label>
           <ion-input type="text" formControlName="businessName"></ion-input>
         </ion-item>
@@ -65,7 +65,7 @@
              *ngIf="!bussinessUserFormBuilder.controls.businessName.pristine && bussinessUserFormBuilder.controls.businessName.hasError('required')">
             This is a required field.
           </p>
-        </ion-item>
+        </ion-item>-->
         <ion-item>
           <ion-label stacked>이름</ion-label>
           <ion-input type="text" [ngModel]="user.display_name" formControlName="fullName"></ion-input>
@@ -81,10 +81,10 @@
           <ion-label stacked>핸드폰 번호</ion-label>
           <ion-input type="text" [ngModel]="user.telephone" formControlName="cellPhone"></ion-input>
         </ion-item>
-        <ion-item>
+        <!--<ion-item>
           <ion-label stacked>사업장 주소</ion-label>
           <ion-input type="text" formControlName="businessAddress"></ion-input>
-        </ion-item>
+        </ion-item>-->
       </ion-list>
       <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
     </form>

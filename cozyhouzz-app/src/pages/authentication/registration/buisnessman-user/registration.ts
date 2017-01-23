@@ -3,7 +3,9 @@ import { NavController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Loader } from '../../../../providers/loader';
-import {MyPage} from '../../../mypage/mypage';
+
+import {AlertController} from 'ionic-angular';
+import {UserService} from '../../../../services/user-service';
 /*
    Generated class for the Registration page.
  */
@@ -18,7 +20,9 @@ export class BussinessManRegistrationPage {
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
     private loader: Loader,
-    public menu: MenuController
+    public menu: MenuController,
+    public userService: UserService,
+  public alertCtrl : AlertController
   ) {
     this.menu.close();
   }
@@ -28,11 +32,8 @@ export class BussinessManRegistrationPage {
    */
   ionViewWillLoad() {
     this.user = this.formBuilder.group({
-      businessName : ['', Validators.required],
-      businessAddress : ['', Validators.required],
-      fullName: ['', Validators.required],
       email: ['', Validators.required],
-      cellphone: ['', Validators.required],
+      telephone: ['', Validators.required],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       passwordConfirmation: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
@@ -41,56 +42,53 @@ export class BussinessManRegistrationPage {
    * Create user using form builder controls
    */
   createUser() {
-    let fullName = this.user.controls.fullName.value;
     let email = this.user.controls.email.value;
-    let cellphone = this.user.controls.cellphone.value;
+    let telephone = this.user.controls.telephone.value;
     let password = this.user.controls.password.value;
-    let businessName = this.user.controls.businessName.value;
-    let businessAddress = this.user.controls.businessAddress.value;
     let passwordConfirmation = this.user.controls.passwordConfirmation.value;
-    this.loader.show("Creating user...");
-    /*new Promise((resolve, reject) => {
-      if (passwordConfirmation != password) {
-        reject(new Error('Password does not match'));
-      } else {
-        resolve();
-      }
-    })
-    .then(() => {
-      // 새로 만들어지는 계정에 대한 정보를 전송하는 부분
-      // 이메일, 패스워드만 삽입되어 있음.
-      return this.af.auth.createUser({ email, password })
-    })
-    .then((user) => {
-      this.events.publish('user:create', user);
-      // Login if successfuly creates a user
-      return this.af.auth.login({ email, password }, {
-        method: AuthMethods.Password,
-        provider: AuthProviders.Password
-      });
-    })
-    .then((user) => {
-      console.log(JSON.stringify(user));
-      // CUSTOMISE: Here you can add more fields to your user registration
-      // those fields will be stored on /users/{uid}/
-      let userRef = this.af.database.object('/users/' + user["auth"]["uid"]);
-      userRef.set({ email: email, provider: user["provider"], fullName: fullName, cellPhone: cellphone, businessName: businessName, businessAddress: businessAddress, delimiter:this.delimiter });
-      this.loader.hide();
-      // this.navCtrl.pop();
-      // this.navCtrl.push(AboutPage, { user: user });
-    })
-    .catch((e) => {
-      this.loader.hide();
+    if (password != passwordConfirmation) {
       this.alertCtrl.create({
         title: 'Error',
-        message: `Failed to login. ${e.message}`,
-        buttons: [{ text: 'Ok' }]
+        message: '비밀번호가 일치하지 않습니다.',
+        buttons: [{text: 'Ok'}]
       }).present();
-    });*/
-    this.navCtrl.pop();
-  }
-  test() {
+      return 0;
+    }
+    if(telephone == null || telephone == undefined || telephone.length <=0 ) {
+      this.alertCtrl.create({
+        title: 'Error',
+        message: '핸드폰 번호를 입력해 주세요.',
+        buttons: [{text: 'Ok'}]
+      }).present();
+      return 0;
 
-    this.navCtrl.setRoot(MyPage);
+    }
+    let url = 'http://npus.kr:3000/api/register';
+    let user = {
+      email: email,
+      password: password,
+      telephone: telephone,
+      member_type: 'BUSINESS'
+    };
+
+
+    /*
+    * 회원가입 요청하는 부분.
+    * userService의 createUser 함수가 담당하고 있음.
+    * 회원가입이 완료되면 바로 로그인 수행함. */
+    this.loader.show("회원 가입 중입니다.");
+    this.userService.createUser(url, user).subscribe(response => {
+      this.loader.hide();
+      this.userService.setUserInfo(response.id_token);
+      this.navCtrl.parent.select(4);
+    }, error => {
+      this.loader.hide();
+      let errorMsg = JSON.parse(error._body).errorMsg;
+      this.alertCtrl.create({
+        title: 'Error',
+        message: errorMsg,
+        buttons: [{text: 'Ok'}]
+      }).present();
+    });
   }
 }

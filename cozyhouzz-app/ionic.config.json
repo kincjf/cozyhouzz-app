@@ -19,8 +19,16 @@
         "proxyUrl":"https://krpano.com/panos/tokyo45gp/"
       },
       {
-         "path" : "//npus-kr.disqus.com/embed.js",
+        "path" : "//npus-kr.disqus.com/embed.js",
         "proxyUrl":"http://npus-kr.disqus.com/embed.js"
+      },
+      {
+        "path" : "/api/register",
+        "proxyUrl":"http://npus.kr:3000/api/register"
+      },
+      {
+        "path" : "http://npus.kr:3000/api/register",
+        "proxyUrl":"http://npus.kr:3000/api/register"
       }
     ]
 }

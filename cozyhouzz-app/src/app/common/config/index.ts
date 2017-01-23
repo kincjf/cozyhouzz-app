@@ -13,6 +13,7 @@ export const config = {
     path: {
       login: "api/login", //01.18 수정됨 - 김호세
       signup: "api/auth/register",
+      signout: "api/quit",
       userInfo: "api/info",
       changeSignup: "api/user",
       changeBizSignup: "api/user/biz",
@@ -28,6 +29,7 @@ export const config = {
     path: {
       login: "api/auth/login",
       signup: "api/auth/register",
+      signout: "api/quit",
       changeSignup: "api/user",
       changeBizSignup: "api/user/biz",
       consulting: "api/consult",
@@ -42,6 +44,7 @@ export const config = {
     path: {
       login: "api/auth/login",
       signup: "api/auth/register",
+      signout: "api/quit",
       changeSignup: "api/user",
       changeBizSignup: "api/user/biz",
       consulting: "api/consult",

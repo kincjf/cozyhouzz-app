@@ -40,7 +40,7 @@ export class AppComponent {
       });
       Keyboard.disableScroll(true);
 
-      this.rootPage = Menu;
+      this.rootPage = TabsPage; //TabsPage //Menu
       this.registerBackButtonListener();
     });
 

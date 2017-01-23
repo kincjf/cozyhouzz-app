@@ -20,13 +20,13 @@
       </ion-item>
       <ion-item>
         <ion-label stacked>핸드폰 번호</ion-label>
-        <ion-input #cellphone type="text" formControlName="cellphone"></ion-input>
+        <ion-input #cellphone type="text" formControlName="telephone"></ion-input>
       </ion-item>
-      <ion-item class="form-error-list" *ngIf="!user.controls.cellphone.pristine && !user.controls.cellphone.valid">
-        <p class="form-error" item-right *ngIf="!user.controls.cellphone.pristine && user.controls.cellphone.hasError('required')">
+      <ion-item class="form-error-list" *ngIf="!user.controls.telephone.pristine && !user.controls.telephone.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.telephone.pristine && user.controls.telephone.hasError('required')">
           This is a required field.
         </p>
-        <p class="form-error" item-right *ngIf="!user.controls.cellphone.pristine && !user.controls.cellphone.valid">
+        <p class="form-error" item-right *ngIf="!user.controls.telephone.pristine && !user.controls.telephone.valid">
           Invalid cell phone address.
         </p>
       </ion-item>
@@ -58,5 +58,4 @@
     </ion-list>
     <button type="submit" full ion-button block color="secondary" [disabled]="!user.valid">Sign up</button>
   </form>
-  <button (click)="test()">test</button>
 </ion-content>

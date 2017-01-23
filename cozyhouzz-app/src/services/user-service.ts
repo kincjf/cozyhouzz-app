@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
-import {Http} from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 import {Storage} from '@ionic/storage';
 import {Events} from 'ionic-angular';
 import {JwtHelper, tokenNotExpired} from 'angular2-jwt';
 
 import {config} from '../app/common/config';
 /*
-* 로그인과 회원가입, 비밀번호 찾기등을 도맡아할 user-service.ts
-* */
+ * 로그인과 회원가입, 비밀번호 찾기등을 도맡아할 user-service.ts
+ * */
 @Injectable()
 export class UserService {
   private isLogind;
@@ -18,10 +18,10 @@ export class UserService {
 
   constructor(public http: Http, public storage: Storage, public events: Events) {
     /*
-    * 초기 상태는 비로그인 상태이므로 isLogined는 false로 세팅한다.
-    * 앱이 실행되면 UserService의 constructor가 아닌
-    * app.component.ts에서 storage를 먼저 확인한다. src/app/app.component.ts
-    * */
+     * 초기 상태는 비로그인 상태이므로 isLogined는 false로 세팅한다.
+     * 앱이 실행되면 UserService의 constructor가 아닌
+     * app.component.ts에서 storage를 먼저 확인한다. src/app/app.component.ts
+     * */
     this.isLogind = false;
     this.jwtHelper = new JwtHelper();
   }
@@ -32,6 +32,7 @@ export class UserService {
         return x.json();
       });
   }
+
   /**
    * 로그아웃에 대한 것을 처리하는 부분.
    * user, isLogined를 초기화 하고 storage에 저장되어있는 토근에 대한 정보를 삭제한다.
@@ -71,16 +72,16 @@ export class UserService {
   }
 
   /**
-  * 사용자 정보를 반환하는 함수
-  * */
+   * 사용자 정보를 반환하는 함수
+   * */
   getUserInfo() {
     return this.user;
   }
 
   /**
-  * 사용자 정보를 초기화 하는 함수
-  * logout()와 달리 쓸곳이 있을지 몰라 만들어 놓음.
-  * */
+   * 사용자 정보를 초기화 하는 함수
+   * logout()와 달리 쓸곳이 있을지 몰라 만들어 놓음.
+   * */
   removeUserInfo() {
     this.jwt = null;
     this.user = null;
@@ -93,17 +94,18 @@ export class UserService {
   }
 
   /**
-  * 로그인 여부를 반환하는 함수.
-  * 아래처럼 사용하면 되도록 만들었음.
-  * if(userServie.getIsLogined()) {
+   * 로그인 여부를 반환하는 함수.
+   * 아래처럼 사용하면 되도록 만들었음.
+   * if(userServie.getIsLogined()) {
   *     //로그인 됨.
   * } else {
   *     //로그인 안됨.
   * }
-  * */
+   * */
   getIsLogind() {
     return this.isLogind;
   }
+
   /**
    * 현재 로그인 되어있는 유저의 jwt 토큰을 반환.
    * cozyhouzz-client 보니까 jwt 토큰을 headers에 추가하던데.
@@ -117,9 +119,28 @@ export class UserService {
    *
    * @param email
    */
-  getUserDetailInfo(email) {
+  createUser(url, user) {
+    return this.http.post(url, user)
+      .map(x => {
+        return x.json();
+      });
+  }
+  modifyUserDetailInfo(user, header){
+    let options = new RequestOptions({ headers: header });
+
+  }
+  getUserDetailInfo(email, header) {
+    let options = new RequestOptions({ headers: header });
     let URL = [config.serverHost, config.path.userInfo].join('/');
-    return this.http.post(URL, {email: email})
+    return this.http.post(URL, {email: email}, options)
+      .map(x => {
+        return x.json();
+      });
+  }
+  signOut(user, header) {
+    let options = new RequestOptions({ headers: header });
+    let URL = [config.serverHost, config.path.signout].join('/');
+    return this.http.post(URL, {email: user.email}, options)
       .map(x => {
         return x.json();
       });
