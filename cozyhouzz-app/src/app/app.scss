@@ -227,3 +227,7 @@ ion-navbar {
 .toolbar-background-md {
   border-color: #73C3CB !important;
 }
+
+ion-menu[side=left] .menu-inner {
+  width: 75%;
+}

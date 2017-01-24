@@ -7,7 +7,7 @@ import {UserService} from '../../services/user-service';
 import {RoomSettingPage} from '../roomInfo/room-setting/room-setting';
 import {RegistrationPage} from '../authentication/registration/registration';
 import {ConsultingListPage} from '../mypage/consulting/consulting-list/consulting-list';
-
+import {NoticeBoardListPage} from '../board/notice-board-list/notice-board-list';
 import {contentHeaders} from '../../app/common/headers';
 import {Config} from '../../app/config';
 import {config} from "../../app/common/config/index";
@@ -29,7 +29,28 @@ export class MyPage {
               public alertCtrl: AlertController, private loader: Loader) {
 
 
+    /*
+    * 반드시 아래 경로 다시 설정해줘야 함.
+    * 지금 찜목록이랑 최신 글 보기는 제대로 작동하지 않음.
+    * 찜목
+    * */
     this.pages = [
+      {
+        title: '공지사항',
+        component: NoticeBoardListPage,
+        flag: true,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '공지사항을 확인할 수 있습니다.'
+      },
+      {
+        title: '공지사항',
+        component: NoticeBoardListPage,
+        flag: false,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '공지사항을 확인할 수 있습니다.'
+      },
       {
         title: '방 검색 설정',
         component: RoomSettingPage,
@@ -49,7 +70,7 @@ export class MyPage {
 
       {
         title: '찜 목록',
-        component: RoomSettingPage,
+        component: null,
         flag: true,
         ios: 'ios-heart',
         md: 'md-heart',
@@ -57,7 +78,7 @@ export class MyPage {
       },
       {
         title: '찜 목록',
-        component: RoomSettingPage,
+        component: null,
         flag: false,
         ios: 'ios-heart',
         md: 'md-heart',
@@ -66,7 +87,7 @@ export class MyPage {
 
       {
         title: '최근 본 방',
-        component: RoomSettingPage,
+        component: null,
         flag: true,
         ios: 'ios-time',
         md: 'md-time',
@@ -74,7 +95,7 @@ export class MyPage {
       },
       {
         title: '최근 본 방',
-        component: RoomSettingPage,
+        component: null,
         flag: false,
         ios: 'ios-time',
         md: 'md-time',
@@ -148,6 +169,13 @@ export class MyPage {
       } else if (page == 'UserInfoDetailPage') {
         this.navCtrl.push(UserInfoDetailPage);
 
+      } else if(page =='NoticeBoardListPage') {
+        this.navCtrl.push(NoticeBoardListPage);
+
+      } else if(page=='RoomSettingPage') {
+        this.navCtrl.push(RoomSettingPage);
+      } else if(page == 'UserInfoDetailPage') {
+        this.navCtrl.push(UserInfoDetailPage);
       }
       Config.SELECTED_TABS_MENU = null;
     }

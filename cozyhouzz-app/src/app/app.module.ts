@@ -28,6 +28,7 @@ import {MyPage} from '../pages/mypage/mypage';
 import {ConsultingListPage} from '../pages/mypage/consulting/consulting-list/consulting-list';
 import {ConsultingDetailPage} from '../pages/mypage/consulting/consulting-detail/consulting-detail';
 import {RoomCommentPage} from '../pages/roomInfo/room-comment/room-comment';
+import {NoticeBoardListPage} from '../pages/board/notice-board-list/notice-board-list';
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
 import {RoomListPage} from '../pages/roomInfo/room-list/room-list';
@@ -81,7 +82,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     MyPage,
     ConsultingDetailPage,
     ConsultingListPage,
-    RoomCommentPage
+    RoomCommentPage,
+    NoticeBoardListPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -115,7 +117,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     MyPage,
     ConsultingDetailPage,
     ConsultingListPage,
-    RoomCommentPage
+    RoomCommentPage,
+    NoticeBoardListPage
   ],
   providers: [
     Loader,

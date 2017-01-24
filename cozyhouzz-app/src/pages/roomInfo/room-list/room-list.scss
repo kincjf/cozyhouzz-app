@@ -62,113 +62,76 @@ page-build-case-list {
       background-color: #efefef;
     }
     ion-list {
-
-
       ion-item {
-        min-height: 25vw;
-        padding-left: 0;
-        margin: 3px 0 0 0;
         .item-inner {
           border-bottom: 0px solid #ddd;
-          padding-right: 0;
-          ion-label {
-            margin: 0;
-            .post-body {
-              p {
-                font-size: 0.8em;
-              }
+        }
+        margin-top: 3px;
+        ion-thumbnail {
+          width: 50%;
+          margin: 0;
+          min-height: 100%;
+          img {
+            height: 100% !important;
+            width: 100%;
+          }
+        }
+        div#roomInfoDetail {
+          line-height: 1.1;
+          padding-left: 8px;
+          #post_title,
+          #post_place {
+            display: inline-block;
+            width: 47vw;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
-              a.subdued {
-                color: $textColor;
-                font-size: 0.8em;
-              }
+          }
+          #post_title {
+
+            position: relative;
+            font-size: 1.40rem;
+            bottom: -4px;
+          }
+          #post_place {
+            position: relative;
+            font-size: 1.20rem;
+            bottom: -2px;
+          }
+
+          #post_pyeong,
+          #post_deposit,
+          #post_type {
+            position: relative;
+            bottom: -1px;
+            //position: relative;
+            //bottom: -3px;
+            display: inline-block;
+            border: 1px solid #ddd;
+            padding: 4px 6px 2px 6px;
+            border-radius: 3px;
+            font-size: 1rem;
+          }
+          #post_etc {
+            font-size: 1.1rem;
+            padding-left: 2px;
+            display: inline-block;
+            margin-top: 3px;
+
+            span:first-child {
+              margin-right: 8px;
             }
-            .post-actions {
-              color: #7C7C7C;
-              font-size: 1.4em;
-            }
-            .outer {
-              display: table;
-              position: absolute;
-              height: 25vw;
-              width: 50%;
-              right: 0;
-            }
-
-
-            .middle {
-              display: table-cell;
-              vertical-align: middle;
-            }
-
-            .inner {
-              line-height: 1.1;
-              padding-left: 8px;
-              padding-right: 8px;
-              margin-left: auto;
-              margin-right: auto;
-              width: 100%;
-              #post_title,
-              #post_place {
-                display: inline-block;
-                width: 47vw;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-
-              }
-              #post_title {
-
-                position: relative;
-                font-size: 1.40rem;
-                bottom: -4px;
-              }
-              #post_place {
-                position: relative;
-                font-size: 1.20rem;
-                bottom: -2px;
-              }
-
-              #post_pyeong,
-              #post_deposit,
-              #post_type {
-                position: relative;
-                bottom: -1px;
-                //position: relative;
-                //bottom: -3px;
-                display: inline-block;
-                border: 1px solid #ddd;
-                padding: 4px 6px 2px 6px;
-                border-radius: 3px;
-                font-size: 1rem;
-              }
-              #post_etc {
-                font-size: 1.1rem;
-                padding-left: 2px;
-                display: inline-block;
-                margin-top: 3px;
-
-                span:first-child {
-                  margin-right: 8px;
-                }
-                ion-icon {
-                  margin-right: 2px;
-                  position: relative;
-                  top: 1px;
-                }
-              }
-            }
-            .post-body {
-              padding: 0 !important;
-              .item-inner {
-                padding: 0 !important;
-                .label {
-                  margin: 0 !important;
-                }
-              }
+            ion-icon {
+              margin-right: 2px;
+              position: relative;
+              top: 1px;
             }
           }
         }
+        min-height: 25vw;
+        padding-left: 0;
+
       }
       ion-item:first-child {
 

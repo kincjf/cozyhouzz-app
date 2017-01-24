@@ -5,13 +5,15 @@
 -->
 <ion-header no-border style="border-bottom: 1px solid #73C3CB;">
   <ion-navbar color="cozy" hideBackButton>
-    <ion-buttons left>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!--<ion-buttons left>
       <button ion-button left style="width: 48px; font-size: 2.2rem;">
         <ion-icon ios="ios-list" md="md-list"></ion-icon>
 
       </button>
-
-    </ion-buttons>
+    </ion-buttons>-->
     <ion-title>방 목록</ion-title>
     <ion-buttons end>
       <button ion-button right (click)="refreshButtonClick()">
@@ -46,9 +48,9 @@
               <ion-option value="1">최신순</ion-option>
               <ion-option value="2">이름순</ion-option>
               <ion-option value="3">보증금순</ion-option>
-<!--
-              <ion-option value="3">월세순</ion-option>
--->
+              <!--
+                            <ion-option value="3">월세순</ion-option>
+              -->
             </ion-select>
           </ion-item>
         </ion-col>
@@ -78,22 +80,22 @@
 </ion-header>
 <ion-content id="roomInfoListContent">
 
-<!--
+  <!--
 
-  <ion-refresher class="refresher" (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150" no-border>
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
--->
+    <ion-refresher class="refresher" (ionRefresh)="doRefresh($event)" pullMin="60" pullMax="150" no-border>
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+  -->
 
 
-<!--
-  <ion-spinner></ion-spinner>
--->
+  <!--
+    <ion-spinner></ion-spinner>
+  -->
   <!--
 
 
@@ -110,51 +112,38 @@
       | sortBy : 'title' 이면 title로 오름차순 한다는 의미
       해당 부분에 변수를 두고 변수의 값을 바꾸는 것으로 해야 할듯.
       -->
-    <ion-item *ngFor="let roomInfo of returnedDatas | sortBy : orderBy;  let i = index" class="roomInfo">
-      <div class="post-body" (click)="viewPost(roomInfo.selectedroomInfoIdx)">
-        <div class="img"  style="width: 100%;">
+    <ion-item *ngFor="let roomInfo of returnedDatas | sortBy : orderBy;  let i = index" class="roomInfo"
+              (click)="viewPost(roomInfo.selectedroomInfoIdx)">
+      <ion-thumbnail item-left>
+        <img src="assets/img/testMainPreviewImage2.jpg" *ngIf="i%4==0"
 
-          <!--
-                             <img src="http://api.cozyhouzz.co.kr/{{roomInfo.mainPreviewImage}}"
-                                  alt="Inventor e voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-                    -->
-
-          <img src="assets/img/testMainPreviewImage2.jpg" *ngIf="i%4==0"
-
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%;display: block; float: left;">
-          <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="assets/img/testMainPreviewImage4.jpg" *ngIf="i%4==2"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-          <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
-               alt="Inventore voluptates velit totam ipsa tenetur" style="width: 50%; display: block; float: left;">
-
-
-
-          <div class="outer">
-            <div class="middle">
-              <div class="inner" *ngIf="view" >
-                <span id="post_title">{{roomInfo.title}}</span><br>
-                <span id="post_place">{{roomInfo.buildPlace}}</span><br>
-                <span id="post_pyeong">{{roomInfo.buildTotalArea}}평</span>
-                <span id="post_type">{{roomInfo.buildType}}</span>
-                <span id="post_deposit">{{roomInfo.buildTotalPrice}} / 20</span><br>
-                <span id="post_etc">
-                  <span>
-                      <ion-icon ios="ios-heart" md="md-heart" style="color: #ff7473;"></ion-icon> {{i}}
-                  </span>
-                  <span>
-                      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"
-                                style="color:#159DEB;"></ion-icon> {{i * 3}}
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
+        <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
+             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
+        <img src="assets/img/testMainPreviewImage4.jpg" *ngIf="i%4==2"
+             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
+        <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
+             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
+      </ion-thumbnail>
+      <div id="roomInfoDetail" *ngIf="view">
+        <span id="post_title">{{roomInfo.title}}</span><br>
+        <span id="post_place">{{roomInfo.buildPlace}}</span><br>
+        <span id="post_pyeong">{{roomInfo.buildTotalArea}}평</span>
+        <span id="post_type">{{roomInfo.buildType}}</span>
+        <span id="post_deposit">{{roomInfo.buildTotalPrice}} / 20</span><br>
+        <span id="post_etc">
+          <span>
+              <ion-icon ios="ios-heart" md="md-heart" style="color: #ff7473;"></ion-icon> {{i}}
+          </span>
+          <span>
+              <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"
+                        style="color:#159DEB;"></ion-icon> {{i * 3}}
+          </span>
+        </span>
       </div>
     </ion-item>
+
+
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" style="margin-top: 30px;">
     <ion-infinite-scroll-content
