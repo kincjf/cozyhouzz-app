@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController, NavController, MenuController, Events} from 'ionic-angular';
 import {ZipCodeService} from '../../../services/zip-code-service';
 import {Validators, FormBuilder} from '@angular/forms';
+import {Loader} from "../../../providers/loader";
 
 /*
  Generated class for the ZipCode page.
@@ -21,7 +22,7 @@ export class ZipCodePage {
   public addButton: boolean = false;
 
   constructor(public navCtrl: NavController, private menu: MenuController, private zipcode: ZipCodeService,
-              private alertCtrl: AlertController, private formBuilder: FormBuilder, private events: Events) {
+              private alertCtrl: AlertController, private formBuilder: FormBuilder, private events: Events, private loader: Loader) {
   }
 
   ionViewWillLoad() {
@@ -36,6 +37,8 @@ export class ZipCodePage {
    * 사용자가 주소를 입력했을 경우, 해당 주소를 파라미터로 하는 api를 호출하는 부분.
    */
   getAddressList() {
+    this.loader.show("정보를 불러오고 있습니다.");
+
     this.current_page = 1;
     this.countPerPage = 10;
     this.addButton = false;
@@ -50,9 +53,10 @@ export class ZipCodePage {
             if (this.juso_list.length >= 10) {
               this.addButton = true;
             }
-            console.log(response.results.juso);
+            this.loader.hide();
           },
           err => {
+            this.loader.hide();
             this.alertCtrl.create({
               title: 'Error',
               message: 'Failed to login ' + err,

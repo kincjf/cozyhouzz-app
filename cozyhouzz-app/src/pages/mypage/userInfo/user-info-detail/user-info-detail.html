@@ -14,46 +14,76 @@
 
 <ion-content padding>
   <div *ngIf="isLogined">
-    <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="user.member_type == 'PUBLIC'">
+    <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="userDetails.member_type == 'PUBLIC'">
 
       <ion-list>
         <ion-item>
-          <ion-label stacked>email</ion-label>
-          <ion-input type="text" [ngModel]="user.email" formControlName="email" readonly></ion-input>
+          <ion-label stacked>이메일(필수)</ion-label>
+          <ion-input type="text" [ngModel]="userDetails.email" formControlName="email" readonly></ion-input>
         </ion-item>
         <ion-item class="form-error-list"
-                  *ngIf="!userFormBuilder.controls.email.pristine && !userFormBuilder.controls.email.valid">
+                              *ngIf="!userFormBuilder.controls.email.pristine && !userFormBuilder.controls.email.valid">
+        <p class="form-error" item-right
+           *ngIf="!userFormBuilder.controls.email.pristine && userFormBuilder.controls.email.hasError('required')">
+          This is a required field.
+        </p>
+      </ion-item>
+        <ion-item>
+          <ion-label stacked>이전 비밀번호(필수)</ion-label>
+          <ion-input type="password"  formControlName="password" ></ion-input>
+        </ion-item>
+        <ion-item class="form-error-list"
+                  *ngIf="!userFormBuilder.controls.password.pristine && !userFormBuilder.controls.password.valid">
           <p class="form-error" item-right
-             *ngIf="!userFormBuilder.controls.email.pristine && userFormBuilder.controls.email.hasError('required')">
+             *ngIf="!userFormBuilder.controls.password.pristine && userFormBuilder.controls.password.hasError('required')">
             This is a required field.
           </p>
         </ion-item>
         <ion-item>
+          <ion-label stacked>변경할 비밀번호(선택)</ion-label>
+          <ion-input type="password" formControlName="new_password"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label stacked>이름</ion-label>
-          <ion-input type="text" [ngModel]="user.display_name" formControlName="fullName"></ion-input>
+          <ion-input type="text" [ngModel]="userDetails.display_name" formControlName="display_name"></ion-input>
         </ion-item>
         <ion-item class="form-error-list"
-                  *ngIf="!userFormBuilder.controls.fullName.pristine && !userFormBuilder.controls.fullName.valid">
+                  *ngIf="!userFormBuilder.controls.display_name.pristine && !userFormBuilder.controls.display_name.valid">
           <p class="form-error" item-right
-             *ngIf="!userFormBuilder.controls.fullName.pristine && userFormBuilder.controls.fullName.hasError('required')">
+             *ngIf="!userFormBuilder.controls.display_name.pristine && userFormBuilder.controls.display_name.hasError('required')">
             This is a required field.
           </p>
         </ion-item>
         <ion-item>
           <ion-label stacked>핸드폰 번호</ion-label>
-          <ion-input type="text" [ngModel]="user.telephone" formControlName="cellPhone"></ion-input>
+          <ion-input type="text" [ngModel]="userDetails.telephone" formControlName="telephone"></ion-input>
         </ion-item>
 
       </ion-list>
       <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
     </form>
-    <form [formGroup]="bussinessUserFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="user.member_type != 'PUBLIC'">
+    <form [formGroup]="bussinessUserFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="userDetails.member_type != 'PUBLIC'">
 
       <ion-list>
 
         <ion-item>
-          <ion-label stacked>이메일</ion-label>
-          <ion-input type="text" [ngModel]="user.email" formControlName="email"></ion-input>
+          <ion-label stacked>이메일(필수)</ion-label>
+          <ion-input type="text" [ngModel]="userDetails.email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>이전 비밀번호(필수)</ion-label>
+          <ion-input type="password"  formControlName="password" ></ion-input>
+        </ion-item>
+        <ion-item class="form-error-list"
+                  *ngIf="!userFormBuilder.controls.password.pristine && !userFormBuilder.controls.password.valid">
+          <p class="form-error" item-right
+             *ngIf="!userFormBuilder.controls.password.pristine && userFormBuilder.controls.password.hasError('required')">
+            This is a required field.
+          </p>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>변경할 비밀번호(선택)</ion-label>
+          <ion-input type="password" formControlName="new_password"></ion-input>
         </ion-item>
       <!--  <ion-item>
           <ion-label stacked>사업장 이름</ion-label>
@@ -68,18 +98,18 @@
         </ion-item>-->
         <ion-item>
           <ion-label stacked>이름</ion-label>
-          <ion-input type="text" [ngModel]="user.display_name" formControlName="fullName"></ion-input>
+          <ion-input type="text" [ngModel]="userDetails.display_name" formControlName="display_name"></ion-input>
         </ion-item>
         <ion-item class="form-error-list"
-                  *ngIf="!bussinessUserFormBuilder.controls.fullName.pristine && !bussinessUserFormBuilder.controls.fullName.valid">
+                  *ngIf="!bussinessUserFormBuilder.controls.display_name.pristine && !bussinessUserFormBuilder.controls.display_name.valid">
           <p class="form-error" item-right
-             *ngIf="!bussinessUserFormBuilder.controls.fullName.pristine && bussinessUserFormBuilder.controls.fullName.hasError('required')">
+             *ngIf="!bussinessUserFormBuilder.controls.display_name.pristine && bussinessUserFormBuilder.controls.display_name.hasError('required')">
             This is a required field.
           </p>
         </ion-item>
         <ion-item>
-          <ion-label stacked>핸드폰 번호</ion-label>
-          <ion-input type="text" [ngModel]="user.telephone" formControlName="cellPhone"></ion-input>
+          <ion-label stacked>핸드폰 번호(필수)</ion-label>
+          <ion-input type="text" [ngModel]="userDetails.telephone" formControlName="telephone"></ion-input>
         </ion-item>
         <!--<ion-item>
           <ion-label stacked>사업장 주소</ion-label>

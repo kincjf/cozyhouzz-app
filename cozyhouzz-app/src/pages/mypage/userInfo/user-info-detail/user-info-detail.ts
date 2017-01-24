@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, MenuController} from 'ionic-angular';
+import {NavController, MenuController, Events, AlertController} from 'ionic-angular';
 import {UserService} from '../../../../services/user-service';
 import {FormBuilder, Validators} from "@angular/forms";
 import {contentHeaders} from '../../../../app/common/headers';
@@ -29,24 +29,26 @@ export class UserInfoDetailPage {
   isLogined:boolean = false;
 
   constructor(public navCtrl: NavController, public menu: MenuController, public userService: UserService,
-              private formBuilder: FormBuilder,
-              private loader: Loader) {
+              private formBuilder: FormBuilder, private alertCtrl:AlertController,
+              private loader: Loader, private events: Events) {
     this.bussinessUserFormBuilder = this.formBuilder.group({
       email: ['', Validators.required],
-      fullName: ['', Validators.required],
+      display_name: ['',null],
      /* businessName: ['', Validators.required],
       businessAddress: ['', Validators.required],
-*/      cellPhone: ['', Validators.required]
+*/      telephone: ['', Validators.required],
+      password: ['', Validators.required],
+      new_password: ['', null]
     });
     this.userFormBuilder = this.formBuilder.group({
       email: ['', Validators.required],
-      fullName: ['', Validators.required],
-      cellPhone: ['', Validators.required]
+      display_name: ['', null],
+      telephone: ['',null],
+      password: ['', Validators.required],
+      new_password: ['', null]
     });
-
-
   }
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.isLogined = this.userService.getIsLogind();
     if (this.isLogined) {
       this.user = this.userService.getUserInfo();
@@ -59,11 +61,12 @@ export class UserInfoDetailPage {
        *
        * user.memberType에 따라서 나중에 request할때 파라미터도 달라져야 함.
        * */
-
-      this.userService.getUserDetailInfo(this.user.email, contentHeaders).toPromise()
+      console.log(this.userService.getJwtToken());
+      this.userDetails = this.user;
+      this.userService.getUserDetailInfo(this.user, contentHeaders).toPromise()
         .then(
           response => {
-            this.userDetails = response.user_info[0];
+            //this.userDetails = response.user_info[0];
             console.log(this.userDetails);
           }, error => {
             console.log(error);
@@ -93,42 +96,63 @@ export class UserInfoDetailPage {
 
   updateUserSettings() {
 
-    /*console.debug("updating user details on firebase " + this.constructor.name);
-     var update_info;
-     let fullName = this.userDetails.fullName;
-     let cellPhone = this.userDetails.cellPhone;
-     if (this.userDetails.delimiter == 0) {
-     update_info = {fullName: fullName, cellPhone: cellPhone};
-     } else if (this.userDetails.delimiter == 1) {
-     let businessAddress = this.userDetails.businessAddress;
-     let businessName = this.userDetails.businessName;
-     update_info = {
-     fullName: fullName,
-     cellPhone: cellPhone,
-     businessAddress: businessAddress,
-     businessName: businessName
-     };
-     }
+    this.loader.show("정보를 수정하고 있습니다.");
 
-     this.loader.show("Updating your settings...");
-     this.userDetails.update(update_info)
-     .then((user) => {
-     this.loader.hide();
-     this.alertCtrl.create({
-     title: 'Success',
-     message: 'Details updated',
-     buttons: [{text: 'Ok'}]
-     }).present();
-     this.navCtrl.pop();
-     })
-     .catch((e) => {
-     this.loader.hide();
-     console.error(`Password Login Failure:`, e)
-     this.alertCtrl.create({
-     title: 'Error',
-     message: `Failed to update details. ${e.message}`,
-     buttons: [{text: 'Ok'}]
-     }).present();
-     });*/
+    let member_type = this.user.member_type;
+
+    let display_name = this.userFormBuilder.value.display_name;
+    let telephone = this.userFormBuilder.value.telephone;
+    let email = this.userFormBuilder.value.email;
+    let password =this.userFormBuilder.value.password;
+    let new_password =this.userFormBuilder.value.new_password;
+
+    let user_info = { };
+
+    console.log(user_info);
+    if(member_type == 'PUBLIC') {
+        user_info =  {
+          display_name:display_name,
+          email:email,
+          password:password,
+          telephone:telephone,
+          member_type: 'PUBLIC',
+          new_password:new_password
+        };
+    } else if('BUSINESS') {
+      user_info =  {
+        display_name:display_name,
+        email:email,
+        password:password,
+        telephone:telephone,
+        member_type: 'BUSINESS',
+        new_password:new_password
+      };
+    }
+    this.userService.modifyUserDetailInfo(user_info, contentHeaders).toPromise()
+      .then(
+        response => {
+          //this.userDetails = response.user_info[0];
+          console.log(response);
+          let statusCode = response.statusCode;
+          if(statusCode==1) {
+              this.loader.hide();
+              this.userService.removeUserInfo();
+              this.userService.setUserInfo(response.id_token);
+              this.navCtrl.pop();
+          }
+        }, error => {
+
+          this.loader.hide();
+          let status = error.status;
+          if(status==401) {
+            this.alertCtrl.create({
+              title: 'Error',
+              message: '이전 비밀번호가<br>일치하지 않습니다.',
+              buttons: [{text: 'Ok'}]
+            }).present();
+          }
+        }
+      );
+
   }
 }

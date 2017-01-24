@@ -64,6 +64,7 @@ export class UserService {
     this.isLogind = true;
     this.jwt = jwt;
     this.user = this.jwtHelper.decodeToken(jwt);
+    console.log(this.user);
     this.storage.set("id_token", jwt);
 
     this.events.publish('roomInfoList:logined', '');
@@ -127,12 +128,17 @@ export class UserService {
   }
   modifyUserDetailInfo(user, header){
     let options = new RequestOptions({ headers: header });
+    let URL = [config.serverHost, config.path.userInfoModify].join('/');
+    return this.http.post(URL, user, options)
+      .map(x => {
+        return x.json();
+      });
 
   }
-  getUserDetailInfo(email, header) {
+  getUserDetailInfo(user, header) {
     let options = new RequestOptions({ headers: header });
     let URL = [config.serverHost, config.path.userInfo].join('/');
-    return this.http.post(URL, {email: email}, options)
+    return this.http.post(URL, {email: user.email, password: user.password}, options)
       .map(x => {
         return x.json();
       });
