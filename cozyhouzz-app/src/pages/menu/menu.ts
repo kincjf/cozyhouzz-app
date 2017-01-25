@@ -28,6 +28,12 @@ export class Menu {
       this.user = this.userService.getUserInfo();
     }
 
+    /*
+    * 사이드 메뉴에 띄울 것들을 가지고 있는 배열
+    * 로그인/로그아웃 모두 띄워줘야 하는 것들은
+    * flag의 값만 반대로 하여 2개씩 작성해 주어야 한다.
+    *
+    * 나중에 잘 줄여 봐야 함. */
     this.pages = [
       {
         title: '공지사항',
@@ -148,12 +154,14 @@ export class Menu {
       this.user = null;
     });
 
-    events.subscribe('menu:opened', () => {/*
-     let element: HTMLElement = document.getElementById('roomInfoListContent');
-
-     element.getElementsByClassName('scroll-content')[0].setAttribute('style', "margin-top: 103px;");*/
+    events.subscribe('menu:opened', () => {
+      /*
+        let element: HTMLElement = document.getElementById('roomInfoListContent');
+        element.getElementsByClassName('scroll-content')[0].setAttribute('style', "margin-top: 103px;");
+       */
     });
     events.subscribe('menu:closed', () => {
+
     });
   }
 
@@ -179,11 +187,6 @@ export class Menu {
    */
   menuOpened() {
     this.events.publish('menu:opened', '');
-
-  }
-
-  ionViewCanEnter() {
-    console.log("test");
   }
 
   /**
@@ -201,7 +204,7 @@ export class Menu {
   openResistrationPage() {
     this.menu.close();
     Config.SELECTED_TABS_MENU = 'RegisterPage';
-    this.nav._children[0].select(4);
+    this.nav._children[0].select(3);
     // this.nav.push(RegistrationPage);
   }
 
@@ -212,32 +215,38 @@ export class Menu {
     this.menu.close();
 
     Config.SELECTED_TABS_MENU = 'LoginPage';
-    this.nav._children[0].select(4);
+    this.nav._children[0].select(3);
     //this.nav.push(LoginPage);
   }
 
+
   /**
+   * 특정 페이지로 보내는 함수.
+   * 뭐가 문제냐면 기존의 navController이 아닌 tab을 사용하기  때문에
+   * select를 사용해서 해줘야 함.
    *
-   * @param page 특정 페이지를 나타내는 객체
-   * 예시) { title: '방 리스트 보기', component: RoomListPage, flag: true }
-   * title -> 메뉴 title
-   * component -> 페이지 객체
-   * flag -> 로그인 필요없이 보이는 메뉴인지의 여부. true면 로그인안해도 보이도록 구현되어 있음.
+   * 찜 목록은 select(2)
+   * 방 목록은 select(1)
+   * 나머지는 전부다 select(3)으로 보내줘야 한다.
    *
-   * 여기서는 navController가 push 함.
+   * 근데 여기서 Config.SELECTED_TABS_MENU가 뭐냐면
+   * 해당 탭으로 이동해서 어떠한 페이지를 push할 것인가를 나타낸다.
+   *
+   * 정 모르겠다면 mypage.ts 파일을 보자.
+   * @param page
    */
   pushPage(page) {
     this.menu.close();
 
     if (page.page == 'DibRoomListPage') {
       this.nav._children[0].select(2);
-    } else if(page.page == 'LatelyRoomListPage') {
+    }/* else if(page.page == 'LatelyRoomListPage') {
       this.nav._children[0].select(3);
-    } else if(page.page == 'RoomListPage') {
+    }*/ else if(page.page == 'RoomListPage') {
       this.nav._children[0].select(1);
     } else {
       Config.SELECTED_TABS_MENU = page.page;
-      this.nav._children[0].select(4);
+      this.nav._children[0].select(3);
     }
   }
 
@@ -266,25 +275,5 @@ export class Menu {
   logout() {
     this.userService.logout();
   }
-
-  /* ionViewDidLoad() {
-   var observer = new MutationObserver(function(mutations) {
-   mutations.forEach(function(mutationRecord) {
-   let element: HTMLElement = document.getElementById('roomInfoListContent');
-   console.log(element);
-   if(element!=null) {
-   var target = element.getElementsByClassName('scroll-content')[0];
-   target.setAttribute('style', 'margin-top: 103px; margin-bottom: 44px;');
-   }
-   });
-   });
-
-   let target = document.getElementsByClassName('page_menu')[0];
-
-   observer.observe(target, { attributes : true, attributeFilter : ['class'] });
-   }
-   ionViewWillEnter() {
-   console.log("menu open");
-   }*/
 }
 

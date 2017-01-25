@@ -46,7 +46,7 @@ export class LoginPage {
   login() {
     let email = this.userFormBuilder.controls.email.value,
       password = this.userFormBuilder.controls.password.value;
-    var title = '';
+    let title = '';
     /*
      * service/user-service.ts 부분에 함수가 작성되어 있음.
      * url를 보내면 userService는 해당 url에 같이 보낸 파라미터를 가지고 request를 하고

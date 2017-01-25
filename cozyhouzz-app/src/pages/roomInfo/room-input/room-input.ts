@@ -33,11 +33,6 @@ export class RoomInputPage {
         }
       );
     });
-
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ZipCodePage');
   }
 
   ionViewWillLoad() {

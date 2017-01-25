@@ -30,10 +30,10 @@ export class MyPage {
 
 
     /*
-    * 반드시 아래 경로 다시 설정해줘야 함.
-    * 지금 찜목록이랑 최신 글 보기는 제대로 작동하지 않음.
-    * 찜목
-    * */
+     * 반드시 아래 경로 다시 설정해줘야 함.
+     * 지금 찜목록이랑 최신 글 보기는 제대로 작동하지 않음.
+     * 찜목
+     * */
     this.pages = [
       {
         title: '공지사항',
@@ -84,23 +84,23 @@ export class MyPage {
         md: 'md-heart',
         detail: '관심있는 방 또는 인테리어 목록입니다.'
       },
-/*
-      {
-        title: '최근 본 방',
-        component: null,
-        flag: true,
-        ios: 'ios-time',
-        md: 'md-time',
-        detail: '최근에 본 방 또는 인테리어 목록입니다.'
-      },
-      {
-        title: '최근 본 방',
-        component: null,
-        flag: false,
-        ios: 'ios-time',
-        md: 'md-time',
-        detail: '최근에 본 방 또는 인테리어 목록입니다.'
-      },*/
+      /*
+       {
+       title: '최근 본 방',
+       component: null,
+       flag: true,
+       ios: 'ios-time',
+       md: 'md-time',
+       detail: '최근에 본 방 또는 인테리어 목록입니다.'
+       },
+       {
+       title: '최근 본 방',
+       component: null,
+       flag: false,
+       ios: 'ios-time',
+       md: 'md-time',
+       detail: '최근에 본 방 또는 인테리어 목록입니다.'
+       },*/
       {title: '로그인', component: LoginPage, flag: true, ios: 'ios-log-in', md: 'md-log-in', detail: '로그인 페이지입니다.'},
       {
         title: '회원가입',
@@ -156,27 +156,21 @@ export class MyPage {
   ionViewWillEnter() {
     this.menu.enable(false);
     let page = Config.SELECTED_TABS_MENU;
+    /*
+    * 어떠한 페이지를 push 해줄 것인가를 확인하는 부분.
+    * 아래의 if문을 보면 이해가 갈것이다.*/
     if (page != null) {
-      if (page == 'RegisterPage') {
+      if (page == 'RegisterPage') this.navCtrl.push(RegistrationPage);
+      else if (page == 'LoginPage') this.navCtrl.push(LoginPage);
+      else if (page == 'QuestionListPage') this.navCtrl.push(QuestionListPage);
+      else if (page == 'UserInfoDetailPage') this.navCtrl.push(UserInfoDetailPage);
+      else if (page == 'NoticeBoardListPage') this.navCtrl.push(NoticeBoardListPage);
+      else if (page == 'RoomSettingPage') this.navCtrl.push(RoomSettingPage);
+      else if (page == 'UserInfoDetailPage') this.navCtrl.push(UserInfoDetailPage);
 
-        this.navCtrl.push(RegistrationPage);
-      } else if (page == 'LoginPage') {
-        this.navCtrl.push(LoginPage);
-
-      } else if (page == 'QuestionListPage') {
-        this.navCtrl.push(QuestionListPage);
-
-      } else if (page == 'UserInfoDetailPage') {
-        this.navCtrl.push(UserInfoDetailPage);
-
-      } else if(page =='NoticeBoardListPage') {
-        this.navCtrl.push(NoticeBoardListPage);
-
-      } else if(page=='RoomSettingPage') {
-        this.navCtrl.push(RoomSettingPage);
-      } else if(page == 'UserInfoDetailPage') {
-        this.navCtrl.push(UserInfoDetailPage);
-      }
+      /*
+      * 적절한 처리를 해주었다면
+      * 다음에 해당 변수를 사용할 수 있도록 null 로 처리해준다. */
       Config.SELECTED_TABS_MENU = null;
     }
   }
@@ -198,8 +192,8 @@ export class MyPage {
     if (p.title == '찜 목록') {
       this.navCtrl.parent.select(2);
     } /*else if (p.title == '최근 본 방') {
-      this.navCtrl.parent.select(3);
-    }*/ else {
+     this.navCtrl.parent.select(3);
+     }*/ else {
       this.navCtrl.push(p.component);
     }
     /*
@@ -230,17 +224,24 @@ export class MyPage {
     alert.present();
   }
 
+  /**
+   * 회원탈퇴를 처리하는 함수
+   */
   signOut() {
     let user = {
       email: this.user.email
     };
+    /*
+     * 헤더에 jwt 토큰을 추가한다. */
     contentHeaders.set('Authorization', this.userService.getJwtToken());//Header에 jwt값 추가하기
 
+    /*
+     * 사용자에게 한번 더 물어보는 부분. */
     let alert = this.alertCtrl.create({
       title: '회원탈퇴',
       message: '회원탈퇴를 하시겠습니까?<br> 개인 정보는 삭제되며 한번 삭제된 정보는 복구가 불가능합니다.',
       buttons: [
-          {
+        {
           text: '취소',
           role: '취소',
           handler: () => {
@@ -250,15 +251,26 @@ export class MyPage {
         {
           text: '회원탈퇴',
           handler: () => {
+            /*
+             * 실제로 회원탈퇴가 이루어지는 부분.
+             * loader을 발생하고 서버에 user 정보를 헤더와 함께 보낸다. */
             this.loader.show("회원 탈퇴 중 입니다.");
             this.userService.signOut(user, contentHeaders).toPromise()
               .then(
                 response => {
+                  /*
+                   * 회원탈퇴가 제대로 된 경우.
+                   * 로더를 숨기고
+                   * 로그아웃 처리를 한다. -> 앞으론 로그인 부분에서 막힘. */
                   console.log(response);
                   this.loader.hide();
                   this.userService.logout();
 
                 }, error => {
+                  /*
+                   * 에러가 발생한 경우.
+                   * 적절하게 사용자에게 에러를 띄워줘야 하나 아직 하지 못함.
+                   * 나중에 본 사람이 잘 추가시킬것.*/
                   this.loader.hide();
                   console.log(error);
                 }

@@ -66,7 +66,7 @@ export class RoomListPage {
      *  생성자와 refresh 부분에서 초기화 시켜주어야 함.
      *  */
     this.tmp_returnedDatas = [];
-    for (var i=0; i<8; i++) {
+   /* for (var i=0; i<8; i++) {
 
       this.returnedDatas.push({
         selectedroomInfoIdx: 1,
@@ -79,7 +79,9 @@ export class RoomListPage {
         buildPlace: '',
         buildPlaceDetail: ''
       });
-    }
+    }*/
+    this.loader.show("정보를 불러오고 있습니다.");
+
     this.region = params.get("region"); //메인페이지에서 어떤 지역을 선택했는지 가져옴.
     if (!this.region) this.region = '전체'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
 
@@ -95,7 +97,6 @@ export class RoomListPage {
      * 로딩 화면 띄우기 위해서 로더 선언.
      * */
 
-    this.loader.show("정보를 불러오고 있습니다.");
 
     /*
      * 방 검색 조건을 가져 옴.*/
@@ -124,7 +125,7 @@ export class RoomListPage {
     events.subscribe('roomInfoList:logout', () => {
       this.isLogined = false;
       this.user = null;
-      this.userService.logout();
+      this.userService.removeUserInfo();
     });
     /*
      * 사용자가 방 검색 조건을 바꿀 때 발생하는 이벤트의 리스너이다.
@@ -339,6 +340,21 @@ export class RoomListPage {
     console.log("refresher에 대한 observer 해제");
     */
   }
+
+
+  /**
+   * refresher을 사용하면 중간에 추가되는 css 속성때문에
+   * 화면이 깨지는 문제가 발생함.
+   *
+   * 그렇기 때문에 화면이 띄워질 때
+   * 특정 dom에 클래스가 추가되는지를 트래킹하여
+   * 해당 클래스가 추가되면
+   * 특정 css 를 지워주는 역할을 해야 함.
+   *
+   * 하지만 앱에서 쓰기에는 부담일 것 같아 현재는 삭제한 상황.
+   *
+   * 위의 ionViewWillLeave()함수와 같이 생각해봐야 함.
+   */
   ionViewWillEnter(){
     //refresher 사용하려면..아래 주석 해제해줘야 함.
     /*

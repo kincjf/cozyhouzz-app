@@ -16,7 +16,7 @@ export class TabsPage {
   tab1Root: any = HomePage;
   tab2Root: any = RoomListPage;
   tab3Root: any = DibRoomListPage;
-  tab4Root: any = DibRoomListPage;
+  // tab4Root: any = DibRoomListPage;
   tab5Root: any = MyPage;
   constructor() {
 
