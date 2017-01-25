@@ -85,6 +85,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     NoticeBoardInputPage
   ],
   imports: [
+    //    IonicModule.forRoot(AppComponent,  { animate: false }),
+
     IonicModule.forRoot(AppComponent),
     AngularFireModule.initializeApp(Config.FIREBASE_CONFIG)
   ],

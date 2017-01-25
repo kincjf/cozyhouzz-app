@@ -2,6 +2,7 @@ page-setting {
     .list-md, .item-block, .item-inner,
     .list-md .item-block .item-inner{
       border-bottom: 0 solid #ddd;
+      margin-bottom: 5px;
 
     }
   form .list-md {
@@ -30,29 +31,27 @@ page-setting {
     padding: 0;
   }
   #setting_list {
+    .list-md, .item-block, .item-inner,
+    .list-md .item-block .item-inner{
+      margin-bottom: 0;
+      ion-label {
+        font-size: 1.3rem;
+      }
 
+    }
     .item.item-md .checkbox-md {
       margin: 9px 23px 9px 17px
     }
   }
   ion-range.range-md {
-    padding-left: 25px;
-    padding-right: 25px;
-  }
-  .item-block {
-    padding-left: 0;
-    padding-right: 0;
+    padding-right: 16px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
-  #setting_list .item-block {
 
-    padding-left: 12px;
-    padding-right: 12px;
-  }
   .item-md.item-block .item-inner {
       border-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .list-md,

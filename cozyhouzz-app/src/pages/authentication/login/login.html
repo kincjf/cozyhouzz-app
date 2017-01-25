@@ -3,8 +3,8 @@
     <ion-title>로그인 (일반·사업주)</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding class="login auth-page" >
-  <div text-center padding>
+<ion-content style="background-color: #F5F5F5" >
+  <div text-center padding style="background-color: white">
     <img style="margin-top: 50px; margin-bottom: 30px;" class="profile-picture" src="{{ 'assets/img/banner/logo_cozyhouzz2.png' }}">
   </div>
   <form [formGroup]="userFormBuilder" (ngSubmit)="login()" id="login-form">
@@ -28,8 +28,8 @@
         </p>
       </ion-item>
     </ion-list>
-    <button ion-button block color="gray-bbb" type="submit" [disabled]="!userFormBuilder.valid">Log in</button>
+    <button ion-button block color="cozy" type="submit" [disabled]="!userFormBuilder.valid">로그인</button>
   </form>
-  <button ion-button block outline full color="gray-df" (click)="resetPassword()">Lost your password?</button>
+  <!--<button ion-button block outline full color="gray-df" (click)="resetPassword()">Lost your password?</button>-->
 
 </ion-content>

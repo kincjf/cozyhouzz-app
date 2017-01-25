@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content  style="background-color: #F5F5F5">
   <div *ngIf="isLogined">
     <form [formGroup]="userFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="userDetails.member_type == 'PUBLIC'">
 
@@ -116,7 +116,7 @@
           <ion-input type="text" formControlName="businessAddress"></ion-input>
         </ion-item>-->
       </ion-list>
-      <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
+      <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">계정 정보 변경하기</button>
     </form>
   </div>
   <!--

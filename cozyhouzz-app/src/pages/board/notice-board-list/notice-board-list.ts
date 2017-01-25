@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import {NoticeBoardInputPage} from '../notice-board-input/notice-board-input';
 import {PostService} from '../../../services/post-service';
 import {config} from "../../../app/common/config/index";
+import {Loader} from "../../../providers/loader";
+
 /*
   Generated class for the NoticeBoardList page.
 
@@ -18,13 +20,16 @@ export class NoticeBoardListPage {
   notices:any = null;
   pageStartIndex = 0;
   pageSize = 10;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public postService:PostService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public postService:PostService, public loader:Loader) {
+
+    this.loader.show("정보를 불러오고 있습니다.");
+
     this.pageSize = 10;
     this.pageStartIndex = 0;
     this.notices = [];
 
     let URL = [config.serverHost, config.path.notice, '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/'); //"http://api.cozyhouzz.co.kr/api/auth/login"
-    this.getDatas(URL, null, null, null);
+    this.getDatas(URL, this.loader, null, null);
   }
 
   /**

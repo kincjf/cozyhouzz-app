@@ -3,7 +3,7 @@
     <ion-title>일반 사용자 회원가입</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content  style="background-color: #F5F5F5">
   <form [formGroup]="user" (ngSubmit)="createUser()">
     <ion-list>
       <ion-item>
@@ -43,6 +43,6 @@
         </p>
       </ion-item>
     </ion-list>
-    <button type="submit" full ion-button block color="secondary" [disabled]="!user.valid">Sign up</button>
+    <button type="submit" full ion-button block color="secondary" [disabled]="!user.valid">회원가입</button>
   </form>
 </ion-content>

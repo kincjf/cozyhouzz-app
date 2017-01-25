@@ -16,9 +16,9 @@
     </ion-buttons>-->
     <ion-title>방 목록</ion-title>
     <ion-buttons end>
-      <button ion-button right (click)="refreshButtonClick()">
+<!--      <button ion-button right (click)="refreshButtonClick()">
         새로고침
-      </button>
+      </button>-->
       <button ion-button right (click)="inputButtonClick()" *ngIf="isLogined">
         방 등록
       </button>
@@ -107,7 +107,8 @@
 
     -->
   <ion-list>
-    <ion-list-header id="roomInfoListHeader"><b>원룸·투룸·오피스텔·도시형생활주택</b></ion-list-header>
+    <!--<ion-list-header id="roomInfoListHeader"><b>원룸·투룸·오피스텔·도시형생활주택</b></ion-list-header>-->
+    <ion-list-header id="roomInfoListHeader">원룸·투룸·오피스텔·도시형생활주택</ion-list-header>
     <!--
       | sortBy : 'title' 이면 title로 오름차순 한다는 의미
       해당 부분에 변수를 두고 변수의 값을 바꾸는 것으로 해야 할듯.
