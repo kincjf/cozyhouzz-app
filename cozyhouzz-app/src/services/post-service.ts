@@ -23,6 +23,13 @@ export class PostService {
         return x.json();
       });
   }
+  getNoticeBoardList(url) {
+    return this.http.get(url)
+      .map(x => {
+        return x.json();
+      });
+  }
+
   // 상세보기
   getroomInfoInfo(url) {
     return this.http.get(url) //서버로부터 필요한 값 받아오기

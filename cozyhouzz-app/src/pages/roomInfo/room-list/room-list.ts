@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Platform, MenuController, NavParams, LoadingController} from 'ionic-angular';
+import {NavController, Platform, MenuController, NavParams} from 'ionic-angular';
 import {PostService} from '../../../services/post-service';
 import {RoomService} from '../../../services/room-service';
 import {UserService} from '../../../services/user-service';
@@ -17,6 +17,7 @@ import {RoomSettingPage} from '../room-setting/room-setting';
 import {SortPipe} from '../../../pipes/SortByJsonObjects';
 
 import {Config} from '../../../app/config';
+import {Loader} from "../../../providers/loader";
 @Component({
   selector: 'page-build-case-list',
   templateUrl: 'room-list.html'
@@ -57,8 +58,8 @@ export class RoomListPage {
 
   constructor(public nav: NavController, public postService: PostService,
               public platform: Platform, public menu: MenuController, public params: NavParams,
-              public loading: LoadingController, private roomService: RoomService,
-              private events: Events, private userService: UserService) {
+             private roomService: RoomService,
+              private events: Events, private userService: UserService, private loader: Loader) {
 
     /*
      *  returnedDatas 배열 초기화. 방 정보 리스트를 가지고 있음
@@ -93,22 +94,20 @@ export class RoomListPage {
     /*
      * 로딩 화면 띄우기 위해서 로더 선언.
      * */
-    let loader = this.loading.create({
-      content: '방 정보를 불러오고 있습니다.'
-    });
-    loader.present().then(() => {
 
-      /*
-       * 방 검색 조건을 가져 옴.*/
-      this.room = this.roomService.room;
-      this.filter = this.room.filter;
-      /*
-       * 방 정보 불러오는 부분 */
-      let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    this.loader.show("정보를 불러오고 있습니다.");
 
-      // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-      this.getDatas(URL, loader, null, null);
-    });
+    /*
+     * 방 검색 조건을 가져 옴.*/
+    this.room = this.roomService.room;
+    this.filter = this.room.filter;
+    /*
+     * 방 정보 불러오는 부분 */
+    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+
+    // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    this.getDatas(URL, this.loader, null, null);
+
     /*
      * 아래는 이벤트 리스너를 설정하는 것. 로그인 또는 로그아웃이 되면 각 페이지마다 달라져야 할 게 있기 때문에
      * 그때 수행할 것들을 정하는 부분임. 여기서는 방 등록 버튼의 유무가 로그인에 따라 달라지므로
@@ -125,7 +124,7 @@ export class RoomListPage {
     events.subscribe('roomInfoList:logout', () => {
       this.isLogined = false;
       this.user = null;
-      this.userService.removeUserInfo();
+      this.userService.logout();
     });
     /*
      * 사용자가 방 검색 조건을 바꿀 때 발생하는 이벤트의 리스너이다.
@@ -198,7 +197,7 @@ export class RoomListPage {
         this.returnedDatas = this.tmp_returnedDatas;
         this.view = true;
         if (loader != null) {
-            loader.dismiss();
+            loader.hide();
         } //로딩화면 종료
         if (infiniteScroll != null) infiniteScroll.complete(); //infiniteScroll 완료
         if (refresher != null) {

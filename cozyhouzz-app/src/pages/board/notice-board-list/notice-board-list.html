@@ -7,11 +7,35 @@
 <ion-header no-border>
   <ion-navbar color="cozy">
     <ion-title>공지사항</ion-title>
+    <ion-buttons end>
+      <button ion-button right (click)="inputBoardButtonClick()">
+        글쓰기
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content style="background-color: #efefef">
+  <ion-list id="noticeBoardList" >
+    <div id="noticeBoardDetail" *ngFor="let item of boards">
+      <ion-item  id="noticeBoardTitle" [ngClass]="{'blue-background': item.selected}" (click)="showEditModal(item, item.selected)">
+          <div style="width: 80%; float: left">
+            <span>{{item.title}}</span><br>
+            <span style="font-size: 1.3rem">{{item.create_date}} {{item.writer}}</span>
 
+          </div>
+          <div  style="float: right; margin-top: 5px;">
+            <ion-icon ios="ios-arrow-dropdown" md="md-arrow-dropdown" *ngIf="!item.selected"></ion-icon>
+            <ion-icon ios="ios-arrow-dropup" md="md-arrow-dropup" *ngIf="item.selected"></ion-icon>
+          </div>
+      </ion-item>
+      <ion-item id="noticeBoardContents" *ngIf="item.selected">
+        <span>{{item.contents}}</span>
+
+      </ion-item>
+    </div>
+
+  </ion-list>
 </ion-content>

@@ -84,7 +84,7 @@ export class MyPage {
         md: 'md-heart',
         detail: '관심있는 방 또는 인테리어 목록입니다.'
       },
-
+/*
       {
         title: '최근 본 방',
         component: null,
@@ -100,7 +100,7 @@ export class MyPage {
         ios: 'ios-time',
         md: 'md-time',
         detail: '최근에 본 방 또는 인테리어 목록입니다.'
-      },
+      },*/
       {title: '로그인', component: LoginPage, flag: true, ios: 'ios-log-in', md: 'md-log-in', detail: '로그인 페이지입니다.'},
       {
         title: '회원가입',
@@ -197,9 +197,9 @@ export class MyPage {
     console.log(p.title);
     if (p.title == '찜 목록') {
       this.navCtrl.parent.select(2);
-    } else if (p.title == '최근 본 방') {
+    } /*else if (p.title == '최근 본 방') {
       this.navCtrl.parent.select(3);
-    } else {
+    }*/ else {
       this.navCtrl.push(p.component);
     }
     /*

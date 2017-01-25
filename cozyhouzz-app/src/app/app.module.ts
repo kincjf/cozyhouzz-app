@@ -15,20 +15,17 @@ import {HomePage} from '../pages/home/home';
 import {UserPage} from '../pages/user/user';
 import {QuestionDetailPage} from '../pages/mypage/question/question-detail/question-detail';
 import {QuestionListPage} from '../pages/mypage/question/question-list/question-list';
-import {CallNumberPage} from '../pages/function/call-number/call-number';
-import {ImagePickerPage} from '../pages/function/image-picker/image-picker';
 import {RoomInputPage} from '../pages/roomInfo/room-input/room-input';
-import {ZipCodePage} from '../pages/function/zip-code/zip-code';
-import {GoogleMapsPage} from '../pages/function/google-maps/google-maps';
 import { UserInfoDetailPage } from '../pages/mypage/userInfo/user-info-detail/user-info-detail';
 import {RoomMapPage} from '../pages/roomInfo/room-map/room-map';
 import {DibRoomListPage} from '../pages/roomInfo/dib-room-list/dib-room-list';
-import {LatelyRoomListPage} from '../pages/roomInfo/lately-room-list/lately-room-list';
+// import {LatelyRoomListPage} from '../pages/roomInfo/lately-room-list/lately-room-list';
 import {MyPage} from '../pages/mypage/mypage';
 import {ConsultingListPage} from '../pages/mypage/consulting/consulting-list/consulting-list';
 import {ConsultingDetailPage} from '../pages/mypage/consulting/consulting-detail/consulting-detail';
-import {RoomCommentPage} from '../pages/roomInfo/room-comment/room-comment';
+// import {RoomCommentPage} from '../pages/roomInfo/room-comment/room-comment';
 import {NoticeBoardListPage} from '../pages/board/notice-board-list/notice-board-list';
+import {NoticeBoardInputPage} from '../pages/board/notice-board-input/notice-board-input';
 // Authentication
 import {LoginPage} from '../pages/authentication/login/login';
 import {RoomListPage} from '../pages/roomInfo/room-list/room-list';
@@ -36,6 +33,7 @@ import {RoomDetailPage} from '../pages/roomInfo/room-detail/room-detail';
 import {RegistrationPage} from '../pages/authentication/registration/registration';
 import {GeneralRegistrationPage} from '../pages/authentication/registration/general-user/registration';
 import {BussinessManRegistrationPage} from '../pages/authentication/registration/buisnessman-user/registration';
+import {ZipCodePage} from '../pages/function/zip-code/zip-code';
 // import {DisqusModule} from "ng2-awesome-disqus";
 
 //BussinessManRegistrationPage
@@ -45,7 +43,7 @@ import {UserService} from "../services/user-service";
 import {Storage} from '@ionic/storage';
 import {RoomService} from "../services/room-service";
 import {ZipCodeService} from '../services/zip-code-service';
-import {MapsService} from '../services/maps.service';
+// import {MapsService} from '../services/maps.service';
 import {AuthenticatorService} from '../providers/authenticator';
 
 import {TabsPage} from '../pages/tabs/tabs'
@@ -59,8 +57,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     Nl2br,
     HomePage,
     UserPage,
-    CallNumberPage,
-    ImagePickerPage,
+    //CallNumberPage,
+    //ImagePickerPage,
     RoomListPage,
     RoomDetailPage,
     GeneralRegistrationPage,
@@ -71,19 +69,20 @@ import {TabsPage} from '../pages/tabs/tabs'
     RoomInputPage,
     ZipCodePage,
     // Focuser,
-    GoogleMapsPage,
+    //GoogleMapsPage,
     UserInfoDetailPage,
     RegistrationPage,
     RoomMapPage,
     SortPipe,
     TabsPage,
     DibRoomListPage,
-    LatelyRoomListPage,
+    //LatelyRoomListPage,
     MyPage,
     ConsultingDetailPage,
     ConsultingListPage,
-    RoomCommentPage,
-    NoticeBoardListPage
+    // RoomCommentPage,
+    NoticeBoardListPage,
+    NoticeBoardInputPage
   ],
   imports: [
     IonicModule.forRoot(AppComponent),
@@ -96,8 +95,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     LoginPage,
     HomePage,
     UserPage,
-    CallNumberPage,
-    ImagePickerPage,
+    //CallNumberPage,
+    //ImagePickerPage,
     RoomListPage,
     RoomDetailPage,
     GeneralRegistrationPage,
@@ -107,18 +106,19 @@ import {TabsPage} from '../pages/tabs/tabs'
     QuestionListPage,
     RoomInputPage,
     ZipCodePage,
-    GoogleMapsPage,
+    //GoogleMapsPage,
     UserInfoDetailPage,
     RegistrationPage,
     RoomMapPage,
     TabsPage,
     DibRoomListPage,
-    LatelyRoomListPage,
+    //LatelyRoomListPage,
     MyPage,
     ConsultingDetailPage,
     ConsultingListPage,
-    RoomCommentPage,
-    NoticeBoardListPage
+    // RoomCommentPage,
+    NoticeBoardListPage,
+    NoticeBoardInputPage
   ],
   providers: [
     Loader,
@@ -127,7 +127,7 @@ import {TabsPage} from '../pages/tabs/tabs'
     RoomService,
     UserService,
     ZipCodeService,
-    MapsService,
+    // MapsService,
     AuthenticatorService
 
   ]

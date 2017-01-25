@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, LoadingController, AlertController, NavParams} from 'ionic-angular';
+import {NavController, AlertController, NavParams} from 'ionic-angular';
 import {DomSanitizer, SafeUrl, SafeResourceUrl} from '@angular/platform-browser';
+import {Loader} from "../../../providers/loader";
 
 
 import 'rxjs/add/operator/toPromise';
@@ -16,7 +17,7 @@ import {RoomMapPage} from '../room-map/room-map';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 import {contentHeaders} from '../../../app/common/headers';
 import {UserService} from '../../../services/user-service';
-import {RoomCommentPage} from '../room-comment/room-comment';
+// import {RoomCommentPage} from '../room-comment/room-comment';
 @Component({
   selector: 'page-build-case-detail',
   templateUrl: 'room-detail.html'
@@ -61,7 +62,7 @@ export class RoomDetailPage {
   private user: any;
 
   constructor(public nav: NavController, public postService: PostService, public http: Http, public params: NavParams,
-              public loading: LoadingController, private alertCtrl: AlertController, private sanitizer: DomSanitizer,
+              private alertCtrl: AlertController, private sanitizer: DomSanitizer, public loader:Loader,
               public userService:UserService) {
     this.isLogined = false;
     /*
@@ -70,44 +71,42 @@ export class RoomDetailPage {
      * */
     this.selectedroomInfoIdx = params.get("selectedroomInfoIdx");
     this.post = postService.getItem(0); //해당 문장은 추후 지워야 됨.
-    let loader = this.loading.create({
-      content: '정보를 불러오고 있습니다.'
-    });
     /*
      * 로딩화면을 띄우고 서버로부터 데이터를 가져오는 부분.
      * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
      * */
-    loader.present().then(() => {
-      this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/roomInfoVR/6');
-      this.roomInfoResult = postService.getroomInfoInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedroomInfoIdx);
-      this.roomInfoResult.toPromise()
-        .then(
-          response => {
-            console.log(response);
-            this.memberIdx = response.buildCaseInfo.memberIdx;
-            this.title = response.buildCaseInfo.title;
-            this.buildType = response.buildCaseInfo.buildType;
-            // this.buildTypeFuntion(this.buildType);
-            this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
-            this.buildName = this.buildPlace[2];
-            this.buildAddress = this.buildPlace[1];
-            this.buildPlace = this.buildPlace[1] + ' ' + this.buildPlace[2];
-            this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
-            this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
-            this.buildTotalPrice = response.buildCaseInfo.buildTotalPrice;
-            this.htmlText = response.buildCaseInfo.HTMLText;
-            this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
-            this.coordinate = response.buildCaseInfo.coordinate;    // 나중에 좌표를 받아서 Daum Map에 뿌려준다
-            // this.coordinate = JSON.parse(response.roomInfoInfo.coordinate);
-            this.regionCategory = response.buildCaseInfo.regionCategory;
-            this.initWriteDate = moment(response.buildCaseInfo.initWriteDate).format('YYYY/MM/DD HH:mm:ss');
+    this.loader.show("정보를 불러오고 있습니다.");
 
-            let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
-            this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
-            loader.dismiss();
-          }
-        );
-    });
+    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/roomInfoVR/6');
+    this.roomInfoResult = postService.getroomInfoInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedroomInfoIdx);
+    this.roomInfoResult.toPromise()
+      .then(
+        response => {
+          console.log(response);
+          this.memberIdx = response.buildCaseInfo.memberIdx;
+          this.title = response.buildCaseInfo.title;
+          this.buildType = response.buildCaseInfo.buildType;
+          // this.buildTypeFuntion(this.buildType);
+          this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
+          this.buildName = this.buildPlace[2];
+          this.buildAddress = this.buildPlace[1];
+          this.buildPlace = this.buildPlace[1] + ' ' + this.buildPlace[2];
+          this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
+          this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
+          this.buildTotalPrice = response.buildCaseInfo.buildTotalPrice;
+          this.htmlText = response.buildCaseInfo.HTMLText;
+          this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
+          this.coordinate = response.buildCaseInfo.coordinate;    // 나중에 좌표를 받아서 Daum Map에 뿌려준다
+          // this.coordinate = JSON.parse(response.roomInfoInfo.coordinate);
+          this.regionCategory = response.buildCaseInfo.regionCategory;
+          this.initWriteDate = moment(response.buildCaseInfo.initWriteDate).format('YYYY/MM/DD HH:mm:ss');
+
+          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
+          this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
+          loader.hide();
+        }
+      );
+
     this.isLogined = userService.getIsLogind();
     if(this.isLogined) {
       this.jwt = userService.getJwtToken();
@@ -156,7 +155,7 @@ export class RoomDetailPage {
     alert.present();
   }
 
-
+/*
   collectionsCommentsCtrl() {
     var disqus_config = function () {
       this.page.url = 'npus.krgfgfg';  // Replace PAGE_URL with your page's canonical URL variable
@@ -169,7 +168,7 @@ export class RoomDetailPage {
       s.setAttribute('data-timestamp', (new Date()).toString());
       (d.head || d.body).appendChild(s);
     })();
-  }
+  }*/
 
 
   /**
@@ -257,7 +256,8 @@ export class RoomDetailPage {
         }
       )
   }
-  commentButtonClick() {
+
+  /*commentButtonClick() {
       this.nav.push(RoomCommentPage);
-  }
+  }*/
 }

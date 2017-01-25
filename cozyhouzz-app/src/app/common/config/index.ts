@@ -14,6 +14,7 @@ export const config = {
       login: "api/login", //01.18 수정됨 - 김호세
       signup: "api/auth/register",
       signout: "api/quit",
+      notice: "api/notice",
       userInfoModify: "api/modifyInfo",
       userInfo: "api/info",
       changeSignup: "api/user",
@@ -31,6 +32,7 @@ export const config = {
       login: "api/auth/login",
       signup: "api/auth/register",
       signout: "api/quit",
+      notice: "api/notice",
       userInfoModify: "api/modifyInfo",
       changeSignup: "api/user",
       changeBizSignup: "api/user/biz",
@@ -47,6 +49,7 @@ export const config = {
       login: "api/auth/login",
       signup: "api/auth/register",
       signout: "api/quit",
+      notice: "api/notice",
       userInfoModify: "api/modifyInfo",
       changeSignup: "api/user",
       changeBizSignup: "api/user/biz",
