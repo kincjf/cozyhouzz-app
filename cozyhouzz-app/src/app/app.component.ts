@@ -5,6 +5,8 @@ import {StatusBar, Keyboard} from 'ionic-native';
 import {TabsPage} from '../pages/tabs/tabs';
 // Authenticator
 import {Storage} from '@ionic/storage';
+import {LoginPage} from '../pages/authentication/login/login';
+import {RegistrationPage} from '../pages/authentication/registration/registration';
 
 // Root pages to be used based on authentication
 import {Menu} from '../pages/menu/menu';

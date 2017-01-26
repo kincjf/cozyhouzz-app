@@ -21,7 +21,6 @@ export class NoticeBoardListPage {
   pageStartIndex = 0;
   pageSize = 10;
   constructor(public navCtrl: NavController, public navParams: NavParams, public postService:PostService, public loader:Loader) {
-
     this.loader.show("정보를 불러오고 있습니다.");
 
     this.pageSize = 10;

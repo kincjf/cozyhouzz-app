@@ -6,10 +6,12 @@ mypage {
         padding-left: 16px;
       }
     }
+
   }
 
+
   #user_info_area {
-    width: 100%; height: 180px; background-color: #73C3CB;
+    width: 100%; height: 160px; background-color: #73C3CB;
     text-align: center;
     #user_image {
        width: 20%;
@@ -23,5 +25,14 @@ mypage {
   }
   #menu_list {
     margin-top: -15px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+    #signOutButton {
+      .item-inner {
+        border-bottom: 0 solid #ddd !important;
+      }
+    }
+
   }
 }

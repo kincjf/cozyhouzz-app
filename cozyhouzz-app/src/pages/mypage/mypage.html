@@ -1,4 +1,4 @@
-<ion-header no-border>
+<ion-header no-border> <!--  [ion-shrinking-header]="content" -->
   <ion-navbar color="cozy">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -45,7 +45,7 @@
           <span style="color: #aaa; font-size: 1.3rem">로그아웃</span>
         </div>
       </button>
-      <button ion-item (click)="signOut()">
+      <button id="signOutButton" ion-item (click)="signOut()">
 
         <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="float: left; margin-top: 9px; margin-right: 25px;"></ion-icon>
         <div  style="float: left;">

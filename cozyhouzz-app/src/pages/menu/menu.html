@@ -1,13 +1,20 @@
 <ion-menu [content]="content" (ionOpen)="menuOpened()" type="overlay" (ionClose)="menuClosed()"  persistent="true" class="page_menu">
-  <div id="authentication_area" padding style="text-align: center; min-height:180px; background-color:#73C3CB"> <!-- (click)="openHomePage()"-->
+ <!-- <div id="authentication_area" padding style="text-align: center; min-height:50px; background-color:#73C3CB"> &lt;!&ndash; (click)="openHomePage()"&ndash;&gt;
 
-  </div>
-
-<!--  <div class="menu_line_area">
-    <span>
-      원룸·투룸·오피스텔·도시형생활주택
-    </span>
   </div>-->
+  <img style="margin-top: 15px; margin-bottom: 0px;" class="profile-picture" src="{{ 'assets/img/logo-cozyhouzz/logo.jpg' }}">
+
+
+  <!--  <div class="menu_line_area">
+      <span>
+        원룸·투룸·오피스텔·도시형생활주택
+      </span>
+    </div>-->
+  <div class="menu_line_area">
+    <span>
+      방 정보·인테리어
+    </span>
+  </div>
   <ion-list class="list-full-border" style="margin-bottom: 0;">
     <div *ngFor="let p of pages" >
       <button menuClose ion-item (click)="pushPage(p)" *ngIf="!((!p.flag && p.flag == isLogined) || p.flag == isLogined)">

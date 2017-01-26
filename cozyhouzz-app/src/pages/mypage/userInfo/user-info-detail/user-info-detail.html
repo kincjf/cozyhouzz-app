@@ -60,7 +60,7 @@
         </ion-item>
 
       </ion-list>
-      <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">Save</button>
+      <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">계정 정보 변경하기</button>
     </form>
     <form [formGroup]="bussinessUserFormBuilder" (ngSubmit)="updateUserSettings()" *ngIf="userDetails.member_type != 'PUBLIC'">
 

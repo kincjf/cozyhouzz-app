@@ -35,6 +35,7 @@ import {GeneralRegistrationPage} from '../pages/authentication/registration/gene
 import {BussinessManRegistrationPage} from '../pages/authentication/registration/buisnessman-user/registration';
 import {ZipCodePage} from '../pages/function/zip-code/zip-code';
 // import {DisqusModule} from "ng2-awesome-disqus";
+import { IonShrinkingHeader } from '../components/ion-shrinking-header';
 
 //BussinessManRegistrationPage
 import {Config} from './config'
@@ -82,7 +83,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     ConsultingListPage,
     // RoomCommentPage,
     NoticeBoardListPage,
-    NoticeBoardInputPage
+    NoticeBoardInputPage,
+    IonShrinkingHeader
   ],
   imports: [
 

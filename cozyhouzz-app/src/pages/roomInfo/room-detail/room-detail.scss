@@ -1,10 +1,21 @@
 page-build-case-detail {
+  .scroll-content {
+   /* overflow-y: visible;
+    margin-top: 0 !important;*/
+    margin-bottom: 46px;
+  }
+ /* .toolbar {
+    .toolbar-background {
+      background: transparent;
+    }
+  }
+  ion-navbar {
+    border-bottom: 0 solid #ddd;
+
+  }*/
   #mapImage {
     width: 100vw;
     margin-bottom: 0;
-  }
-  .scroll-content {
-    margin-bottom: 46px;
   }
   .item-md ion-avatar[item-left] {
     margin: 0 15px 0 0 ;

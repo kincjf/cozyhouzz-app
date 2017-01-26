@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {LoginPage} from '../authentication/login/login';
 import {QuestionListPage} from '../mypage/question/question-list/question-list';
 import {UserInfoDetailPage} from '../mypage/userInfo/user-info-detail/user-info-detail';
-import {Events, NavController, NavParams, MenuController, AlertController} from "ionic-angular";
+import {Events, NavController, NavParams, MenuController, AlertController, Content} from "ionic-angular";
 import {UserService} from '../../services/user-service';
 import {RoomSettingPage} from '../roomInfo/room-setting/room-setting';
 import {RegistrationPage} from '../authentication/registration/registration';
@@ -12,11 +12,20 @@ import {contentHeaders} from '../../app/common/headers';
 import {Config} from '../../app/config';
 import {config} from "../../app/common/config/index";
 import {Loader} from "../../providers/loader";
+
+
 @Component({
   selector: 'mypage',
   templateUrl: 'mypage.html'
 })
 export class MyPage {
+
+
+  // this how you retrieve the Content
+  // do not forget to import ViewChild and Content
+  @ViewChild(Content) content: Content;
+
+
   isLogined: boolean = false;
   user: any;
   // this tells the tabs component which Pages
