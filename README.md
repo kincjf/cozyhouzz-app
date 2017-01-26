@@ -10,8 +10,10 @@ To run the project, you need to build an Android or iPhone development environme
 
 * Android Studio Install - https://developer.android.com/studio/index.html?hl=ko
 * Java Install - http://www.oracle.com/technetwork/java/javase/downloads/index.html
+* NodeJS - https://nodejs.org/en/
 
 ### Ionic2 Install
+To install ionic2 you need nodejs (current project: 6.9.4).
 <ol start="1">
   <li>npm install -g ionic cordova (http://ionicframework.com/docs/v2/setup/installation/)</li>
 </ol>
