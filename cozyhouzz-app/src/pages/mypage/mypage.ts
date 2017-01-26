@@ -1,6 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
 import {LoginPage} from '../authentication/login/login';
 import {QuestionListPage} from '../mypage/question/question-list/question-list';
+import {QuestionDetailPage} from '../mypage/question/question-detail/question-detail';
+
 import {UserInfoDetailPage} from '../mypage/userInfo/user-info-detail/user-info-detail';
 import {Events, NavController, NavParams, MenuController, AlertController, Content} from "ionic-angular";
 import {UserService} from '../../services/user-service';
@@ -203,7 +205,9 @@ export class MyPage {
     } /*else if (p.title == '최근 본 방') {
      this.navCtrl.parent.select(3);
      }*/ else {
-      this.navCtrl.push(p.component);
+      this.navCtrl.push(p.component, {
+        user: this.user
+      });
     }
     /*
      this.navCtrl.parent.parent.push(p);

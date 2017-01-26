@@ -48,6 +48,7 @@ import {ZipCodeService} from '../services/zip-code-service';
 import {AuthenticatorService} from '../providers/authenticator';
 
 import {TabsPage} from '../pages/tabs/tabs'
+import {GlobalVars} from "../providers/globalvars";
 
 //directive
 @NgModule({
@@ -137,7 +138,8 @@ import {TabsPage} from '../pages/tabs/tabs'
     UserService,
     ZipCodeService,
     // MapsService,
-    AuthenticatorService
+    AuthenticatorService,
+    GlobalVars
 
   ]
 })

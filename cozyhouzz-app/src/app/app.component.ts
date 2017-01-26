@@ -3,6 +3,8 @@ import {Platform, AlertController, App} from 'ionic-angular';
 import {Events} from 'ionic-angular';
 import {StatusBar, Keyboard} from 'ionic-native';
 import {TabsPage} from '../pages/tabs/tabs';
+import * as firebase from 'firebase';
+
 // Authenticator
 import {Storage} from '@ionic/storage';
 import {LoginPage} from '../pages/authentication/login/login';
@@ -26,8 +28,18 @@ export class AppComponent {
               private storage: Storage,
               private userService: UserService,
               private alertController: AlertController) {
+    var config = {
+      apiKey: "AIzaSyBERdRJbsk-p6pSX8Ohx6Jftevr3Fkp9bU",
+      authDomain: "cozyhouzz-app.firebaseapp.com",
+      databaseURL: "https://cozyhouzz-app.firebaseio.com",
+      storageBucket: "cozyhouzz-app.appspot.com",
+      messagingSenderId: "680149394878"
+    };
+    firebase.initializeApp(config);
+
     platform.ready().then(() => {
       StatusBar.styleDefault();
+
       /*
        * 앱이 처음 실행되는 부분으로 로그인 정보가 있는지 확인.
        * storage에 id_token을 key로 하는 데이터가 있으면 로그인 상태임을 의미.

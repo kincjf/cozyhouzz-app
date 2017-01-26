@@ -1,12 +1,32 @@
 
 <ion-header no-border>
   <ion-navbar color="cozy" >
-    <button  ion-button menuToggle>
+   <!-- <button  ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </button>-->
     <ion-title>1:1문의 (아이디)</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+  <div class="message-wrapper" *ngFor="let p of messages">
+     {{p.senderKey}} -> {{p.receiverKey}}  {{p.message}}
 
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-80 class="text-area">
+        <ion-textarea #textarea placeholder="Enter your message" [(ngModel)]="messageText" (focus)="onBlur($event)"></ion-textarea>
+
+      </ion-col>
+      <ion-col width-15>
+        <button ion-button icon-only  color="custom" (click)="sendMessage(messageText,0,textarea)" [disabled]="!messageText">
+          <ion-icon name='send'></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-footer>
