@@ -8,7 +8,7 @@
     <ion-list>
       <ion-item>
         <ion-label stacked>이메일</ion-label>
-        <ion-input #email type="email" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></ion-input>
+        <ion-input #email type="email" formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  placeholder="예시) example.example.com"></ion-input>
       </ion-item>
       <ion-item class="form-error-list" *ngIf="!user.controls.email.pristine && !user.controls.email.valid">
         <p class="form-error" item-right *ngIf="!user.controls.email.pristine && user.controls.email.hasError('required')">
@@ -20,7 +20,7 @@
       </ion-item>
       <ion-item>
         <ion-label stacked>핸드폰 번호</ion-label>
-        <ion-input #cellphone type="text" formControlName="telephone"></ion-input>
+        <ion-input #cellphone type="text" formControlName="telephone"   placeholder="예시) 01012341234"></ion-input>
       </ion-item>
       <ion-item class="form-error-list" *ngIf="!user.controls.telephone.pristine && !user.controls.telephone.valid">
         <p class="form-error" item-right *ngIf="!user.controls.telephone.pristine && user.controls.telephone.hasError('required')">
@@ -32,7 +32,7 @@
       </ion-item>
       <ion-item>
         <ion-label stacked>비밀번호</ion-label>
-        <ion-input #password type="password" formControlName="password"></ion-input>
+        <ion-input #password type="password" formControlName="password"  placeholder="비밀번호를 입력해 주세요."></ion-input>
       </ion-item>
       <ion-item class="form-error-list" *ngIf="!user.controls.password.pristine && !user.controls.password.valid">
         <p class="form-error" item-right *ngIf="!user.controls.password.pristine && user.controls.password.hasError('required')">
@@ -45,7 +45,7 @@
 
       <ion-item>
         <ion-label stacked>비밀번호 확인</ion-label>
-        <ion-input type="password" formControlName="passwordConfirmation"></ion-input>
+        <ion-input type="password" formControlName="passwordConfirmation"  placeholder="비밀번호를 한번 더 입력해 주세요."></ion-input>
       </ion-item>
       <ion-item class="form-error-list" *ngIf="!user.controls.passwordConfirmation.pristine && !user.controls.passwordConfirmation.valid">
         <p class="form-error" item-right *ngIf="!user.controls.passwordConfirmation.pristine && user.controls.passwordConfirmation.hasError('required')">

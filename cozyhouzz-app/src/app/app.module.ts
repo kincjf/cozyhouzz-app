@@ -85,9 +85,14 @@ import {TabsPage} from '../pages/tabs/tabs'
     NoticeBoardInputPage
   ],
   imports: [
-    //    IonicModule.forRoot(AppComponent,  { animate: false }),
 
-    IonicModule.forRoot(AppComponent),
+    /*
+    * animate -> 안드로이드 특유의 애니메이션 효과를 줄것인가 안줄것인가.
+    * scrollAssist, autoFocusAssist -> 인풋 태그에 onfocus 일경우, 스크롤 자동으로 올릴 것인가 .
+    * */
+    //IonicModule.forRoot(AppComponent,  { animate: false }),
+
+    IonicModule.forRoot(AppComponent,  { scrollAssist: false, autoFocusAssist: false }),
     AngularFireModule.initializeApp(Config.FIREBASE_CONFIG)
   ],
   bootstrap: [IonicApp],

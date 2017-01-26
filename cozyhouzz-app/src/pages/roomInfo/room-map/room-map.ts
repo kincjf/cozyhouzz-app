@@ -69,7 +69,7 @@ export class RoomMapPage {
       // create CameraPosition
       let position: CameraPosition = {
         target: ionic,
-        zoom: 14
+        zoom: 16
       };
 
       // move the map's camera to position

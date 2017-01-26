@@ -92,7 +92,7 @@ export class Menu {
         ios: 'ios-heart',
         md: 'md-heart',
         page: 'DibRoomListPage'
-      },
+      }/*,
 
       {
         title: '최근 본 방',
@@ -107,7 +107,7 @@ export class Menu {
         ios: 'ios-time',
         md: 'md-time',
         page: 'LatelyRoomListPage'
-      }
+      }*/
     ];
 
     /*

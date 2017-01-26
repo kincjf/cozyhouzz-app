@@ -26,7 +26,7 @@ export class RoomListPage {
   public posts: any;
   public roomInfoResult: any;
   public room: Room;
-  public pageSize: number = 10;
+  public pageSize: number = 3;
   public region: string;
   public filter: Array<string>;
   public lately: number = 0;
