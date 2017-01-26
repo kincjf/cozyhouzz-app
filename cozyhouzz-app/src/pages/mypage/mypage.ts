@@ -205,9 +205,7 @@ export class MyPage {
     } /*else if (p.title == '최근 본 방') {
      this.navCtrl.parent.select(3);
      }*/ else {
-      this.navCtrl.push(p.component, {
-        user: this.user
-      });
+      this.navCtrl.push(p.component);
     }
     /*
      this.navCtrl.parent.parent.push(p);

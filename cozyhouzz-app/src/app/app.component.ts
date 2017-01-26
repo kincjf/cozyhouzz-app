@@ -13,6 +13,7 @@ import {RegistrationPage} from '../pages/authentication/registration/registratio
 // Root pages to be used based on authentication
 import {Menu} from '../pages/menu/menu';
 import {UserService} from "../services/user-service";
+import * as moment from 'moment';
 @Component({
   template: `<ion-nav [root]="rootPage" swipeBackEnabled="false"></ion-nav>`
 })
@@ -36,6 +37,24 @@ export class AppComponent {
       messagingSenderId: "680149394878"
     };
     firebase.initializeApp(config);
+
+    moment.locale('en', {
+      relativeTime: {
+        future: "in %s",
+        past: "%s ago",
+        s: "%d sec",
+        m: "a min",
+        mm: "%d min",
+        h: "an hour",
+        hh: "%d hours",
+        d: "a day",
+        dd: "%d days",
+        M: "a month",
+        MM: "%d months",
+        y: "a year",
+        yy: "%d years"
+      }
+    });
 
     platform.ready().then(() => {
       StatusBar.styleDefault();

@@ -3,7 +3,6 @@ import { NavController,NavParams,Content,ActionSheetController } from 'ionic-ang
 import * as firebase from 'firebase';
 import {GlobalVars} from '../../../../providers/globalvars';
 import {NativeAudio,Camera} from 'ionic-native';
-import {Md5} from "ts-md5/dist/md5";
 
 /*
  Generated class for the Chatting page.
@@ -21,61 +20,38 @@ export class QuestionDetailPage {
   messageText;
   toUserData;
   userData;
+  toMd5UserData;
+  md5UserData;
   _chats;
   messages:any;
-  firstChatId;
-  secondChatId;
   chatId;
-  _user;
   _lastChats;
+  user;
   constructor(public navCtrl: NavController,public params: NavParams,private zone: NgZone,public GlobalVars:GlobalVars,public actionSheetCtrl:ActionSheetController) {
+    this.user = this.params.get('user');
+    this.userData = this.user.userData;
+    this.toUserData = this.user.toUserData;
+    this.toMd5UserData = this.user.toMd5UserData;
+    this.md5UserData = this.user.md5UserData;
 
-    //console.log(this);
-    //GlobalVars.setToUserKey(this.toUserData.userKey)
-  }
-  ionViewWillEnter() {
-    this.toUserData =this.params.get('receiver');
-    this.userData = this.params.get('sender');
-
-    console.log("Sdfsdf");
-    console.log(this.toUserData);
-
-    console.log(this.userData);
-    this._chats = [];
-    this._lastChats = [];
     this._chats = firebase.database().ref('chats');
     this._lastChats = firebase.database().ref('lastchat');
     this.messages = [];
-    this.chatId = this.userData;
-    //console.log(this.toUserData);
+    this.chatId = this.md5UserData;
     this.getChats();
-    this._lastChats.child(this.userData).child(this.toUserData).child('isRead').set('1');
+    this._lastChats.child(this.md5UserData).child(this.toMd5UserData).child('isRead').set('1');
+  }
+  ionViewWillEnter() {
 
   }
   getChats()
   {
-    console.log(this.userData + this.chatId);
-    this._chats.child(this.userData).orderByChild('receiverKey').equalTo(this.toUserData).on('child_added',(data) =>{
+    console.log(this.md5UserData + this.chatId);
+    this._chats.child(this.md5UserData).orderByChild('chatId').equalTo(this.toMd5UserData).on('child_added',(data) =>{
       this.zone.run(() => {
         let tempArray = data.val();
-
-        // if(tempArray.loginUserKey == tempArray.senderKey)
-        // {
-        //   // loginuser profile data;
-        //   let userData = this.userData;
-        //   let toUserData = this.toUserData;
-        // }
-        // else
-        // {
-        //   // to user profile data
-        //   let userData = this.toUserData;
-        //   let toUserData = this.userData;
-        // }
-        //
-        // tempArray.userData = userData
         this.messages.push(tempArray);
 
-        // console.log(this.messages);
         setTimeout(() =>{
           this.content.scrollToBottom();
         },300)
@@ -111,7 +87,8 @@ export class QuestionDetailPage {
       isType:isType,
       isRead:'0',
       dateTime:currentDate,
-      chatId:this.toUserData,
+      chatId:this.toMd5UserData,
+      realChatId: this.toUserData
     };
 
     let messageArrayForToUser = {
@@ -122,19 +99,21 @@ export class QuestionDetailPage {
       isType:isType,
       isRead:'0',
       dateTime:new Date().toString(),
-      chatId:this.userData
+      chatId:this.md5UserData,
+      realChatId: this.userData
     };
     NativeAudio.play('sendmessage', () => console.log('uniqueId1 is done playing'));
-
-    let resUser =  this._chats.child(this.userData).push(messageArrayForUser);
+    console.log(messageArrayForUser);
+    console.log(messageArrayForToUser);
+    let resUser =  this._chats.child(this.md5UserData).push(messageArrayForUser);
     if(resUser)
     {
-      this._lastChats.child(this.userData).child(this.toUserData).set(messageArrayForUser)
+      this._lastChats.child(this.md5UserData).child(this.toMd5UserData).set(messageArrayForUser)
     }
-    let resToUser = this._chats.child(this.toUserData).push(messageArrayForToUser);
+    let resToUser = this._chats.child(this.toMd5UserData).push(messageArrayForToUser);
     if(resToUser)
     {
-      this._lastChats.child(this.toUserData).child(this.userData).set(messageArrayForToUser)
+      this._lastChats.child(this.toMd5UserData).child(this.md5UserData).set(messageArrayForToUser)
     }
     this.messageText = '';
 

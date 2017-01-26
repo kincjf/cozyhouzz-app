@@ -4,16 +4,39 @@
    <!-- <button  ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>-->
-    <ion-title>1:1문의 (아이디)</ion-title>
+    <ion-title>{{user.toUserData}}님과 대화</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <div class="message-wrapper" *ngFor="let p of messages">
-     {{p.senderKey}} -> {{p.receiverKey}}  {{p.message}}
+    <div *ngIf="user.userData !== p.senderKey">
+      <!--<img class="profile-pic left" src="{{toUserData.profilePic}}"/>-->
+      <div class="chat-bubble left">
+        <div class="message">
+          {{p.message}}
+        </div>
 
+        <div class="message-detail">
+          <!--<span class="bold">{{toUserData.firstName}}</span>,-->
+          <span>{{p.dateTime |amTimeAgo }}</span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="user.userData === p.senderKey">
+      <!--<img class="profile-pic right" src="{{userData.profilePic}}" />-->
+      <div class="chat-bubble right">
+        <div class="message">
+          {{p.message}}
+        </div>
+        <div class="message-detail">
+          <!--<span class="bold">{{userData.firstName}}</span>,-->
+          <span>{{p.dateTime |amTimeAgo }} </span>
+          <span class="unreadArrow" [ngClass]="{'readArrow': p.isRead==1 }"><ion-icon name="done-all"></ion-icon> </span>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>
-
 <ion-footer>
   <ion-grid>
     <ion-row>
@@ -22,7 +45,7 @@
 
       </ion-col>
       <ion-col width-15>
-        <button ion-button icon-only  color="custom" (click)="sendMessage(messageText,0,textarea)" [disabled]="!messageText">
+        <button ion-button icon-only  color="custom" (click)="sendMessage(messageText,0,textarea)" [disabled]="!messageText" style="background-color: #73C3CB; margin-top: 12px; margin-left: 25px;">
           <ion-icon name='send'></ion-icon>
         </button>
       </ion-col>

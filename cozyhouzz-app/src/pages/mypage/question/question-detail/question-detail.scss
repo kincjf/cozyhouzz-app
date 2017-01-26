@@ -1,10 +1,10 @@
 page-question-detail {
   // Footer message form
   .content-ios .scroll-content {
-    margin-bottom: 60px !important;
+    margin-bottom: 119px !important;
   }
   .content-md .scroll-content {
-    margin-bottom: 68px !important;
+    margin-bottom: 128px !important;
   }
   .footer-md .message-form {
     padding-bottom: 68px;
@@ -77,7 +77,7 @@ page-question-detail {
   .chat-bubble.left {
     background-color: #e6e5eb;
     float: left;
-    margin-left: 50px;
+    margin-left: 5px;
   }
 
   .chat-bubble.left:before {
@@ -87,14 +87,14 @@ page-question-detail {
   }
 
   .chat-bubble.right {
-    background-color: #158ffe;
+    background-color: #73C3CB;
     color: #fff;
     float: right;
-    margin-right: 50px;
+    margin-right: 5px;
   }
 
   .chat-bubble.right:before {
-    background-color: #158ffe;
+    background-color: #73C3CB;
     right: 10px;
     -webkit-transform: rotate(118deg) skew(-5deg);
   }
@@ -102,5 +102,23 @@ page-question-detail {
   .cf {
     clear: both !important;
   }
-
+  a.autolinker {
+    color: #3b88c3;
+    text-decoration: none;
+  }
+  .message-detail ion{
+    color:#797575 !important;
+  }
+  .readArrow ion{
+    color:rgb(54, 234, 179) !important;
+  }
+  ion-input, ion-textarea{
+    margin-top: -7px;
+  }
+  .text-area{
+    padding-left: 15px !important;
+  }
+  .image-bubble{
+    padding: 5px !important;
+  }
 }
