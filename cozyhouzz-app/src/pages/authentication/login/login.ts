@@ -59,9 +59,7 @@ export class LoginPage {
     let user = this.userService.login(URL, {
       email: email,
       password: password
-    }).toPromise()
-      .then(
-        response => {
+    }).subscribe(response => {
           /*
           * 로그인이 되었을 경우 데이터가 존재한다.
           * 1) id_token을 storage에 저장한다.

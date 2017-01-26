@@ -27,6 +27,8 @@ export class QuestionDetailPage {
   chatId;
   _lastChats;
   user;
+
+  msecond = 0;
   constructor(public navCtrl: NavController,public params: NavParams,private zone: NgZone,public GlobalVars:GlobalVars,public actionSheetCtrl:ActionSheetController) {
     this.user = this.params.get('user');
     this.userData = this.user.userData;
@@ -40,6 +42,11 @@ export class QuestionDetailPage {
     this.chatId = this.md5UserData;
     this.getChats();
     this._lastChats.child(this.md5UserData).child(this.toMd5UserData).child('isRead').set('1');
+
+    setTimeout(() =>{
+      this.content.scrollToBottom();
+      this.msecond = 300;
+    },500)
   }
   ionViewWillEnter() {
 
@@ -54,7 +61,7 @@ export class QuestionDetailPage {
 
         setTimeout(() =>{
           this.content.scrollToBottom();
-        },300)
+        },this.msecond)
 
       });
 

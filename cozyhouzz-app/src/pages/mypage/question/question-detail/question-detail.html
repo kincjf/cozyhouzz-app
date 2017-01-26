@@ -7,7 +7,7 @@
     <ion-title>{{user.toUserData}}님과 대화</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding id="message-contents">
   <div class="message-wrapper" *ngFor="let p of messages">
     <div *ngIf="user.userData !== p.senderKey">
       <!--<img class="profile-pic left" src="{{toUserData.profilePic}}"/>-->
@@ -37,7 +37,7 @@
     </div>
   </div>
 </ion-content>
-<ion-footer>
+<ion-footer id="message-footer">
   <ion-grid>
     <ion-row>
       <ion-col width-80 class="text-area">
