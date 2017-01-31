@@ -3,6 +3,8 @@ import { NavController,NavParams,Content,ActionSheetController } from 'ionic-ang
 import * as firebase from 'firebase';
 import {GlobalVars} from '../../../../providers/globalvars';
 import {NativeAudio,Camera} from 'ionic-native';
+import {Loader} from "../../../../providers/loader";
+
 
 /*
  Generated class for the Chatting page.
@@ -29,7 +31,7 @@ export class QuestionDetailPage {
   user;
 
   msecond = 0;
-  constructor(public navCtrl: NavController,public params: NavParams,private zone: NgZone,public GlobalVars:GlobalVars,public actionSheetCtrl:ActionSheetController) {
+  constructor(public navCtrl: NavController,public params: NavParams,private zone: NgZone, public loader:Loader ,public GlobalVars:GlobalVars,public actionSheetCtrl:ActionSheetController) {
     this.user = this.params.get('user');
     this.userData = this.user.userData;
     this.toUserData = this.user.toUserData;
@@ -45,8 +47,8 @@ export class QuestionDetailPage {
 
     setTimeout(() =>{
       this.content.scrollToBottom();
-      this.msecond = 300;
-    },500)
+      this.msecond = 0;
+    },0)
   }
   ionViewWillEnter() {
 
@@ -54,7 +56,7 @@ export class QuestionDetailPage {
   getChats()
   {
     console.log(this.md5UserData + this.chatId);
-    this._chats.child(this.md5UserData).orderByChild('chatId').equalTo(this.toMd5UserData).on('child_added',(data) =>{
+    this._chats.child(this.md5UserData).orderByChild('chatId').equalTo(this.toMd5UserData).limitToLast(15).on('child_added',(data) =>{
       this.zone.run(() => {
         let tempArray = data.val();
         this.messages.push(tempArray);
@@ -78,7 +80,7 @@ export class QuestionDetailPage {
   onBlur(event){
     setTimeout(() =>{
       this.content.scrollToBottom();
-    },2000)
+    },0)
   }
   sendMessage(message,isType,textarea){
     if(textarea){
@@ -126,6 +128,7 @@ export class QuestionDetailPage {
 
   }
 
+/*
 
   imageShare()
   {
@@ -136,13 +139,13 @@ export class QuestionDetailPage {
           text: 'Gallery',
           role: 'destructive',
           handler: () => {
-            this.openCamera(0)
+            this.openCamera(0);
             console.log('Destructive clicked');
           }
         },{
           text: 'Camera',
           handler: () => {
-            this.openCamera(1)
+            this.openCamera(1);
             console.log('Archive clicked');
           }
         },{
@@ -156,8 +159,10 @@ export class QuestionDetailPage {
     });
     actionSheet.present();
   }
+*/
 
   // choose image from gallery/camera
+/*
   openCamera(type){
 
     var options = {
@@ -181,4 +186,5 @@ export class QuestionDetailPage {
       // Handle error
     });
   }
+*/
 }

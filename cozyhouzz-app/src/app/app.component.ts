@@ -1,14 +1,10 @@
 import {Component} from '@angular/core';
-import {Platform, AlertController, App} from 'ionic-angular';
-import {Events} from 'ionic-angular';
+import {Platform} from 'ionic-angular';
 import {StatusBar, Keyboard} from 'ionic-native';
-import {TabsPage} from '../pages/tabs/tabs';
 import * as firebase from 'firebase';
 
 // Authenticator
 import {Storage} from '@ionic/storage';
-import {LoginPage} from '../pages/authentication/login/login';
-import {RegistrationPage} from '../pages/authentication/registration/registration';
 
 // Root pages to be used based on authentication
 import {Menu} from '../pages/menu/menu';
@@ -24,11 +20,8 @@ export class AppComponent {
   logined: boolean;
 
   constructor(platform: Platform,
-              private events: Events,
-              private app: App,
               private storage: Storage,
-              private userService: UserService,
-              private alertController: AlertController) {
+              private userService: UserService) {
     var config = {
       apiKey: "AIzaSyBERdRJbsk-p6pSX8Ohx6Jftevr3Fkp9bU",
       authDomain: "cozyhouzz-app.firebaseapp.com",
@@ -87,24 +80,24 @@ export class AppComponent {
   registerBackButtonListener() {
     document.addEventListener('backbutton', () => {
 
-       /* let confirm = this.alertController.create({
-          title: 'Confirm Exit',
-          message: 'Really exit app?',
-          buttons: [
-            {
-              text: 'Cancel',
-              handler: () => {
-                console.log('Disagree clicked');
-              }
-            },
-            {
-              text: 'Exit',
-              handler: () => {
+      /* let confirm = this.alertController.create({
+       title: 'Confirm Exit',
+       message: 'Really exit app?',
+       buttons: [
+       {
+       text: 'Cancel',
+       handler: () => {
+       console.log('Disagree clicked');
+       }
+       },
+       {
+       text: 'Exit',
+       handler: () => {
 
-              }
-            }
-          ]
-        });*/
+       }
+       }
+       ]
+       });*/
     });
   }
 

@@ -4,7 +4,6 @@ import { RoomListPage } from '../roomInfo/room-list/room-list';
 // import {LatelyRoomListPage} from '../roomInfo/lately-room-list/lately-room-list';
 import {DibRoomListPage} from '../roomInfo/dib-room-list/dib-room-list';
 import { MyPage } from '../mypage/mypage';
-import {LoginPage} from '../authentication/login/login';
 @Component({
   templateUrl: 'tabs.html'
 })

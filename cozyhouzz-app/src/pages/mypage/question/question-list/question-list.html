@@ -10,11 +10,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
+<ion-content>
+ <!-- <ion-list>
     <ion-item *ngFor="let item of recentChats" (click)="chatSelect(item.realChatId)">
       {{item.realChatId}}
     </ion-item>
+  </ion-list>-->
+  <ion-list padding id="menu_list">
+    <div *ngFor="let item of recentChats">
+      <button ion-item
+              (click)="chatSelect(item.realChatId)">
+
+        <!--<ion-icon ios="ios-home" md="md-home" style="float: left; margin-top: 9px; margin-right: 25px;"></ion-icon>-->
+        <div  style="float: left;">
+          <span>{{item.realChatId}}</span><br>
+          <span style="color: #aaa; font-size: 1.3rem">{{item.message}} - {{item.dateTime |amTimeAgo }}</span>
+        </div>
+      </button>
+    </div>
   </ion-list>
 </ion-content>
 

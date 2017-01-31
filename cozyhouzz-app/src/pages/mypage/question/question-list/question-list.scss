@@ -1,4 +1,43 @@
 page-question-list {
+  ion-list {
+    button {
+      padding-left: 0 !important;
+      ion-label {
+        padding-left: 16px;
+        ion-icon {
+          width: 16px;
+        }
+      }
+    }
+
+  }
+
+
+  #user_info_area {
+    width: 100%; height: 160px; background-color: #73C3CB;
+    text-align: center;
+    #user_image {
+      width: 20%;
+      margin-top: 30px;
+      border-radius: 100px;
+      margin-bottom: 5px;
+    }
+    #user_info {
+      color: white;
+    }
+  }
+  #menu_list {
+    margin-top: -15px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+
+    #signOutButton {
+      .item-inner {
+        border-bottom: 0 solid #ddd !important;
+      }
+    }
+
+  }
  /* // Footer message form
   .content-ios .scroll-content {
     margin-bottom: 60px !important;

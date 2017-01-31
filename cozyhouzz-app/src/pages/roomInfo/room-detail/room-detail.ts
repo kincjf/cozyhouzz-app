@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, AlertController, NavParams} from 'ionic-angular';
-import {DomSanitizer, SafeUrl, SafeResourceUrl} from '@angular/platform-browser';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {Loader} from "../../../providers/loader";
 
 

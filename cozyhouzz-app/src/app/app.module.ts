@@ -39,7 +39,6 @@ import { IonShrinkingHeader } from '../components/ion-shrinking-header';
 
 
 //BussinessManRegistrationPage
-import {Config} from './config'
 import {PostService} from "../services/post-service";
 import {UserService} from "../services/user-service";
 import {Storage} from '@ionic/storage';

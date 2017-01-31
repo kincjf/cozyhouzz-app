@@ -5,6 +5,7 @@ import {GlobalVars} from '../../../../providers/globalvars';
 import {QuestionDetailPage} from '../question-detail/question-detail';
 import {Md5} from "ts-md5/dist/md5";
 import {UserService} from '../../../../services/user-service';
+import {Loader} from "../../../../providers/loader";
 @Component({
   selector: 'page-question-list',
   templateUrl: 'question-list.html'
@@ -14,29 +15,53 @@ export class QuestionListPage {
   _chats;
   user;
   _lastChats;
-  recentChats;
+  recentChats:Array<any>;
   blob;
   user_delimiter;
 
 
   isLogined: boolean = false;
 
-  constructor(public navCtrl: NavController, private zone: NgZone, public GlobalVars: GlobalVars, public params: NavParams,
+  constructor(public navCtrl: NavController,  public loader:Loader, public GlobalVars: GlobalVars, public params: NavParams,
     public userService:UserService) {
+    loader.show("1:1 대화 목록을 불러오고 있습니다.");
+
+    this.recentChats = [];
+    let testing = this.recentChats;
     this.isLogined = userService.getIsLogind();
     if(this.isLogined) {
       this.user = userService.getUserInfo();
       this.user_delimiter = Md5.hashStr(this.user.email);
 
-      this.recentChats = [];
       this._chats = firebase.database().ref('chats');
       this._lastChats = firebase.database().ref('lastchat');
+
+
+      this._lastChats.child(this.user_delimiter).once('value').then(function(data) {
+
+        let tempArray = data.val();
+        for(let temp in tempArray) {
+          testing.push(tempArray[temp]);
+          console.log(tempArray[temp]);
+        }
+        loader.hide();
+
+        //console.log(tempArray);
+        //this.recentChats.push(tempArray);
+      });
+     /*  this.recentChats = [];
+
       this._lastChats.child(this.user_delimiter).on('child_added', (data) => {
+        if(this.recentChats.length <= 0) {
+          this.loader.hide();
+
+        }
         this.zone.run(() => {
           let tempArray = data.val();
+          console.log(tempArray);
           this.recentChats.push(tempArray);
         });
-      });
+      });*/
     }
 
   }
