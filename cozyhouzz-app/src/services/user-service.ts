@@ -48,6 +48,7 @@ export class UserService {
 
     this.events.publish('user:logout', '');
     this.events.publish('roomInfoList:logout', '');//mypage:logout
+    this.events.publish('roomInfoDetail:logout', '');
     this.events.publish('mypage:logout', '');//mypage:logout
   }
 
@@ -68,8 +69,10 @@ export class UserService {
     this.storage.set("id_token", jwt);
 
     this.events.publish('roomInfoList:logined', '');
+    this.events.publish('roomInfoDetail:logined', '');
     this.events.publish('user:logined', '');
     this.events.publish('mypage:logined', '');
+    //roomInfoDetail:logined
   }
 
   /**
@@ -136,6 +139,7 @@ export class UserService {
 
   }
   getUserDetailInfo(user, header) {
+    console.log(header);
     let options = new RequestOptions({ headers: header });
     let URL = [config.serverHost, config.path.userInfo].join('/');
     return this.http.post(URL, {email: user.email, password: user.password}, options)

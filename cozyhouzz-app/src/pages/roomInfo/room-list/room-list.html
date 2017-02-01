@@ -114,24 +114,22 @@
       해당 부분에 변수를 두고 변수의 값을 바꾸는 것으로 해야 할듯.
       -->
     <ion-item *ngFor="let roomInfo of returnedDatas | sortBy : orderBy;  let i = index" class="roomInfo"
-              (click)="viewPost(roomInfo.selectedroomInfoIdx)">
+              (click)="viewPost(roomInfo.post_id)">
       <ion-thumbnail item-left>
-        <img src="assets/img/testMainPreviewImage2.jpg" *ngIf="i%4==0"
-
-             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
-        <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
+        <img [src]="roomInfo.thumbnail_image_path" alt="Inventore voluptates velit totam ipsa tenetur" style=" display: block; float: left;">
+      <!--  <img src="assets/img/testMainPreviewImage3.jpg" *ngIf="i%4==1"
              alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
         <img src="assets/img/testMainPreviewImage4.jpg" *ngIf="i%4==2"
              alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
         <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
-             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">
+             alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">-->
       </ion-thumbnail>
       <div id="roomInfoDetail" >
         <span id="post_title">{{roomInfo.title}}</span><br>
-        <span id="post_place">{{roomInfo.buildPlace}}</span><br>
-        <span id="post_pyeong">{{roomInfo.buildTotalArea}}평</span>
-        <span id="post_type">{{roomInfo.buildType}}</span>
-        <span id="post_deposit">{{roomInfo.buildTotalPrice}} / 20</span><br>
+        <span id="post_place">{{roomInfo.address.addr1}}</span><br>
+        <span id="post_pyeong">{{roomInfo.area_size}}평</span>
+        <span id="post_type">{{roomInfo.room_type}}</span>
+        <span id="post_deposit">{{roomInfo.deposit}} / {{roomInfo.monthly_rent_fee}}</span><br>
         <span id="post_etc">
           <span>
               <ion-icon ios="ios-heart" md="md-heart" style="color: #ff7473;"></ion-icon> {{i}}

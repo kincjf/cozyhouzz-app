@@ -1,6 +1,6 @@
 <ion-header no-border>
   <ion-navbar color="cozy"> <!-- style="background-color: rgba(0, 0, 0, 0)"-->
-    <ion-title>{{buildName}} <!--방 정보 상세보기--></ion-title>
+    <ion-title>{{title}} <!--방 정보 상세보기--></ion-title>
   <!--  <ion-buttons end>
       <button ion-button right (click)="commentButtonClick()">
         댓글 확인
@@ -25,9 +25,10 @@
     <ion-avatar item-left>
       <img src="{{ post.face }}"  id="roomInfoDetailUserImage" >
     </ion-avatar>
-    <h2 color="primary" class="post-author">{{ post.name }}</h2>
+    <h2 color="primary" class="post-author">{{ display_name }}</h2>
     <span class="post-time">
-      {{ initWriteDate }}
+      {{ email }} <br>
+      {{ post_init_date }}
     </span>
   </ion-item>
     <ion-list id="roomInfoDetailInfoList">
@@ -35,41 +36,41 @@
       <ion-grid class="post-actions roomInfoInformationGrid"> <!--  style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);" -->
         <ion-row class="roomInfoInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
-            <span class="label label-warning">공사면적</span>
+            <span class="label label-warning">방 크기</span>
           </ion-col>
           <ion-col width-75 text-center>
-            <span class="label label-primary">{{buildTotalArea}}</span>
+            <span class="label label-primary">{{area_size}}</span>
           </ion-col>
         </ion-row>
         <ion-row class="roomInfoInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
-            <span class="label label-warning">공사구분</span>
+            <span class="label label-warning">방 타입</span>
           </ion-col>
           <ion-col width-75 text-center>
-            <span class="label label-primary">{{buildType}}</span>
+            <span class="label label-primary">{{room_type}}</span>
           </ion-col>
         </ion-row>
         <ion-row class="roomInfoInformationGridBorderClass padding-6">
           <ion-col width-25 text-center>
-            <span class="label label-warning">시공가격</span>
+            <span class="label label-warning">보증금</span>
           </ion-col>
           <ion-col width-75 text-center>
-            <span class="label label-primary">{{buildTotalPrice}}만원</span>
+            <span class="label label-primary">{{deposit}}만원</span>
           </ion-col>
         </ion-row>
         <ion-row class="padding-6">
           <ion-col width-25 text-center>
-            <span class="label label-warning">공사장소</span>
+            <span class="label label-warning">월세</span>
           </ion-col>
           <ion-col width-75 text-center>
-            <span class="label label-primary">{{buildPlace}}</span>
+            <span class="label label-primary">{{monthly_rent_fee}}만원</span>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-list>
 
 
-    <div id="companyIntro"  [innerHTML]="htmlText" class="innerHtmlDiv">
+    <div id="companyIntro"  [innerHTML]="content" class="innerHtmlDiv">
 
     </div>
     <!--
@@ -125,10 +126,10 @@
         <ion-icon large ios="ios-pin" md="md-pin"></ion-icon> <!-- ion-chatbox-->
 
       </button>
-      <button ion-item text-center id="call" (click)="callNumber()">
+      <button ion-item text-center id="call" (click)="callNumber(telephone)">
         <ion-icon large ios="ios-call" md="md-call"></ion-icon>
       </button>
-      <button ion-item text-center id="chatbubbles" >
+      <button ion-item text-center id="chatbubbles" (click)="chatSelect(email)">
         <ion-icon large ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
         1:1 문의하기
       </button>

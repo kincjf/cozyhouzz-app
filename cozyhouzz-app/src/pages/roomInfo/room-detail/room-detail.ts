@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController, AlertController, NavParams} from 'ionic-angular';
+import {NavController, AlertController, NavParams, Events} from 'ionic-angular';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {Loader} from "../../../providers/loader";
-
+import {Md5} from "ts-md5/dist/md5";
+import {QuestionDetailPage} from '../../mypage/question/question-detail/question-detail';
 
 import 'rxjs/add/operator/toPromise';
 import {Http} from '@angular/http';
@@ -17,6 +18,7 @@ import {RoomMapPage} from '../room-map/room-map';
 import {isCordovaAvailable} from '../../../services/is-cordova-available';
 import {contentHeaders} from '../../../app/common/headers';
 import {UserService} from '../../../services/user-service';
+import {Config} from "../../../app/config";
 // import {RoomCommentPage} from '../room-comment/room-comment';
 @Component({
   selector: 'page-build-case-detail',
@@ -25,8 +27,7 @@ import {UserService} from '../../../services/user-service';
 export class RoomDetailPage {
   public post: any;
   public data: any;
-
-  title: string;
+  public roomDetailInfo:any;
   buildType: string;
   buildPlace: any;
   buildName: any;
@@ -36,7 +37,6 @@ export class RoomDetailPage {
   buildTotalPrice: number;
   htmlText: any;
   VRImages: any;
-  coordinate: any;
   regionCategory: any;
   initWriteDate: string;
 
@@ -53,6 +53,40 @@ export class RoomDetailPage {
   serverHost: string = config.serverHost;
   companyIntroImageUrl;
 
+  ID: any;
+  address: any;
+  area_size: any;
+  content: any;
+  coordinate: any;
+  createdAt: any;
+  deposit: any;
+  display_name: any;
+  email: any;
+  like: any;
+  locale: any;
+  meta_value: any;
+  monthly_rent_fee: any;
+  old_address: any;
+  old_address_dong: any;
+  post_code: any;
+  post_id: any;
+  post_init_date: any;
+  post_init_date_gmt: any;
+  post_modified_date: any;
+  post_modified_date_gmt: any;
+  post_status: any;
+  post_type: any;
+  read_count: any;
+  room_type: any;
+  thumbnail_image_path: any;
+  thumbnail_media_id: any;
+  title: any;
+  unlike: any;
+  updatedAt: any;
+  user_id: any;
+  telephone: any;
+
+
   buildTypes = STATIC_VALUE.PLACE_TYPE;
   selectedroomInfoIdx: any;
   public roomInfoResult: any;
@@ -63,7 +97,7 @@ export class RoomDetailPage {
 
   constructor(public nav: NavController, public postService: PostService, public http: Http, public params: NavParams,
               private alertCtrl: AlertController, private sanitizer: DomSanitizer, public loader:Loader,
-              public userService:UserService) {
+              public userService:UserService,    private events: Events) {
     this.isLogined = false;
     /*
      * 선택된 방 정보를 가져온다.
@@ -76,33 +110,46 @@ export class RoomDetailPage {
      * 현재는 그냥 url로 되어있지만 config에서 url을 설정해서 추후 바꿔야 함.
      * */
     this.loader.show("정보를 불러오고 있습니다.");
-
+    let URL = [config.serverHost, config.path.roomDetailInfo, this.selectedroomInfoIdx ].join('/');
+  console.log(URL);
     this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/roomInfoVR/6');
-    this.roomInfoResult = postService.getroomInfoInfo("http://api.cozyhouzz.co.kr/api/build-case/" + this.selectedroomInfoIdx);
+    this.roomInfoResult = postService.getroomInfoInfo(URL);
     this.roomInfoResult.toPromise()
       .then(
         response => {
-          console.log(response);
-          this.memberIdx = response.buildCaseInfo.memberIdx;
-          this.title = response.buildCaseInfo.title;
-          this.buildType = response.buildCaseInfo.buildType;
-          // this.buildTypeFuntion(this.buildType);
-          this.buildPlace = JSON.parse(response.buildCaseInfo.buildPlace);
-          this.buildName = this.buildPlace[2];
-          this.buildAddress = this.buildPlace[1];
-          this.buildPlace = this.buildPlace[1] + ' ' + this.buildPlace[2];
-          this.buildTotalArea = response.buildCaseInfo.buildTotalArea;
-          this.mainPreviewImage = response.buildCaseInfo.mainPreviewImage;
-          this.buildTotalPrice = response.buildCaseInfo.buildTotalPrice;
-          this.htmlText = response.buildCaseInfo.HTMLText;
-          this.VRImages = JSON.parse(response.buildCaseInfo.VRImages);
-          this.coordinate = response.buildCaseInfo.coordinate;    // 나중에 좌표를 받아서 Daum Map에 뿌려준다
-          // this.coordinate = JSON.parse(response.roomInfoInfo.coordinate);
-          this.regionCategory = response.buildCaseInfo.regionCategory;
-          this.initWriteDate = moment(response.buildCaseInfo.initWriteDate).format('YYYY/MM/DD HH:mm:ss');
-
-          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", this.buildType]);
-          this.buildType = STATIC_VALUE.PLACE_TYPE[key].name;
+          let postInfoData = response.detailList[0];
+            this.ID= postInfoData.ID;
+            this.address= JSON.parse(postInfoData.address);
+            this.area_size=postInfoData.area_size;
+            this.content = postInfoData.content;
+            this.coordinate= JSON.parse(postInfoData.coordinate);
+            this.createdAt= postInfoData.createAt;
+            this.deposit= postInfoData.deposit;
+            this.display_name=postInfoData.display_name;
+            this.email=postInfoData.email;
+            this.like=postInfoData.like;
+            this.locale=postInfoData.local;
+            this.telephone = postInfoData.telephone;
+            this.meta_value= JSON.parse(postInfoData.meta_value);
+            this.monthly_rent_fee=postInfoData.monthly_rent_fee;
+            this.old_address= JSON.parse(postInfoData.old_address);
+            this.old_address_dong=postInfoData.old_address_dong;
+            this.post_code=postInfoData.post_code;
+            this.post_id=postInfoData.post_id;
+            this.post_init_date=postInfoData.post_init_date;
+            this.post_init_date_gmt=postInfoData.post_init_date_gmt;
+            this.post_modified_date=postInfoData.post_modified_date;
+            this.post_modified_date_gmt=postInfoData.post_modified_date_gmt;
+            this.post_status=postInfoData.post_status;
+            this.post_type=postInfoData.post_type;
+            this.read_count=postInfoData.read_count;
+            this.room_type= '원룸';//this.buildTypeFuntion(postInfoData.room_type);
+            this.thumbnail_image_path=postInfoData.thumbnail_image_path;
+            this.thumbnail_media_id=postInfoData.thumbnail_media_id;
+            this.title=postInfoData.title;
+            this.unlike=postInfoData.unlike;
+            this.updatedAt=postInfoData.updateAt;
+            this.user_id=postInfoData.user_id;
           loader.hide();
         }
       );
@@ -114,6 +161,21 @@ export class RoomDetailPage {
     }
     contentHeaders.set('Authorization', this.jwt);//Header에 jwt값 추가하기
 
+
+    events.subscribe('roomInfoDetail:logined', () => {
+      this.isLogined = userService.getIsLogind();
+      if (this.isLogined) {
+        this.user = this.userService.getUserInfo();
+      }
+    });
+    /*
+     * 로그아웃 또한 로그인과 마찬가지
+     * */
+    events.subscribe('roomInfoDetail:logout', () => {
+      this.isLogined = false;
+      this.user = null;
+      this.userService.removeUserInfo();
+    });
 
   };
   ionViewWillEnter() {
@@ -129,7 +191,7 @@ export class RoomDetailPage {
    * native 기능이기 때문에 핸드폰에서 실행되고 있는가를 isCordovaAvailable함수를 통해서 확인한다.
    * native일 경우, alertCtrl을 이용해서 요금 부과를 확인하고 전화걸기를 수행한다.
    * ionic plugin add call-number 필수! */
-  callNumber() {
+  callNumber(telephone) {
     if (!isCordovaAvailable()) {
       return false;
     }
@@ -176,7 +238,7 @@ export class RoomDetailPage {
    * 현재는 주소만 보내주고 있지만 주소, 위도, 경도, 타이틀도 같이 보내줘야 할 듯.
    * ionic plugin add cordova-plugin-googlemaps 설치 필수! development-resources 페이지의 install.txt 참조하기 바람. */
   mapBtnClick() {
-    this.nav.push(RoomMapPage, {address: this.buildAddress});
+    this.nav.push(RoomMapPage, {address: this.address.addr1});
   }
 
   /**
@@ -260,4 +322,59 @@ export class RoomDetailPage {
   /*commentButtonClick() {
       this.nav.push(RoomCommentPage);
   }*/
+
+  /**
+   *
+   * @param receiver 1:1 대화에서의 상대방 이메일
+   * 상대방 이메일과 현재 로그인 된 유저의 이메일, 해쉬된 이메일을 QuestionDetailPage로 보내준다.
+   *
+   * 만약 로그인이 되어있지 않다면,
+   * alertCtrl을 통해서
+   * 로그인을 할 것인지를 물어본다.
+   *
+   * 이후 로그인페이지로 이동.
+   */
+  chatSelect(receiver) {
+    if(this.isLogined) {
+      /*
+      * 1:1 대화에서 필요한 정보를 만들어 보내줘야 한다.
+      * firebase3에서는 . / 이러한 기호로 검색이 불가능하므로
+      * 나의 이메일과 상대방 이메일을 해쉬한 값을 같이 보내줘서
+      * 해당 해쉬값으로 검색을 하도록 한다.
+      * */
+      let user = {
+        userData: this.user.email,
+        md5UserData: Md5.hashStr(this.user.email),
+        toUserData: receiver,
+        toMd5UserData: Md5.hashStr(receiver)
+      };
+
+      this.nav.push(QuestionDetailPage, {
+        user:user
+      });
+    } else {
+      let alert = this.alertCtrl.create({
+        title: '1:1 대화',
+        message: '로그인이 필요한 항목입니다. 로그인 페이지로 이동하시겠습니까?',
+        buttons: [
+          {
+            text: '취소',
+            role: '취소',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: '로그인',
+            handler: () => {
+              Config.SELECTED_TABS_MENU = 'LoginPage';
+              this.nav.parent.select(3);
+              console.log("login page로 이동하기");
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+  }
 }

@@ -21,7 +21,8 @@ export const config = {
       changeBizSignup: "api/user/biz",
       consulting: "api/consult",
       buildCase: "api/build-case",
-      roomInfo: "api/room",
+      roomInfo: "api/posts",
+      roomDetailInfo: "api/room",
       bizStore: "api/biz-store"
     }
   },

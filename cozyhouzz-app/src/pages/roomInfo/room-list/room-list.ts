@@ -26,7 +26,7 @@ export class RoomListPage {
   public posts: any;
   public roomInfoResult: any;
   public room: Room;
-  public pageSize: number = 3;
+  public pageSize: number = 6;
   public region: string;
   public filter: Array<string>;
   public lately: number = 0;
@@ -36,7 +36,7 @@ export class RoomListPage {
   public view:boolean = false;
   public orderBy: string = ''; //orderBy변수가 빈문자열 또는 null일 경우, 정렬하지 않음.  //selectedroomInfoIdx
 
-
+  buildTypes = STATIC_VALUE.PLACE_TYPE;
   /*
   * refresher을 사용하기 위한 변수.
   * 맨 아래 ionViewWillEnter, ionViewWillLeave 함수 볼 것.
@@ -104,9 +104,9 @@ export class RoomListPage {
     this.filter = this.room.filter;
     /*
      * 방 정보 불러오는 부분 */
-    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    //let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
-    // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
     this.getDatas(URL, this.loader, null, null);
 
     /*
@@ -161,40 +161,77 @@ export class RoomListPage {
         /*
          * 가져온 방 정보를 반복문을 수행하면서 위 returnedDatas 배열에 집어 넣는다.
          * */
-        for (let roomInfoData of response.buildCaseInfo) {
-          let buildPlaceArr = JSON.parse(roomInfoData.buildPlace);
-          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomInfoData.buildType]);
-
-          this.tmp_returnedDatas.push({
-            selectedroomInfoIdx: roomInfoData.idx,
-            title: roomInfoData.title,
-            mainPreviewImage: roomInfoData.mainPreviewImage,
-            HTMLText: roomInfoData.HTMLText,
-            buildTotalArea: roomInfoData.buildTotalArea,
-            buildType: STATIC_VALUE.PLACE_TYPE[key].name,
-            buildTotalPrice: roomInfoData.buildTotalPrice,
-            buildPlace: buildPlaceArr[1],
-            buildPlaceDetail: buildPlaceArr[2]
-          });
-
+        for(let postInfoData of response.postList) {
+           this.tmp_returnedDatas.push({
+             ID: postInfoData.ID,
+             address: JSON.parse(postInfoData.address),
+             area_size:postInfoData.area_size,
+             content: postInfoData.content,
+             coordinate: JSON.parse(postInfoData.coordinate),
+             createdAt: postInfoData.createAt,
+             deposit: postInfoData.deposit,
+             display_name:postInfoData.display_name,
+             email:postInfoData.email,
+             like:postInfoData.like,
+             locale:postInfoData.local,
+             meta_value: JSON.parse(postInfoData.meta_value),
+             monthly_rent_fee:postInfoData.monthly_rent_fee,
+             old_address: JSON.parse(postInfoData.old_address),
+             old_address_dong:postInfoData.old_address_dong,
+             post_code:postInfoData.post_code,
+             post_id:postInfoData.post_id,
+             post_init_date:postInfoData.post_init_date,
+             post_init_date_gmt:postInfoData.post_init_date_gmt,
+             post_modified_date:postInfoData.post_modified_date,
+             post_modified_date_gmt:postInfoData.post_modified_date_gmt,
+             post_status:postInfoData.post_status,
+             post_type:postInfoData.post_type,
+             read_count:postInfoData.read_count,
+             room_type: '원룸',//this.buildTypeFuntion(postInfoData.room_type),
+             thumbnail_image_path: config.serverHost + '/' + postInfoData.thumbnail_image_path,
+             thumbnail_media_id:postInfoData.thumbnail_media_id,
+             title:postInfoData.title,
+             unlike:postInfoData.unlike,
+             updatedAt:postInfoData.updateAt,
+             user_id:postInfoData.user_id
+           });
         }
+        console.log(this.tmp_returnedDatas);
+        /*
         for (let roomInfoData of response.buildCaseInfo) {
-          let buildPlaceArr = JSON.parse(roomInfoData.buildPlace);
-          let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomInfoData.buildType]);
+        let buildPlaceArr = JSON.parse(roomInfoData.buildPlace);
+        let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomInfoData.buildType]);
 
-          this.tmp_returnedDatas.push({
-            selectedroomInfoIdx: roomInfoData.idx,
-            title: roomInfoData.title,
-            mainPreviewImage: roomInfoData.mainPreviewImage,
-            HTMLText: roomInfoData.HTMLText,
-            buildTotalArea: roomInfoData.buildTotalArea,
-            buildType: STATIC_VALUE.PLACE_TYPE[key].name,
-            buildTotalPrice: roomInfoData.buildTotalPrice,
-            buildPlace: buildPlaceArr[1],
-            buildPlaceDetail: buildPlaceArr[2]
-          });
+        this.tmp_returnedDatas.push({
+          selectedroomInfoIdx: roomInfoData.idx,
+          title: roomInfoData.title,
+          mainPreviewImage: roomInfoData.mainPreviewImage,
+          HTMLText: roomInfoData.HTMLText,
+          buildTotalArea: roomInfoData.buildTotalArea,
+          buildType: STATIC_VALUE.PLACE_TYPE[key].name,
+          buildTotalPrice: roomInfoData.buildTotalPrice,
+          buildPlace: buildPlaceArr[1],
+          buildPlaceDetail: buildPlaceArr[2]
+        });
 
-        }
+      }
+        for (let roomInfoData of response.buildCaseInfo) {
+        let buildPlaceArr = JSON.parse(roomInfoData.buildPlace);
+        let key = _.findKey(STATIC_VALUE.PLACE_TYPE, ["number", roomInfoData.buildType]);
+
+        this.tmp_returnedDatas.push({
+          selectedroomInfoIdx: roomInfoData.idx,
+          title: roomInfoData.title,
+          mainPreviewImage: roomInfoData.mainPreviewImage,
+          HTMLText: roomInfoData.HTMLText,
+          buildTotalArea: roomInfoData.buildTotalArea,
+          buildType: STATIC_VALUE.PLACE_TYPE[key].name,
+          buildTotalPrice: roomInfoData.buildTotalPrice,
+          buildPlace: buildPlaceArr[1],
+          buildPlaceDetail: buildPlaceArr[2]
+        });
+
+      }*/
         this.returnedDatas = this.tmp_returnedDatas;
         this.view = true;
         if (loader != null) {
@@ -230,8 +267,10 @@ export class RoomListPage {
    refreshButtonClick() {
     /*
      * 방 정보 불러오는 부분 */
-    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
-    // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    this.pageSize = 6;
+    this.pageStartIndex = 0;
+    //let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+    let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     this.tmp_returnedDatas = [];
     this.getDatas(URL, null, null, null);
@@ -239,7 +278,10 @@ export class RoomListPage {
   doRefresh(refresher) {
     /*
      * 방 정보 불러오는 부분 */
-    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
+
+    this.pageSize = 6;
+    this.pageStartIndex = 0;
+    let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
     // let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
 
     setTimeout(() => {
@@ -261,7 +303,9 @@ export class RoomListPage {
    * 위와 다른점은 returnedDatas를 초기화 하지 않는다는 것.
    * */
   doInfinite(infiniteScroll: any) {
-    let URL = ['http://api.cozyhouzz.co.kr/api/build-case?pageSize=10&pageStartIndex=0'].join('/');
+
+    this.pageStartIndex += this.pageSize;
+    let URL = [config.serverHost, config.path.roomInfo + '?pageSize=' + this.pageSize + '&pageStartIndex=' + this.pageStartIndex].join('/');
     this.getDatas(URL, null, infiniteScroll, null);
   }
 
@@ -375,6 +419,53 @@ export class RoomListPage {
     this.observer.observe(target, { attributes : true, attributeFilter : ['class'] });
     console.log("refresher에 대한 observer 세팅");*/
 
+  }
+  /**
+   *
+   * @param buildType
+   * enum으로 되어있는가봄?
+   * 여튼 해당 타입에 맞는 string 넣어주는 함수.
+   */
+  buildTypeFuntion(buildType) {
+    let type = this.buildTypes;
+    console.log(type);
+    console.log(buildType);
+    if(type.APARTMENT.number == buildType){
+      return type.APARTMENT.name;
+    }
+    else if(type.VILLA.number == buildType){
+      return type.VILLA.name;
+    }
+    else if(type.DETACHED_HOUSE.number == buildType){
+      return type.DETACHED_HOUSE.name;
+    }
+    else if(type.ONE_ROOM.number == buildType){
+      return type.ONE_ROOM.name;
+    }
+    else if(type.TWO_ROOM.number == buildType){
+      return type.TWO_ROOM.name;
+    }
+    else if(type.THREE_ROOM.number == buildType){
+      return type.THREE_ROOM.name;
+    }
+    else if(type.OFFICETEL.number == buildType){
+      return type.OFFICETEL.name;
+    }
+    else if(type.OFFICE.number == buildType){
+      return type.OFFICE.name;
+    }
+    else if(type.SHOPPING.number == buildType){
+      return type.SHOPPING.name;
+    }
+    else if(type.CAFE_RESTAURANT.number == buildType){
+      return type.CAFE_RESTAURANT.name;
+    }
+    else if(type.ACADEMY.number == buildType) {
+      return type.ACADEMY.name;
+    }
+    else if(type.CAFE_RESTAURANT.number == buildType){
+      return type.HOSPITAL.name;
+    }
   }
 
 }

@@ -41,7 +41,11 @@ export class QuestionListPage {
 
         let tempArray = data.val();
         for(let temp in tempArray) {
-          testing.push(tempArray[temp]);
+          if(tempArray[temp].chatId == null || tempArray[temp].chatId == undefined) {
+
+          } else {
+            testing.push(tempArray[temp]);
+          }
           console.log(tempArray[temp]);
         }
         loader.hide();
