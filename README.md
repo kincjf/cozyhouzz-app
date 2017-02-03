@@ -28,8 +28,6 @@ To install ionic2 you need nodejs (current project: 6.9.4).
   <li>cd cozyhouzz-app/cozyhouzz-app</li>
   <li>npm install</li>
   <li>ionic state reset</li>
-  <li>ionic platform add android</li>
-  <li>ionic state reset</li>
   <li>ionic plugin add https://github.com/Telerik-Verified-Plugins/ImagePicker</li>
   <li>ionic plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROID="AIzaSyCjr4vfqafxsO1kq853HHZzy5kpLV_XB44" --variable API_KEY_FOR_IOS="AIzaSyBA7HfLTwOxkwsK4ex9dEI9Zh0eD_A2fIs"</li>
   <li>ionic plugin add call-number </li>
