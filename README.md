@@ -8,7 +8,7 @@ To run the project, you need to build an Android or iPhone development environme
   <li>iPhone : Not yet supported. </li>
 </ol>
 
-* Android Studio Install - https://developer.android.com/studio/index.html?hl=ko
+* Android Studio Install - https://developer.android.com/studio/index.html?hl=ko (To run applications on Android, you need to have 6.0.0 version SDK and Android emulator installed.)
 * Java Install - http://www.oracle.com/technetwork/java/javase/downloads/index.html
 * NodeJS - https://nodejs.org/en/
 
