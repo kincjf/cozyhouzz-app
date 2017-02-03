@@ -19,7 +19,8 @@
   "exclude": [
     "typings/browser.d.ts",
     "typings/browser",
-    "node_modules"
+    "node_modules",
+    "src/app/main.prod.ts"
   ],
   "compileOnSave": false,
   "atom": {
