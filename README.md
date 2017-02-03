@@ -24,7 +24,7 @@ To install ionic2 you need nodejs (current project: 6.9.4).
 
 ### Project Install & Build(Run)
 <ol start="1">
-  <li>git clone https://github.com/ushawn/cozyhouzz-app.git</li>
+  <li>git clone https://github.com/kincjf/cozyhouzz-app.git</li>
   <li>cd cozyhouzz-app/cozyhouzz-app</li>
   <li>npm install</li>
   <li>ionic state reset</li>
