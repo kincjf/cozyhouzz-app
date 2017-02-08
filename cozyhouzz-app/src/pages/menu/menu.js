@@ -31,95 +31,59 @@ var Menu = (function () {
         * 나중에 잘 줄여 봐야 함. */
         this.pages = [
             {
-                title: '공지사항',
-                flag: true,
-                ios: 'ios-document',
-                md: 'md-document',
-                page: 'NoticeBoardListPage'
-            },
-            {
-                title: '공지사항',
+                title: '방 정보 입력',
                 flag: false,
-                ios: 'ios-document',
-                md: 'md-document',
-                page: 'NoticeBoardListPage'
+                ios: 'ios-add',
+                md: 'md-add',
+                page: 'RoomSettingPage'
             },
             {
-                title: '방 보기',
+                title: '방 정보 보기',
                 flag: true,
                 ios: 'ios-list',
                 md: 'md-list',
                 page: 'RoomListPage'
             },
             {
-                title: '방 보기',
+                title: '방 정보 보기',
                 flag: false,
                 ios: 'ios-list',
                 md: 'md-list',
                 page: 'RoomListPage'
-            },
-            {
-                title: '방 검색 설정',
-                flag: true,
-                ios: 'ios-settings',
-                md: 'md-settings',
-                page: 'RoomSettingPage'
-            },
-            {
-                title: '방 검색 설정',
-                flag: false,
-                ios: 'ios-settings',
-                md: 'md-settings',
-                page: 'RoomSettingPage'
-            },
-            {
-                title: '찜 목록',
-                flag: true,
-                ios: 'ios-heart',
-                md: 'md-heart',
-                page: 'DibRoomListPage'
-            },
-            {
-                title: '찜 목록',
-                flag: false,
-                ios: 'ios-heart',
-                md: 'md-heart',
-                page: 'DibRoomListPage'
-            } /*,
-      
-            {
-              title: '최근 본 방',
-              flag: true,
-              ios: 'ios-time',
-              md: 'md-time',
-              page: 'LatelyRoomListPage'
-            },
-            {
-              title: '최근 본 방',
-              flag: false,
-              ios: 'ios-time',
-              md: 'md-time',
-              page: 'LatelyRoomListPage'
-            }*/
+            }
         ];
         /*
          * Add your pages to be displayed in the menu
          * */
         this.etc_pages = [
             {
-                title: '1:1 문의 내역',
+                title: '상담/문의 하기',
                 flag: false,
                 ios: 'ios-chatbubbles',
                 md: 'md-chatbubbles',
                 page: 'QuestionListPage'
             },
+            /*{
+              title: '내 정보 보기',
+              flag: false,
+              ios: 'ios-person',
+              md: 'md-person',
+              page: 'UserInfoDetailPage'
+            },*/
             {
-                title: '내 정보 보기',
+                title: '공지사항',
                 flag: false,
-                ios: 'ios-person',
-                md: 'md-person',
-                page: 'UserInfoDetailPage'
-            } //,
+                ios: 'ios-document',
+                md: 'md-document',
+                page: 'NoticeBoardListPage'
+            },
+            {
+                title: '이벤트',
+                flag: false,
+                ios: 'ios-document',
+                md: 'md-document',
+                page: 'NoticeBoardListPage'
+            }
         ];
         /*
          * 로그인 이벤트가 발생되었을 경우

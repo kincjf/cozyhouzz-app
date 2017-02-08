@@ -11,6 +11,7 @@ var room_list_1 = require('../roomInfo/room-list/room-list');
 // import {LatelyRoomListPage} from '../roomInfo/lately-room-list/lately-room-list';
 var dib_room_list_1 = require('../roomInfo/dib-room-list/dib-room-list');
 var mypage_1 = require('../mypage/mypage');
+var question_list_1 = require('../mypage/question/question-list/question-list');
 var TabsPage = (function () {
     function TabsPage() {
         // this tells the tabs component which Pages
@@ -18,7 +19,7 @@ var TabsPage = (function () {
         this.tab1Root = home_1.HomePage;
         this.tab2Root = room_list_1.RoomListPage;
         this.tab3Root = dib_room_list_1.DibRoomListPage;
-        // tab4Root: any = DibRoomListPage;
+        this.tab4Root = question_list_1.QuestionListPage;
         this.tab5Root = mypage_1.MyPage;
     }
     TabsPage = __decorate([

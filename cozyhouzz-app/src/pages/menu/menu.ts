@@ -35,50 +35,44 @@ export class Menu {
     *
     * 나중에 잘 줄여 봐야 함. */
     this.pages = [
-      {
-        title: '공지사항',
-        flag: true,
-        ios: 'ios-document',
-        md: 'md-document',
-        page: 'NoticeBoardListPage'
-      },
-      {
-        title: '공지사항',
-        flag: false,
-        ios: 'ios-document',
-        md: 'md-document',
-        page: 'NoticeBoardListPage'
-      },
-      {
-        title: '방 보기',
-        flag: true,
-        ios: 'ios-list',
-        md: 'md-list',
-        page: 'RoomListPage'
-      },
-      {
-        title: '방 보기',
-        flag: false,
-        ios: 'ios-list',
-        md: 'md-list',
-        page: 'RoomListPage'
-      },
-      {
-        title: '방 검색 설정',
-        flag: true,
-        ios: 'ios-settings',
-        md: 'md-settings',
-        page: 'RoomSettingPage'
-      },
-      {
-        title: '방 검색 설정',
-        flag: false,
-        ios: 'ios-settings',
-        md: 'md-settings',
-        page: 'RoomSettingPage'
-      },
 
       {
+        title: '방 정보 입력',
+        flag: false,
+        ios: 'ios-add',
+        md: 'md-add',
+        page: 'RoomSettingPage'
+      },
+      {
+        title: '방 정보 보기',
+        flag: true,
+        ios: 'ios-list',
+        md: 'md-list',
+        page: 'RoomListPage'
+      },
+      {
+        title: '방 정보 보기',
+        flag: false,
+        ios: 'ios-list',
+        md: 'md-list',
+        page: 'RoomListPage'
+      }
+     /* {
+        title: '방 검색 설정',
+        flag: true,
+        ios: 'ios-settings',
+        md: 'md-settings',
+        page: 'RoomSettingPage'
+      },
+      {
+        title: '방 검색 설정',
+        flag: false,
+        ios: 'ios-settings',
+        md: 'md-settings',
+        page: 'RoomSettingPage'
+      },*/
+
+     /* {
         title: '찜 목록',
         flag: true,
         ios: 'ios-heart',
@@ -92,7 +86,7 @@ export class Menu {
         ios: 'ios-heart',
         md: 'md-heart',
         page: 'DibRoomListPage'
-      }/*,
+      }*//*,
 
       {
         title: '최근 본 방',
@@ -115,19 +109,34 @@ export class Menu {
      * */
     this.etc_pages = [
       {
-        title: '1:1 문의 내역',
+        title: '상담/문의 하기',
         flag: false,
         ios: 'ios-chatbubbles',
         md: 'md-chatbubbles',
         page: 'QuestionListPage'
       },
-      {
+      /*{
         title: '내 정보 보기',
         flag: false,
         ios: 'ios-person',
         md: 'md-person',
         page: 'UserInfoDetailPage'
-      }//,
+      },*/
+      {
+        title: '공지사항',
+        flag: false,
+        ios: 'ios-document',
+        md: 'md-document',
+        page: 'NoticeBoardListPage'
+      },
+      {
+        title: '이벤트',
+        flag: false,
+        ios: 'ios-document',
+        md: 'md-document',
+        page: 'NoticeBoardListPage'
+      }
+      //,
       //{ title: 'CallNumberPage', component: CallNumberPage },
       //{ title: 'ImagePickerPage', component: ImagePickerPage }
     ];

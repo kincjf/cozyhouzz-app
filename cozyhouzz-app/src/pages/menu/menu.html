@@ -1,8 +1,17 @@
 <ion-menu [content]="content" (ionOpen)="menuOpened()" type="overlay" (ionClose)="menuClosed()"  persistent="true" class="page_menu">
  <!-- <div id="authentication_area" padding style="text-align: center; min-height:50px; background-color:#73C3CB"> &lt;!&ndash; (click)="openHomePage()"&ndash;&gt;
 
+
   </div>-->
-  <img style="margin-top: 15px; margin-bottom: 0px;" class="profile-picture" src="{{ 'assets/img/logo-cozyhouzz/logo.jpg' }}">
+  <div id="authentication_area" *ngIf="isLogined">
+    <img src="{{'assets/img/mike.png'}}">
+    <span>ushawn@nate.com</span><br>
+    <span>
+        <ion-icon ios="ios-heart" md="md-heart" style="font-size: 1.4rem;"></ion-icon> 17
+        <span>LEVEL</span> 7
+    </span>
+  </div>
+  <img style="margin-top: 15px; margin-bottom: 0px;" class="profile-picture" src="{{ 'assets/img/logo-cozyhouzz/logo.jpg' }}"  *ngIf="!isLogined">
 
 
   <!--  <div class="menu_line_area">
