@@ -36,7 +36,7 @@ import {BussinessManRegistrationPage} from '../pages/authentication/registration
 import {ZipCodePage} from '../pages/function/zip-code/zip-code';
 // import {DisqusModule} from "ng2-awesome-disqus";
 import { IonShrinkingHeader } from '../components/ion-shrinking-header';
-
+import {LatelyRoomListPage} from '../pages/roomInfo/lately-room-list/lately-room-list';
 
 //BussinessManRegistrationPage
 import {PostService} from "../services/post-service";
@@ -45,7 +45,7 @@ import {Storage} from '@ionic/storage';
 import {RoomService} from "../services/room-service";
 import {ZipCodeService} from '../services/zip-code-service';
 // import {MapsService} from '../services/maps.service';
-
+import {ImagePickerPage} from '../pages/function/image-picker/image-picker';
 import {TabsPage} from '../pages/tabs/tabs'
 import {GlobalVars} from "../providers/globalvars";
 
@@ -85,7 +85,8 @@ import {GlobalVars} from "../providers/globalvars";
     // RoomCommentPage,
     NoticeBoardListPage,
     NoticeBoardInputPage,
-    IonShrinkingHeader
+    IonShrinkingHeader,
+    ImagePickerPage
   ],
   imports: [
 
@@ -113,10 +114,11 @@ import {GlobalVars} from "../providers/globalvars";
     GeneralRegistrationPage,
     BussinessManRegistrationPage,
     RoomSettingPage,
-    QuestionDetailPage,
+    QuestionDetailPage, // 사실상 채팅!
     QuestionListPage,
     RoomInputPage,
     ZipCodePage,
+    // Focuser,
     //GoogleMapsPage,
     UserInfoDetailPage,
     RegistrationPage,
@@ -129,7 +131,8 @@ import {GlobalVars} from "../providers/globalvars";
     ConsultingListPage,
     // RoomCommentPage,
     NoticeBoardListPage,
-    NoticeBoardInputPage
+    NoticeBoardInputPage,
+    ImagePickerPage
   ],
   providers: [
     Loader,
@@ -138,8 +141,7 @@ import {GlobalVars} from "../providers/globalvars";
     RoomService,
     UserService,
     ZipCodeService,
-    // MapsService,
-    GlobalVars
+    GlobalVars,
 
   ]
 })

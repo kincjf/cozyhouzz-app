@@ -27,22 +27,12 @@
     "zone.js": "0.6.26",
     "sw-toolbox": "3.4.0",
     "@ionic/app-scripts": "1.0.0",
-    "@types/jasmine": "^2.5.38",
-    "@types/request": "0.0.33",
-    "jwt-decode": "^2.1.0",
+    "moment": "2.10.6",
+    "angular2-moment": "1.1.0",
     "firebase": "^3.6.5",
-    "moment": "^2.10.6",
-    "randomstring": "*",
-    "passport": "^0.3.2",
-    "passport-jwt": "^2.1.0",
-    "passport-local": "^1.0.0",
     "angular2-jwt": "0.1.24",
-    "angular2-google-maps": "0.10.0",
-    "angular2-moment": "^1.0.0",
-    "ng2-cordova-oauth": "0.0.6",
-    "ng2-awesome-disqus": "1.0.3",
-    "ts-md5": "1.2.0",
-    "crypto-js": "3.1.9-1"
+
+    "ts-md5": "1.2.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.0.0",
@@ -60,7 +50,6 @@
     "cordova-plugin-http",
     "cordova-sqlite-storage",
     "com.synconset.imagepicker",
-    "ionic-plugin-keyboard",
     "cordova-plugin-image-picker"
   ],
   "cordovaPlatforms": [],
