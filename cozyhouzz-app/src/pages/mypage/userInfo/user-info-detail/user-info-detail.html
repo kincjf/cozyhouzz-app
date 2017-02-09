@@ -119,6 +119,14 @@
       <button type="submit" full ion-button block color="secondary" [disabled]="!userFormBuilder.valid">계정 정보 변경하기</button>
     </form>
   </div>
+  <button id="signOutButton" ion-item (click)="signOut()">
+
+       <ion-icon ios="ios-remove-circle" md="md-remove-circle" style="float: left; margin-top: 9px; margin-right: 25px;"></ion-icon>
+       <div  style="float: left;">
+         <span>회원탈퇴</span><br>
+         <span style="color: #aaa; font-size: 1.3rem">회원정보를 삭제합니다.</span>
+       </div>
+     </button>
   <!--
     <button (click)="userInfoModify()">정보 수정하기</button>
   -->

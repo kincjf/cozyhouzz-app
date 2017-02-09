@@ -80,7 +80,9 @@ export class BussinessManRegistrationPage {
     this.userService.createUser(url, user).subscribe(response => {
       this.loader.hide();
       this.userService.setUserInfo(response.id_token);
-      this.navCtrl.parent.select(3);
+      this.navCtrl.pop();
+      this.navCtrl.pop();
+      this.navCtrl.parent.select(1);
     }, error => {
       this.loader.hide();
       let errorMsg = JSON.parse(error._body).errorMsg;

@@ -13,7 +13,19 @@
   <div class="video-container" *ngIf="vrImageURL!=null">
     <iframe [src]="vrImageURL" style="width: 100vw; height: 40vh" frameborder="0" allowfullscreen></iframe>
   </div>
-
+  <ion-grid>
+      <ion-row>
+        <ion-col width-33 text-center>
+          <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> {{like}}
+        </ion-col>
+        <ion-col width-33 text-center>
+          <ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon> {{unlike}}
+        </ion-col>
+        <ion-col width-33 text-center>
+          <ion-icon ios="ios-heart" md="md-heart"></ion-icon> 없음
+        </ion-col>
+      </ion-row>
+  </ion-grid>
 
   <!--
      여기 부분은 글 작성자의 정보가 들어가는 부분임.

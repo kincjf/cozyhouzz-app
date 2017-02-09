@@ -1,11 +1,12 @@
 import {Component, NgZone} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, AlertController} from 'ionic-angular';
 import * as firebase from 'firebase';
 import {GlobalVars} from '../../../../providers/globalvars';
 import {QuestionDetailPage} from '../question-detail/question-detail';
 import {Md5} from "ts-md5/dist/md5";
 import {UserService} from '../../../../services/user-service';
 import {Loader} from "../../../../providers/loader";
+import {Config} from "../../../../app/config";
 @Component({
   selector: 'page-question-list',
   templateUrl: 'question-list.html'
@@ -23,14 +24,19 @@ export class QuestionListPage {
   isLogined: boolean = false;
 
   constructor(public navCtrl: NavController,  public loader:Loader, public GlobalVars: GlobalVars, public params: NavParams,
-    public userService:UserService) {
-    loader.show("1:1 대화 목록을 불러오고 있습니다.");
+    public userService:UserService, public alertCtrl:AlertController) {
 
+
+  }
+  ionViewWillEnter() {
     this.recentChats = [];
     let testing = this.recentChats;
-    this.isLogined = userService.getIsLogind();
+    this.isLogined = this.userService.getIsLogind();
+    let loader = this.loader;
     if(this.isLogined) {
-      this.user = userService.getUserInfo();
+      loader.show("1:1 대화 목록을 불러오고 있습니다.");
+
+      this.user = this.userService.getUserInfo();
       this.user_delimiter = Md5.hashStr(this.user.email);
 
       this._chats = firebase.database().ref('chats');
@@ -53,23 +59,39 @@ export class QuestionListPage {
         //console.log(tempArray);
         //this.recentChats.push(tempArray);
       });
-     /*  this.recentChats = [];
+      /*  this.recentChats = [];
 
-      this._lastChats.child(this.user_delimiter).on('child_added', (data) => {
-        if(this.recentChats.length <= 0) {
-          this.loader.hide();
+       this._lastChats.child(this.user_delimiter).on('child_added', (data) => {
+       if(this.recentChats.length <= 0) {
+       this.loader.hide();
 
-        }
-        this.zone.run(() => {
-          let tempArray = data.val();
-          console.log(tempArray);
-          this.recentChats.push(tempArray);
-        });
-      });*/
+       }
+       this.zone.run(() => {
+       let tempArray = data.val();
+       console.log(tempArray);
+       this.recentChats.push(tempArray);
+       });
+       });*/
+    } else {
+      let alert = this.alertCtrl.create({
+        title: '1:1 대화',
+        message: '로그인이 필요한 항목입니다. 로그인 페이지로 이동합니다.',
+        buttons: [
+
+          {
+            text: '로그인',
+            handler: () => {
+              Config.SELECTED_TABS_MENU = 'LoginPage';
+              this.navCtrl.parent.select(4);
+              console.log("login page로 이동하기");
+            }
+          }
+        ]
+      });
+      alert.present();
     }
 
   }
-
   chatSelect(receiver) {
     let user = {
       userData: this.user.email,

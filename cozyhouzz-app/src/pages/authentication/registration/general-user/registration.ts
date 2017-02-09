@@ -66,7 +66,9 @@ export class GeneralRegistrationPage {
     this.userService.createUser(url, user).subscribe(response => {
       this.userService.setUserInfo(response.id_token);
       this.loader.hide();
-      this.navCtrl.parent.select(3);
+      this.navCtrl.pop();
+      this.navCtrl.pop();
+      this.navCtrl.parent.select(1);
     }, error => {
       this.loader.hide();
       /*

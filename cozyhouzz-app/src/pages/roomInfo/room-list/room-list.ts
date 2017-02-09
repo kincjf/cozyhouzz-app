@@ -27,7 +27,9 @@ export class RoomListPage {
   public roomInfoResult: any;
   public room: Room;
   public pageSize: number = 6;
-  public region: string;
+  public region1: string;
+  public region2: string;
+  public region3: string;
   public filter: Array<string>;
   public lately: number = 0;
   public pageStartIndex = 0;
@@ -82,8 +84,10 @@ export class RoomListPage {
     }*/
     this.loader.show("정보를 불러오고 있습니다.");
 
-    this.region = params.get("region"); //메인페이지에서 어떤 지역을 선택했는지 가져옴.
-    if (!this.region) this.region = '전체'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
+    this.region1 = params.get("region1"); //메인페이지에서 어떤 지역을 선택했는지 가져옴.
+    if (!this.region1) this.region1 = '전주시'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
+    if (!this.region2) this.region2 = '덕진구'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
+    if (!this.region3) this.region3 = '덕진동'; //지역을 선택하지 않았으면? 메뉴를 타고 들어온 것임. 전체로 바꿔줌.
 
     /*
      * 로그인 되어있는지 체크.
@@ -241,6 +245,18 @@ export class RoomListPage {
         if (refresher != null) {
           refresher.complete();
         } //refresher 완료
+      }, error => {
+        if (loader != null) {
+          loader.hide();
+        } //로딩화면 종료
+        if (infiniteScroll != null) {
+          infiniteScroll.disable(true);
+          infiniteScroll.complete();
+        } //infiniteScroll 완료
+        if (refresher != null) {
+          refresher.complete();
+        } //refresher 완료
+          console.log(error);
       }
     );
   }
@@ -313,7 +329,7 @@ export class RoomListPage {
    * select 지역 바뀌었을 경우 호출되는 함수.
    * */
   changeRegion() {
-    console.log(this.region);
+    console.log(this.region1);
   }
 
   /**

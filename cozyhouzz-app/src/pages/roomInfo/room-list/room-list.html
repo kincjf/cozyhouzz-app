@@ -19,61 +19,46 @@
 <!--      <button ion-button right (click)="refreshButtonClick()">
         새로고침
       </button>-->
-      <button ion-button right (click)="inputButtonClick()" *ngIf="isLogined">
-        방 등록
+      <button ion-button left style="width: 48px; font-size: 2.2rem;">
+
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
       </button>
       <button ion-button right (click)="settingButtonClick()">
-        방 설정
+        검색 조건
       </button>
     </ion-buttons>
   </ion-navbar>
   <div class="sub-title-bar"> <!-- [(ngModel)]="region" -->
     <ion-grid>
       <ion-row>
-        <ion-col text-center width-50>
+        <ion-col text-center width-33>
           <ion-item text-center>
-            <ion-select [(ngModel)]="region" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
-              <ion-option value="전체" selected="true">전체</ion-option>
-              <ion-option value="전주">전주</ion-option>
-              <ion-option value="익산">익산</ion-option>
-              <ion-option value="군산">군산</ion-option>
+            <ion-select [(ngModel)]="region1" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
+              <ion-option value="전주시" selected="true">전주시</ion-option>
+              <ion-option value="익산시">익산시</ion-option>
+              <ion-option value="군산시">군산시</ion-option>
             </ion-select>
 
           </ion-item>
         </ion-col>
-        <ion-col text-center width-50>
+        <ion-col text-center width-33>
           <ion-item text-center>
-            <ion-select [(ngModel)]="lately" [selectOptions]="selectOptions_lately" (ionChange)="changeLately()">
-              <ion-option value="0" selected="true">정렬 방법</ion-option>
-              <ion-option value="1">최신순</ion-option>
-              <ion-option value="2">이름순</ion-option>
-              <ion-option value="3">보증금순</ion-option>
-              <!--
-                            <ion-option value="3">월세순</ion-option>
-              -->
+            <ion-select [(ngModel)]="region2" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
+              <ion-option value="덕진구" selected="true">덕진구</ion-option>
             </ion-select>
+
           </ion-item>
         </ion-col>
-        <!--
-        <ion-col text-center width-50>
+        <ion-col text-center width-33>
           <ion-item text-center>
-            <ion-select [(ngModel)]="filter" multiple="true" [selectOptions]="selectOptions" (ionChange)="changeDetailFilter()">
-              <ion-option value="1" selected="true">전세</ion-option>
-              <ion-option value="2">원룸(오픈형)</ion-option>
-              <ion-option value="3">원룸(분리형)</ion-option>
-              <ion-option value="4">원룸(복층형)</ion-option>
-              <ion-option value="5">투룸</ion-option>
-              <ion-option value="6">쓰리룸</ion-option>
+            <ion-select [(ngModel)]="region3" [selectOptions]="selectOptions_region" (ionChange)="changeRegion()">
+              <ion-option value="덕진동" selected="true">덕진동</ion-option>
             </ion-select>
+
           </ion-item>
         </ion-col>
-        -->
+
       </ion-row>
-      <!--
-        <span style="font-size: 1.10em; position: relative; top: 11px; left: 20px;">
-          {{region}} - 오피스텔 ( 보증금:500~1000, 월세:20~50 )
-        </span>
-      -->
     </ion-grid>
   </div>
 
@@ -108,7 +93,15 @@
     -->
   <ion-list>
     <!--<ion-list-header id="roomInfoListHeader"><b>원룸·투룸·오피스텔·도시형생활주택</b></ion-list-header>-->
-    <ion-list-header id="roomInfoListHeader">원룸·투룸·오피스텔·도시형생활주택</ion-list-header>
+    <ion-list-header id="roomInfoListHeader">
+      <span>원룸·투룸·오피스텔·도시형생활주택</span>
+      <span>
+          지도보기
+      </span>
+      <span>
+          리스트
+      </span>
+    </ion-list-header>
     <!--
       | sortBy : 'title' 이면 title로 오름차순 한다는 의미
       해당 부분에 변수를 두고 변수의 값을 바꾸는 것으로 해야 할듯.
@@ -124,6 +117,7 @@
         <img src="assets/img/SAM_100_0081.jpg" *ngIf="i%4==3"
              alt="Inventore voluptates velit totam ipsa tenetur" style="display: block; float: left;">-->
       </ion-thumbnail>
+
       <div id="roomInfoDetail" >
         <span id="post_title">{{roomInfo.title}}</span><br>
         <span id="post_place">{{roomInfo.address.addr1}}</span><br>
@@ -136,7 +130,13 @@
           </span>
           <span>
               <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"
-                        style="color:#159DEB;"></ion-icon> {{i * 3}}
+                        style="color:#159DEB;"></ion-icon>{{i * 3}}
+          </span>
+          <span>
+            <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>{{i * 3}}
+          </span>
+          <span>
+            <ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon>{{i * 3}}
           </span>
         </span>
       </div>

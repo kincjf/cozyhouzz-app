@@ -43,7 +43,55 @@ export class MyPage {
      * 찜목
      * */
     this.pages = [
+      /*{
+        title: '구독정보',
+        component: NoticeBoardListPage,
+        flag: true,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '구독정보를 받아볼 수 있습니다.'
+      },*/
       {
+        title: '구독정보',
+        component: NoticeBoardListPage,
+        flag: false,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '구독정보를 받아볼 수 있습니다.'
+      },
+    /*  {
+        title: '내 좋아요 글',
+        component: NoticeBoardListPage,
+        flag: true,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '좋아요 글을 확인할 수 있습니다.'
+      },*/
+      {
+        title: '내 좋아요 글',
+        component: NoticeBoardListPage,
+        flag: false,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '좋아요 글을 확인할 수 있습니다.'
+      },
+     /* {
+        title: '내 작성 글',
+        component: NoticeBoardListPage,
+        flag: true,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '내가 작성한 글을 볼 수 있습니다.'
+      },*/
+      {
+        title: '내 작성 글',
+        component: NoticeBoardListPage,
+        flag: false,
+        ios: 'ios-document',
+        md: 'md-document',
+        detail: '내가 작성한 글을 볼 수 있습니다.'
+      },
+      /*{
         title: '공지사항',
         component: NoticeBoardListPage,
         flag: true,
@@ -58,25 +106,10 @@ export class MyPage {
         ios: 'ios-document',
         md: 'md-document',
         detail: '공지사항을 확인할 수 있습니다.'
-      },
-      {
-        title: '방 검색 설정',
-        component: RoomSettingPage,
-        flag: true,
-        ios: 'ios-settings',
-        md: 'md-settings',
-        detail: '방 검색 조건을 설정합니다. 보증금, 월세, 방 타입'
-      },
-      {
-        title: '방 검색 설정',
-        component: RoomSettingPage,
-        flag: false,
-        ios: 'ios-settings',
-        md: 'md-settings',
-        detail: '방 검색 조건을 설정합니다. 보증금, 월세, 방 타입'
-      },
+      },*/
 
-      {
+
+    /*  {
         title: '찜 목록',
         component: null,
         flag: true,
@@ -91,7 +124,7 @@ export class MyPage {
         ios: 'ios-heart',
         md: 'md-heart',
         detail: '관심있는 방 또는 인테리어 목록입니다.'
-      },
+      },*/
       /*
        {
        title: '최근 본 방',
@@ -109,6 +142,39 @@ export class MyPage {
        md: 'md-time',
        detail: '최근에 본 방 또는 인테리어 목록입니다.'
        },*/
+
+     /* {
+        title: '1:1 문의 하기',
+        component: QuestionListPage,
+        flag: false,
+        ios: 'ios-chatbubbles',
+        md: 'md-chatbubbles',
+        detail: '업체 별 1:1 문의 내역을 확인할 수 있습니다.'
+      },*/
+      {
+        title: '컨설팅 내역',
+        component: ConsultingListPage,
+        flag: false,
+        ios: 'ios-list',
+        md: 'md-list',
+        detail: '컨설팅 내역을 확인할 수 있습니다.'
+      },
+      {
+        title: '검색 설정',
+        component: RoomSettingPage,
+        flag: true,
+        ios: 'ios-settings',
+        md: 'md-settings',
+        detail: '방 검색 조건을 설정합니다. 보증금, 월세, 방 타입'
+      },
+      {
+        title: '검색 설정',
+        component: RoomSettingPage,
+        flag: false,
+        ios: 'ios-settings',
+        md: 'md-settings',
+        detail: '방 검색 조건을 설정합니다. 보증금, 월세, 방 타입'
+      },
       {title: '로그인', component: LoginPage, flag: true, ios: 'ios-log-in', md: 'md-log-in', detail: '로그인 페이지입니다.'},
       {
         title: '회원가입',
@@ -117,22 +183,6 @@ export class MyPage {
         ios: 'ios-list',
         md: 'md-list',
         detail: '일반사용자 및 사업주사용자 회원가입'
-      },
-      {
-        title: '1:1 문의 하기',
-        component: QuestionListPage,
-        flag: false,
-        ios: 'ios-chatbubbles',
-        md: 'md-chatbubbles',
-        detail: '업체 별 1:1 문의 내역을 확인할 수 있습니다.'
-      },
-      {
-        title: '컨설팅 내역',
-        component: ConsultingListPage,
-        flag: false,
-        ios: 'ios-list',
-        md: 'md-list',
-        detail: '컨설팅 내역을 확인할 수 있습니다.'
       },
       {
         title: '계정 정보 보기',
@@ -168,6 +218,7 @@ export class MyPage {
     * 어떠한 페이지를 push 해줄 것인가를 확인하는 부분.
     * 아래의 if문을 보면 이해가 갈것이다.*/
     if (page != null) {
+
       if (page == 'RegisterPage') this.navCtrl.push(RegistrationPage);
       else if (page == 'LoginPage') this.navCtrl.push(LoginPage);
       else if (page == 'QuestionListPage') this.navCtrl.push(QuestionListPage);
@@ -232,61 +283,5 @@ export class MyPage {
     alert.present();
   }
 
-  /**
-   * 회원탈퇴를 처리하는 함수
-   */
-  signOut() {
-    let user = {
-      email: this.user.email
-    };
-    /*
-     * 헤더에 jwt 토큰을 추가한다. */
-    contentHeaders.set('Authorization', this.userService.getJwtToken());//Header에 jwt값 추가하기
 
-    /*
-     * 사용자에게 한번 더 물어보는 부분. */
-    let alert = this.alertCtrl.create({
-      title: '회원탈퇴',
-      message: '회원탈퇴를 하시겠습니까?<br> 개인 정보는 삭제되며 한번 삭제된 정보는 복구가 불가능합니다.',
-      buttons: [
-        {
-          text: '취소',
-          role: '취소',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: '회원탈퇴',
-          handler: () => {
-            /*
-             * 실제로 회원탈퇴가 이루어지는 부분.
-             * loader을 발생하고 서버에 user 정보를 헤더와 함께 보낸다. */
-            this.loader.show("회원 탈퇴 중 입니다.");
-            this.userService.signOut(user, contentHeaders).toPromise()
-              .then(
-                response => {
-                  /*
-                   * 회원탈퇴가 제대로 된 경우.
-                   * 로더를 숨기고
-                   * 로그아웃 처리를 한다. -> 앞으론 로그인 부분에서 막힘. */
-                  console.log(response);
-                  this.loader.hide();
-                  this.userService.logout();
-
-                }, error => {
-                  /*
-                   * 에러가 발생한 경우.
-                   * 적절하게 사용자에게 에러를 띄워줘야 하나 아직 하지 못함.
-                   * 나중에 본 사람이 잘 추가시킬것.*/
-                  this.loader.hide();
-                  console.log(error);
-                }
-              );
-          }
-        }
-      ]
-    });
-    alert.present();
-  }
 }

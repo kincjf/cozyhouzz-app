@@ -81,6 +81,7 @@ export class LoginPage {
            */
           this.userService.setUserInfo(response.id_token);
           this.navCtrl.pop();
+          this.navCtrl.parent.select(1);
         },
         err => {
           /*

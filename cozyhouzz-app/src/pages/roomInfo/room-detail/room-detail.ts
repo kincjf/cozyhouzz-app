@@ -368,7 +368,7 @@ export class RoomDetailPage {
             text: '로그인',
             handler: () => {
               Config.SELECTED_TABS_MENU = 'LoginPage';
-              this.nav.parent.select(3);
+              this.nav.parent.select(4);
               console.log("login page로 이동하기");
             }
           }
