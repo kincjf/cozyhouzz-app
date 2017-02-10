@@ -29,6 +29,17 @@ page-build-case-detail {
 
     }
   }
+  #imageSlides {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  #informationSlides {
+    ion-slide {
+      height: 100%;
+    }
+  }
   #userInfo {margin-top:2px;
     padding-left: 0; margin-bottom:5px; background-color: inherit;
   }
@@ -36,6 +47,7 @@ page-build-case-detail {
     background-color: white;
     margin-bottom: 5px;
     margin-top: 0;
+    width: 100%;
   }
   #companyIntro {
     padding: 20px 16px 17px 16px;

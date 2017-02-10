@@ -1,31 +1,44 @@
 <ion-header no-border>
   <ion-navbar color="cozy"> <!-- style="background-color: rgba(0, 0, 0, 0)"-->
     <ion-title>{{title}} <!--방 정보 상세보기--></ion-title>
-  <!--  <ion-buttons end>
-      <button ion-button right (click)="commentButtonClick()">
-        댓글 확인
-      </button>
-    </ion-buttons>-->
+    <!--  <ion-buttons end>
+        <button ion-button right (click)="commentButtonClick()">
+          댓글 확인
+        </button>
+      </ion-buttons>-->
   </ion-navbar>
 </ion-header>
 
-<ion-content  style="background-color: #F5F5F5;" >
+<ion-content style="background-color: #F5F5F5;">
   <div class="video-container" *ngIf="vrImageURL!=null">
     <iframe [src]="vrImageURL" style="width: 100vw; height: 40vh" frameborder="0" allowfullscreen></iframe>
   </div>
-  <ion-grid>
-      <ion-row>
-        <ion-col width-33 text-center>
-          <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon> {{like}}
-        </ion-col>
-        <ion-col width-33 text-center>
-          <ion-icon ios="ios-thumbs-down" md="md-thumbs-down"></ion-icon> {{unlike}}
-        </ion-col>
-        <ion-col width-33 text-center>
-          <ion-icon ios="ios-heart" md="md-heart"></ion-icon> 없음
-        </ion-col>
-      </ion-row>
+  <ion-grid style="background-color: white">
+    <ion-row>
+      <ion-col width-50 text-center>
+        <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
+        {{like}}
+      </ion-col>
+      <ion-col width-50 text-center>
+        <ion-icon ios="ios-heart" md="md-heart"></ion-icon>
+        <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+  <div>
+    <ion-slides id="imageSlides" (ionSlideDidChange)="SlideChanged()" auto-play="true" pager loop="true">
+      <ion-slide>
+        <img src="{{'assets/img/testMainPreviewImage2.jpg'}}">
+      </ion-slide>
+      <ion-slide>
+        <img src="{{'assets/img/testMainPreviewImage3.jpg'}}">
+      </ion-slide>
+      <ion-slide>
+        <img src="{{'assets/img/testMainPreviewImage4.jpg'}}">
+      </ion-slide>
+    </ion-slides>
+  </div>
+
 
   <!--
      여기 부분은 글 작성자의 정보가 들어가는 부분임.
@@ -33,103 +46,164 @@
      추후 수정되야 하며, 수정했을 경우
      위 주석은 삭제할 것.
   -->
-  <ion-item class="item-no-border" id="userInfo">
-    <ion-avatar item-left>
-      <img src="{{ post.face }}"  id="roomInfoDetailUserImage" >
-    </ion-avatar>
-    <h2 color="primary" class="post-author">{{ display_name }}</h2>
-    <span class="post-time">
-      {{ email }} <br>
-      {{ post_init_date }}
-    </span>
-  </ion-item>
-    <ion-list id="roomInfoDetailInfoList">
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-33 text-center (click)="goToSlide(0)">
+            위치정보
+        </ion-col>
+        <ion-col width-33 text-center (click)="goToSlide(1)">
+            방 정보
+        </ion-col>
+        <ion-col width-33 text-center (click)="goToSlide(2)">
+            업체 정보
+        </ion-col>
 
-      <ion-grid class="post-actions roomInfoInformationGrid"> <!--  style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);" -->
-        <ion-row class="roomInfoInformationGridBorderClass padding-6">
-          <ion-col width-25 text-center>
-            <span class="label label-warning">방 크기</span>
-          </ion-col>
-          <ion-col width-75 text-center>
-            <span class="label label-primary">{{area_size}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="roomInfoInformationGridBorderClass padding-6">
-          <ion-col width-25 text-center>
-            <span class="label label-warning">방 타입</span>
-          </ion-col>
-          <ion-col width-75 text-center>
-            <span class="label label-primary">{{room_type}}</span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="roomInfoInformationGridBorderClass padding-6">
-          <ion-col width-25 text-center>
-            <span class="label label-warning">보증금</span>
-          </ion-col>
-          <ion-col width-75 text-center>
-            <span class="label label-primary">{{deposit}}만원</span>
-          </ion-col>
-        </ion-row>
-        <ion-row class="padding-6">
-          <ion-col width-25 text-center>
-            <span class="label label-warning">월세</span>
-          </ion-col>
-          <ion-col width-75 text-center>
-            <span class="label label-primary">{{monthly_rent_fee}}만원</span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-list>
+      </ion-row>
+    </ion-grid>
+    <ion-slides #informationSlides id="informationSlides" (ionSlideDidChange)="SlideChanged()" slider="informationSlides_index">
+      <ion-slide>
+        <div id="mapImage">
+          <img src="{{'assets/img/map_example.PNG'}}" style="width: 98vw; margin:0 1vw;">
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <ion-list id="roomInfoDetailInfoList">
 
+          <ion-grid class="post-actions roomInfoInformationGrid">
+            <!--  style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);" -->
+            <ion-row class="roomInfoInformationGridBorderClass padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">방 크기</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{area_size}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="roomInfoInformationGridBorderClass padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">방 타입</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{room_type}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="roomInfoInformationGridBorderClass padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">보증금</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{deposit}}만원</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">월세</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{monthly_rent_fee}}만원</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="roomInfoInformationGridBorderClass padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">보증금</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{deposit}}만원</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">월세</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{monthly_rent_fee}}만원</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="roomInfoInformationGridBorderClass padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">보증금</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{deposit}}만원</span>
+              </ion-col>
+            </ion-row>
+            <ion-row class="padding-6">
+              <ion-col width-25 text-center>
+                <span class="label label-warning">월세</span>
+              </ion-col>
+              <ion-col width-75 text-center>
+                <span class="label label-primary">{{monthly_rent_fee}}만원</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-list>
+      </ion-slide>
+      <ion-slide>
 
-    <div id="companyIntro"  [innerHTML]="content" class="innerHtmlDiv">
+        <ion-item class="item-no-border" id="userInfo">
+          <ion-avatar item-left>
+            <img src="{{ post.face }}" id="roomInfoDetailUserImage">
+          </ion-avatar>
+          <h2 color="primary" class="post-author">{{ display_name }}</h2>
+          <span class="post-time">
+            {{ email }} <br>
+            {{ post_init_date }}
+          </span>
+        </ion-item>
+        <div id="companyIntro" [innerHTML]="content" class="innerHtmlDiv">
 
-    </div>
-    <!--
-    <div padding>
-
-      <a (click)="toggleLike(post)" class="subdued">
-        <ion-icon name="thumbs-up" color="primary" *ngIf="post.liked"></ion-icon>
-        <ion-icon name="thumbs-up" color="gray" *ngIf="!post.liked"></ion-icon>
-        {{ post.likeCount}}
-      </a>
-      <a class="subdued">
-        <ion-icon name="chatboxes" color="primary"></ion-icon>
-        {{ post.commentCount}}
-      </a>
-
-      <ion-item class="post-comment" *ngFor="let comment of post.comments">
-        <ion-avatar item-left (click)="viewUser(comment.user_id)">
-          <img src="{{ comment.face }}">
-        </ion-avatar>
-
-        <h3 color="primary" class="post-author">
-          {{ comment.name }}
-        </h3>
-        <p text-wrap>{{ comment.content}}</p>
-        <a class="subdued like-count">
-          <ion-icon name="heart" color="danger" *ngIf="comment.liked"></ion-icon>
-          <ion-icon name="heart" color="gray" *ngIf="!comment.liked"></ion-icon>
-          {{ comment.likeCount}}
-        </a>
-        <span class="post-time">
-          <ion-icon name="timer-outline"></ion-icon>
-          {{ comment.time }}
-        </span>
-      </ion-item>
-    </div>
-    -->
-  <div id="mapImage">
-    <img src="{{'assets/img/map_example.PNG'}}" style="width: 98vw; margin:0 1vw;">
+        </div>
+      </ion-slide>
+    </ion-slides>
   </div>
+
+
+
+
+
+  <!--
+  <div padding>
+
+    <a (click)="toggleLike(post)" class="subdued">
+      <ion-icon name="thumbs-up" color="primary" *ngIf="post.liked"></ion-icon>
+      <ion-icon name="thumbs-up" color="gray" *ngIf="!post.liked"></ion-icon>
+      {{ post.likeCount}}
+    </a>
+    <a class="subdued">
+      <ion-icon name="chatboxes" color="primary"></ion-icon>
+      {{ post.commentCount}}
+    </a>
+
+    <ion-item class="post-comment" *ngFor="let comment of post.comments">
+      <ion-avatar item-left (click)="viewUser(comment.user_id)">
+        <img src="{{ comment.face }}">
+      </ion-avatar>
+
+      <h3 color="primary" class="post-author">
+        {{ comment.name }}
+      </h3>
+      <p text-wrap>{{ comment.content}}</p>
+      <a class="subdued like-count">
+        <ion-icon name="heart" color="danger" *ngIf="comment.liked"></ion-icon>
+        <ion-icon name="heart" color="gray" *ngIf="!comment.liked"></ion-icon>
+        {{ comment.likeCount}}
+      </a>
+      <span class="post-time">
+        <ion-icon name="timer-outline"></ion-icon>
+        {{ comment.time }}
+      </span>
+    </ion-item>
+  </div>
+  -->
 
 
 
   <div padding>
     <!--<div id="disqus_thread"></div>-->
     <!--<disqus [shortname]="'npus-kr'" [identifier]="'sdfsdf'"-->
-            <!--[url]="'npus.kr'" [lang]="'kr'"-->
-            <!--[removeOnDestroy]="true"></disqus>-->
+    <!--[url]="'npus.kr'" [lang]="'kr'"-->
+    <!--[removeOnDestroy]="true"></disqus>-->
   </div>
 
   <ion-grid style="padding: 0;" id="etc_buttons">

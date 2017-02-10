@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavController, AlertController, NavParams, Events} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, AlertController, NavParams, Events, Slides, Platform, App} from 'ionic-angular';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {Loader} from "../../../providers/loader";
 import {Md5} from "ts-md5/dist/md5";
@@ -22,9 +22,11 @@ import {Config} from "../../../app/config";
 // import {RoomCommentPage} from '../room-comment/room-comment';
 @Component({
   selector: 'page-build-case-detail',
-  templateUrl: 'room-detail.html'
+  templateUrl: 'room-detail.html',
 })
 export class RoomDetailPage {
+  @ViewChild('informationSlides') slides: Slides;
+
   public post: any;
   public data: any;
   public roomDetailInfo:any;
@@ -86,6 +88,8 @@ export class RoomDetailPage {
   user_id: any;
   telephone: any;
 
+  informationSlides: Slides;
+  informationSlides_index:number = 0;
 
   buildTypes = STATIC_VALUE.PLACE_TYPE;
   selectedroomInfoIdx: any;
@@ -97,7 +101,9 @@ export class RoomDetailPage {
 
   constructor(public nav: NavController, public postService: PostService, public http: Http, public params: NavParams,
               private alertCtrl: AlertController, private sanitizer: DomSanitizer, public loader:Loader,
-              public userService:UserService,    private events: Events) {
+              public userService:UserService,    private events: Events, public platform: Platform, public app:App) {
+
+    this.informationSlides_index = 0;
     this.isLogined = false;
     /*
      * 선택된 방 정보를 가져온다.
@@ -183,7 +189,10 @@ export class RoomDetailPage {
     //this.collectionsCommentsCtrl();
   }
   ionViewDidLoad() {
+    console.log(this.slides);
     //this.collectionsCommentsCtrl();
+
+
 
   }
   /**
@@ -376,5 +385,18 @@ export class RoomDetailPage {
       });
       alert.present();
     }
+  }
+  SlideChanged() {
+
+    console.log(this.slides);
+    let currentIndex = this.slides.getActiveIndex();
+    console.log("Current index is", currentIndex);
+  }
+  informationSlidesChange() {
+
+  }
+  goToSlide(number) {
+    console.log(this.informationSlides_index);
+    this.slides.slideTo(number, 500);
   }
 }
