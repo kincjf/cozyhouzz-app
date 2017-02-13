@@ -6,12 +6,12 @@
     "proxies" : [
         {
             "path":"/api",
-            "proxyUrl": "http://npus.kr:4000"
+            "proxyUrl": "http://cozyhouzz.npus.me:4000"
 
         },
       {
-        "path":"http://npus.kr:4000",
-        "proxyUrl": "http://npus.kr:4000"
+        "path":"http://cozyhouzz.npus.me:4000",
+        "proxyUrl": "http://cozyhouzz.npus.me:4000"
 
       },
       {
@@ -24,11 +24,11 @@
       },
       {
         "path" : "/api/register",
-        "proxyUrl":"http://npus.kr:3000/api/register"
+        "proxyUrl":"http://cozyhouzz.npus.me:3000/api/register"
       },
       {
-        "path" : "http://npus.kr:3000/api/register",
-        "proxyUrl":"http://npus.kr:3000/api/register"
+        "path" : "http://cozyhouzz.npus.me:3000/api/register",
+        "proxyUrl":"http://cozyhouzz.npus.me:3000/api/register"
       }
     ]
 }

@@ -118,7 +118,7 @@ export class RoomDetailPage {
     this.loader.show("정보를 불러오고 있습니다.");
     let URL = [config.serverHost, config.path.roomDetailInfo, this.selectedroomInfoIdx ].join('/');
   console.log(URL);
-    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://npus.kr:3000/roomInfoVR/6');
+    this.vrImageURL = sanitizer.bypassSecurityTrustResourceUrl('http://cozyhouzz.npus.me:3000/roomInfoVR/6');
     this.roomInfoResult = postService.getroomInfoInfo(URL);
     this.roomInfoResult.toPromise()
       .then(
@@ -229,8 +229,8 @@ export class RoomDetailPage {
 /*
   collectionsCommentsCtrl() {
     var disqus_config = function () {
-      this.page.url = 'npus.krgfgfg';  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = 'npus.kr333'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      this.page.url = 'cozyhouzz.npus.megfgfg';  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = 'cozyhouzz.npus.me333'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() {

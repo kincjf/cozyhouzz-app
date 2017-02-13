@@ -16,12 +16,13 @@
     </ion-buttons>-->
     <ion-title>방 목록</ion-title>
     <ion-buttons end>
-<!--      <button ion-button right (click)="refreshButtonClick()">
-        새로고침
-      </button>-->
       <button ion-button left style="width: 48px; font-size: 2.2rem;">
 
         <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </button>
+
+      <button ion-button right (click)="inputButtonClick()" *ngIf="isLogined">
+        방 등록
       </button>
       <button ion-button right (click)="settingButtonClick()">
         검색 조건

@@ -63,7 +63,7 @@ export class BussinessManRegistrationPage {
       return 0;
 
     }
-    let url = 'http://npus.kr:3000/api/register';
+    let url = 'http://cozyhouzz.npus.me:3000/api/register';
     let user = {
       email: email,
       password: password,
